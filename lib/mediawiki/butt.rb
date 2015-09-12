@@ -91,5 +91,87 @@ module MediaWiki
         post(token_params, false)
       end
     end
+
+    # Logs the current user out
+    #
+    # ==== Examples
+    # => butt.login("MyUsername", "My5up3r53cur3P@55w0rd")
+    # => # do stuff
+    # => butt.logout
+    def logout
+      if @logged_in = true
+        params = {
+          action: 'logout'
+        }
+
+        post(params)
+        @logged_in = false
+        @tokens.clear
+      end
+    end
+
+    # Creates an account with the given parameters
+    #
+    # ==== Attributes
+    # *+username+ - The desired username
+    # *+usemail+ - Whether to use a random password and send it via email
+    # *+email+ - The desired email address.
+    # *+password+ - The desired password. Required only if usemail = false
+    # *+reason+ - The reason for creating the account, shown in the account creation log. Defaults to nil.
+    # *+language+ - The language code to set as default for the account being created. Defaults to 'en' or English. Use the language code, not the name.
+    #
+    # ==== Examples
+    #
+    # An example of using mailpassword can be seen below.
+    # => butt.create_account("MyUser", true, "MyEmailAddress@MailMan.com", nil, "Quiero un nuevo acuenta con correocontraseña", "es")
+    #
+    # An example of not using mailpassword can be seen below.
+    # => butt.create_account("MyUser", false, "MyEmailAddress@MailMain.com", "password", "Quiero un nuevo acuenta sin embargo correocontraseña", "es")
+    def create_account(username, usemail = false, email, *password = nil, *reason = nil, *language = 'en')
+      if usemail == true
+        params = {
+          name: username,
+          email: email,
+          mailpassword: 'value',
+          reason: reason,
+          language: language,
+          token:
+        }
+      else
+        params = {
+          name: username,
+          email: email
+          password: password,
+          reason: reason,
+          language: language,
+          token:
+        }
+      end
+
+      result = post(params)
+
+      if result["createaccount"]["result"] == "Success"
+        @tokens.clear
+      elsif result["createaccount"]["result"] == "NeedToken"
+        if usemail == true
+          params = {
+            name: username,
+            email: email,
+            mailpassword: 'value',
+            reason: reason,
+            language: language,
+            token: result["createaccount"]["token"]
+          }
+        else
+          params = {
+            name: username,
+            password: password,
+            reason: reason,
+            language: language,
+            token: result["createaccount"]["token"]
+          }
+        end
+      end
+    end
   end
 end
