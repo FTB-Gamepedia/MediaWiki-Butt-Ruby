@@ -47,7 +47,7 @@ module MediaWiki
       http.use_ssl = @ssl
       res = http.post(uri.path, params)
       if res.is_a? Net::HTTPSuccess
-        if autoparse = true
+        if autoparse == true
           return JSON.parse(res.body)
         else
           return res
