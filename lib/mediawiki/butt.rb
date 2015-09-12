@@ -1,10 +1,8 @@
 require 'json'
 require 'net/http'
-require 'net/https'
 
 module MediaWiki
   class Butt
-
     # Creates a new instance of MediaWiki::Butt
     #
     # ==== Attributes
@@ -18,7 +16,7 @@ module MediaWiki
     # => butt = MediaWiki::Butt.new("http://ftb.gamepedia.com/api.php")
     #
     # The example below shows a less than idea, but still functional, usage of the method. It is less than ideal because it has to assume that your API page is at /api.php, but it could easily be at /w/api.php, or even /wiki/api.php. It also does not use a secure connection.
-    # => butt = MediaWiki::But.new("http://ftb.gamepedia.com", false)
+    # => butt = MediaWiki::Butt.new("http://ftb.gamepedia.com", false)
     def initialize(url, use_ssl = true)
       if url =~ /api.php$/
         @url = url
@@ -29,6 +27,7 @@ module MediaWiki
       @ssl = use_ssl
       @logged_in = false
       @tokens = {}
+      puts @url
     end
 
     # Performs a generic HTTP POST action and provides the response. This method generally should not be used by the user, unless there is not a method provided by the Butt developers for a particular action.
@@ -40,17 +39,19 @@ module MediaWiki
     #
     # ==== Examples
     #
-    # => login = butt.action({action: 'login', lgname: username, lgpassword: password, format: 'json'})
-    def action(params, autoparse = true)
+    # => login = butt.post({action: 'login', lgname: username, lgpassword: password, format: 'json'})
+    def post(params, autoparse = true)
       uri = URI.parse(@url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = @ssl
-      res = http.post(uri.path, params)
-      if res.is_a? Net::HTTPSuccess
+      request = Net::HTTP::Post.new(uri)
+      request.set_form_data(params)
+      response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+        http.request(request)
+      end
+      if response.is_a? Net::HTTPSuccess
         if autoparse == true
-          return JSON.parse(res.body)
+          return JSON.parse(response.body)
         else
-          return res
+          return response
         end
       else
         return false
@@ -73,7 +74,7 @@ module MediaWiki
         format: 'json'
       }
 
-      result = action(params)
+      result = post(params)
       if result["login"]["result"] == "Success"
         @logged_in = true
         @tokens.clear
@@ -85,7 +86,9 @@ module MediaWiki
           lgtoken: result["login"]["token"],
           format: 'json'
         }
-        action(token_params)
+
+        # There is no need to autoparse this, because we don't do anything with it.
+        post(token_params, false)
       end
     end
   end
