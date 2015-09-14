@@ -27,7 +27,6 @@ module MediaWiki
       @ssl = use_ssl
       @logged_in = false
       @tokens = {}
-      puts @url
     end
 
     # Performs a generic HTTP POST action and provides the response. This method generally should not be used by the user, unless there is not a method provided by the Butt developers for a particular action.
@@ -61,10 +60,12 @@ module MediaWiki
     # Logs the user in to the wiki. This is generally required for editing, or getting restricted data.
     #
     # ==== Attributes
+    #
     # * +username+ - The desired login handle
     # * +password+ - The password of that user
     #
     # ==== Examples
+    #
     # => butt.login("MyUsername", "My5up3r53cur3P@55w0rd")
     def login(username, password)
       params = {
@@ -95,11 +96,12 @@ module MediaWiki
     # Logs the current user out
     #
     # ==== Examples
+    #
     # => butt.login("MyUsername", "My5up3r53cur3P@55w0rd")
     # => # do stuff
     # => butt.logout
     def logout
-      if @logged_in = true
+      if @logged_in == true
         params = {
           action: 'logout'
         }
@@ -110,67 +112,77 @@ module MediaWiki
       end
     end
 
-    # Creates an account with the given parameters
+    # Creates an account using the standard procedure.
     #
     # ==== Attributes
+    #
     # *+username+ - The desired username
-    # *+usemail+ - Whether to use a random password and send it via email
-    # *+email+ - The desired email address.
-    # *+password+ - The desired password. Required only if usemail = false
-    # *+reason+ - The reason for creating the account, shown in the account creation log. Defaults to nil.
+    # *+password+ - The desired password.
     # *+language+ - The language code to set as default for the account being created. Defaults to 'en' or English. Use the language code, not the name.
+    # *+reason+ - The reason for creating the account, shown in the account creation log. Optional.
     #
     # ==== Examples
     #
-    # An example of using mailpassword can be seen below.
-    # => butt.create_account("MyUser", true, "MyEmailAddress@MailMan.com", nil, "Quiero un nuevo acuenta con correocontraseña", "es")
-    #
-    # An example of not using mailpassword can be seen below.
-    # => butt.create_account("MyUser", false, "MyEmailAddress@MailMain.com", "password", "Quiero un nuevo acuenta sin embargo correocontraseña", "es")
-    def create_account(username, usemail = false, email, *password = nil, *reason = nil, *language = 'en')
-      if usemail == true
-        params = {
-          name: username,
-          email: email,
-          mailpassword: 'value',
-          reason: reason,
-          language: language,
-          token:
-        }
-      else
-        params = {
-          name: username,
-          email: email
-          password: password,
-          reason: reason,
-          language: language,
-          token:
-        }
-      end
+    # => butt.create_account("MyUser", "password", "es", "MyEmailAddress@MailMain.com", "Quiero un nuevo acuenta sin embargo correocontraseña")
+    def create_account(username, password, language = 'en', *reason)
+      params = {
+        name: username,
+        password: password,
+        reason: reason,
+        language: language,
+        token: ''
+      }
 
       result = post(params)
 
       if result["createaccount"]["result"] == "Success"
         @tokens.clear
       elsif result["createaccount"]["result"] == "NeedToken"
-        if usemail == true
-          params = {
-            name: username,
-            email: email,
-            mailpassword: 'value',
-            reason: reason,
-            language: language,
-            token: result["createaccount"]["token"]
-          }
-        else
-          params = {
-            name: username,
-            password: password,
-            reason: reason,
-            language: language,
-            token: result["createaccount"]["token"]
-          }
-        end
+        params = {
+          name: username,
+          password: password,
+          reason: reason,
+          language: language,
+          token: result["createaccount"]["token"]
+        }
+      end
+    end
+
+    # Creates an account using the random-password-sent-by-email procedure.
+    #
+    # ==== Attributes
+    #
+    # *+username+ - The desired username
+    # *+email+ - The desired email address.
+    # *+reason+ - The reason for creating the account, shown in the account creation log. Optional.
+    # *+language+ - The language code to set as default for the account being created. Defaults to 'en' or English. Use the language code, not the name.
+    #
+    # ==== Examples
+    #
+    # => butt.create_account_email("MyUser", "MyEmailAddress@Whatever.com", "es", "Quiero una nueva acuenta porque quiero a comer caca")
+    def create_account_email(username, email, language = 'en', *reason)
+      params = {
+        name: username,
+        email: email,
+        mailpassword: 'value',
+        reason: reason,
+        language: language,
+        token: ''
+      }
+
+      result = post(params)
+
+      if result["createaccount"]["result"] == "Success"
+        @tokens.clear
+      elsif result["createaccount"]["result"] == "NeedToken"
+        params = {
+          name: username,
+          email: email,
+          mailpassword: 'value',
+          reason: reason,
+          language: language,
+          token: result["createaccount"]["token"]
+        }
       end
     end
   end
