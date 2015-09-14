@@ -1,36 +1,5 @@
-require 'json'
-require 'net/http'
-
 module MediaWiki
   module Auth
-    # Performs a generic HTTP POST action and provides the response. This method generally should not be used by the user, unless there is not a method provided by the Butt developers for a particular action.
-    #
-    # ==== Attributes
-    #
-    # * +params+ - A basic hash containing MediaWiki API parameters. Please see mediawiki.org/wiki/API for more information.
-    # * +autoparse+ - Whether or not to provide a parsed version of the response's JSON. Will default to true.
-    #
-    # ==== Examples
-    #
-    # => login = butt.post({action: 'login', lgname: username, lgpassword: password, format: 'json'})
-    def post(params, autoparse = true)
-      uri = URI.parse(@url)
-      request = Net::HTTP::Post.new(uri)
-      request.set_form_data(params)
-      response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-        http.request(request)
-      end
-      if response.is_a? Net::HTTPSuccess
-        if autoparse == true
-          return JSON.parse(response.body)
-        else
-          return response
-        end
-      else
-        return false
-      end
-    end
-
     # Logs the user in to the wiki. This is generally required for editing, or getting restricted data.
     #
     # ==== Attributes
