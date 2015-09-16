@@ -1,6 +1,55 @@
+require_relative 'exceptions'
+
 module MediaWiki
   module Auth
+
+    # Checks the login result for errors. Return true if success, else false, and will raise an error if it is not successful.
+    #
+    # ==== Attributes
+    #
+    # * +result+ - The parsed version of the result parameter of the login action.
+    # * +secondtry+ - Whether this login is the first or second try, false for first, true for second.
+    #
+    # ==== Examples
+    #
+    # This method should not be used by normal users.
+    def check_login(result, secondtry)
+      if result == "Success"
+        return true
+      elsif result == "NeedToken" && secondtry == true
+        raise MediaWiki::Butt::NeedTokenMoreThanOnceError
+        return false
+      elsif result == "NoName"
+        raise MediaWiki::Butt::NoNameError
+        return false
+      elsif result == "Illegal"
+        raise MediaWiki::Butt::IllegalUsernameError
+        return false
+      elsif result == "NotExists"
+        raise MediaWiki::Butt::UsernameNotExistsError
+        return false
+      elsif result == "EmptyPass"
+        raise MediaWiki::Butt::EmptyPassError
+        return false
+      elsif result == "WrongPass"
+        raise MediaWiki::Butt::WrongPassError
+        return false
+      elsif result == "WrongPluginPass"
+        raise MediaWiki::Butt::WrongPluginPassError
+        return false
+      elsif result == "CreateBlocked"
+        raise MediaWiki::Butt::CreateBlockedError
+        return false
+      elsif result == "Throttled"
+        raise MediaWiki::Butt::ThrottledError
+        return false
+      elsif result == "Blocked"
+        raise MediaWiki::Butt::BlockedError
+        return false
+      end
+    end
     # Logs the user in to the wiki. This is generally required for editing, or getting restricted data.
+    # Will return the result of check_login.
     #
     # ==== Attributes
     #
@@ -19,7 +68,7 @@ module MediaWiki
       }
 
       result = post(params)
-      if result["login"]["result"] == "Success"
+      if check_login(result["login"]["result"], false) == true
         @logged_in = true
         @tokens.clear
       elsif result["login"]["result"] == "NeedToken" && result["login"]["token"] != nil
@@ -31,8 +80,8 @@ module MediaWiki
           format: 'json'
         }
 
-        # There is no need to autoparse this, because we don't do anything with it.
-        post(token_params, false)
+        result = post(token_params)
+        return check_login(result["login"]["result"], true)
       end
     end
 
