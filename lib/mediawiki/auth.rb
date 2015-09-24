@@ -67,20 +67,23 @@ module MediaWiki
         format: 'json'
       }
 
-      result = post(params)
+      result = post(params, true, false)
       if check_login(result["login"]["result"], false) == true
         @logged_in = true
         @tokens.clear
       elsif result["login"]["result"] == "NeedToken" && result["login"]["token"] != nil
+        token = result["login"]["token"]
         token_params = {
           action: 'login',
           lgname: username,
           lgpassword: password,
-          lgtoken: result["login"]["token"],
-          format: 'json'
+          format: 'json',
+          lgtoken: token
         }
 
-        result = post(token_params)
+        #Consider refactor the @cookie initialization.
+        @cookie = "#{result["login"]["cookieprefix"]}Session=#{result["login"]["sessionid"]}"
+        result = post(token_params, true, true)
         return check_login(result["login"]["result"], true)
       end
     end

@@ -1,6 +1,6 @@
 require_relative 'auth'
 require_relative 'query'
-require 'net/http'
+require 'httpclient'
 require 'json'
 
 module MediaWiki
@@ -30,6 +30,8 @@ module MediaWiki
         @url = "#{url}/api.php"
       end
 
+      @client = HTTPClient.new
+      @uri = URI.parse(@url)
       @ssl = use_ssl
       @logged_in = false
       @tokens = {}
@@ -41,25 +43,23 @@ module MediaWiki
     #
     # * +params+ - A basic hash containing MediaWiki API parameters. Please see mediawiki.org/wiki/API for more information.
     # * +autoparse+ - Whether or not to provide a parsed version of the response's JSON. Will default to true.
+    # * +setcookie+ - Whether you want to set the auth cookie. Only used in authentication. Defaults to false.
     #
     # ==== Examples
     #
     # => login = butt.post({action: 'login', lgname: username, lgpassword: password, format: 'json'})
-    def post(params, autoparse = true)
-      uri = URI.parse(@url)
-      request = Net::HTTP::Post.new(uri)
-      request.set_form_data(params)
-      response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-        http.request(request)
-      end
-      if response.is_a? Net::HTTPSuccess
-        if autoparse == true
-          return JSON.parse(response.body)
-        else
-          return response
-        end
+    def post(params, autoparse = true, setcookie = false)
+      if setcookie == true
+        header = { 'Set-Cookie' => @cookie }
+        response = @client.post(@uri, params, header)
       else
-        return false
+        response = @client.post(@uri, params)
+      end
+
+      if autoparse == true
+        return JSON.parse(response.body)
+      else
+        return response
       end
     end
   end
