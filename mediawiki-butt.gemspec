@@ -1,3 +1,8 @@
+deps = {
+  "httpclient",
+  "json"
+}
+
 Gem::Specification.new do |s|
   s.authors = ['Eli Foster']
   s.files = Dir['lib/*']
@@ -16,4 +21,16 @@ Gem::Specification.new do |s|
   }
   s.post_install_message = 'ONE OF US! ONE OF US!'
   s.required_ruby_version = '>= 2.0'
+  s.files = [
+    "lib/mediawiki-butt.rb",
+    "lib/mediawiki/butt.rb",
+    "lib/mediawiki/auth.rb",
+    "lib/mediawiki/exceptions.rb",
+    "lib/mediawiki/query.rb",
+    "CHANGELOG.md"
+  ]
+
+  deps.each do |dep|
+    s.add_runtime_dependency(dep)
+  end
 end
