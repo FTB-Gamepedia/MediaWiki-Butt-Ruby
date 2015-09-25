@@ -1,7 +1,7 @@
-deps = {
+deps = [
   "httpclient",
   "json"
-}
+]
 
 Gem::Specification.new do |s|
   s.authors = ['Eli Foster']
