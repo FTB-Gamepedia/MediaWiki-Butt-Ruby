@@ -15,6 +15,7 @@ module MediaWiki
     # This method should not be used by normal users.
     def check_login(result, secondtry)
       if result == "Success"
+        @logged_in = true
         return true
       elsif result == "NeedToken" && secondtry == true
         raise MediaWiki::Butt::NeedTokenMoreThanOnceError
