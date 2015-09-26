@@ -51,7 +51,7 @@ module MediaWiki
       
       # Gets the revision ID for the given page.
       # @param title [String] The page title
-      # @return [integer/nil] the ID or nil
+      # @return [Int/nil] the ID or nil
       def get_id(title)
         params = {
           action: 'query',
@@ -107,7 +107,7 @@ module MediaWiki
         return ret
       end
 
-      # Returns an array of all pagee titles that belong to a given category.
+      # Returns an array of all page titles that belong to a given category.
       # @param category [String] The category title. It can include "Category:", or not, it doesn't really matter because we will add it if it is missing.
       # @param limit [Int] The maximum number of members to get. Defaults to 500, and cannot be greater than that unless the user is a bot. If the user is a bot, the limit cannot be greater than 5000.
       # @return [Array] All category members until the limit
@@ -143,6 +143,26 @@ module MediaWiki
         response = post(params)
         response["query"]["categorymembers"].each do |cm|
           ret.push(cm["title"])
+        end
+        return ret
+      end
+      
+      # Returns an array of random article titles.
+      # @param number_of_articles [Int] The number of articles to get. Defaults to 1. There's probably a max, but who knows what it is?
+      # @return [Array] All members
+      def get_random_articles(number_of_articles = 1)
+        params = {
+          action: 'query',
+          list: 'random',
+          format: 'json',
+          rnnamespace: '0',
+          rnlimit: number_of_articles
+        }
+        
+        ret = Array.new
+        responce = post(params)
+        responce["query"]["random"].each do |a|
+          ret.push(a["title"])
         end
         return ret
       end
