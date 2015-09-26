@@ -4,11 +4,8 @@ module MediaWiki
     # The metainformation could probably be handled in a much less verbose way.
     module Meta
 
-      # Gets all raw names for the wiki's image repositories into an array.
-      #
-      # ==== Examples
-      #
-      # => names = butt.get_filerepo_names()
+      # Returns an array of all the wiki's file repository names.
+      # @return [Array] All wiki's file repository names.
       def get_filerepo_names()
         params = {
           action: 'query',
@@ -28,15 +25,9 @@ module MediaWiki
 
     module Properties
 
-      # Gets the text for the given page. Returns nil if the page does not exist.
-      #
-      # ==== Attributes
-      #
-      # * +title+ - The page.
-      #
-      # ==== Examples
-      #
-      # => text = butt.get_text("User:Pendejo")
+      # Gets the wiki text for the given page. Returns nil if it for some reason cannot get the text, for example, if the page does not exist. Returns a string.
+      # @param title [String] The page title
+      # @return [String/nil] String containing page contents, or nil
       def get_text(title)
         params = {
           action: 'query',
@@ -60,19 +51,11 @@ module MediaWiki
     end
 
     module Lists
-      # Gets the list of backlinks of the title.
-      #
-      # ==== Attributes
-      #
-      # * +title+ - List pages linking to this title.
-      # * +limit+ - The maximum number of pages to get. Defaults to 500, and cannot be greater than 5000.
-      #
-      # ==== Examples
-      #
-      # => backlinks = butt.what_links_here("Title", 5)
-      # => backlinks.each do |butt|
-      # =>   puts butt
-      # => end
+
+      # Gets an array of backlinks to a given title.
+      # @param title [String] The page to get the backlinks of.
+      # @param limit [Int] The maximum number of pages to get. Defaults to 500, and cannot be greater than that unless the user is a bot. If the user is a bot, the limit cannot be greater than 5000.
+      # @return [Array] All backlinks until the limit
       def what_links_here(title, limit = 500)
         params = {
           action: 'query',
@@ -101,19 +84,11 @@ module MediaWiki
         end
         return ret
       end
-      # Returns an array of all pages (titles specifically, because IDs and namespace ints aren't very important) that belong to a given category. See API:Categorymembers
-      #
-      # ==== Attributes
-      #
-      # * +category+ - The category title.
-      # * +limit+ - The maximum number of members to get. Defaults to 500, and cannot be greater than 5000.
-      #
-      # ==== Examples
-      #
-      # => members = butt.get_category_members("Category:Butts", 5000)
-      # => members.each do |butts|
-      # =>   puts butts
-      # => end
+
+      # Returns an array of all pagee titles that belong to a given category.
+      # @param category [String] The category title. It can include "Category:", or not, it doesn't really matter because we will add it if it is missing.
+      # @param limit [Int] The maximum number of members to get. Defaults to 500, and cannot be greater than that unless the user is a bot. If the user is a bot, the limit cannot be greater than 5000.
+      # @return [Array] All category members until the limit
       def get_category_members(category, limit = 500)
         params = {
           action: 'query',
@@ -122,7 +97,7 @@ module MediaWiki
           format: 'json'
         }
 
-        if category =~ /Category\:/
+        if category =~ /[Cc]ategory\:/
           params[:cmtitle] = category
         else
           params[:cmtitle] = "Category:#{category}"

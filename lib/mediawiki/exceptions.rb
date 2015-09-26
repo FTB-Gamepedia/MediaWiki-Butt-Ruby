@@ -61,5 +61,66 @@ module MediaWiki
         "User is blocked."
       end
     end
+
+    # Start creation-specific errors
+    class UserExistsError < AuthenticationError
+      def message
+        "Username entered is already in use."
+      end
+    end
+
+    class UserPassMatchError < AuthenticationError
+      def message
+        "Your password must be different from your username."
+      end
+    end
+
+    class PasswordLoginForbiddenError < AuthenticationError
+      def message
+        "The use of this username and password has been forbidden."
+      end
+    end
+
+    class NoEmailTitleError < AuthenticationError
+      def message
+        "No email address."
+      end
+    end
+
+    class InvalidEmailAddressError < AuthenticationError
+      def message
+        "The email address is invalid."
+      end
+    end
+
+    class PasswordTooShortError < AuthenticationError
+      def message
+        "The password was shorter than the value of $wgMinimalPasswordLength"
+      end
+    end
+
+    class NoEmailError < AuthenticationError
+      def message
+        "There is no email address recorded for the user."
+      end
+    end
+
+    class AbortedError < AuthenticationError
+      def message
+        "Aborted by an extension."
+      end
+    end
+
+    class PermDeniedError < AuthenticationError
+      def message
+        "You do not have the right to make an account."
+      end
+    end
+
+    class HookAbortedError < AuthenticationError
+      def message
+        "An extension aborted the account creation."
+      end
+    end
   end
 end

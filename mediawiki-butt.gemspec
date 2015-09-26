@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.files = Dir['lib/*']
   s.name = 'mediawiki-butt'
   s.summary = "Interacting with the MediaWiki API"
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
