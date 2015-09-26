@@ -13,18 +13,9 @@ Some other gems have methods that do not work at all, but are critical to using 
 gem install mediawiki-butt
 ```
 
-## Features
-Has support for the following MediaWiki API features:
-* Query
-  * List
-    * Category members
-    * Backlinks
-  * Properties
-    * Wiki text
-  * Meta
-    * File repository name
-* Authentication
-  * Login
-  * Logout
-  * Create account
-    * With support for emailing random password to the user.
+## Documentation
+Please see the [Wiki](https://github.com/ftb-gamepedia/mediawiki-butt-ruby/wiki) for feature lists, documentation, and guides.
+
+You can also view the [RubyDocs](http://www.rubydoc.info/gems/mediawiki-butt) but they are more limited.
+
+You can also view the documentation in the code, which would probably be fastest for you anyway.
