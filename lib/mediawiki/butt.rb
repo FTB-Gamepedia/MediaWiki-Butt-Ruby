@@ -74,7 +74,6 @@ module MediaWiki
           format: 'json'
         }
 
-        ret = Array.new
         response = post(params)
         response["query"]["userinfo"]["groups"].each do |g|
           if g == "bot"
