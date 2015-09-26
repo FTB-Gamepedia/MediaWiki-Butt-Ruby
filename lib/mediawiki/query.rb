@@ -148,18 +148,31 @@ module MediaWiki
       end
       
       # Returns an array of random pages titles.
-      # @param number_of_pages [Int] The number of articles to get. Defaults to 1. There's probably a max, but who knows what it is?
+      # @param number_of_pages [Int] The number of articles to get. Defaults to 1. Cannot be greater than 10 for normal users, or 20 for bots.
       # @param namespace [Int] The namespace ID. Defaults to '0' (the main namespace). Set to nil for all namespaces.
       # @return [Array] All members
       def get_random_pages(number_of_pages = 1, namespace = 0)
         params = {
           action: 'query',
           list: 'random',
-          format: 'json',
-          rnlimit: number_of_pages
+          format: 'json'
         }
         
         params[:rnnamespace] = namespace if namespace != nil
+        
+        if namespace > 10
+          if is_current_user_bot() == true
+            if limit > 20
+              params[:rnlimit] = 20
+            else
+              params[:rnlimit] = limit
+            end
+          else
+            params[:rnlimit] = 10
+          end
+        else
+          params[:rnlimit] = namespace
+        end
         
         ret = Array.new
         responce = post(params)
