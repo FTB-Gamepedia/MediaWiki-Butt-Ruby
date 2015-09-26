@@ -8,6 +8,7 @@ module MediaWiki
     include MediaWiki::Auth
     include MediaWiki::Query::Meta
     include MediaWiki::Query::Properties
+    include MediaWiki::Query::Namespaces
     include MediaWiki::Query::Lists
 
     # Creates a new instance of MediaWiki::Butt. To work with any MediaWiki::Butt methods, you must first create an instance of it.
