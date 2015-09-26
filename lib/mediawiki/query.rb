@@ -147,17 +147,19 @@ module MediaWiki
         return ret
       end
       
-      # Returns an array of random article titles.
-      # @param number_of_articles [Int] The number of articles to get. Defaults to 1. There's probably a max, but who knows what it is?
+      # Returns an array of random pages titles.
+      # @param number_of_pages [Int] The number of articles to get. Defaults to 1. There's probably a max, but who knows what it is?
+      # @param namespace [Int] The namespace ID. Defaults to '0' (the main namespace). Set to nil for all namespaces.
       # @return [Array] All members
-      def get_random_articles(number_of_articles = 1)
+      def get_random_pages(number_of_pages = 1, namespace = 0)
         params = {
           action: 'query',
           list: 'random',
           format: 'json',
-          rnnamespace: '0',
-          rnlimit: number_of_articles
+          rnlimit: number_of_pages
         }
+        
+        params[:rnnamespace] = namespace if namespace != nil
         
         ret = Array.new
         responce = post(params)
