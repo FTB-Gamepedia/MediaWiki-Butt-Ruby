@@ -4,7 +4,7 @@ deps = [
 ]
 
 Gem::Specification.new do |s|
-  s.authors = ['Eli Foster']
+  s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.files = Dir['lib/*']
   s.name = 'mediawiki-butt'
   s.summary = "Interacting with the MediaWiki API"

@@ -48,6 +48,28 @@ module MediaWiki
           return response["query"]["pages"][$revid]["revisions"][0]["*"]
         end
       end
+      
+      # Gets the revision ID for the given page.
+      # @param title [String] The page title
+      # @return [integer/nil] the ID or nil
+      def get_id(title)
+        params = {
+          action: 'query',
+          prop: 'revisions',
+          rvprop: 'content',
+          format: 'json',
+          titles: title
+        }
+        
+         response = post(params)
+         response["query"]["pages"].each do |revid, data|
+           if revid != "-1"
+             return revid.to_i
+           else
+             return nil
+           end
+         end
+      end
     end
 
     module Lists

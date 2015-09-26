@@ -52,7 +52,7 @@ module MediaWiki
 
     # Returns true if the currently logged in user is in the "bot" group. This can be helpful to some developers, but it is mostly for use internally in MediaWiki::Butt.
     # @return [Boolean] true if logged in as a bot, false if not logged in or logged in as a non-bot
-    def is_current_user_bot()
+    def is_current_user_bot
       if @logged_in == true
         params = {
           action: 'query',
