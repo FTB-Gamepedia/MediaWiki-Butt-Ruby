@@ -6,7 +6,7 @@ module MediaWiki
 
       # Returns an array of all the wiki's file repository names.
       # @return [Array] All wiki's file repository names.
-      def get_filerepo_names()
+      def get_filerepo_names
         params = {
           action: 'query',
           meta: 'filerepoinfo',
@@ -15,11 +15,33 @@ module MediaWiki
         }
 
         result = post(params)
-        array = Array.new
+        ret = Array.new
         result["query"]["repos"].each do |repo|
-          array.push(repo["name"])
+          ret.push(repo["name"])
         end
-        return array
+        return ret
+      end
+
+      # Gets an array of all the currently logged in user's groups.
+      # @return [Array/Boolean] All of the user's groups, or false if not logged in.
+      def get_usergroups
+        if @logged_in == true
+          params = {
+            action: 'query',
+            meta: 'userinfo',
+            uiprop: 'groups',
+            format: 'json'
+          }
+
+          result = post(params)
+          ret = Array.new
+          result["query"]["userinfo"]["groups"].each do |g|
+            ret.push(g)
+          end
+          return ret
+        else
+          return false
+        end
       end
     end
 
@@ -61,14 +83,14 @@ module MediaWiki
           titles: title
         }
 
-         response = post(params)
-         response["query"]["pages"].each do |revid, data|
-           if revid != "-1"
-             return revid.to_i
-           else
-             return nil
-           end
-         end
+        response = post(params)
+        response["query"]["pages"].each do |revid, data|
+          if revid != "-1"
+            return revid.to_i
+          else
+            return nil
+          end
+        end
       end
     end
 
@@ -86,7 +108,7 @@ module MediaWiki
         }
 
         if limit > 500
-          if is_current_user_bot() == true
+          if is_current_user_bot? == true
             if limit > 5000
               params[:bllimit] = 5000
             else
@@ -126,7 +148,7 @@ module MediaWiki
         end
 
         if limit > 500
-          if is_current_user_bot() == true
+          if is_current_user_bot? == true
             if limit > 5000
               params[:cmlimit] = 5000
             else
@@ -161,7 +183,7 @@ module MediaWiki
         params[:rnnamespace] = namespace if namespace != nil
 
         if namespace > 10
-          if is_current_user_bot() == true
+          if is_current_user_bot? == true
             if limit > 20
               params[:rnlimit] = 20
             else

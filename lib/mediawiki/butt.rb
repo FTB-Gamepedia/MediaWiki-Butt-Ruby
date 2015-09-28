@@ -56,22 +56,12 @@ module MediaWiki
     # @return [Boolean] true if logged in as a bot, false if not logged in or logged in as a non-bot
     def is_current_user_bot?
       if @logged_in == true
-        params = {
-          action: 'query',
-          meta: 'userinfo',
-          uiprop: 'groups',
-          format: 'json'
-        }
-
-        response = post(params)
-        response["query"]["userinfo"]["groups"].each do |g|
-          if g == "bot"
-            return true
-          else
-            next
-          end
+        groups = get_usergroups
+        if groups.include? "bot"
+          return true
+        else
+          return false
         end
-        return false
       else
         return false
       end
