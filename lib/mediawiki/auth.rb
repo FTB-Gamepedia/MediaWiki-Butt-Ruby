@@ -129,7 +129,8 @@ module MediaWiki
     def logout
       if @logged_in == true
         params = {
-          action: 'logout'
+          action: 'logout',
+          format: 'json'
         }
 
         post(params)

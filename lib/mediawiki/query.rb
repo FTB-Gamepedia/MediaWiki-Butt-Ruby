@@ -92,6 +92,28 @@ module MediaWiki
           end
         end
       end
+
+      def get_edit_token(page_name)
+        if @logged_in == true
+          params = {
+            action: 'query',
+            prop: 'info',
+            intoken: 'edit',
+            format: 'json',
+            titles: page_name
+          }
+
+          response = post(params)
+          response["query"]["pages"].each do |revid, data|
+            puts revid
+            $revid = revid
+          end
+
+          return response["query"]["pages"][$revid]["edittoken"]
+        else
+          return "+\\"
+        end
+      end
     end
 
     module Lists
