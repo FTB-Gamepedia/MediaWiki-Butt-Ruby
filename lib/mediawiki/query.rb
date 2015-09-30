@@ -93,6 +93,9 @@ module MediaWiki
         end
       end
 
+      # Gets the edit token for the given page. This method should rarely be used by normal users.
+      # @param page_name [String] The page title that you are going to be editing.
+      # @return [String] The edit token. If the butt isn't logged in, it returns with '+\\'.
       def get_edit_token(page_name)
         if @logged_in == true
           params = {
@@ -105,10 +108,10 @@ module MediaWiki
 
           response = post(params)
           response["query"]["pages"].each do |revid, data|
-            puts revid
             $revid = revid
           end
 
+          # URL encoding is not needed for some reason.
           return response["query"]["pages"][$revid]["edittoken"]
         else
           return "+\\"

@@ -119,7 +119,7 @@ module MediaWiki
 
         #Consider refactor the @cookie initialization.
         @cookie = "#{result["login"]["cookieprefix"]}Session=#{result["login"]["sessionid"]}"
-        result = post(token_params, true, true)
+        result = post(token_params, true, { 'Set-Cookie' => @cookie })
         return check_login(result["login"]["result"], true)
       end
     end
