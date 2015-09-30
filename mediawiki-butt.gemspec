@@ -5,10 +5,9 @@ deps = [
 
 Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
-  s.files = Dir['lib/*']
   s.name = 'mediawiki-butt'
   s.summary = "Interacting with the MediaWiki API"
-  s.version = '0.1.1'
+  s.version = '0.2.1'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
@@ -27,6 +26,8 @@ Gem::Specification.new do |s|
     "lib/mediawiki/auth.rb",
     "lib/mediawiki/exceptions.rb",
     "lib/mediawiki/query.rb",
+    "lib/mediawiki/constants.rb",
+    "lib/mediawiki/edit.rb",
     "CHANGELOG.md"
   ]
 
