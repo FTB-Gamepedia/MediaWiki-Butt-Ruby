@@ -1,3 +1,5 @@
+require 'string-utility'
+
 module MediaWiki
   module Query
     #TODO: Actually decide on a good way to deal with meta information queries.
@@ -20,28 +22,6 @@ module MediaWiki
           ret.push(repo["name"])
         end
         return ret
-      end
-
-      # Gets an array of all the currently logged in user's groups.
-      # @return [Array/Boolean] All of the user's groups, or false if not logged in.
-      def get_usergroups
-        if @logged_in == true
-          params = {
-            action: 'query',
-            meta: 'userinfo',
-            uiprop: 'groups',
-            format: 'json'
-          }
-
-          result = post(params)
-          ret = Array.new
-          result["query"]["userinfo"]["groups"].each do |g|
-            ret.push(g)
-          end
-          return ret
-        else
-          return false
-        end
       end
     end
 
@@ -133,7 +113,7 @@ module MediaWiki
         }
 
         if limit > 500
-          if is_current_user_bot? == true
+          if is_user_bot? == true
             if limit > 5000
               params[:bllimit] = 5000
             else
@@ -162,7 +142,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'categorymembers',
-          #cmprop: 'title',
+          cmprop: 'title',
           format: 'json'
         }
 
@@ -173,7 +153,7 @@ module MediaWiki
         end
 
         if limit > 500
-          if is_current_user_bot? == true
+          if is_user_bot? == true
             if limit > 5000
               params[:cmlimit] = 5000
             else
@@ -208,7 +188,7 @@ module MediaWiki
         params[:rnnamespace] = namespace if namespace != nil
 
         if namespace > 10
-          if is_current_user_bot? == true
+          if is_user_bot? == true
             if limit > 20
               params[:rnlimit] = 20
             else
@@ -227,6 +207,82 @@ module MediaWiki
           ret.push(a["title"])
         end
         return ret
+      end
+
+      # Gets user information. This method should rarely be used by normal users.
+      # @param prop [String] The usprop parameter.
+      # @param username [String] The username to get info for. Optional. Defaults to the currently logged in user if ommitted.
+      # @return [String/Nil] Parsed full response if successful, nil if the username is nil and the Butt is not logged in.
+      def get_userlists(prop, username = nil)
+        params = {
+          action: 'query',
+          list: 'users',
+          usprop: prop,
+          format: 'json'
+        }
+
+        if username.nil?
+          if @logged_in == true
+            response = post(params)
+          else
+            return nil
+          end
+        else
+          params[:ususers] = username
+          response = post(params)
+        end
+
+        return response
+      end
+
+      # Gets an array of all the currently logged in user's groups.
+      # @param username [String] The username to get groups of. Optional. Defaults to the currently logged in user.
+      # @return [Array/Boolean] All of the user's groups, or false if username is nil and Butt is not logged in.
+      def get_usergroups(username = nil)
+        if username.nil?
+          if @logged_in == true
+            info = get_userlists('groups')
+          else
+            return false
+          end
+        else
+          info = get_userlists('groups', username)
+        end
+
+        ret = Array.new
+        info["query"]["users"].each do |i|
+          i["groups"].each do |g|
+            ret.push(g)
+          end
+        end
+        return ret
+      end
+
+      # Gets contribution count for the user.
+      # @param username [String] The username to get the contribution count of. Optional. Defaults to the currently logged in user.
+      # @param autoparse [Boolean] Whether to automatically format the string with commas. Defaults to true.
+      # @return [Boolean/Int/String] False if username is nil and Butt is not logged in. An integer value of the contribution count if autoparse is false. A formatted string version of the contribution count if autoparse is true.
+      def get_contrib_count(username = nil, autoparse = true)
+        if username.nil?
+          if @logged_in == true
+            info = get_userlists('editcount')
+          else
+            return false
+          end
+        else
+          info = get_userlists('editcount', username)
+        end
+
+        count = nil
+        info["query"]["users"].each do |i|
+          count = i["editcount"]
+        end
+
+        if autoparse == true
+          countstring = StringUtility.separate_with(count.to_s)
+          return countstring
+        end
+        return count
       end
     end
   end

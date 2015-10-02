@@ -1,5 +1,16 @@
 # Changelog
 ## Version 0
+### Version 0.3.0
+* New upload method to upload by URL.
+* New create_page method.
+* New get_userlists method.
+* New get_usergroups method.
+* New get_contrib_count method.
+* Refactor get_usergroups and is_current_user_bot? to use new get_userinfo method.
+* Minor refactors to make optional arguments more Ruby-like with splat arguments.
+* #edit no longer prints the edit token, because that's stupid.
+* #edit no longer sets the summary if it is nil.
+
 ### Version 0.2.1
 * Fix gemspec. You should actually have the new stuff now.
 

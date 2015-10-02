@@ -40,7 +40,11 @@ module MediaWiki
     # @param header [Hash] The header hash. Optional.
     # @return [JSON/HTTPMessage] Parsed JSON if autoparse is true, or raw response if not.
     def post(params, autoparse = true, header = nil)
-      if header == nil
+      # Note that defining the header argument as a splat argument (*header) causes errors in HTTPClient.
+      # We must use header.nil? rather than a splat argument and defined? header due to this error.
+      # For those interested, the error is: undefined method `downcase' for {"Set-Cookie"=>"cookie"}:Hash (NoMethodError)
+      # This is obvisouly an error in HTTPClient, but we must work around it until there is a fix in the gem.
+      if header.nil?
         response = @client.post(@uri, params)
       else
         response = @client.post(@uri, params, header)
@@ -54,10 +58,16 @@ module MediaWiki
     end
 
     # Returns true if the currently logged in user is in the "bot" group. This can be helpful to some developers, but it is mostly for use internally in MediaWiki::Butt.
+    # @param username [String] The username to check. Optional. Defaults to the currently logged in user if nil.
     # @return [Boolean] true if logged in as a bot, false if not logged in or logged in as a non-bot
-    def is_current_user_bot?
-      if @logged_in == true
+    def is_user_bot?(*username)
+      if defined? username
+        groups = get_usergroups(username)
+      else
         groups = get_usergroups
+      end
+
+      if groups != false
         if groups.include? "bot"
           return true
         else
