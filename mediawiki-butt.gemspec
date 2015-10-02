@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
   s.summary = "Interacting with the MediaWiki API"
-  s.version = '0.3.0'
+  s.version = '0.3.1'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
@@ -28,6 +28,5 @@ Gem::Specification.new do |s|
 
   # TODO: Figure out what version we should require for JSON and HTTPClient
   s.add_runtime_dependency("string-utility", ">= 1.0.1")
-  s.add_runtime_dependency("json")
   s.add_runtime_dependency("httpclient")
 end

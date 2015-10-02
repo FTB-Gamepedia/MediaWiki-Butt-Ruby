@@ -1,5 +1,9 @@
 # Changelog
 ## Version 0
+### Version 0.3.1
+* Fix edit and create_page NoMethodErrors.
+* Remove dependency for JSON as the version we use is included in the Ruby standard library.
+
 ### Version 0.3.0
 * New upload method to upload by URL.
 * New create_page method.

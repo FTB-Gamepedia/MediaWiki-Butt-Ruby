@@ -25,7 +25,7 @@ module MediaWiki
 
       response = post(params)
 
-      if response["error"]["code"].nil?
+      if response["edit"]["result"] == "Success"
         return response["edit"]["newrevid"]
       else
         return response["error"]["code"]
@@ -55,7 +55,7 @@ module MediaWiki
 
       response = post(params)
 
-      if response["error"]["code"].nil?
+      if response["edit"]["result"] == "Success"
         return response["edit"]["pageid"]
       else
         return response["error"]["code"]
