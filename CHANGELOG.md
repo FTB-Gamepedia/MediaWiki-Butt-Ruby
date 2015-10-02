@@ -1,5 +1,7 @@
 # Changelog
 ## Version 0
+### Version 0.3.2
+* Update to work with latest version of string-utility.
 ### Version 0.3.1
 * Fix edit and create_page NoMethodErrors.
 * Remove dependency for JSON as the version we use is included in the Ruby standard library.

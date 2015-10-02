@@ -100,6 +100,7 @@ module MediaWiki
     end
 
     module Lists
+      using StringUtility
 
       # Gets an array of backlinks to a given title.
       # @param title [String] The page to get the backlinks of.
@@ -279,7 +280,7 @@ module MediaWiki
         end
 
         if autoparse == true
-          countstring = StringUtility.separate_with(count.to_s)
+          countstring = count.to_s.separate
           return countstring
         end
         return count
