@@ -33,7 +33,7 @@ module MediaWiki
         false
       elsif result == "CreateBlocked"
         raise MediaWiki::Butt::CreateBlockedError
-        alse
+        false
       elsif result == "Throttled"
         raise MediaWiki::Butt::ThrottledError
         false
