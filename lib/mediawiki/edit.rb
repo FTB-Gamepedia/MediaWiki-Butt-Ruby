@@ -26,9 +26,9 @@ module MediaWiki
       response = post(params)
 
       if response["edit"]["result"] == "Success"
-        return response["edit"]["newrevid"]
+        response["edit"]["newrevid"]
       else
-        return response["error"]["code"]
+        response["error"]["code"]
       end
     end
 
@@ -56,9 +56,9 @@ module MediaWiki
       response = post(params)
 
       if response["edit"]["result"] == "Success"
-        return response["edit"]["pageid"]
+        response["edit"]["pageid"]
       else
-        return response["error"]["code"]
+        response["error"]["code"]
       end
     end
 
@@ -82,10 +82,10 @@ module MediaWiki
 
       response = post(params)
       if response["upload"]["result"] == "Success"
-        return true
+        true
       elsif response["upload"]["result"] == "Warning"
         warnings = response["upload"]["warnings"]
-        return warnings.keys[0]
+        warnings.keys[0]
       end
     end
   end

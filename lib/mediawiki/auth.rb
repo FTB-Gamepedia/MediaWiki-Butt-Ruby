@@ -10,37 +10,36 @@ module MediaWiki
     def check_login(result, secondtry)
       if result == "Success"
         @logged_in = true
-        return true
       elsif result == "NeedToken" && secondtry == true
         raise MediaWiki::Butt::NeedTokenMoreThanOnceError
-        return false
+        false
       elsif result == "NoName"
         raise MediaWiki::Butt::NoNameError
-        return false
+        false
       elsif result == "Illegal"
         raise MediaWiki::Butt::IllegalUsernameError
-        return false
+        false
       elsif result == "NotExists"
         raise MediaWiki::Butt::UsernameNotExistsError
-        return false
+        false
       elsif result == "EmptyPass"
         raise MediaWiki::Butt::EmptyPassError
-        return false
+        false
       elsif result == "WrongPass"
         raise MediaWiki::Butt::WrongPassError
-        return false
+        false
       elsif result == "WrongPluginPass"
         raise MediaWiki::Butt::WrongPluginPassError
-        return false
+        false
       elsif result == "CreateBlocked"
         raise MediaWiki::Butt::CreateBlockedError
-        return false
+        alse
       elsif result == "Throttled"
         raise MediaWiki::Butt::ThrottledError
-        return false
+        false
       elsif result == "Blocked"
         raise MediaWiki::Butt::BlockedError
-        return false
+        false
       end
     end
 
@@ -50,43 +49,43 @@ module MediaWiki
     def check_create(error)
       if error == "noname"
         raise MediaWiki::Butt::NoNameError
-        return false
+        false
       elsif error == "userexists"
         raise MediaWiki::Butt::UserExistsError
-        return false
+        false
       elsif error == "password-name-match"
         raise MediaWiki::Butt::UserPassMatchError
-        return false
+        false
       elsif error == "password-login-forbidden"
         raise MediaWiki::Butt::PasswordLoginForbiddenError
-        return false
+        false
       elsif error == "noemailtitle"
         raise MediaWiki::Butt::NoEmailTitleError
-        return false
+        false
       elsif error == "invalidemailaddress"
         raise MediaWiki::Butt::InvalidEmailAddressError
-        return false
+        false
       elsif error == "passwordtooshort"
         raise MediaWiki::Butt::PasswordTooShortError
-        return false
+        false
       elsif error == "noemail"
         raise MediaWiki::Butt::NoEmailError
-        return false
+        false
       elsif error == "acct_creation_throttle_hit"
         raise MediaWiki::Butt::ThrottledError
-        return false
+        false
       elsif error == "aborted"
         raise MediaWiki::Butt::AbortedError
-        return false
+        false
       elsif error == "blocked"
         raise MediaWiki::Butt::BlockedError
-        return false
+        false
       elsif error == "permdenied-createaccount"
         raise MediaWiki::Butt::PermDeniedError
-        return false
+        false
       elsif error == "createaccount-hook-aborted"
         raise MediaWiki::Butt::HookAbortedError
-        return false
+        false
       end
     end
 
@@ -106,7 +105,7 @@ module MediaWiki
       if check_login(result["login"]["result"], false)
         @logged_in = true
         @tokens.clear
-        return true
+        true
       elsif result["login"]["result"] == "NeedToken" && result["login"]["token"] != nil
         token = result["login"]["token"]
         token_params = {
@@ -120,7 +119,7 @@ module MediaWiki
         #Consider refactor the @cookie initialization.
         @cookie = "#{result["login"]["cookieprefix"]}Session=#{result["login"]["sessionid"]}"
         result = post(token_params, true, { 'Set-Cookie' => @cookie })
-        return check_login(result["login"]["result"], true)
+        check_login(result["login"]["result"], true)
       end
     end
 

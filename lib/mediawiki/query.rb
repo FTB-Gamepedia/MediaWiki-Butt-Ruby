@@ -23,7 +23,7 @@ module MediaWiki
         result["query"]["repos"].each do |repo|
           ret.push(repo["name"])
         end
-        return ret
+        ret
       end
 
       # Gets meta information for the currently logged in user.
@@ -39,9 +39,8 @@ module MediaWiki
           }
 
           response = post(params)
-          return response
         else
-          return false
+          false
         end
       end
     end
@@ -66,9 +65,9 @@ module MediaWiki
         end
 
         if response["query"]["pages"][$revid]["missing"] == ""
-          return nil
+          nil
         else
-          return response["query"]["pages"][$revid]["revisions"][0]["*"]
+          response["query"]["pages"][$revid]["revisions"][0]["*"]
         end
       end
 
@@ -113,9 +112,9 @@ module MediaWiki
           end
 
           # URL encoding is not needed for some reason.
-          return response["query"]["pages"][$revid]["edittoken"]
+          response["query"]["pages"][$revid]["edittoken"]
         else
-          return "+\\"
+          "+\\"
         end
       end
     end
@@ -153,7 +152,7 @@ module MediaWiki
         response["query"]["backlinks"].each do |bl|
           ret.push(bl["title"])
         end
-        return ret
+        ret
       end
 
       # Returns an array of all page titles that belong to a given category.
@@ -193,7 +192,7 @@ module MediaWiki
         response["query"]["categorymembers"].each do |cm|
           ret.push(cm["title"])
         end
-        return ret
+        ret
       end
 
       # Returns an array of random pages titles.
@@ -232,7 +231,7 @@ module MediaWiki
         responce["query"]["random"].each do |a|
           ret.push(a["title"])
         end
-        return ret
+        ret
       end
 
       # Gets user information. This method should rarely be used by normal users.
@@ -258,7 +257,7 @@ module MediaWiki
           response = post(params)
         end
 
-        return response
+        response
       end
 
       # Gets an array of all the user's groups.
@@ -284,7 +283,7 @@ module MediaWiki
           end
         end
 
-        return ret
+        ret
       end
 
       # Gets the user rights for the user.
@@ -310,7 +309,7 @@ module MediaWiki
           end
         end
 
-        return ret
+        ret
       end
 
       # Gets contribution count for the user.
@@ -337,7 +336,7 @@ module MediaWiki
           countstring = count.to_s.separate
           return countstring
         end
-        return count
+        count
       end
 
       # Gets when the user registered.
@@ -363,7 +362,6 @@ module MediaWiki
         # %Y: Year including century, %m: Month num, %d day of month, %T Time as H:M:S
         timeformat = "%Y-%m-%dT%T"
         time = DateTime.strptime(time, timeformat)
-        return time
       end
 
       # Gets the gender for the provded user.
@@ -376,7 +374,7 @@ module MediaWiki
           gender = i["gender"]
         end
 
-        return gender
+        gender
       end
 
       # Gets the amount of results for the search value.
@@ -399,7 +397,7 @@ module MediaWiki
 
         response = post(params)
 
-        return response["query"]["searchinfo"]["totalhits"]
+        response["query"]["searchinfo"]["totalhits"]
       end
 
       # Gets an array containing page titles that matched the search.
@@ -426,7 +424,7 @@ module MediaWiki
         response["query"]["search"].each do |search|
           ret.push(search["title"])
         end
-        return ret
+        ret
       end
     end
   end
