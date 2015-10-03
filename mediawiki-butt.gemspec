@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
   s.summary = "Interacting with the MediaWiki API"
-  s.version = '0.3.1'
+  s.version = '0.4.0'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
