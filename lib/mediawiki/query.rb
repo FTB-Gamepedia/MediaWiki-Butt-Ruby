@@ -294,6 +294,7 @@ module MediaWiki
       # Gets the amount of results for the search value.
       # @param search_value [String] The thing to search for.
       # @param namespace [Int] The namespace to search in. Defaults to the main namespace.
+      # @return [Int] The number of pages that matched the search.
       def get_search_result_amount(search_value, namespace = 0)
         params = {
           action: 'query',
@@ -316,6 +317,7 @@ module MediaWiki
       # Gets an array containing page titles that matched the search.
       # @param search_value [String] The thing to search for.
       # @param namespace [Int] The namespace to search in. Defaults to the main namespace.
+      # @return [Array] The page titles that matched the search.
       def get_search_results(search_value, namespace = 0)
         params = {
           action: 'query',
