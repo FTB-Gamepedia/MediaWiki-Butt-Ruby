@@ -1,5 +1,10 @@
 # Changelog
 ## Version 0
+### Version 0.4.1
+* Fix $namespaces hash syntax.
+* Generally improved if statement syntax.
+* Generally shortened a lot of code by using better syntax.
+
 ### Version 0.4.0
 * New get_userrights method for getting an array of all user rights that user has.
 * New get_user_gender method for getting the gender of the provided user.
