@@ -287,6 +287,32 @@ module MediaWiki
         return ret
       end
 
+      # Gets the user rights for the user.
+      # @param username [String] The user to get the rights for. Optional. Defaults to the currently logged in user.
+      # @return [Array/Boolean] All of the user's groups, or false if username is nil and Butt is not logged in.
+      def get_userrights(username = nil)
+        ret = Array.new
+        if username.nil?
+          if @logged_in == true
+            info = get_userlists('rights')
+            info["query"]["userinfo"]["rights"].each do |i|
+              ret.push(i)
+            end
+          else
+            return false
+          end
+        else
+          info = get_userlists('rights', username)
+          info["query"]["users"].each do |i|
+            i["rights"].each do |g|
+              ret.push(g)
+            end
+          end
+        end
+
+        return ret
+      end
+
       # Gets contribution count for the user.
       # @param username [String] The username to get the contribution count of. Optional. Defaults to the currently logged in user.
       # @param autoparse [Boolean] Whether to automatically format the string with commas. Defaults to true.

@@ -1,8 +1,9 @@
 # Changelog
 ## Version 0
 ### Version 0.4.0
+* New get_userrights method for getting an array of all user rights that user has.
 * New get_user_gender method for getting the gender of the provided user.
-* New get_current_user_meta for getting userlists about the currently logged in user.
+* New get_current_user_meta for getting userlists about the currently logged in user. Essentially the equivalent of get_userlists for logged in users.
 * Fix all userlist methods to work without supplying a username.
 * New get_registration_time method to get when the user registered.
 * Update to work with latest version of string-utility.
