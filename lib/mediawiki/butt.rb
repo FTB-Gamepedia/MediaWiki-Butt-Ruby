@@ -40,12 +40,12 @@ module MediaWiki
       # We must use header.nil? rather than a splat argument and defined? header due to this error.
       # For those interested, the error is: undefined method `downcase' for {"Set-Cookie"=>"cookie"}:Hash (NoMethodError)
       # This is obvisouly an error in HTTPClient, but we must work around it until there is a fix in the gem.
-      responce = header.nil? ? @client.post(@uri, params) : @client.post(@uri, params, header)
+      res = header.nil? ? @client.post(@uri, params) : @client.post(@uri, params, header)
 
       if autoparse
-        return JSON.parse(response.body)
+        return JSON.parse(res.body)
       else
-        return response
+        return res
       end
     end
 

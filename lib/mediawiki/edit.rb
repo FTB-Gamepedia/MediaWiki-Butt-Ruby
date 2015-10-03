@@ -73,11 +73,7 @@ module MediaWiki
         format: 'json'
       }
 
-      if defined? filename
-        filename = filename.sub(/$File:/, "")
-      else
-        filename = url.split('/')[-1]
-      end
+      filename = defined? filename ? filename.sub(/$File:/, "") : url.split('/')[-1]
 
       token = get_edit_token(filename)
 
