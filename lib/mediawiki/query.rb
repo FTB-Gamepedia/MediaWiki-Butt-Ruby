@@ -121,7 +121,7 @@ module MediaWiki
     end
 
     module Lists
-      include StringUtility
+      using StringUtility
 
       # Gets an array of backlinks to a given title.
       # @param title [String] The page to get the backlinks of.
