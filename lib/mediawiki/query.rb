@@ -5,6 +5,7 @@ module MediaWiki
   module Query
     #TODO: Actually decide on a good way to deal with meta information queries.
     # The metainformation could probably be handled in a much less verbose way.
+    # Perhaps we should get hashes instead?
     module Meta
 
       # Returns an array of all the wiki's file repository names.
@@ -23,6 +24,25 @@ module MediaWiki
           ret.push(repo["name"])
         end
         return ret
+      end
+
+      # Gets meta information for the currently logged in user.
+      # @param prop [String] The uiprop to get.
+      # @return [Response/Boolean] Either a full, parsed response, or false if not logged in.
+      def get_current_user_meta(prop)
+        if @logged_in == true
+          params = {
+            action: 'query',
+            meta: 'userinfo',
+            uiprop: prop,
+            format: 'json'
+          }
+
+          response = post(params)
+          return response
+        else
+          return false
+        end
       end
     end
 
@@ -220,47 +240,50 @@ module MediaWiki
       # @param username [String] The username to get info for. Optional. Defaults to the currently logged in user if ommitted.
       # @return [String/Nil] Parsed full response if successful, nil if the username is nil and the Butt is not logged in.
       def get_userlists(prop, username = nil)
-        params = {
-          action: 'query',
-          list: 'users',
-          usprop: prop,
-          format: 'json'
-        }
-
         if username.nil?
           if @logged_in == true
-            response = post(params)
+            response = get_current_user_meta(prop)
           else
-            return nil
+            return false
           end
         else
-          params[:ususers] = username
+          params = {
+            action: 'query',
+            list: 'users',
+            usprop: prop,
+            ususers: username,
+            format: 'json'
+          }
+
           response = post(params)
         end
 
         return response
       end
 
-      # Gets an array of all the currently logged in user's groups.
+      # Gets an array of all the user's groups.
       # @param username [String] The username to get groups of. Optional. Defaults to the currently logged in user.
       # @return [Array/Boolean] All of the user's groups, or false if username is nil and Butt is not logged in.
       def get_usergroups(username = nil)
+        ret = Array.new
         if username.nil?
           if @logged_in == true
             info = get_userlists('groups')
+            info["query"]["userinfo"]["groups"].each do |i|
+              ret.push(i)
+            end
           else
             return false
           end
         else
           info = get_userlists('groups', username)
-        end
-
-        ret = Array.new
-        info["query"]["users"].each do |i|
-          i["groups"].each do |g|
-            ret.push(g)
+          info["query"]["users"].each do |i|
+            i["groups"].each do |g|
+              ret.push(g)
+            end
           end
         end
+
         return ret
       end
 
@@ -269,19 +292,19 @@ module MediaWiki
       # @param autoparse [Boolean] Whether to automatically format the string with commas. Defaults to true.
       # @return [Boolean/Int/String] False if username is nil and Butt is not logged in. An integer value of the contribution count if autoparse is false. A formatted string version of the contribution count if autoparse is true.
       def get_contrib_count(username = nil, autoparse = true)
+        count = nil
         if username.nil?
           if @logged_in == true
             info = get_userlists('editcount')
+            count = info["query"]["userinfo"]["editcount"]
           else
             return false
           end
         else
           info = get_userlists('editcount', username)
-        end
-
-        count = nil
-        info["query"]["users"].each do |i|
-          count = i["editcount"]
+          info["query"]["users"].each do |i|
+            count = i["editcount"]
+          end
         end
 
         if autoparse == true
@@ -289,6 +312,32 @@ module MediaWiki
           return countstring
         end
         return count
+      end
+
+      # Gets when the user registered.
+      # @param username [String] The username to get the registration date and time of. Optional. Defaults to the currently logged in user.
+      # @return [DateTime] The registration date and time as a DateTime object.
+      def get_registration_time(username = nil)
+        time = nil
+        # Do note that in Userinfo, registration is called registrationdate.
+        if username.nil?
+          if @logged_in == true
+            info = get_userlists('registrationdate')
+            time = info["query"]["userinfo"]["registrationdate"]
+          else
+            return false
+          end
+        else
+          info = get_userlists('registration', username)
+          info["query"]["users"].each do |i|
+            time = i["registration"]
+          end
+        end
+
+        # %Y: Year including century, %m: Month num, %d day of month, %T Time as H:M:S
+        timeformat = "%Y-%m-%dT%T"
+        time = DateTime.strptime(time, timeformat)
+        return time
       end
 
       # Gets the amount of results for the search value.

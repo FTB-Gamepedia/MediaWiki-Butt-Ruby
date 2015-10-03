@@ -1,6 +1,9 @@
 # Changelog
 ## Version 0
-### Version 0.3.2
+### Version 0.4.0
+* New get_current_user_meta for getting userlists about the currently logged in user.
+* Fix all userlist methods to work without supplying a username.
+* New get_registration_time method to get when the user registered.
 * Update to work with latest version of string-utility.
 * Namespaces are now in a hash instead of just a bunch of variables.
 * Namespace parameters are now actually limited to the valid namespaces constant. It will default to the main namespace (0) if the integer provided is not in the namespaces hash.
