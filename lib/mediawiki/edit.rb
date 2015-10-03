@@ -19,8 +19,8 @@ module MediaWiki
       token = get_edit_token(title)
 
       params[:summary] = summary if defined? summary
-      params[:minor] = '1' if minor == true
-      params[:bot] = '1' if bot == true
+      params[:minor] = '1' if minor
+      params[:bot] = '1' if bot
       params[:token] = token
 
       response = post(params)
@@ -50,7 +50,7 @@ module MediaWiki
 
       token = get_edit_token(title)
 
-      params[:bot] = '1' if bot == true
+      params[:bot] = '1' if bot
       params[:token] = token
 
       response = post(params)

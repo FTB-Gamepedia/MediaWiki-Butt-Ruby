@@ -103,7 +103,7 @@ module MediaWiki
       }
 
       result = post(params)
-      if check_login(result["login"]["result"], false) == true
+      if check_login(result["login"]["result"], false)
         @logged_in = true
         @tokens.clear
         return true
@@ -127,7 +127,7 @@ module MediaWiki
     # Logs the current user out.
     # @return [Boolean] True if it was able to log anyone out, false if not (basically, if someone was logged in, it returns true).
     def logout
-      if @logged_in == true
+      if @logged_in
         params = {
           action: 'logout',
           format: 'json'

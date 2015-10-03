@@ -50,7 +50,7 @@ module MediaWiki
         response = @client.post(@uri, params, header)
       end
 
-      if autoparse == true
+      if autoparse
         return JSON.parse(response.body)
       else
         return response

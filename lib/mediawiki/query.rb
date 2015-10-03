@@ -30,7 +30,7 @@ module MediaWiki
       # @param prop [String] The uiprop to get.
       # @return [Response/Boolean] Either a full, parsed response, or false if not logged in.
       def get_current_user_meta(prop)
-        if @logged_in == true
+        if @logged_in
           params = {
             action: 'query',
             meta: 'userinfo',
@@ -175,7 +175,7 @@ module MediaWiki
         end
 
         if limit > 500
-          if is_user_bot? == true
+          if is_user_bot?
             if limit > 5000
               params[:cmlimit] = 5000
             else
@@ -214,7 +214,7 @@ module MediaWiki
         end
 
         if number_of_pages > 10
-          if is_user_bot? == true
+          if is_user_bot?
             if limit > 20
               params[:rnlimit] = 20
             else
@@ -241,7 +241,7 @@ module MediaWiki
       # @return [String/Nil] Parsed full response if successful, nil if the username is nil and the Butt is not logged in.
       def get_userlists(prop, username = nil)
         if username.nil?
-          if @logged_in == true
+          if @logged_in
             response = get_current_user_meta(prop)
           else
             return false
@@ -267,7 +267,7 @@ module MediaWiki
       def get_usergroups(username = nil)
         ret = Array.new
         if username.nil?
-          if @logged_in == true
+          if @logged_in
             info = get_userlists('groups')
             info["query"]["userinfo"]["groups"].each do |i|
               ret.push(i)
@@ -293,7 +293,7 @@ module MediaWiki
       def get_userrights(username = nil)
         ret = Array.new
         if username.nil?
-          if @logged_in == true
+          if @logged_in
             info = get_userlists('rights')
             info["query"]["userinfo"]["rights"].each do |i|
               ret.push(i)
@@ -320,7 +320,7 @@ module MediaWiki
       def get_contrib_count(username = nil, autoparse = true)
         count = nil
         if username.nil?
-          if @logged_in == true
+          if @logged_in
             info = get_userlists('editcount')
             count = info["query"]["userinfo"]["editcount"]
           else
@@ -333,7 +333,7 @@ module MediaWiki
           end
         end
 
-        if autoparse == true
+        if autoparse
           countstring = count.to_s.separate
           return countstring
         end
@@ -347,7 +347,7 @@ module MediaWiki
         time = nil
         # Do note that in Userinfo, registration is called registrationdate.
         if username.nil?
-          if @logged_in == true
+          if @logged_in
             info = get_userlists('registrationdate')
             time = info["query"]["userinfo"]["registrationdate"]
           else
