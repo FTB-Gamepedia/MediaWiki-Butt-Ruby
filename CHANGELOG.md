@@ -2,6 +2,10 @@
 ## Version 0
 ### Version 0.3.2
 * Update to work with latest version of string-utility.
+* Namespaces are now in a hash instead of just a bunch of variables.
+* Namespace parameters are now actually limited to the valid namespaces constant. It will default to the main namespace (0) if the integer provided is not in the namespaces hash.
+* get_random_pages no longer wrongly sets the rnlimit to the namespaces argument rather than the namespace argument.
+
 ### Version 0.3.1
 * Fix edit and create_page NoMethodErrors.
 * Remove dependency for JSON as the version we use is included in the Ruby standard library.

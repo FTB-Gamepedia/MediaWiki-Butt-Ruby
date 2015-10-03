@@ -1,4 +1,5 @@
 require 'string-utility'
+require_relative 'constants'
 
 module MediaWiki
   module Query
@@ -186,9 +187,13 @@ module MediaWiki
           format: 'json'
         }
 
-        params[:rnnamespace] = namespace if namespace != nil
+        if $namespaces.has_value?(namespace)
+          params[:rnnamespace] = namespace
+        else
+          params[:rnnamespace] = 0
+        end
 
-        if namespace > 10
+        if number_of_pages > 10
           if is_user_bot? == true
             if limit > 20
               params[:rnlimit] = 20
@@ -199,7 +204,7 @@ module MediaWiki
             params[:rnlimit] = 10
           end
         else
-          params[:rnlimit] = namespace
+          params[:rnlimit] = number_of_pages
         end
 
         ret = Array.new
@@ -284,6 +289,54 @@ module MediaWiki
           return countstring
         end
         return count
+      end
+
+      # Gets the amount of results for the search value.
+      # @param search_value [String] The thing to search for.
+      # @param namespace [Int] The namespace to search in. Defaults to the main namespace.
+      def get_search_result_amount(search_value, namespace = 0)
+        params = {
+          action: 'query',
+          list: 'search',
+          srsearch: search_value,
+          format: 'json'
+        }
+
+        if $namespaces.has_value?(namespace)
+          params[:srnamespace] = namespace
+        else
+          params[:srnamespace] = 0
+        end
+
+        response = post(params)
+
+        return response["query"]["searchinfo"]["totalhits"]
+      end
+
+      # Gets an array containing page titles that matched the search.
+      # @param search_value [String] The thing to search for.
+      # @param namespace [Int] The namespace to search in. Defaults to the main namespace.
+      def get_search_results(search_value, namespace = 0)
+        params = {
+          action: 'query',
+          list: 'search',
+          srsearch: search_value,
+          format: 'json'
+        }
+
+        if $namespaces.has_value?(namespace)
+          params[:srnamespace] = namespace
+        else
+          params[:srnamespace] = 0
+        end
+
+        response = post(params)
+
+        ret = Array.new
+        response["query"]["search"].each do |search|
+          ret.push(search["title"])
+        end
+        return ret
       end
     end
   end
