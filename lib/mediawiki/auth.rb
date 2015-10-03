@@ -47,46 +47,36 @@ module MediaWiki
     # @param error [String] The parsed error "code" string
     # @return [Boolean] Always false
     def check_create(error)
-      if error == "noname"
+      case error
+      when "noname"
         raise MediaWiki::Butt::NoNameError
-        false
-      elsif error == "userexists"
+      when "userexists"
         raise MediaWiki::Butt::UserExistsError
-        false
-      elsif error == "password-name-match"
+      when "password-name-match"
         raise MediaWiki::Butt::UserPassMatchError
-        false
-      elsif error == "password-login-forbidden"
+      when "password-login-forbidden"
         raise MediaWiki::Butt::PasswordLoginForbiddenError
-        false
-      elsif error == "noemailtitle"
+      when "noemailtitle"
         raise MediaWiki::Butt::NoEmailTitleError
-        false
-      elsif error == "invalidemailaddress"
+      when "invalidemailaddress"
         raise MediaWiki::Butt::InvalidEmailAddressError
-        false
-      elsif error == "passwordtooshort"
+      when "passwordtooshort"
         raise MediaWiki::Butt::PasswordTooShortError
-        false
-      elsif error == "noemail"
+      when "noemail"
         raise MediaWiki::Butt::NoEmailError
-        false
-      elsif error == "acct_creation_throttle_hit"
+      when "acct_creation_throttle_hit"
         raise MediaWiki::Butt::ThrottledError
-        false
-      elsif error == "aborted"
+      when "aborted"
         raise MediaWiki::Butt::AbortedError
-        false
-      elsif error == "blocked"
+      when "blocked"
         raise MediaWiki::Butt::BlockedError
-        false
-      elsif error == "permdenied-createaccount"
+      when "permdenied-createaccount"
         raise MediaWiki::Butt::PermDeniedError
-        false
-      elsif error == "createaccount-hook-aborted"
+      when "createaccount-hook-aborted"
         raise MediaWiki::Butt::HookAbortedError
-        false
       end
+      
+      false #Apperently we always return false? What is the point of returning anything at all?
     end
 
     # Logs the user into the wiki. This is generally required for editing and getting restricted data. Will return the result of #check_login
