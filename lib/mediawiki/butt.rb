@@ -20,11 +20,7 @@ module MediaWiki
     # @param use_ssl [Boolean] Whether or not to use SSL. Will default to true.
     # @return [MediaWiki::Butt] new instance of MediaWiki::Butt
     def initialize(url, use_ssl = true)
-      if url =~ /api.php$/
-        @url = url
-      else
-        @url = "#{url}/api.php"
-      end
+      @url = url =~ /api.php$/ ? url : "#{url}/api.php"
 
       @client = HTTPClient.new
       @uri = URI.parse(@url)
@@ -44,11 +40,7 @@ module MediaWiki
       # We must use header.nil? rather than a splat argument and defined? header due to this error.
       # For those interested, the error is: undefined method `downcase' for {"Set-Cookie"=>"cookie"}:Hash (NoMethodError)
       # This is obvisouly an error in HTTPClient, but we must work around it until there is a fix in the gem.
-      if header.nil?
-        response = @client.post(@uri, params)
-      else
-        response = @client.post(@uri, params, header)
-      end
+      responce = header.nil? ? @client.post(@uri, params) : @client.post(@uri, params, header)
 
       if autoparse
         return JSON.parse(response.body)
@@ -61,18 +53,10 @@ module MediaWiki
     # @param username [String] The username to check. Optional. Defaults to the currently logged in user if nil.
     # @return [Boolean] true if logged in as a bot, false if not logged in or logged in as a non-bot
     def is_user_bot?(*username)
-      if defined? username
-        groups = get_usergroups(username)
-      else
-        groups = get_usergroups
-      end
+      groups = defined? username ? get_usergroups(username) : get_usergroups
 
       if groups != false
-        if groups.include? "bot"
-          return true
-        else
-          return false
-        end
+        return groups.include?("bot")
       else
         return false
       end
