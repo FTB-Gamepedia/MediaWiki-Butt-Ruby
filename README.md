@@ -16,6 +16,7 @@ gem install mediawiki-butt
 ## Dependencies
 * [HTTPClient](https://github.com/nahi/httpclient)
 * [StringUtility](https://github.com/elifoster/string-utility-ruby)
+
 ## Documentation
 Please see the [Wiki](https://github.com/ftb-gamepedia/mediawiki-butt-ruby/wiki) for feature lists, documentation, and guides.
 
