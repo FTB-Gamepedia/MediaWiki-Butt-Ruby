@@ -340,6 +340,19 @@ module MediaWiki
         return time
       end
 
+      # Gets the gender for the provded user.
+      # @param username [String] The user.
+      # @return [String] The gender. "male", "female", or "unknown".
+      def get_user_gender(username)
+        gender = nil
+        info = get_userlists('gender', username)
+        info["query"]["users"].each do |i|
+          gender = i["gender"]
+        end
+
+        return gender
+      end
+
       # Gets the amount of results for the search value.
       # @param search_value [String] The thing to search for.
       # @param namespace [Int] The namespace to search in. Defaults to the main namespace.
