@@ -43,9 +43,9 @@ module MediaWiki
       res = header.nil? ? @client.post(@uri, params) : @client.post(@uri, params, header)
 
       if autoparse
-        JSON.parse(res.body)
+        return JSON.parse(res.body)
       else
-        res
+        return res
       end
     end
 
@@ -56,9 +56,9 @@ module MediaWiki
       groups = defined? username ? get_usergroups(username) : get_usergroups
 
       if groups != false
-        groups.include?("bot")
+        return groups.include?("bot")
       else
-        false
+        return false
       end
     end
   end
