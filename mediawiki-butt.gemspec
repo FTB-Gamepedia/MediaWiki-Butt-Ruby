@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     'issue_tracker' => 'https://github.com/ftb-gamepedia/mediawiki-butt-ruby/issues'
   }
   s.post_install_message = 'ONE OF US! ONE OF US!'
-  s.required_ruby_version = '>= 2.0'
+  s.required_ruby_version = '>= 2.1'
   s.files = [
     "lib/mediawiki-butt.rb",
     "lib/mediawiki/butt.rb",

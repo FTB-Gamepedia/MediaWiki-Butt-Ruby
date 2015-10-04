@@ -8,44 +8,47 @@ module MediaWiki
     # @param secondtry [Boolean] Whether this login is the first or second try. False for first, true for second.
     # @return [Boolean] true if successful, else false.
     def check_login(result, secondtry)
-      if result == "Success"
+      case result
+      when "Success"
         @logged_in = true
-      elsif result == "NeedToken" && secondtry == true
-        raise MediaWiki::Butt::NeedTokenMoreThanOnceError
-        false
-      elsif result == "NoName"
+        return true
+      when "NeedToken"
+        if secondtry == true
+          raise MediaWiki::Butt::NeedTokenMoreThanOnceError
+          return false
+        end
+      when "NoName"
         raise MediaWiki::Butt::NoNameError
-        false
-      elsif result == "Illegal"
+        return false
+      when "Illegal"
         raise MediaWiki::Butt::IllegalUsernameError
-        false
-      elsif result == "NotExists"
+        return false
+      when "NotExists"
         raise MediaWiki::Butt::UsernameNotExistsError
-        false
-      elsif result == "EmptyPass"
+        return false
+      when "EmptyPass"
         raise MediaWiki::Butt::EmptyPassError
-        false
-      elsif result == "WrongPass"
+        return false
+      when "WrongPass"
         raise MediaWiki::Butt::WrongPassError
-        false
-      elsif result == "WrongPluginPass"
+        return false
+      when "WrongPluginPass"
         raise MediaWiki::Butt::WrongPluginPassError
-        false
-      elsif result == "CreateBlocked"
+        return false
+      when "CreateBlocked"
         raise MediaWiki::Butt::CreateBlockedError
-        false
-      elsif result == "Throttled"
+        return false
+      when "Throttled"
         raise MediaWiki::Butt::ThrottledError
-        false
-      elsif result == "Blocked"
+        return false
+      when "Blocked"
         raise MediaWiki::Butt::BlockedError
-        false
+        return false
       end
     end
 
     # Checks the account creation result's error and raises the corresponding error.
     # @param error [String] The parsed error "code" string
-    # @return [Boolean] Always false
     def check_create(error)
       case error
       when "noname"
@@ -75,8 +78,6 @@ module MediaWiki
       when "createaccount-hook-aborted"
         raise MediaWiki::Butt::HookAbortedError
       end
-      
-      false #Apperently we always return false? What is the point of returning anything at all?
     end
 
     # Logs the user into the wiki. This is generally required for editing and getting restricted data. Will return the result of #check_login

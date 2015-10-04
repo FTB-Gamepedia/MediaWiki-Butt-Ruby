@@ -1,6 +1,9 @@
 # Changelog
 ## Version 0
 ### Version 0.4.1
+* check_login and check_create now use case/when statements instead of elsifs.
+* check_create no longer returns anything.
+* Update minimum Ruby version to 2.1, for refinements.
 * Fix $namespaces hash syntax.
 * Generally improved if statement syntax.
 * Generally shortened a lot of code by using better syntax.
