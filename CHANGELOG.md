@@ -1,6 +1,8 @@
 # Changelog
 ## Version 0
 ### Version 0.4.1
+* params[:format] is now automatically set to 'json', so it no longer needs to be defined in each method.
+* Fixed a lot of styling issues thanks to Rubocop.
 * check_login and check_create now use case/when statements instead of elsifs.
 * check_create no longer returns anything.
 * Update minimum Ruby version to 2.1, for refinements.

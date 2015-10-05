@@ -1,12 +1,13 @@
 Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
-  s.summary = "Interacting with the MediaWiki API"
+  s.summary = 'Interacting with the MediaWiki API'
   s.version = '0.4.1'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
-    MediaWiki::Butt is a Ruby Gem that provides a fully-featured MediaWiki API interface.
+    MediaWiki::Butt is a Ruby Gem that provides a fully-featured MediaWiki API \
+    interface.
   EOF
   s.email = 'elifosterwy@gmail.com'
   s.homepage = 'https://github.com/ftb-gamepedia/mediawiki-butt-ruby'
@@ -16,17 +17,17 @@ Gem::Specification.new do |s|
   s.post_install_message = 'ONE OF US! ONE OF US!'
   s.required_ruby_version = '>= 2.1'
   s.files = [
-    "lib/mediawiki-butt.rb",
-    "lib/mediawiki/butt.rb",
-    "lib/mediawiki/auth.rb",
-    "lib/mediawiki/exceptions.rb",
-    "lib/mediawiki/query.rb",
-    "lib/mediawiki/constants.rb",
-    "lib/mediawiki/edit.rb",
-    "CHANGELOG.md"
+    'lib/mediawiki-butt.rb',
+    'lib/mediawiki/butt.rb',
+    'lib/mediawiki/auth.rb',
+    'lib/mediawiki/exceptions.rb',
+    'lib/mediawiki/query.rb',
+    'lib/mediawiki/constants.rb',
+    'lib/mediawiki/edit.rb',
+    'CHANGELOG.md'
   ]
 
   # TODO: Figure out what version we should require for JSON and HTTPClient
-  s.add_runtime_dependency("string-utility", ">= 2.0.0")
-  s.add_runtime_dependency("httpclient")
+  s.add_runtime_dependency('string-utility', '>= 2.0.0')
+  s.add_runtime_dependency('httpclient')
 end
