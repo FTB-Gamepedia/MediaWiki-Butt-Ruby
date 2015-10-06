@@ -19,7 +19,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_edit_token(title)
+      token = get_token(title, 'edit')
 
       params[:summary] = summary if defined? summary
       params[:minor] = '1' if minor
@@ -52,7 +52,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_edit_token(title)
+      token = get_token(title, 'edit')
 
       params[:bot] = '1' if bot
       params[:token] = token
@@ -87,7 +87,7 @@ module MediaWiki
         filename = url.split('/')[-1]
       end
 
-      token = get_edit_token(filename)
+      token = get_token(filename, 'edit')
       params[:filename] = filename
       params[:token] = token
 
@@ -96,6 +96,59 @@ module MediaWiki
         return true
       elsif response['upload']['result'] == 'Warning'
         return response['upload']['warnings'].keys[0]
+      end
+    end
+
+    # Performs a move on a page.
+    # @param from [String] The page to be moved.
+    # @param to [String] The destination of the move.
+    # @param reason [String] The reason for the move, which shows up in the log.
+    #   Optionl.
+    # @param talk [Boolean] Whether to move the associated talk page.
+    #   Defaults to true.
+    # @param redirect [Boolean] Whether to create a redirect. Defaults to false.
+    # @return [Boolean/String] true if successful, the error code if not.
+    def move(from, to, reason = nil, talk = true, redirect = false)
+      params = {
+        action: 'move',
+        from: from,
+        to: to
+      }
+
+      token = get_token(from)
+      params[:reason] = reason unless reason.nil?
+      params[:movetalk] = '1' if talk == true
+      params[:noredirect] = '1' if redirect == false
+      params[:token] = token
+
+      response = post(params)
+      if !response['move'].nil?
+        return true
+      else
+        return response['error']['code']
+      end
+    end
+
+    # Deletes a page.
+    # @param title [String] The page to delete.
+    # @param reason [String] The reason to be displayed in logs. Optional.
+    # @return [Boolean/String] true if successful, the error code if not.
+    def delete(title, reason = nil)
+      params = {
+        action: 'delete',
+        title: title
+      }
+
+      token = get_token(title)
+      params[:reason] = reason unless reason.nil?
+      params[:token] = token
+
+      response = post(params)
+      puts response
+      if !response['delete'].nil?
+        return true
+      else
+        return response['error']['code']
       end
     end
   end

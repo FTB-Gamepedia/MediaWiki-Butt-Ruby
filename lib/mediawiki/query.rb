@@ -95,9 +95,9 @@ module MediaWiki
       #   used by normal users.
       # @param page_name [String] The page title that you are going to be
       #   editing.
-      # @return [String] The edit token. If the butt isn't logged in, it returns
+      # @return [String] The token. If the butt isn't logged in, it returns
       #   with '+\\'.
-      def get_edit_token(page_name)
+      def get_token(page_name)
         if @logged_in == true
           params = {
             action: 'query',

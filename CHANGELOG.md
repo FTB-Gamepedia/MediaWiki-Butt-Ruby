@@ -1,5 +1,9 @@
 # Changelog
 ## Version 0
+### Version 0.5.0
+* New delete method for deleting pages.
+* New move method for moving pages.
+
 ### Version 0.4.1
 * params[:format] is now automatically set to 'json', so it no longer needs to be defined in each method.
 * Fixed a lot of styling issues thanks to Rubocop.
