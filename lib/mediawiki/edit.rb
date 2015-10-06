@@ -19,7 +19,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_token(title, 'edit')
+      token = get_token(title)
 
       params[:summary] = summary if defined? summary
       params[:minor] = '1' if minor
@@ -52,7 +52,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_token(title, 'edit')
+      token = get_token(title)
 
       params[:bot] = '1' if bot
       params[:token] = token
@@ -87,7 +87,7 @@ module MediaWiki
         filename = url.split('/')[-1]
       end
 
-      token = get_token(filename, 'edit')
+      token = get_token(filename)
       params[:filename] = filename
       params[:token] = token
 
