@@ -1,6 +1,10 @@
 # Changelog
 ## Version 0
 ### Version 0.5.0
+* New Administration module for administrative methods.
+* New block and unblock methods, for (un)blocking users.
+* Refactor token stuff. It still doesn't work exactly how I'd like yet, but it's better than it was before. Ideally I'd like to have it get the login-specific tokens on login and set them to some well-named instance variables. Then clear those on logout.
+* Single-line each `do end` loops have been converted into `{...}` style loops.
 * New delete method for deleting pages.
 * New move method for moving pages.
 

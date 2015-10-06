@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     'lib/mediawiki/query.rb',
     'lib/mediawiki/constants.rb',
     'lib/mediawiki/edit.rb',
+    'lib/mediawiki/administration.rb'
     'CHANGELOG.md'
   ]
 

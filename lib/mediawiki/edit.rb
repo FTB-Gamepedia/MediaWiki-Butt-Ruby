@@ -19,7 +19,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_token(title)
+      token = get_token('edit', title)
 
       params[:summary] = summary if defined? summary
       params[:minor] = '1' if minor
@@ -52,7 +52,7 @@ module MediaWiki
         format: 'json'
       }
 
-      token = get_token(title)
+      token = get_token('edit', title)
 
       params[:bot] = '1' if bot
       params[:token] = token
@@ -87,7 +87,7 @@ module MediaWiki
         filename = url.split('/')[-1]
       end
 
-      token = get_token(filename)
+      token = get_token('edit', filename)
       params[:filename] = filename
       params[:token] = token
 
@@ -115,7 +115,7 @@ module MediaWiki
         to: to
       }
 
-      token = get_token(from)
+      token = get_token('move', from)
       params[:reason] = reason unless reason.nil?
       params[:movetalk] = '1' if talk == true
       params[:noredirect] = '1' if redirect == false
@@ -139,12 +139,11 @@ module MediaWiki
         title: title
       }
 
-      token = get_token(title)
+      token = get_token('delete', title)
       params[:reason] = reason unless reason.nil?
       params[:token] = token
 
       response = post(params)
-      puts response
       if !response['delete'].nil?
         return true
       else

@@ -18,9 +18,7 @@ module MediaWiki
 
         result = post(params)
         ret = []
-        result['query']['repos'].each do |repo|
-          ret.push(repo['name'])
-        end
+        result['query']['repos'].each { |repo| ret.push(repo['name']) }
 
         ret
       end
@@ -59,9 +57,7 @@ module MediaWiki
 
         response = post(params)
         revid = nil
-        response['query']['pages'].each do |r, _|
-          revid = r
-        end
+        response['query']['pages'].each { |r, _| revid = r }
 
         if response['query']['pages'][revid]['missing'] == ''
           return nil
@@ -91,29 +87,33 @@ module MediaWiki
         end
       end
 
-      # Gets the edit token for the given page. This method should rarely be
+      # Gets the token for the given type. This method should rarely be
       #   used by normal users.
-      # @param page_name [String] The page title that you are going to be
-      #   editing.
+      # @param type [String] The type of token.
+      # @param title [String] The page title for the token. Optional.
       # @return [String] The token. If the butt isn't logged in, it returns
       #   with '+\\'.
-      def get_token(page_name)
+      def get_token(type, title = nil)
         if @logged_in == true
+          # There is some weird thing with MediaWiki where you must pass a valid
+          #   inprop parameter in order to get any response at all. This is why
+          #   there is a displaytitle inprop as well as gibberish in the titles
+          #   parameter. And to avoid normalization, it's capitalized.
           params = {
             action: 'query',
             prop: 'info',
-            intoken: 'edit',
-            titles: page_name
+            inprop: 'displaytitle',
+            intoken: type
           }
 
+          title = 'Somegibberish' if title.nil?
+          params[:titles] = title
           response = post(params)
           revid = nil
-          response['query']['pages'].each do |r, _|
-            revid = r
-          end
+          response['query']['pages'].each { |r, _| revid = r }
 
           # URL encoding is not needed for some reason.
-          return response['query']['pages'][revid]['edittoken']
+          return response['query']['pages'][revid]["#{type}token"]
         else
           return '+\\'
         end
@@ -151,9 +151,7 @@ module MediaWiki
 
         ret = []
         response = post(params)
-        response['query']['backlinks'].each do |bl|
-          ret.push(bl['title'])
-        end
+        response['query']['backlinks'].each { |bl| ret.push(bl['title']) }
 
         ret
       end
@@ -195,9 +193,8 @@ module MediaWiki
 
         ret = []
         response = post(params)
-        response['query']['categorymembers'].each do |cm|
-          ret.push(cm['title'])
-        end
+        response['query']['categorymembers'].each { |cm| ret.push(cm['title']) }
+
         ret
       end
 
@@ -236,9 +233,7 @@ module MediaWiki
 
         ret = []
         responce = post(params)
-        responce['query']['random'].each do |a|
-          ret.push(a['title'])
-        end
+        responce['query']['random'].each { |a| ret.push(a['title']) }
 
         ret
       end
@@ -281,18 +276,14 @@ module MediaWiki
         if username.nil?
           if @logged_in
             info = get_userlists('groups')
-            info['query']['userinfo']['groups'].each do |i|
-              ret.push(i)
-            end
+            info['query']['userinfo']['groups'].each { |i| ret.push(i) }
           else
             return false
           end
         else
           info = get_userlists('groups', username)
           info['query']['users'].each do |i|
-            i['groups'].each do |g|
-              ret.push(g)
-            end
+            i['groups'].each { |g| ret.push(g) }
           end
         end
 
@@ -309,9 +300,7 @@ module MediaWiki
         if username.nil?
           if @logged_in
             info = get_userlists('rights')
-            info['query']['userinfo']['rights'].each do |i|
-              ret.push(i)
-            end
+            info['query']['userinfo']['rights'].each { |i| ret.push(i) }
           else
             return false
           end
@@ -347,9 +336,7 @@ module MediaWiki
           end
         else
           info = get_userlists('editcount', username)
-          info['query']['users'].each do |i|
-            count = i['editcount']
-          end
+          info['query']['users'].each { |i| count = i['editcount'] }
         end
 
         if autoparse
@@ -376,9 +363,7 @@ module MediaWiki
           end
         else
           info = get_userlists('registration', username)
-          info['query']['users'].each do |i|
-            time = i['registration']
-          end
+          info['query']['users'].each { |i| time = i['registration'] }
         end
 
         # %Y: Year including century
@@ -397,9 +382,8 @@ module MediaWiki
       def get_user_gender(username)
         gender = nil
         info = get_userlists('gender', username)
-        info['query']['users'].each do |i|
-          gender = i['gender']
-        end
+        info['query']['users'].each { |i| gender = i['gender'] }
+
 
         gender
       end
@@ -448,9 +432,7 @@ module MediaWiki
         response = post(params)
 
         ret = []
-        response['query']['search'].each do |search|
-          ret.push(search['title'])
-        end
+        response['query']['search'].each { |search| ret.push(search['title']) }
 
         ret
       end

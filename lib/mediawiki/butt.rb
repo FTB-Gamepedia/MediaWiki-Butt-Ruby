@@ -2,6 +2,7 @@ require_relative 'auth'
 require_relative 'query'
 require_relative 'constants'
 require_relative 'edit'
+require_relative 'administration'
 require 'httpclient'
 require 'json'
 
@@ -13,6 +14,7 @@ module MediaWiki
     include MediaWiki::Query::Lists
     include MediaWiki::Constants::Namespaces
     include MediaWiki::Edit
+    include MediaWiki::Administration
 
     # Creates a new instance of MediaWiki::Butt. To work with any
     #   MediaWiki::Butt methods, you must first create an instance of it.
