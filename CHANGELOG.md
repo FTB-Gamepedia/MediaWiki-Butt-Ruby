@@ -1,5 +1,13 @@
 # Changelog
 ## Version 0
+### Version 0.6.0
+* New get_siteinfo method, in a similar style to get_userlists.
+* New get_statistics method, for getting a hash of the wiki's statistics.
+* New get_general method, for getting hash of the 'general' wiki information.
+* New get_extensions method, for getting an array of all extension names installed.
+* New get_languages method, for getting a hash of all the languages, formatted as code => name.
+* Split up the Meta module by meta type.
+
 ### Version 0.5.0
 * New Administration module for administrative methods.
 * New block and unblock methods, for (un)blocking users.

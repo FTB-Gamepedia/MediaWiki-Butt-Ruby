@@ -9,7 +9,9 @@ require 'json'
 module MediaWiki
   class Butt
     include MediaWiki::Auth
-    include MediaWiki::Query::Meta
+    include MediaWiki::Query::Meta::SiteInfo
+    include MediaWiki::Query::Meta::FileRepoInfo
+    include MediaWiki::Query::Meta::UserInfo
     include MediaWiki::Query::Properties
     include MediaWiki::Query::Lists
     include MediaWiki::Constants::Namespaces

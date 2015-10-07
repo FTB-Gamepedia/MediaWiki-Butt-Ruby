@@ -3,41 +3,97 @@ require_relative 'constants'
 
 module MediaWiki
   module Query
-    # TODO: Actually decide on a good way to deal with meta information queries.
-    #   The metainformation could probably be handled in a much less verbose
-    #   way. Perhaps we should get hashes instead?
     module Meta
-      # Returns an array of all the wiki's file repository names.
-      # @return [Array] All wiki's file repository names.
-      def get_filerepo_names
-        params = {
-          action: 'query',
-          meta: 'filerepoinfo',
-          friprop: 'name'
-        }
-
-        result = post(params)
-        ret = []
-        result['query']['repos'].each { |repo| ret.push(repo['name']) }
-
-        ret
-      end
-
-      # Gets meta information for the currently logged in user.
-      # @param prop [String] The uiprop to get.
-      # @return [Response/Boolean] Either a full, parsed response, or false if
-      #   not logged in.
-      def get_current_user_meta(prop)
-        if @logged_in
+      # TODO: namespaces and namespacealiases.
+      module SiteInfo
+        # Gets wiki information. This method should rarely be used by
+        #   normal users.
+        # @param prop [String] The siprop parameter.
+        # @return [Response] Parsed full response.
+        def get_siteinfo(prop)
           params = {
             action: 'query',
-            meta: 'userinfo',
-            uiprop: prop
+            meta: 'siteinfo',
+            siprop: prop
           }
 
           return post(params)
-        else
-          return false
+        end
+
+        # Gets the statistics for the wiki.
+        # @return [Hash] The statistics and their according values.
+        def get_statistics
+          response = get_siteinfo('statistics')
+          ret = {}
+          response['query']['statistics'].each { |k, v| ret[k] = v }
+          return ret
+        end
+
+        # Gets the general information for the wiki.
+        # @return [Hash] The general info and their according values.
+        def get_general
+          response = get_siteinfo('general')
+          ret = {}
+          response['query']['general'].each { |k, v| ret[k] = v }
+          return ret
+        end
+
+        # Gets all extensions installed on the wiki.
+        # @return [Array] All extension names.
+        def get_extensions
+          response = get_siteinfo('extensions')
+          ret = []
+          response['query']['extensions'].each { |e| ret.push(e['name']) }
+          return ret
+        end
+
+        # Gets all languages and their codes.
+        # @return [Hash] All languages. Hash key value pair formatted as
+        #   code => name
+        def get_languages
+          response = get_siteinfo('languages')
+          ret = {}
+          response['query']['languages'].each { |l| ret[l['code']] = l['*'] }
+          puts ret
+          return ret
+        end
+      end
+
+      module FileRepoInfo
+        # Returns an array of all the wiki's file repository names.
+        # @return [Array] All wiki's file repository names.
+        def get_filerepo_names
+          params = {
+            action: 'query',
+            meta: 'filerepoinfo',
+            friprop: 'name'
+          }
+
+          result = post(params)
+          ret = []
+          result['query']['repos'].each { |repo| ret.push(repo['name']) }
+
+          ret
+        end
+      end
+
+      module UserInfo
+        # Gets meta information for the currently logged in user.
+        # @param prop [String] The uiprop to get.
+        # @return [Response/Boolean] Either a full, parsed response, or false if
+        #   not logged in.
+        def get_current_user_meta(prop)
+          if @logged_in
+            params = {
+              action: 'query',
+              meta: 'userinfo',
+              uiprop: prop
+            }
+
+            return post(params)
+          else
+            return false
+          end
         end
       end
     end
