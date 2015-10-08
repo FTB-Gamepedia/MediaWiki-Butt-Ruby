@@ -4,7 +4,6 @@ require_relative 'constants'
 module MediaWiki
   module Query
     module Meta
-      # TODO: namespaces and namespacealiases.
       module SiteInfo
         # Gets wiki information. This method should rarely be used by
         #   normal users.
@@ -26,7 +25,6 @@ module MediaWiki
           response = get_siteinfo('statistics')
           ret = {}
           response['query']['statistics'].each { |k, v| ret[k] = v }
-
           ret
         end
 
@@ -36,7 +34,6 @@ module MediaWiki
           response = get_siteinfo('general')
           ret = {}
           response['query']['general'].each { |k, v| ret[k] = v }
-
           ret
         end
 
@@ -46,7 +43,6 @@ module MediaWiki
           response = get_siteinfo('extensions')
           ret = []
           response['query']['extensions'].each { |e| ret.push(e['name']) }
-
           ret
         end
 
@@ -57,25 +53,91 @@ module MediaWiki
           response = get_siteinfo('languages')
           ret = {}
           response['query']['languages'].each { |l| ret[l['code']] = l['*'] }
-
           ret
         end
       end
 
       module FileRepoInfo
-        # Returns an array of all the wiki's file repository names.
-        # @return [Array] All wiki's file repository names.
-        def get_filerepo_names
+        # Gets FileRepoInfo for the property.
+        # @param prop [String] The friprop to get.
+        # @return [Response] The full parsed response.
+        def get_filerepoinfo(prop)
           params = {
             action: 'query',
             meta: 'filerepoinfo',
-            friprop: 'name'
+            friprop: prop
           }
 
-          result = post(params)
-          ret = []
-          result['query']['repos'].each { |repo| ret.push(repo['name']) }
+          post(params)
+        end
 
+        # Returns an array of all the wiki's file repository names.
+        # @return [Array] All wiki's file repository names.
+        def get_filerepo_names
+          response = get_filerepoinfo('name|displayname')
+          ret = {}
+          response['query']['repos'].each { |n, dn| ret[n] = dn }
+          ret
+        end
+
+        # Gets the root URLs for the file repositories.
+        # @return [Hash] A hash containing keys of the names, and values of the
+        #   root URLs.
+        def get_filerepo_rooturls
+          response = get_filerepoinfo('name|rootUrl')
+          ret = {}
+          response['query']['repos'].each { |n, r| ret[n] = r }
+          ret
+        end
+
+        # Gets an array containing all local repositories.
+        # @return [Array] All repositories that are marked as local.
+        def get_local_filerepos
+          response = get_filerepoinfo('name|local')
+          ret = []
+          response['query']['repos'].each do |n, l|
+            ret.push(n) if l == 'true'
+          end
+
+          ret
+        end
+
+        # Gets an array containing all repositories that aren't local.
+        # @return [Array] All repositories that are not marked as local.
+        def get_nonlocal_filerepos
+          response = get_filerepoinfo('name|local')
+          ret = []
+          response['query']['repos'].each do |n, l|
+            ret.push(n) if l == 'false'
+          end
+
+          ret
+        end
+
+        # Gets the repository names and their according URLs.
+        # @return [Hash] Names as the keys, with their URLs as the values.
+        def get_filerepo_urls
+          response = get_filerepoinfo('name|url')
+          ret = {}
+          response['query']['repos'].each { |n, u| ret[n] = u }
+          ret
+        end
+
+        # Gets the repository names and their accoring thumbnail URLs.
+        # @return [Hash] Names as the keys, with their URLs as the values.
+        def get_filerepo_thumburls
+          response = get_filerepoinfo('name|thumbUrl')
+          ret = {}
+          response['query']['repos'].each { |n, u| ret[n] = u }
+          ret
+        end
+
+        # Gets the repository names and their according favicon URLs.
+        # @return [Hash] Names as the keys, with their favicons as the values.
+        def get_filerepo_favicons
+          response = get_filerepoinfo('name|favicon')
+          ret = {}
+          response['query']['repos'].each { |n, f| ret[n] = f }
           ret
         end
       end

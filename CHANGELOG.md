@@ -1,6 +1,14 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
+* New get_filerepo_favicons method.
+* New get_filerepo_thumburls method.
+* New get_nonlocal_filerepos method.
+* New get_local_filerepos method.
+* New get_filerepo_urls method.
+* New get_filerepo_rooturls method.
+* Refactor get_filerepo_names to use new get_filerepoinfo method.
+* New get_filerepoinfo method, in a similar style to get_userlists.
 * New get_current_user_options for getting a hash containing all of the currently logged in user's preferences.
 * New get_email_address method for getting the currently logged in user's email address.
 * New get_realname method for getting the currently logged in user's real name.
