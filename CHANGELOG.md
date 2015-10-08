@@ -1,6 +1,9 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
+* User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
+* prop parameter in get_current_user_meta is now optional, for get_current_user_name.
+* New get_current_user_name method, for something fairly obvious.
 * New get_siteinfo method, in a similar style to get_userlists.
 * New get_statistics method, for getting a hash of the wiki's statistics.
 * New get_general method, for getting hash of the 'general' wiki information.

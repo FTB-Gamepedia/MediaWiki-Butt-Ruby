@@ -54,12 +54,16 @@ module MediaWiki
       #   until there is a fix in the gem.
 
       params[:format] = 'json'
+      header = {} if header.nil?
 
-      if header.nil?
-        res = @client.post(@uri, params)
+      if @logged_in == false
+        header['User-Agent'] = 'NotLoggedIn/MediaWiki::Butt'
       else
-        res = @client.post(@uri, params, header)
+        name = get_current_user_name
+        header['User-Agent'] = "#{name}/MediaWiki::Butt"
       end
+
+      res = @client.post(@uri, params, header)
 
       if autoparse
         return JSON.parse(res.body)

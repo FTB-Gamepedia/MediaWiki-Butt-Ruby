@@ -17,7 +17,7 @@ module MediaWiki
             siprop: prop
           }
 
-          return post(params)
+          post(params)
         end
 
         # Gets the statistics for the wiki.
@@ -26,7 +26,8 @@ module MediaWiki
           response = get_siteinfo('statistics')
           ret = {}
           response['query']['statistics'].each { |k, v| ret[k] = v }
-          return ret
+
+          ret
         end
 
         # Gets the general information for the wiki.
@@ -35,7 +36,8 @@ module MediaWiki
           response = get_siteinfo('general')
           ret = {}
           response['query']['general'].each { |k, v| ret[k] = v }
-          return ret
+
+          ret
         end
 
         # Gets all extensions installed on the wiki.
@@ -44,7 +46,8 @@ module MediaWiki
           response = get_siteinfo('extensions')
           ret = []
           response['query']['extensions'].each { |e| ret.push(e['name']) }
-          return ret
+
+          ret
         end
 
         # Gets all languages and their codes.
@@ -54,8 +57,8 @@ module MediaWiki
           response = get_siteinfo('languages')
           ret = {}
           response['query']['languages'].each { |l| ret[l['code']] = l['*'] }
-          puts ret
-          return ret
+
+          ret
         end
       end
 
@@ -79,10 +82,10 @@ module MediaWiki
 
       module UserInfo
         # Gets meta information for the currently logged in user.
-        # @param prop [String] The uiprop to get.
+        # @param prop [String] The uiprop to get. Optional.
         # @return [Response/Boolean] Either a full, parsed response, or false if
         #   not logged in.
-        def get_current_user_meta(prop)
+        def get_current_user_meta(prop = nil)
           if @logged_in
             params = {
               action: 'query',
@@ -94,6 +97,17 @@ module MediaWiki
           else
             return false
           end
+        end
+
+        # Gets the current user's username.
+        # @return [String/Boolean] Returns the username, or false.
+        def get_current_user_name
+          name = get_current_user_meta
+          if name != false
+            name = get_current_user_meta['query']['userinfo']['name']
+          end
+
+          name
         end
       end
     end
