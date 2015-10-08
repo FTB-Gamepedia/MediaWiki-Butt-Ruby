@@ -1,6 +1,10 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
+* New get_current_user_options for getting a hash containing all of the currently logged in user's preferences.
+* New get_email_address method for getting the currently logged in user's email address.
+* New get_realname method for getting the currently logged in user's real name.
+* New get_changeable_groups method for getting the currently logged in user's groups that they can change (add/remove people from)
 * New current_user_hasmsg? method for checking if the user has any unread messages.
 * check_login no longer returns false, ever, because any code after a fail is unreachable.
 * User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
