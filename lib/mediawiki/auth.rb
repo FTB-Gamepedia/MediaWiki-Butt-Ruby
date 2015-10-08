@@ -7,44 +7,32 @@ module MediaWiki
     # @param result [String] The parsed version of the result.
     # @param secondtry [Boolean] Whether this login is the first or second try.
     #   False for first, true for second.
-    # @return [Boolean] true if successful, else false.
+    # @return [Boolean] true if successful. Does not return anything if not.
     def check_login(result, secondtry)
       case result
       when 'Success'
         @logged_in = true
         return true
       when 'NeedToken'
-        if secondtry == true
-          fail MediaWiki::Butt::NeedTokenMoreThanOnceError
-          return false
-        end
+        fail MediaWiki::Butt::NeedTokenMoreThanOnceError if secondtry == true
       when 'NoName'
         fail MediaWiki::Butt::NoNameError
-        return false
       when 'Illegal'
         fail MediaWiki::Butt::IllegalUsernameError
-        return false
       when 'NotExists'
         fail MediaWiki::Butt::UsernameNotExistsError
-        return false
       when 'EmptyPass'
         fail MediaWiki::Butt::EmptyPassError
-        return false
       when 'WrongPass'
         fail MediaWiki::Butt::WrongPassError
-        return false
       when 'WrongPluginPass'
         fail MediaWiki::Butt::WrongPluginPassError
-        return false
       when 'CreateBlocked'
         fail MediaWiki::Butt::CreateBlockedError
-        return false
       when 'Throttled'
         fail MediaWiki::Butt::ThrottledError
-        return false
       when 'Blocked'
         fail MediaWiki::Butt::BlockedError
-        return false
       end
     end
 
@@ -113,7 +101,7 @@ module MediaWiki
         @cookie = "#{result['login']['cookieprefix']}" \
                   "Session=#{result['login']['sessionid']}"
         result = post(token_params, true, 'Set-Cookie' => @cookie)
-        check_login(result['login']['result'], true)
+        @name = username if check_login(result['login']['result'], true) == true
       end
     end
 

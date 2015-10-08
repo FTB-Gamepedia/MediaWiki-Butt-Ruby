@@ -93,7 +93,7 @@ module MediaWiki
               uiprop: prop
             }
 
-            return post(params)
+            post(params)
           else
             return false
           end
@@ -102,12 +102,32 @@ module MediaWiki
         # Gets the current user's username.
         # @return [String/Boolean] Returns the username, or false.
         def get_current_user_name
-          name = get_current_user_meta
-          if name != false
-            name = get_current_user_meta['query']['userinfo']['name']
-          end
+          if !@name.nil?
+            return @name
+          else
+            name = get_current_user_meta
+            if name != false
+              name = name['query']['userinfo']['name']
+            end
 
-          name
+            name
+          end
+        end
+
+        # Returns whether or not the currently logged in user has any unread
+        #   messages on their talk page.
+        # @return [Boolean] True if they have unreads, else false.
+        def current_user_hasmsg?
+          response = get_current_user_meta('hasmsg')
+          if response != false
+            if !response['query']['userinfo']['messages'] == ''
+              return false
+            else
+              return true
+            end
+          else
+            return false
+          end
         end
       end
     end

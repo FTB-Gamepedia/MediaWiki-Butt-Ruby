@@ -1,6 +1,8 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
+* New current_user_hasmsg? method for checking if the user has any unread messages.
+* check_login no longer returns false, ever, because any code after a fail is unreachable.
 * User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
 * prop parameter in get_current_user_meta is now optional, for get_current_user_name.
 * New get_current_user_name method, for something fairly obvious.
