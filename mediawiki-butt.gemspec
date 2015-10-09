@@ -2,12 +2,14 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
   s.summary = 'Interacting with the MediaWiki API'
-  s.version = '0.5.0'
+  s.version = '0.6.0'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
     MediaWiki::Butt is a Ruby Gem that provides a fully-featured MediaWiki API \
-    interface.
+    interface. It includes methods for changing wiki content, authentication, \
+    and queries.
+
   EOF
   s.email = 'elifosterwy@gmail.com'
   s.homepage = 'https://github.com/ftb-gamepedia/mediawiki-butt-ruby'

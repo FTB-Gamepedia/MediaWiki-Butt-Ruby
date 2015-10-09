@@ -73,7 +73,7 @@ module MediaWiki
     #   through regex. Optional. If ommitted, it will be everything after
     #   the last slash in the URL.
     # @return [Boolean/String] true if the upload was successful, else the
-    #   warning's key.
+    #   warning's key. Returns false if the file extension is not valid.
     def upload(url, *filename)
       params = {
         action: 'upload',
@@ -87,15 +87,22 @@ module MediaWiki
         filename = url.split('/')[-1]
       end
 
-      token = get_token('edit', filename)
-      params[:filename] = filename
-      params[:token] = token
+      ext = filename.split('.')[-1]
+      allowed_extensions = get_allowed_file_extensions
+      if allowed_extensions.include? ext
 
-      response = post(params)
-      if response['upload']['result'] == 'Success'
-        return true
-      elsif response['upload']['result'] == 'Warning'
-        return response['upload']['warnings'].keys[0]
+        token = get_token('edit', filename)
+        params[:filename] = filename
+        params[:token] = token
+
+        response = post(params)
+        if response['upload']['result'] == 'Success'
+          return true
+        elsif response['upload']['result'] == 'Warning'
+          return response['upload']['warnings'].keys[0]
+        end
+      else
+        return false
       end
     end
 

@@ -1,42 +1,44 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
-* New get_variables method.
-* New get_function_hooks method.
-* New get_extension_tags method.
-* New get_skins method.
-* New get_restriction_levels method.
-* New get_restriction_types method.
-* New get_restrictions_data method for the above methods.
-* New get_allowed_file_extensions method.
-* New get_all_usergroups method.
-* New get_magic_words method.
-* New get_special_page_aliases method.
-* New get_namespace_aliases method.
-* New get_namespaces method.
-* New get_filerepo_favicons method.
-* New get_filerepo_thumburls method.
-* New get_nonlocal_filerepos method.
-* New get_local_filerepos method.
-* New get_filerepo_urls method.
-* New get_filerepo_rooturls method.
-* Refactor get_filerepo_names to use new get_filerepoinfo method.
-* New get_filerepoinfo method, in a similar style to get_userlists.
-* New get_current_user_options for getting a hash containing all of the currently logged in user's preferences.
-* New get_email_address method for getting the currently logged in user's email address.
-* New get_realname method for getting the currently logged in user's real name.
-* New get_changeable_groups method for getting the currently logged in user's groups that they can change (add/remove people from)
-* New current_user_hasmsg? method for checking if the user has any unread messages.
-* check_login no longer returns false, ever, because any code after a fail is unreachable.
+* Slightly expanded Gem description.
+* Finished all Meta modules and their methods, except for the allmessages meta query. [#6](https://github.com/ftb-gamepedia/mediawiki-butt-ruby/issues/6)
+  * New get_variables method.
+  * New get_function_hooks method.
+  * New get_extension_tags method.
+  * New get_skins method.
+  * New get_restriction_levels method.
+  * New get_restriction_types method.
+  * New get_restrictions_data method for the above methods.
+  * New get_allowed_file_extensions method, and refactored #upload to only allow files with those extensions.
+  * New get_all_usergroups method.
+  * New get_magic_words method.
+  * New get_special_page_aliases method.
+  * New get_namespace_aliases method.
+  * New get_namespaces method.
+  * New get_filerepo_favicons method.
+  * New get_filerepo_thumburls method.
+  * New get_nonlocal_filerepos method.
+  * New get_local_filerepos method.
+  * New get_filerepo_urls method.
+  * New get_filerepo_rooturls method.
+  * Refactor get_filerepo_names to use new get_filerepoinfo method.
+  * New get_filerepoinfo method, in a similar style to get_userlists.
+  * New get_current_user_options for getting a hash containing all of the currently logged in user's preferences.
+  * New get_email_address method for getting the currently logged in user's email address.
+  * New get_realname method for getting the currently logged in user's real name.
+  * New get_changeable_groups method for getting the currently logged in user's groups that they can change (add/remove people from)
+  * New current_user_hasmsg? method for checking if the user has any unread messages.
+  * check_login no longer returns false, ever, because any code after a fail is unreachable.
+  * prop parameter in get_current_user_meta is now optional, for get_current_user_name.
+  * New get_current_user_name method, for something fairly obvious.
+  * New get_siteinfo method, in a similar style to get_userlists.
+  * New get_statistics method, for getting a hash of the wiki's statistics.
+  * New get_general method, for getting hash of the 'general' wiki information.
+  * New get_extensions method, for getting an array of all extension names installed.
+  * New get_languages method, for getting a hash of all the languages, formatted as code => name.
 * User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
-* prop parameter in get_current_user_meta is now optional, for get_current_user_name.
-* New get_current_user_name method, for something fairly obvious.
-* New get_siteinfo method, in a similar style to get_userlists.
-* New get_statistics method, for getting a hash of the wiki's statistics.
-* New get_general method, for getting hash of the 'general' wiki information.
-* New get_extensions method, for getting an array of all extension names installed.
-* New get_languages method, for getting a hash of all the languages, formatted as code => name.
-* Split up the Meta module by meta type.
+
 
 ### Version 0.5.0
 * New Administration module for administrative methods.
