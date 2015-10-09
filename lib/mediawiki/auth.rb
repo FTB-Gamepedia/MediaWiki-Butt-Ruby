@@ -101,7 +101,7 @@ module MediaWiki
         @cookie = "#{result['login']['cookieprefix']}" \
                   "Session=#{result['login']['sessionid']}"
         result = post(token_params, true, 'Set-Cookie' => @cookie)
-        @name = username if check_login(result['login']['result'], true) == true
+        @name = username if check_login(result['login']['result'], true)
       end
     end
 
