@@ -1,6 +1,19 @@
 # Changelog
 ## Version 0
 ### Version 0.6.0
+* New get_variables method.
+* New get_function_hooks method.
+* New get_extension_tags method.
+* New get_skins method.
+* New get_restriction_levels method.
+* New get_restriction_types method.
+* New get_restrictions_data method for the above methods.
+* New get_allowed_file_extensions method.
+* New get_all_usergroups method.
+* New get_magic_words method.
+* New get_special_page_aliases method.
+* New get_namespace_aliases method.
+* New get_namespaces method.
 * New get_filerepo_favicons method.
 * New get_filerepo_thumburls method.
 * New get_nonlocal_filerepos method.
