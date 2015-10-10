@@ -19,7 +19,7 @@ module MediaWiki
         }
 
         if limit > 500
-          if is_user_bot? == true
+          if user_bot? == true
             if limit > 5000
               params[:bllimit] = 5000
             else
@@ -61,7 +61,7 @@ module MediaWiki
         end
 
         if limit > 500
-          if is_user_bot?
+          if user_bot?
             if limit > 5000
               params[:cmlimit] = 5000
             else
@@ -101,7 +101,7 @@ module MediaWiki
         end
 
         if number_of_pages > 10
-          if is_user_bot?
+          if user_bot?
             if limit > 20
               params[:rnlimit] = 20
             else
@@ -316,6 +316,70 @@ module MediaWiki
 
         ret = []
         response['query']['search'].each { |search| ret.push(search['title']) }
+
+        ret
+      end
+
+      # Gets all categories on the entire wiki.
+      # @param limit [Int] The maximum number of categories to get. Defaults to
+      #   500. Cannot be greater than 500 for normal users, or 5000 for bots.
+      # @return [Array] An array of all categories.
+      def get_all_categories(limit = 500)
+        params = {
+          action: 'query',
+          list: 'allcategories'
+        }
+
+        if limit > 500
+          if user_bot?
+            if limit > 5000
+              params[:aclimit] = 5000
+            else
+              params[:aclimit] = limit
+            end
+          else
+            params[:aclimit] = 500
+          end
+        else
+          params[:aclimit] = limit
+        end
+
+        response = post(params)
+
+        ret = []
+        response['query']['allcategories'].each { |c| ret.push(c['*']) }
+
+        ret
+      end
+
+      # Gets all the images on the wiki.
+      # @param limit [Int] The maximum number of images to get. Defaults to 500.
+      #   Cannot be greater than 500 for normal users, or 5000 for bots.
+      # @return [Array] An array of all images.
+      def get_all_images(limit = 500)
+        params = {
+          action: 'query',
+          list: 'allimages'
+        }
+
+        if limit > 500
+          if user_bot?
+            if limit > 5000
+              params[:ailimit] = 5000
+            else
+              params[:ailimit] = limit
+            end
+          else
+            params[:ailimit] = 500
+          end
+        else
+          params[:ailimit] = limit
+        end
+
+        response = post(params)
+
+        ret = []
+        response['query']['allimages'].each { |i| ret.push(i['name']) }
 
         ret
       end
