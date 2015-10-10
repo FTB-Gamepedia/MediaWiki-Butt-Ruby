@@ -1,6 +1,7 @@
 # Changelog
 ## Version 0
 ### Version 0.7.0
+* user_bot? returns false when not logged in and username is not set.
 * Refactor Query module to have its own folder, and subfolder for meta. This shouldn't change anything on the user's end.
 * A couple methods no longer stupidly print stuff.
 * New get_categories_in_page method.
