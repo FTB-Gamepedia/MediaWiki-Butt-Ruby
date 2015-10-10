@@ -466,6 +466,32 @@ module MediaWiki
           return '+\\'
         end
       end
+
+      # Gets all categories in the page.
+      # @param title [String] The page title.
+      # @return [Array/Nil] An array of all the categories, or nil if the title
+      #   is not an actual page.
+      def get_categories_in_page(title)
+        params = {
+          action: 'query',
+          prop: 'categories',
+          titles: title
+        }
+
+        response = post(params)
+        pageid = nil
+        ret = []
+        response['query']['pages'].each { |r, _| pageid = r }
+        if response['query']['pages'][pageid]['missing'] == ''
+          return nil
+        else
+          response['query']['pages'][pageid]['categories'].each do |c|
+            ret.push(c['title'])
+          end
+        end
+
+        ret
+      end
     end
 
     module Lists

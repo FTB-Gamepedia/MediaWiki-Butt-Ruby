@@ -1,5 +1,8 @@
 # Changelog
 ## Version 0
+### Version 0.7.0
+* New get_categories_in_page method.
+
 ### Version 0.6.0
 * Slightly expanded Gem description.
 * Finished all Meta modules and their methods, except for the allmessages meta query. [#6](https://github.com/ftb-gamepedia/mediawiki-butt-ruby/issues/6)
@@ -38,7 +41,6 @@
   * New get_extensions method, for getting an array of all extension names installed.
   * New get_languages method, for getting a hash of all the languages, formatted as code => name.
 * User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
-
 
 ### Version 0.5.0
 * New Administration module for administrative methods.
