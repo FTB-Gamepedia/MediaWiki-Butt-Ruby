@@ -19,7 +19,6 @@ module MediaWiki
       params[:token] = token
 
       response = post(params)
-      puts response
 
       if !response['error'].nil?
         return response['error']['code']
@@ -42,7 +41,6 @@ module MediaWiki
       params[:token] = token
 
       response = post(params)
-      puts response
 
       if !response['error'].nil?
         return response['error']['code']

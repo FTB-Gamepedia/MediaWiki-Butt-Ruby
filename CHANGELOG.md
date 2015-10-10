@@ -1,6 +1,7 @@
 # Changelog
 ## Version 0
 ### Version 0.7.0
+* block and unblock no longer stupidly put the response.
 * New get_categories_in_page method.
 
 ### Version 0.6.0
