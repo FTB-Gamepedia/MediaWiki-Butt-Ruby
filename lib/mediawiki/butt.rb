@@ -1,5 +1,5 @@
 require_relative 'auth'
-require_relative 'query'
+require_relative 'query/query'
 require_relative 'constants'
 require_relative 'edit'
 require_relative 'administration'
