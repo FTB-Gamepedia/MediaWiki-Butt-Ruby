@@ -23,10 +23,16 @@ Gem::Specification.new do |s|
     'lib/mediawiki/butt.rb',
     'lib/mediawiki/auth.rb',
     'lib/mediawiki/exceptions.rb',
-    'lib/mediawiki/query.rb',
     'lib/mediawiki/constants.rb',
     'lib/mediawiki/edit.rb',
     'lib/mediawiki/administration.rb',
+    'lib/mediawiki/query/lists.rb',
+    'lib/mediawiki/query/properties.rb',
+    'lib/mediawiki/query/query.rb',
+    'lib/mediawiki/query/meta/meta.rb',
+    'lib/mediawiki/query/meta/filerepoinfo.rb',
+    'lib/mediawiki/query/meta/siteinfo.rb',
+    'lib/mediawiki/query/meta/userinfo.rb',
     'CHANGELOG.md'
   ]
 

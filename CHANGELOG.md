@@ -1,7 +1,8 @@
 # Changelog
 ## Version 0
 ### Version 0.7.0
-* block and unblock no longer stupidly put the response.
+* Refactor Query module to have its own folder, and subfolder for meta. This shouldn't change anything on the user's end.
+* A couple methods no longer stupidly print stuff.
 * New get_categories_in_page method.
 
 ### Version 0.6.0
