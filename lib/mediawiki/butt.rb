@@ -79,7 +79,13 @@ module MediaWiki
     # @return [Boolean] true if logged in as a bot, false if not logged in or
     #   logged in as a non-bot
     def user_bot?(*username)
-      groups = defined? username ? get_usergroups(username) : get_usergroups
+      groups = false
+
+      if defined? username
+        groups = get_usergroups(username)
+      else
+        groups = get_usergroups if @logged_in
+      end
 
       if groups != false
         return groups.include?('bot')
