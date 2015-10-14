@@ -74,17 +74,17 @@ module MediaWiki
     #   the last slash in the URL.
     # @return [Boolean/String] true if the upload was successful, else the
     #   warning's key. Returns false if the file extension is not valid.
-    def upload(url, *filename)
+    def upload(url, filename = nil)
       params = {
         action: 'upload',
         url: url,
         format: 'json'
       }
 
-      if defined? filename
-        filename = filename.sub(/$File:/, '')
-      else
+      if filename.nil?
         filename = url.split('/')[-1]
+      else
+        filename = filename.sub(/^File:/, '')
       end
 
       ext = filename.split('.')[-1]

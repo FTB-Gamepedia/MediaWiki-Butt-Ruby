@@ -1,6 +1,8 @@
 # Changelog
 ## Version 0
 ### Version 0.7.0
+* upload's filename argument is no longer splat, because arrays.
+* Fix incorrect regex $ when ^ should be used in upload.
 * New get_all_categories method.
 * New get_all_images method.
 * Fix some user_bot? calls.
