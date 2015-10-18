@@ -9,8 +9,21 @@ This gem is very easy to use, with adaptability to the user's needs.
 Some other gems have methods that do not work at all, but are critical to using a Wiki, such as getting wiki text and getting page's backlinks.
 
 ## Installation
+### RubyGems
 ```
 gem install mediawiki-butt
+```
+
+### Bundler
+Add this line to application's Gemfile:
+
+``` ruby
+gem('mediawiki-butt')
+```
+
+And then execute:
+```
+$ bundle
 ```
 
 ## Dependencies
