@@ -94,7 +94,7 @@ module MediaWiki
           list: 'random'
         }
 
-        if $namespaces.value?(namespace)
+        if @namespaces.value?(namespace)
           params[:rnnamespace] = namespace
         else
           params[:rnnamespace] = 0
@@ -283,7 +283,7 @@ module MediaWiki
           srsearch: search_value
         }
 
-        if $namespaces.value?(namespace)
+        if MediaWiki::Constants::NAMEPSACES.value?(namespace)
           params[:srnamespace] = namespace
         else
           params[:srnamespace] = 0
@@ -306,7 +306,7 @@ module MediaWiki
           srsearch: search_value
         }
 
-        if $namespaces.value?(namespace)
+        if MediaWiki::Constants::NAMESPACES.value?(namespace)
           params[:srnamespace] = namespace
         else
           params[:srnamespace] = 0
