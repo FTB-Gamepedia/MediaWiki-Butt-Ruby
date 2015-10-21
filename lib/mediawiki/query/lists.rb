@@ -15,22 +15,9 @@ module MediaWiki
       def what_links_here(title, limit = 500)
         params = {
           action: 'query',
-          bltitle: title
+          bltitle: title,
+          bllimit: MediaWiki::Query.get_limited(limit)
         }
-
-        if limit > 500
-          if user_bot? == true
-            if limit > 5000
-              params[:bllimit] = 5000
-            else
-              params[:bllimit] = limit
-            end
-          else
-            params[:bllimit] = 500
-          end
-        else
-          params[:bllimit] = limit
-        end
 
         ret = []
         response = post(params)
@@ -51,7 +38,8 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'categorymembers',
-          cmprop: 'title'
+          cmprop: 'title',
+          cmlimit: MediaWiki::Query.get_limited(limit)
         }
 
         if category =~ /[Cc]ategory\:/
@@ -59,21 +47,6 @@ module MediaWiki
         else
           params[:cmtitle] = "Category:#{category}"
         end
-
-        if limit > 500
-          if user_bot?
-            if limit > 5000
-              params[:cmlimit] = 5000
-            else
-              params[:cmlimit] = limit
-            end
-          else
-            params[:cmlimit] = 500
-          end
-        else
-          params[:cmlimit] = limit
-        end
-
         ret = []
         response = post(params)
         response['query']['categorymembers'].each { |cm| ret.push(cm['title']) }
@@ -91,27 +64,14 @@ module MediaWiki
       def get_random_pages(number_of_pages = 1, namespace = 0)
         params = {
           action: 'query',
-          list: 'random'
+          list: 'random',
+          rnlimit: MediaWiki::Query.get_limited(number_of_pages, 10, 20)
         }
 
         if @namespaces.value?(namespace)
           params[:rnnamespace] = namespace
         else
           params[:rnnamespace] = 0
-        end
-
-        if number_of_pages > 10
-          if user_bot?
-            if limit > 20
-              params[:rnlimit] = 20
-            else
-              params[:rnlimit] = limit
-            end
-          else
-            params[:rnlimit] = 10
-          end
-        else
-          params[:rnlimit] = number_of_pages
         end
 
         ret = []
@@ -327,22 +287,9 @@ module MediaWiki
       def get_all_categories(limit = 500)
         params = {
           action: 'query',
-          list: 'allcategories'
+          list: 'allcategories',
+          aclimit: MediaWiki::Query.get_limited(limit)
         }
-
-        if limit > 500
-          if user_bot?
-            if limit > 5000
-              params[:aclimit] = 5000
-            else
-              params[:aclimit] = limit
-            end
-          else
-            params[:aclimit] = 500
-          end
-        else
-          params[:aclimit] = limit
-        end
 
         response = post(params)
 
@@ -359,22 +306,9 @@ module MediaWiki
       def get_all_images(limit = 500)
         params = {
           action: 'query',
-          list: 'allimages'
+          list: 'allimages',
+          ailimit: MediaWiki::Query.get_limited(limit)
         }
-
-        if limit > 500
-          if user_bot?
-            if limit > 5000
-              params[:ailimit] = 5000
-            else
-              params[:ailimit] = limit
-            end
-          else
-            params[:ailimit] = 500
-          end
-        else
-          params[:ailimit] = limit
-        end
 
         response = post(params)
 

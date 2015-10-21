@@ -1,5 +1,14 @@
 # Changelog
 ## Version 0
+### Version 0.8.0
+* New get_all_duplicated_files method for getting all duplicated files on the wiki.
+* New get_duplicated_files_of method for getting all file names that duplicate a given file.
+* New get_logged_in_contributors method for getting all logged in user's usernames that have contributed to a page.
+* New get_total_contributors method for getting the total number of contributors to a page.
+* Refactor Properties to be more like Meta.
+* New get_limited protected method that limits the 'limit' parameter for queries. It's essentially just reducing duplicated code.
+* Remove all global variables. MediaWiki::Constants::Namespaces' $namespaces is now MediaWiki::Constants with the hash being defined as NAMESPACES.
+
 ### Version 0.7.0
 * upload's filename argument is no longer splat, because arrays.
 * Fix incorrect regex $ when ^ should be used in upload.

@@ -14,7 +14,7 @@ module MediaWiki
     include MediaWiki::Query::Meta::UserInfo
     include MediaWiki::Query::Properties
     include MediaWiki::Query::Lists
-    include MediaWiki::Constants::Namespaces
+    include MediaWiki::Constants
     include MediaWiki::Edit
     include MediaWiki::Administration
 
