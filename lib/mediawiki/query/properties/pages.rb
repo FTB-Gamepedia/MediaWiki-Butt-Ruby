@@ -4,8 +4,8 @@ module MediaWiki
       module Pages
         # Gets all categories in the page.
         # @param title [String] The page title.
-        # @return [Array/Nil] An array of all the categories, or nil if the title
-        #   is not an actual page.
+        # @return [Array] All the categories
+        # @return [Nil] If the title does not exist.
         def get_categories_in_page(title)
           params = {
             action: 'query',
@@ -31,7 +31,8 @@ module MediaWiki
         # Gets the wiki text for the given page. Returns nil if it for some
         #   reason cannot get the text, for example, if the page does not exist.
         # @param title [String] The page title
-        # @return [String/nil] String containing page contents, or nil
+        # @return [String/nil] String containing page contents.
+        # @return [Nil] If the page does not exist.
         def get_text(title)
           params = {
             action: 'query',
@@ -53,7 +54,8 @@ module MediaWiki
 
         # Gets the revision ID for the given page.
         # @param title [String] The page title
-        # @return [Int/nil] the ID or nil
+        # @return [Int/nil] The page's ID
+        # @return [Nil] If the page does not exist.
         def get_id(title)
           params = {
             action: 'query',

@@ -37,6 +37,5 @@ Gem::Specification.new do |s|
   ]
 
   # TODO: Figure out what version we should require for JSON and HTTPClient
-  s.add_runtime_dependency('string-utility', '>= 2.0.0')
-  s.add_runtime_dependency('httpclient')
+  s.add_runtime_dependency('httpclient', '>= 2.6.0.1')
 end

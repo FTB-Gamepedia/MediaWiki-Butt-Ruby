@@ -9,7 +9,9 @@ module MediaWiki
     include MediaWiki::Query::Properties
 
     protected
+
     module_function
+
     # Gets the limited version of the integer, to ensure nobody provides an int
     #   that is too large.
     # @param integer [Int] The number to limit.

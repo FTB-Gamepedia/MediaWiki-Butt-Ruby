@@ -5,7 +5,8 @@ module MediaWiki
     # @param expiry [String] The expiry timestamp using a relative expiry time.
     # @param reason [String] The reason to show in the block log.
     # @param nocreate [Boolean] Whether to allow them to create an account.
-    # @return [String/Int] The error code, or the block ID.
+    # @return [String] The error code.
+    # @return [Int] The block ID.
     def block(user, expiry = '2 weeks', reason = nil, nocreate = true)
       params = {
         action: 'block',
@@ -30,7 +31,8 @@ module MediaWiki
     # Unblocks the user.
     # @param user [String] The user to unblock.
     # @param reason [String] The reason to show in the block log.
-    # @return [String/Int] The error code, or the block ID.
+    # @return [String] The error code.
+    # @return [Int] The block ID.
     def unblock(user, reason = nil)
       params = {
         action: 'unblock',

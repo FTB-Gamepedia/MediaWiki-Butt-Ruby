@@ -1,11 +1,8 @@
 require_relative '../constants'
-require 'string-utility'
 
 module MediaWiki
   module Query
     module Lists
-      using StringUtility
-
       # Gets an array of backlinks to a given title.
       # @param title [String] The page to get the backlinks of.
       # @param limit [Int] The maximum number of pages to get. Defaults to 500,
@@ -86,8 +83,8 @@ module MediaWiki
       # @param prop [String] The usprop parameter.
       # @param username [String] The username to get info for. Optional.
       #   Defaults to the currently logged in user if ommitted.
-      # @return [String/Nil] Parsed full response if successful, nil if
-      #   the username is nil and the Butt is not logged in.
+      # @return [String] Parsed full response if successful.
+      # @return [Nil] If the username is nil and the Butt is not logged in.
       def get_userlists(prop, username = nil)
         if username.nil?
           if @logged_in
@@ -112,8 +109,8 @@ module MediaWiki
       # Gets an array of all the user's groups.
       # @param username [String] The username to get groups of. Optional.
       #   Defaults to the currently logged in user.
-      # @return [Array/Boolean] All of the user's groups, or false if username
-      #   is nil and Butt is not logged in.
+      # @return [Array] All of the user's groups.
+      # @return [Boolean] False if username is nil and not logged in.
       def get_usergroups(username = nil)
         ret = []
         if username.nil?
@@ -136,8 +133,8 @@ module MediaWiki
       # Gets the user rights for the user.
       # @param username [String] The user to get the rights for. Optional.
       #   Defaults to the currently logged in user.
-      # @return [Array/Boolean] All of the user's groups, or false if username
-      #   is nil and Butt is not logged in.
+      # @return [Array] All of the user's groups.
+      # @return [Boolean] False if username is nil and not logged in.
       def get_userrights(username = nil)
         ret = []
         if username.nil?
@@ -162,13 +159,9 @@ module MediaWiki
       # Gets contribution count for the user.
       # @param username [String] The username to get the contribution count of.
       #   Optional. Defaults to the currently logged in user.
-      # @param autoparse [Boolean] Whether to automatically format the string
-      #   with commas using string-utility. Defaults to true.
-      # @return [Boolean/Int/String] False if username is nil and Butt is not
-      #   logged in. An integer value of the contribution count if autoparse is
-      #   false. A formatted string version of the contribution count if
-      #   autoparse is true.
-      def get_contrib_count(username = nil, autoparse = true)
+      # @return [Boolean] False if username is nil and not logged in.
+      # @return [Int] The number of contributions the user has made.
+      def get_contrib_count(username = nil)
         count = nil
         if username.nil?
           if @logged_in
@@ -180,11 +173,6 @@ module MediaWiki
         else
           info = get_userlists('editcount', username)
           info['query']['users'].each { |i| count = i['editcount'] }
-        end
-
-        if autoparse
-          countstring = count.to_s.separate
-          return countstring
         end
 
         count
@@ -227,7 +215,6 @@ module MediaWiki
         info = get_userlists('gender', username)
         info['query']['users'].each { |i| gender = i['gender'] }
 
-
         gender
       end
 
@@ -250,7 +237,6 @@ module MediaWiki
         end
 
         response = post(params)
-
         response['query']['searchinfo']['totalhits']
       end
 

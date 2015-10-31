@@ -23,7 +23,6 @@ module MediaWiki
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it
     #   will make harsh assumptions about your wiki configuration.
     # @param use_ssl [Boolean] Whether or not to use SSL. Will default to true.
-    # @return [MediaWiki::Butt] new instance of MediaWiki::Butt
     def initialize(url, use_ssl = true)
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
 
@@ -42,8 +41,8 @@ module MediaWiki
     # @param autoparse [Boolean] Whether or not to provide a parsed version
     #   of the response's JSON. Will default to true.
     # @param header [Hash] The header hash. Optional.
-    # @return [JSON/HTTPMessage] Parsed JSON if autoparse is true, or raw
-    #   response if not.
+    # @return [JSON/HTTPMessage] Parsed JSON if autoparse is true.
+    # @return [HTTPMessage] Raw HTTP response.
     def post(params, autoparse = true, header = nil)
       # Note that defining the header argument as a splat argument (*header)
       #   causes errors in HTTPClient. We must use header.nil? rather than a

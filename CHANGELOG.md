@@ -1,6 +1,12 @@
 # Changelog
 ## Version 0
 ### Version 0.8.0
+* Fix @returns in docs.
+* Got rid of false things in docs.
+* Remove dependency on string-utility. That should be something the user does on their end.
+* get_contrib_count no longer has a second parameter, because of the above change.
+* New methods for getting image size in bytes and dimensions.
+* Fix open-ended dependency for HTTPClient.
 * New get_all_duplicated_files method for getting all duplicated files on the wiki.
 * New get_duplicated_files_of method for getting all file names that duplicate a given file.
 * New get_logged_in_contributors method for getting all logged in user's usernames that have contributed to a page.
@@ -14,7 +20,7 @@
 * Fix incorrect regex $ when ^ should be used in upload.
 * New get_all_categories method.
 * New get_all_images method.
-* Fix some user_bot? calls.
+* Fix broken user_bot? calls.
 * user_bot? returns false when not logged in and username is not set.
 * Refactor Query module to have its own folder, and subfolder for meta. This shouldn't change anything on the user's end.
 * A couple methods no longer stupidly print stuff.
@@ -51,7 +57,7 @@
   * New current_user_hasmsg? method for checking if the user has any unread messages.
   * check_login no longer returns false, ever, because any code after a fail is unreachable.
   * prop parameter in get_current_user_meta is now optional, for get_current_user_name.
-  * New get_current_user_name method, for something fairly obvious.
+  * New get_current_user_name method, for getting the currently logged in user's username.
   * New get_siteinfo method, in a similar style to get_userlists.
   * New get_statistics method, for getting a hash of the wiki's statistics.
   * New get_general method, for getting hash of the 'general' wiki information.
@@ -84,7 +90,7 @@
 * Fix all userlist methods to work without supplying a username.
 * New get_registration_time method to get when the user registered.
 * Update to work with latest version of string-utility.
-* Namespaces are now in a hash instead of just a bunch of variables.
+* Namespaces are now in a hash instead of a bunch of variables.
 * Namespace parameters are now actually limited to the valid namespaces constant. It will default to the main namespace (0) if the integer provided is not in the namespaces hash.
 * get_random_pages no longer wrongly sets the rnlimit to the namespaces argument rather than the namespace argument.
 

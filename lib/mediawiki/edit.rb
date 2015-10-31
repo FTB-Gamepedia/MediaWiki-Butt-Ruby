@@ -72,8 +72,9 @@ module MediaWiki
     #   This can include File: at the beginning, but it will be removed
     #   through regex. Optional. If ommitted, it will be everything after
     #   the last slash in the URL.
-    # @return [Boolean/String] true if the upload was successful, else the
-    #   warning's key. Returns false if the file extension is not valid.
+    # @return [Boolean] True if the upload was successful, false if the
+    #   file extension is not valid.
+    # @return [String] The warning's key if it was unsuccessful.
     def upload(url, filename = nil)
       params = {
         action: 'upload',
@@ -114,7 +115,8 @@ module MediaWiki
     # @param talk [Boolean] Whether to move the associated talk page.
     #   Defaults to true.
     # @param redirect [Boolean] Whether to create a redirect. Defaults to false.
-    # @return [Boolean/String] true if successful, the error code if not.
+    # @return [Boolean] True if it was successful.
+    # @return [String] The error code if it was unsuccessful.
     def move(from, to, reason = nil, talk = true, redirect = false)
       params = {
         action: 'move',
@@ -139,7 +141,8 @@ module MediaWiki
     # Deletes a page.
     # @param title [String] The page to delete.
     # @param reason [String] The reason to be displayed in logs. Optional.
-    # @return [Boolean/String] true if successful, the error code if not.
+    # @return [Boolean] True if successful.
+    # @return [String] The error code if it was not successful.
     def delete(title, reason = nil)
       params = {
         action: 'delete',
