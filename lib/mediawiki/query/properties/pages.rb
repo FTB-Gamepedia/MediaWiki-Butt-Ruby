@@ -291,6 +291,154 @@ module MediaWiki
             end
           end
         end
+
+        # Gets all of the images in the given page.
+        # @param page [String] The page title.
+        # @param limit [Fixnum] See #get_external_links
+        # @return [Array] All of the image titles in the page.
+        # @return [Nil] If the page does not exist.
+        def get_images_in_page(page, limit = 500)
+          params = {
+            action: 'query',
+            prop: 'images',
+            titles: page,
+            imlimit: MediaWiki::Query.get_limited(limit)
+          }
+
+          response = post(params)
+          ret = []
+          response['query']['pages'].each do |revid, _|
+            if revid != '-1'
+              response['query']['pages'][revid]['images'].each do |img|
+                ret.push(img['title'])
+              end
+            else
+              return nil
+            end
+          end
+
+          ret
+        end
+
+        # Gets all of the templates in the given page.
+        # @param page [String] The page title.
+        # @param limit [Fixnum] See #get_external_links
+        # @return [Array] All of the templte titles in the page.
+        # @return [Nil] If the page does not exist.
+        def get_templates_in_page(page, limit = 500)
+          params = {
+            action: 'query',
+            prop: 'templates',
+            titles: page,
+            tllimit: MediaWiki::Query.get_limited(limit)
+          }
+
+          response = post(params)
+          ret = []
+          response['query']['pages'].each do |revid, _|
+            if revid != '-1'
+              response['query']['pages'][revid]['templates'].each do |tmp|
+                ret.push(tmp['title'])
+              end
+            else
+              return nil
+            end
+          end
+
+          ret
+        end
+
+        # Gets all of the interwiki links on the given page.
+        # @param page [String] The page title.
+        # @param limit [Fixnum] See #get_external_links.
+        # @return [Array] All interwiki link titles.
+        # @return [Nil] If the page does not exist.
+        def get_interwiki_links_in_page(page, limit = 500)
+          params = {
+            action: 'query',
+            prop: 'iwlinks',
+            titles: page,
+            tllimit: MediaWiki::Query.get_limited(limit)
+          }
+
+          response = post(params)
+          ret = []
+          response['query']['pages'].each do |revid, _|
+            if revid != '-1'
+              response['query']['pages'][revid]['iwlinks'].each do |l|
+                ret.push(l['*'])
+              end
+            else
+              return nil
+            end
+          end
+
+          ret
+        end
+
+        # Gets a hash of data for the page in every language that it is
+        #   available in. This includes url, language name, autonym, and its
+        #   title. This method does not work with the Translate extension.
+        # @param page [String] The page title.
+        # @param limit [Fixnum] See #get_external_links
+        # @return [Hash] The data described previously.
+        # @return [Nil] If the page does not exist.
+        def get_other_langs_of_page(page, limit = 500)
+          params = {
+            action: 'query',
+            prop: 'langlinks',
+            titles: page,
+            lllimit: MediaWiki::Query.get_limited(limit),
+            llprop: 'url|langname|autonym'
+          }
+
+          response = post(params)
+          ret = {}
+          response['query']['pages'].each do |revid, _|
+            if revid != '-1'
+              response['query']['pages'][revid]['langlinks'].each do |l|
+                ret[l['lang'].to_sym] = {
+                  url: l['url'],
+                  langname: l['langname'],
+                  autonym: l['autonym'],
+                  title: l['*']
+                }
+              end
+            else
+              return nil
+            end
+          end
+
+          ret
+        end
+
+        # Gets every single link in a page.
+        # @param page [String] The page title.
+        # @param limit [Fixnum] See #get_external_links.
+        # @return [Array] All link titles.
+        # @return [Nil] If the page does not exist.
+        def get_all_links_in_page(page, limit = 500)
+          params = {
+            action: 'query',
+            prop: 'links',
+            titles: page,
+            pllimit: MediaWiki::Query.get_limited(limit)
+          }
+
+          response = post(params)
+          ret = []
+          response['query']['pages'].each do |revid, _|
+            if revid != '-1'
+              response['query']['pages'][revid]['links'].each do |l|
+                ret.push(l['title'])
+              end
+            else
+              return nil
+            end
+          end
+
+          ret
+        end
       end
     end
   end
