@@ -12,6 +12,7 @@ module MediaWiki
       def what_links_here(title, limit = 500)
         params = {
           action: 'query',
+          list: 'backlinks',
           bltitle: title,
           bllimit: MediaWiki::Query.get_limited(limit)
         }
