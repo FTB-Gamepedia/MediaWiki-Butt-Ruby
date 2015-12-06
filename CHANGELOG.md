@@ -1,19 +1,47 @@
 # Changelog
 ## Version 0
 ### Version 0.8.0
+* A ton of property query methods (#7). View their docs for info:
+  * get_all_links_in_page
+  * get_other_langs_of_page
+  * get_interwiki_links_in_page
+  * get_templates_in_page
+  * get_images_in_page
+  * get_page_size
+  * get_protection_levels
+  * get_display_title
+  * get_number_of_watchers
+  * page_new?
+  * page_redirect?
+  * can_i_read?
+  * do_i_watch?
+  * get_external_links
+  * get_duplicated_files_of
+  * get_image_bytes
+  * get_image_dimensions
+  * get_image_sizes
+* A ton of list query methods (#8). View their docs for info:
+  * get_all_pages_in_namespace
+  * get_all_users
+  * get_all_blocks
+  * get_all_transcluders
+  * get_all_deleted_files
+  * get_all_protected_titles
+  * get_user_contributions
+  * get_full_watchlist
+  * get_all_duplicated_files
+* Fix a NoMethodError on what_links_here caused by not actually setting the list in that query (#14).
+* User-Agents are optionally customizable in the MediaWiki::Butt initialization. If this is not used, the old defaults will still be used ('NotLoggedIn/MediaWiki-Butt' and 'Username/MediaWiki-Butt') (#13).
 * Fix @returns in docs.
 * Got rid of false things in docs.
 * Remove dependency on string-utility. That should be something the user does on their end.
 * get_contrib_count no longer has a second parameter, because of the above change.
-* New methods for getting image size in bytes and dimensions.
 * Fix open-ended dependency for HTTPClient.
-* New get_all_duplicated_files method for getting all duplicated files on the wiki.
-* New get_duplicated_files_of method for getting all file names that duplicate a given file.
 * New get_logged_in_contributors method for getting all logged in user's usernames that have contributed to a page.
 * New get_total_contributors method for getting the total number of contributors to a page.
 * Refactor Properties to be more like Meta.
 * New get_limited protected method that limits the 'limit' parameter for queries. It's essentially just reducing duplicated code.
-* Remove all global variables. MediaWiki::Constants::Namespaces' $namespaces is now MediaWiki::Constants with the hash being defined as NAMESPACES.
+* Remove all global variables. MediaWiki::Constants::Namespaces' $namespaces is now MediaWiki::Constants with the hash being defined as NAMESPACES (#10).
 
 ### Version 0.7.0
 * upload's filename argument is no longer splat, because arrays.
