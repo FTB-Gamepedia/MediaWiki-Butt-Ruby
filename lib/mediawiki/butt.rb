@@ -23,13 +23,14 @@ module MediaWiki
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it
     #   will make harsh assumptions about your wiki configuration.
     # @param use_ssl [Boolean] Whether or not to use SSL. Will default to true.
-    def initialize(url, use_ssl = true)
+    # @param custom_agent [String] A custom User-Agent to use. Optional.
+    def initialize(url, use_ssl = true, custom_agent = nil)
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
-
       @client = HTTPClient.new
       @uri = URI.parse(@url)
       @ssl = use_ssl
       @logged_in = false
+      @custom_agent = custom_agent unless custom_agent.nil?
       @tokens = {}
     end
 
@@ -55,11 +56,8 @@ module MediaWiki
       params[:format] = 'json'
       header = {} if header.nil?
 
-      if @logged_in == false
-        header['User-Agent'] = 'NotLoggedIn/MediaWiki::Butt'
-      else
-        header['User-Agent'] = "#{@name}/MediaWiki::Butt"
-      end
+      header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
+      header['User-Agent'] = @custom_agent if defined? @custom_agent
 
       res = @client.post(@uri, params, header)
 
