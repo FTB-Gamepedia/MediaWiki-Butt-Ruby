@@ -5,6 +5,7 @@ require_relative 'edit'
 require_relative 'administration'
 require_relative 'watch'
 require_relative 'purge'
+require_relative 'extensions/extension'
 require 'patron'
 require 'json'
 
@@ -22,6 +23,7 @@ module MediaWiki
     include MediaWiki::Administration
     include MediaWiki::Watch
     include MediaWiki::Purge
+    include MediaWiki::Extension
 
     attr_accessor :query_limit_default
     attr_accessor :use_continuation
