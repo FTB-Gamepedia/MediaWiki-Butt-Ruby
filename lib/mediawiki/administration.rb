@@ -16,7 +16,7 @@ module MediaWiki
 
       token = get_token('block')
       params[:reason] = reason unless reason.nil?
-      params[:nocreate] = '1' if nocreate == true
+      params[:nocreate] = '1' if nocreate
       params[:token] = token
 
       response = post(params)

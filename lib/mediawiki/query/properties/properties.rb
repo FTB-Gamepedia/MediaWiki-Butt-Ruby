@@ -16,7 +16,7 @@ module MediaWiki
       # @return [String] The token. If the butt isn't logged in, it returns
       #   with '+\\'.
       def get_token(type, title = nil)
-        if @logged_in == true
+        if @logged_in
           # There is some weird thing with MediaWiki where you must pass a valid
           #   inprop parameter in order to get any response at all. This is why
           #   there is a displaytitle inprop as well as gibberish in the titles

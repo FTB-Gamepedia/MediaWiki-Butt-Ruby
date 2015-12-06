@@ -20,7 +20,7 @@ module MediaWiki
     # @return [Int] The capped number.
     def get_limited(integer, max_user = 500, max_bot = 5000)
       if integer > 500
-        if user_bot? == true
+        if user_bot?
           if integer > 5000
             return 5000
           else

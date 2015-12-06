@@ -14,7 +14,7 @@ module MediaWiki
         @logged_in = true
         return true
       when 'NeedToken'
-        fail MediaWiki::Butt::NeedTokenMoreThanOnceError if secondtry == true
+        fail MediaWiki::Butt::NeedTokenMoreThanOnceError if secondtry
       when 'NoName'
         fail MediaWiki::Butt::NoNameError
       when 'Illegal'
