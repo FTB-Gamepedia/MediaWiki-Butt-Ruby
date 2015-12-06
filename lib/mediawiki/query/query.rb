@@ -17,10 +17,11 @@ module MediaWiki
     # @param integer [Int] The number to limit.
     # @param max_user [Int] The maximum limit for normal users.
     # @param max_bot [Int] The maximum limit for bot users.
+    # @param is_user_bot [Boolean] Set to true if the user is a bot.
     # @return [Int] The capped number.
-    def get_limited(integer, max_user = 500, max_bot = 5000)
+    def get_limited(integer, max_user = 500, max_bot = 5000, is_user_bot = false)
       if integer > 500
-        if user_bot?
+        if is_user_bot
           if integer > 5000
             return 5000
           else
