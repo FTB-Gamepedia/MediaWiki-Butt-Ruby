@@ -1,5 +1,9 @@
 # Changelog
 ## Version 0
+### Version 0.8.1
+* Fix get_limited's NoMethodError on user_bot?
+* Fix user_bot? always returning false.
+
 ### Version 0.8.0
 * A ton of property query methods (#7). View their docs for info:
   * get_all_links_in_page
