@@ -1,4 +1,5 @@
 require_relative '../constants'
+require_relative 'query'
 
 module MediaWiki
   module Query
@@ -14,7 +15,7 @@ module MediaWiki
           action: 'query',
           list: 'backlinks',
           bltitle: title,
-          bllimit: MediaWiki::Query.get_limited(limit)
+          bllimit: get_limited(limit)
         }
 
         ret = []
@@ -37,7 +38,7 @@ module MediaWiki
           action: 'query',
           list: 'categorymembers',
           cmprop: 'title',
-          cmlimit: MediaWiki::Query.get_limited(limit)
+          cmlimit: get_limited(limit)
         }
 
         if category =~ /[Cc]ategory\:/
@@ -63,7 +64,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'random',
-          rnlimit: MediaWiki::Query.get_limited(number_of_pages, 10, 20)
+          rnlimit: get_limited(number_of_pages, 10, 20)
         }
 
         if @namespaces.value?(namespace)
@@ -275,7 +276,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'allcategories',
-          aclimit: MediaWiki::Query.get_limited(limit)
+          aclimit: get_limited(limit)
         }
 
         response = post(params)
@@ -294,7 +295,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'allimages',
-          ailimit: MediaWiki::Query.get_limited(limit)
+          ailimit: get_limited(limit)
         }
 
         response = post(params)
@@ -314,7 +315,7 @@ module MediaWiki
           action: 'query',
           list: 'allpages',
           apnamespace: namespace,
-          aplimit: MediaWiki::Query.get_limited(limit)
+          aplimit: get_limited(limit)
         }
 
         response = post(params)
@@ -333,7 +334,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'allusers',
-          aulimit: MediaWiki::Query.get_limited(limit)
+          aulimit: get_limited(limit)
         }
         params[:augroup] = group unless group.nil?
 
@@ -353,7 +354,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'blocks',
-          bklimit: MediaWiki::Query.get_limited(limit),
+          bklimit: get_limited(limit),
           bkprop: 'id'
         }
 
@@ -374,7 +375,7 @@ module MediaWiki
           action: 'query',
           list: 'embeddedin',
           eititle: page,
-          eilimit: MediaWiki::Query.get_limited(limit)
+          eilimit: get_limited(limit)
         }
 
         response = post(params)
@@ -393,7 +394,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'filearchive',
-          falimit: MediaWiki::Query.get_limited(limit)
+          falimit: get_limited(limit)
         }
 
         response = post(params)
@@ -412,7 +413,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'protectedtitles',
-          ptlimit: MediaWiki::Query.get_limited(limit)
+          ptlimit: get_limited(limit)
         }
         params[:ptlevel] = protection_level unless protection_level.nil?
 
@@ -435,7 +436,7 @@ module MediaWiki
           action: 'query',
           list: 'usercontribs',
           ucuser: user,
-          uclimit: MediaWiki::Query.get_limited(limit),
+          uclimit: get_limited(limit),
           ucprop: 'ids|title|comment|size|sizediff|flags|patrolled'
         }
 

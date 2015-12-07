@@ -1,3 +1,5 @@
+require_relative '../query'
+
 module MediaWiki
   module Query
     module Properties
@@ -12,7 +14,7 @@ module MediaWiki
             action: 'query',
             prop: 'duplicatefiles',
             titles: title,
-            dflimit: MediaWiki::Query.get_limited(limit)
+            dflimit: get_limited(limit)
           }
 
           response = post(params)
@@ -34,7 +36,7 @@ module MediaWiki
             action: 'query',
             generator: 'allimages',
             prop: 'duplicatefiles',
-            dflimit: MediaWiki::Query.get_limited(limit)
+            dflimit: get_limited(limit)
           }
 
           response = post(params)

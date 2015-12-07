@@ -1,3 +1,5 @@
+require_relative '../query'
+
 module MediaWiki
   module Query
     module Properties
@@ -46,7 +48,7 @@ module MediaWiki
             action: 'query',
             prop: 'contributors',
             titles: title,
-            pclimit: MediaWiki::Query.get_limited(limit)
+            pclimit: get_limited(limit)
           }
 
           post(params)

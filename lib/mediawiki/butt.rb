@@ -9,6 +9,7 @@ require 'json'
 module MediaWiki
   class Butt
     include MediaWiki::Auth
+    include MediaWiki::Query
     include MediaWiki::Query::Meta::SiteInfo
     include MediaWiki::Query::Meta::FileRepoInfo
     include MediaWiki::Query::Meta::UserInfo
@@ -75,10 +76,10 @@ module MediaWiki
     #   the currently logged in user if nil.
     # @return [Boolean] true if logged in as a bot, false if not logged in or
     #   logged in as a non-bot
-    def user_bot?(*username)
+    def user_bot?(username = nil)
       groups = false
 
-      if defined? username
+      if !username.nil?
         groups = get_usergroups(username)
       else
         groups = get_usergroups if @logged_in

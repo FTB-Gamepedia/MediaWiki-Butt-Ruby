@@ -1,3 +1,5 @@
+require_relative '../query'
+
 module MediaWiki
   module Query
     module Properties
@@ -85,7 +87,7 @@ module MediaWiki
             action: 'query',
             titles: page,
             prop: 'extlinks',
-            ellimit: MediaWiki::Query.get_limited(limit)
+            ellimit: get_limited(limit)
           }
 
           response = post(params)
@@ -302,7 +304,7 @@ module MediaWiki
             action: 'query',
             prop: 'images',
             titles: page,
-            imlimit: MediaWiki::Query.get_limited(limit)
+            imlimit: get_limited(limit)
           }
 
           response = post(params)
@@ -330,7 +332,7 @@ module MediaWiki
             action: 'query',
             prop: 'templates',
             titles: page,
-            tllimit: MediaWiki::Query.get_limited(limit)
+            tllimit: get_limited(limit)
           }
 
           response = post(params)
@@ -358,7 +360,7 @@ module MediaWiki
             action: 'query',
             prop: 'iwlinks',
             titles: page,
-            tllimit: MediaWiki::Query.get_limited(limit)
+            tllimit: get_limited(limit)
           }
 
           response = post(params)
@@ -388,7 +390,7 @@ module MediaWiki
             action: 'query',
             prop: 'langlinks',
             titles: page,
-            lllimit: MediaWiki::Query.get_limited(limit),
+            lllimit: get_limited(limit),
             llprop: 'url|langname|autonym'
           }
 
@@ -422,7 +424,7 @@ module MediaWiki
             action: 'query',
             prop: 'links',
             titles: page,
-            pllimit: MediaWiki::Query.get_limited(limit)
+            pllimit: get_limited(limit)
           }
 
           response = post(params)
