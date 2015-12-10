@@ -9,6 +9,9 @@ module MediaWiki
       # @param limit [Int] The maximum number of pages to get. Defaults to 500,
       #   and cannot be greater than that unless the user is a bot. If the user
       #   is a bot, the limit cannot be greater than 5000.
+      # @see https://www.mediawiki.org/wiki/API:Backlinks MediaWiki Backlinks
+      #   API Docs
+      # @since 0.1.0
       # @return [Array] All backlinks until the limit
       def what_links_here(title, limit = 500)
         params = {
@@ -32,6 +35,9 @@ module MediaWiki
       # @param limit [Int] The maximum number of members to get. Defaults to
       #   500, and cannot be greater than that unless the user is a bot.
       #   If the user is a bot, the limit cannot be greater than 5000.
+      # @see https://www.mediawiki.org/wiki/API:Categorymembers MediaWiki
+      #   Category Members API Docs
+      # @since 0.1.0
       # @return [Array] All category members until the limit
       def get_category_members(category, limit = 500)
         params = {
@@ -59,6 +65,8 @@ module MediaWiki
       #   or 20 for bots.
       # @param namespace [Int] The namespace ID. Defaults to
       #   0 (the main namespace).
+      # @see https://www.mediawiki.org/wiki/API:Random MediaWiki Random API Docs
+      # @since 0.2.0
       # @return [Array] All members
       def get_random_pages(number_of_pages = 1, namespace = 0)
         params = {
@@ -81,10 +89,13 @@ module MediaWiki
       end
 
       # Gets user information. This method should rarely be used by
-      #   normal users.
+      # normal users, unless they want a huge amount of user data at once.
       # @param prop [String] The usprop parameter.
       # @param username [String] The username to get info for. Optional.
       #   Defaults to the currently logged in user if ommitted.
+      # @see https://www.mediawiki.org/wiki/API:Users MediaWiki User Lists API
+      #   Docs
+      # @since 0.3.0
       # @return [String] Parsed full response if successful.
       # @return [Nil] If the username is nil and the Butt is not logged in.
       def get_userlists(prop, username = nil)
@@ -111,6 +122,8 @@ module MediaWiki
       # Gets an array of all the user's groups.
       # @param username [String] The username to get groups of. Optional.
       #   Defaults to the currently logged in user.
+      # @see get_userlists
+      # @since 0.3.0
       # @return [Array] All of the user's groups.
       # @return [Boolean] False if username is nil and not logged in.
       def get_usergroups(username = nil)
@@ -135,6 +148,8 @@ module MediaWiki
       # Gets the user rights for the user.
       # @param username [String] The user to get the rights for. Optional.
       #   Defaults to the currently logged in user.
+      # @see get_userlists
+      # @since 0.3.0
       # @return [Array] All of the user's groups.
       # @return [Boolean] False if username is nil and not logged in.
       def get_userrights(username = nil)
@@ -161,6 +176,8 @@ module MediaWiki
       # Gets contribution count for the user.
       # @param username [String] The username to get the contribution count of.
       #   Optional. Defaults to the currently logged in user.
+      # @see get_userlists
+      # @since 0.3.0
       # @return [Boolean] False if username is nil and not logged in.
       # @return [Int] The number of contributions the user has made.
       def get_contrib_count(username = nil)
@@ -183,6 +200,8 @@ module MediaWiki
       # Gets when the user registered.
       # @param username [String] The username to get the registration date and
       #   time of. Optional. Defaults to the currently logged in user.
+      # @see get_userlists
+      # @since 0.4.0
       # @return [DateTime] The registration date and time as a DateTime object.
       def get_registration_time(username = nil)
         time = nil
@@ -211,6 +230,8 @@ module MediaWiki
 
       # Gets the gender for the provded user.
       # @param username [String] The user.
+      # @see get_userlists
+      # @since 0.4.0
       # @return [String] The gender. 'male', 'female', or 'unknown'.
       def get_user_gender(username)
         gender = nil
@@ -224,6 +245,8 @@ module MediaWiki
       # @param search_value [String] The thing to search for.
       # @param namespace [Int] The namespace to search in.
       #   Defaults to 0 (the main namespace).
+      # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
+      # @since 0.4.0
       # @return [Int] The number of pages that matched the search.
       def get_search_result_amount(search_value, namespace = 0)
         params = {
@@ -246,6 +269,8 @@ module MediaWiki
       # @param search_value [String] The thing to search for.
       # @param namespace [Int] The namespace to search in.
       #   Defaults to 0 (the main namespace).
+      # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
+      # @since 0.4.0
       # @return [Array] The page titles that matched the search.
       def get_search_results(search_value, namespace = 0)
         params = {
@@ -271,6 +296,9 @@ module MediaWiki
       # Gets all categories on the entire wiki.
       # @param limit [Int] The maximum number of categories to get. Defaults to
       #   500. Cannot be greater than 500 for normal users, or 5000 for bots.
+      # @see https://www.mediawiki.org/wiki/API:Allcategories MediaWiki
+      #   Allcategories API Docs
+      # @since 0.7.0
       # @return [Array] An array of all categories.
       def get_all_categories(limit = 500)
         params = {
@@ -290,6 +318,9 @@ module MediaWiki
       # Gets all the images on the wiki.
       # @param limit [Int] The maximum number of images to get. Defaults to 500.
       #   Cannot be greater than 500 for normal users, or 5000 for bots.
+      # @see https://www.mediawiki.org/wiki/API:Allimages MediaWiki Allimages
+      #   API Docs
+      # @since 0.7.0
       # @return [Array] An array of all images.
       def get_all_images(limit = 500)
         params = {
@@ -309,6 +340,9 @@ module MediaWiki
       # Gets all pages within a namespace integer.
       # @param namespace [Int] The namespace ID.
       # @param limit [Int] See #get_all_images
+      # @see https://www.mediawiki.org/wiki/API:Allpages MediaWiki Allpages
+      #   API Docs
+      # @since 0.8.0
       # @return [Array] An array of all page titles.
       def get_all_pages_in_namespace(namespace, limit = 500)
         params = {
@@ -329,6 +363,9 @@ module MediaWiki
       # Gets all users, or all users in a group.
       # @param group [String] The group to limit this query to.
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Allusers MediaWiki Allusers
+      #   API Docs
+      # @since 0.8.0
       # @return [Hash] A hash of all users, names are keys, IDs are values.
       def get_all_users(group = nil, limit = 500)
         params = {
@@ -349,6 +386,8 @@ module MediaWiki
       # Gets all block IDs on the wiki. It seems like this only gets non-IP
       #   blocks, but the MediaWiki docs are a bit unclear.
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Blocks MediaWiki Blocks API Docs
+      # @since 0.8.0
       # @return [Array] All block IDs as strings.
       def get_all_blocks(limit = 500)
         params = {
@@ -369,6 +408,9 @@ module MediaWiki
       # Gets all page titles that transclude a given page.
       # @param page [String] The page name.
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Embeddedin MediaWiki Embeddedin
+      #   API Docs
+      # @since 0.8.0
       # @return [Array] All transcluder page titles.
       def get_all_transcluders(page, limit = 500)
         params = {
@@ -388,6 +430,9 @@ module MediaWiki
 
       # Gets an array of all deleted or archived files on the wiki.
       # @param limit [Int] See #get_all_images
+      # @see https://www.mediawiki.org/wiki/API:Filearchive MediaWiki
+      #   Filearchive API Docs
+      # @since 0.8.0
       # @return [Array] All deleted file names. These are not titles, so they do
       #   not include "File:".
       def get_all_deleted_files(limit = 500)
@@ -408,6 +453,9 @@ module MediaWiki
       # Gets a list of all protected pages, by protection level if provided.
       # @param protection_level [String] The protection level, e.g., sysop
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Protectedtitles MediaWiki
+      #   Protectedtitles API Docs
+      # @since 0.8.0
       # @return [Array] All protected page titles.
       def get_all_protected_titles(protection_level = nil, limit = 500)
         params = {
@@ -428,6 +476,9 @@ module MediaWiki
       # Gets the latest contributions by the user until the limit.
       # @param user [String] The username.
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Usercontribs MediaWiki
+      #   User Contributions API Docs
+      # @since 0.8.0
       # @return [Hash] Each contribution by its revid, containing the title,
       #   summary, total contribution size, and the size change relative to the
       #   previous edit.
@@ -459,6 +510,9 @@ module MediaWiki
       #   currently logged in user, according to the MediaWiki API.
       # @param user [String] The username.
       # @param limit [Int] See #get_all_images.
+      # @see https://www.mediawiki.org/wiki/API:Watchlist MediaWiki Watchlist
+      #   API Docs
+      # @since 0.8.0
       # @return [Array] All the watchlist page titles.
       def get_full_watchlist(user = nil, limit = 500)
         params = {

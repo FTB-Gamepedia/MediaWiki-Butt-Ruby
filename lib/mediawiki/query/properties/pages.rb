@@ -6,6 +6,9 @@ module MediaWiki
       module Pages
         # Gets all categories in the page.
         # @param title [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Property/Categories
+        #   MediaWiki Categories Property API Docs
+        # @since 0.8.0
         # @return [Array] All the categories
         # @return [Nil] If the title does not exist.
         def get_categories_in_page(title)
@@ -33,6 +36,9 @@ module MediaWiki
         # Gets the wiki text for the given page. Returns nil if it for some
         #   reason cannot get the text, for example, if the page does not exist.
         # @param title [String] The page title
+        # @see https://www.mediawiki.org/wiki/API:Revisions MediaWiki Revisions
+        #   API Docs
+        # @since 0.8.0
         # @return [String/nil] String containing page contents.
         # @return [Nil] If the page does not exist.
         def get_text(title)
@@ -56,6 +62,9 @@ module MediaWiki
 
         # Gets the revision ID for the given page.
         # @param title [String] The page title
+        # @see https://www.mediawiki.org/wiki/API:Revisions MediaWiki Revisions
+        #   API Docs
+        # @since 0.8.0
         # @return [Int/nil] The page's ID
         # @return [Nil] If the page does not exist.
         def get_id(title)
@@ -81,6 +90,9 @@ module MediaWiki
         # @param limit [Int] The maximum number of members to get. Defaults to
         #   500, and cannot be greater than that unless the user is a bot.
         #   If the user is a bot, the limit cannot be greater than 5000.
+        # @see https://www.mediawiki.org/wiki/API:Extlinks MediaWiki Extlinks
+        #   API Docs
+        # @since 0.8.0
         # @return [Array] All external link URLs.
         def get_external_links(page, limit = 500)
           params = {
@@ -107,6 +119,8 @@ module MediaWiki
 
         # Gets whether the current user watches the page.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Boolean] Whether the user watches the page.
         # @return [Boolean] False if the user is not logged in.
         # @return [Nil] If the page does not exist.
@@ -134,6 +148,8 @@ module MediaWiki
 
         # Gets whether the current user (can be anonymous) can read the page.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Boolean] Whether the user can read the page.
         # @return [Nil] If the page does not exist.
         def can_i_read?(page)
@@ -156,6 +172,8 @@ module MediaWiki
 
         # Gets whether the given page is a redirect.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Boolean] Whether the page is a redirect.
         # @return [Nil] If the page does not exist.
         def page_redirect?(page)
@@ -177,6 +195,8 @@ module MediaWiki
 
         # Gets whether the given page only has one edit.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Boolean] Whether the page only has one edit.
         # @return [Nil] If the page does not exist.
         def page_new?(page)
@@ -198,6 +218,8 @@ module MediaWiki
 
         # Gets the number of users that watch the given page.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Fixnum] The number of watchers.
         # @return [Nil] If the page does not exist.
         def get_number_of_watchers(page)
@@ -222,6 +244,8 @@ module MediaWiki
         #   changes to its display, e.g., using a template to make the first
         #   letter lowercase, in cases like iPhone.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [String] The page's display title.
         # @return [Nil] If the page does not exist.
         def get_display_title(page)
@@ -250,6 +274,8 @@ module MediaWiki
         #   that is needed to perform that type of edit, like 'sysop'. Expiry
         #   refers to when the protection will expire, if never, it will be
         #   'infinity'.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Nil] If the page does not exist.
         def get_protection_levels(page)
           params = {
@@ -275,6 +301,8 @@ module MediaWiki
 
         # Gets the size, in bytes, of the page.
         # @param page [String] The page title.
+        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @since 0.8.0
         # @return [Fixnum] The number of bytes.
         # @return [Nil] If the page does not exist.
         def get_page_size(page)
@@ -297,6 +325,9 @@ module MediaWiki
         # Gets all of the images in the given page.
         # @param page [String] The page title.
         # @param limit [Fixnum] See #get_external_links
+        # @see https://www.mediawiki.org/wiki/API:Images MediaWiki Images API
+        #   Docs
+        # @since 0.8.0
         # @return [Array] All of the image titles in the page.
         # @return [Nil] If the page does not exist.
         def get_images_in_page(page, limit = 500)
@@ -325,6 +356,9 @@ module MediaWiki
         # Gets all of the templates in the given page.
         # @param page [String] The page title.
         # @param limit [Fixnum] See #get_external_links
+        # @see https://www.mediawiki.org/wiki/API:Templates MediaWiki Templates
+        #   API Docs
+        # @since 0.8.0
         # @return [Array] All of the templte titles in the page.
         # @return [Nil] If the page does not exist.
         def get_templates_in_page(page, limit = 500)
@@ -353,6 +387,9 @@ module MediaWiki
         # Gets all of the interwiki links on the given page.
         # @param page [String] The page title.
         # @param limit [Fixnum] See #get_external_links.
+        # @see https://www.mediawiki.org/wiki/API:Iwlinks MediaWiki Interwiki
+        #   Links API Docs
+        # @since 0.8.0
         # @return [Array] All interwiki link titles.
         # @return [Nil] If the page does not exist.
         def get_interwiki_links_in_page(page, limit = 500)
@@ -383,6 +420,9 @@ module MediaWiki
         #   title. This method does not work with the Translate extension.
         # @param page [String] The page title.
         # @param limit [Fixnum] See #get_external_links
+        # @see https://www.mediawiki.org/wiki/API:Langlinks MediaWiki Langlinks
+        #   API Docs
+        # @since 0.8.0
         # @return [Hash] The data described previously.
         # @return [Nil] If the page does not exist.
         def get_other_langs_of_page(page, limit = 500)
@@ -417,6 +457,8 @@ module MediaWiki
         # Gets every single link in a page.
         # @param page [String] The page title.
         # @param limit [Fixnum] See #get_external_links.
+        # @see https://www.mediawiki.org/wiki/API:Links MediaWiki Links API Docs
+        # @since 0.8.0
         # @return [Array] All link titles.
         # @return [Nil] If the page does not exist.
         def get_all_links_in_page(page, limit = 500)

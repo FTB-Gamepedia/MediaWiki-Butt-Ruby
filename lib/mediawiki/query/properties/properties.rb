@@ -13,6 +13,8 @@ module MediaWiki
       #   used by normal users.
       # @param type [String] The type of token.
       # @param title [String] The page title for the token. Optional.
+      # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+      # @since 0.5.0
       # @return [String] The token. If the butt isn't logged in, it returns
       #   with '+\\'.
       def get_token(type, title = nil)

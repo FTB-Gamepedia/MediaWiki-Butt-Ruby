@@ -1,10 +1,13 @@
 module MediaWiki
   module Query
     module Meta
+      # @see https://www.mediawiki.org/wiki/API:Siteinfo MediaWiki Siteinfo
+      #   API Docs
       module SiteInfo
         # Gets wiki information. This method should rarely be used by
         #   normal users.
         # @param prop [String] The siprop parameter.
+        # @since 0.6.0
         # @return [Response] Parsed full response.
         def get_siteinfo(prop)
           params = {
@@ -17,6 +20,7 @@ module MediaWiki
         end
 
         # Gets the statistics for the wiki.
+        # @since 0.6.0
         # @return [Hash] The statistics and their according values.
         def get_statistics
           response = get_siteinfo('statistics')
@@ -26,6 +30,7 @@ module MediaWiki
         end
 
         # Gets the general information for the wiki.
+        # @since 0.6.0
         # @return [Hash] The general info and their according values.
         def get_general
           response = get_siteinfo('general')
@@ -35,6 +40,7 @@ module MediaWiki
         end
 
         # Gets all extensions installed on the wiki.
+        # @since 0.6.0
         # @return [Array] All extension names.
         def get_extensions
           response = get_siteinfo('extensions')
@@ -44,6 +50,7 @@ module MediaWiki
         end
 
         # Gets all languages and their codes.
+        # @since 0.6.0
         # @return [Hash] All languages. Hash key value pair formatted as
         #   code => name.
         def get_languages
@@ -55,6 +62,7 @@ module MediaWiki
 
         # Gets all namespaces on the wiki and their IDs. Different from the
         #   Namespaces module.
+        # @since 0.6.0
         # @return [Hash] All namespaces, formatted as ID => Name.
         def get_namespaces
           response = get_siteinfo('namespaces')
@@ -68,6 +76,7 @@ module MediaWiki
         end
 
         # Gets all namespace aliases and their IDs.
+        # @since 0.6.0
         # @return [Hash] All aliases, formatted as ID => Alias.
         def get_namespace_aliases
           response = get_siteinfo('namespacealiases')
@@ -79,6 +88,7 @@ module MediaWiki
         end
 
         # Gets all special page aliases.
+        # @since 0.6.0
         # @return [Hash] All aliases, formatted as RealName => Alias.
         def get_special_page_aliases
           response = get_siteinfo('specialpagealiases')
@@ -90,6 +100,7 @@ module MediaWiki
         end
 
         # Gets all magic words and their aliases.
+        # @since 0.6.0
         # @return [Hash] All magic words, formatted as Name => Alias.
         def get_magic_words
           response = get_siteinfo('magicwords')
@@ -101,6 +112,7 @@ module MediaWiki
         end
 
         # Gets all user groups total.
+        # @since 0.6.0
         # @return [Hash] All groups, formatted as Name => [Rights].
         def get_all_usergroups
           response = get_siteinfo('usergroups')
@@ -112,6 +124,7 @@ module MediaWiki
         end
 
         # Gets all file extensions that are allowed to be uploaded.
+        # @since 0.6.0
         # @return [Array] All file extensions.
         def get_allowed_file_extensions
           response = get_siteinfo('fileextensions')
@@ -124,12 +137,14 @@ module MediaWiki
 
         # Gets the response for the restrictions siteinfo API. Not really for
         #   use by users, mostly for the other two restriction methods.
+        # @since 0.6.0
         def get_restrictions_data
           response = get_siteinfo('restrictions')
           response['query']['restrictions']
         end
 
         # Gets all restriction/protection types.
+        # @since 0.6.0
         # @return [Array] All protection types.
         def get_restriction_types
           restrictions = get_restrictions_data
@@ -139,6 +154,7 @@ module MediaWiki
         end
 
         # Gets all restriction/protection levels.
+        # @since 0.6.0
         # @return [Array] All protection levels.
         def get_restriction_levels
           restrictions = get_restrictions_data
@@ -148,6 +164,7 @@ module MediaWiki
         end
 
         # Gets all skins and their codes.
+        # @since 0.6.0
         # @return [Hash] All skins, formatted as Code => Name
         def get_skins
           response = get_siteinfo('skins')
@@ -159,6 +176,7 @@ module MediaWiki
         end
 
         # Gets all HTML tags added by installed extensions.
+        # @since 0.6.0
         # @return [Array] All extension tags.
         def get_extension_tags
           response = get_siteinfo('extensiontags')
@@ -170,6 +188,7 @@ module MediaWiki
         end
 
         # Gets all function hooks.
+        # @since 0.6.0
         # @return [Array] All function hooks.
         def get_function_hooks
           response = get_siteinfo('functionhooks')
@@ -181,6 +200,7 @@ module MediaWiki
         end
 
         # Gets all variables that are usable on the wiki, such as NUMBEROFPAGES.
+        # @since 0.6.0
         # @return [Array] All variable string values.
         def get_variables
           response = get_siteinfo('variables')

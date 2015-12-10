@@ -1,9 +1,12 @@
 module MediaWiki
   module Query
     module Meta
+      # @see https://www.mediawiki.org/wiki/API:Userinfo MediaWiki Userinfo
+      #   API Docs
       module UserInfo
         # Gets meta information for the currently logged in user.
         # @param prop [String] The uiprop to get. Optional.
+        # @since 0.4.0
         # @return [Response/Boolean] Either a full, parsed response.
         # @return [Boolean] False if not logged in.
         def get_current_user_meta(prop = nil)
@@ -21,6 +24,7 @@ module MediaWiki
         end
 
         # Gets the current user's username.
+        # @since 0.7.0
         # @return [String] Returns the username.
         # @return [Boolean] False if...
         def get_current_user_name
@@ -36,6 +40,7 @@ module MediaWiki
 
         # Returns whether or not the currently logged in user has any unread
         #   messages on their talk page.
+        # @since 0.7.0
         # @return [Boolean] True if they have unreads, else false.
         def current_user_hasmsg?
           response = get_current_user_meta('hasmsg')
@@ -52,6 +57,7 @@ module MediaWiki
 
         # Gets a hash-of-arrays containing all the groups the user can add and
         #   remove people from.
+        # @since 0.7.0
         # @return [Boolean] False if get_current_user_meta is false
         # @return [Hash] All the groups that the user can add, remove, add-self,
         #   and remove-self.
@@ -79,6 +85,7 @@ module MediaWiki
         end
 
         # Gets the currently logged in user's real name.
+        # @since 0.7.0
         # @return [String] The user's real name.
         # @return [Nil] If they don't have a real name set.
         def get_realname
@@ -91,6 +98,7 @@ module MediaWiki
         end
 
         # Gets the currently logged in user's email address.
+        # @since 0.7.0
         # @return [String] The user's email address.
         # @return [Nil] If their email address is not set.
         def get_email_address
@@ -103,6 +111,7 @@ module MediaWiki
         end
 
         # Gets the user's options.
+        # @since 0.7.0
         # @return [Hash] The user's options.
         def get_current_user_options
           response = get_current_user_meta('options')
