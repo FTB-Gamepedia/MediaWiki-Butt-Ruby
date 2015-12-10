@@ -20,11 +20,12 @@ module MediaWiki
     include MediaWiki::Administration
 
     # Creates a new instance of MediaWiki::Butt. To work with any
-    #   MediaWiki::Butt methods, you must first create an instance of it.
+    # MediaWiki::Butt methods, you must first create an instance of it.
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it
     #   will make harsh assumptions about your wiki configuration.
     # @param use_ssl [Boolean] Whether or not to use SSL. Will default to true.
     # @param custom_agent [String] A custom User-Agent to use. Optional.
+    # @since 0.1.0
     def initialize(url, use_ssl = true, custom_agent = nil)
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @client = HTTPClient.new
@@ -36,24 +37,17 @@ module MediaWiki
     end
 
     # Performs a generic HTTP POST action and provides the response. This
-    #   method generally should not be used by the user, unless there is not a
-    #   method provided by the Butt developers for a particular action.
+    # method generally should not be used by the user, unless there is not a
+    # method provided by the Butt developers for a particular action.
     # @param params [Hash] A basic hash containing MediaWiki API parameters.
     #   Please see the MediaWiki API for more information.
     # @param autoparse [Boolean] Whether or not to provide a parsed version
     #   of the response's JSON. Will default to true.
     # @param header [Hash] The header hash. Optional.
+    # @since 0.1.0
     # @return [JSON/HTTPMessage] Parsed JSON if autoparse is true.
     # @return [HTTPMessage] Raw HTTP response.
     def post(params, autoparse = true, header = nil)
-      # Note that defining the header argument as a splat argument (*header)
-      #   causes errors in HTTPClient. We must use header.nil? rather than a
-      #   splat argument and defined? header due to this error. For those
-      #   interested, the error is:
-      #     undefined method `downcase' for {"Set-Cookie"=>"cookie"}:Hash
-      #   This is obvisouly an error in HTTPClient, but we must work around it
-      #   until there is a fix in the gem.
-
       params[:format] = 'json'
       header = {} if header.nil?
 
@@ -69,13 +63,14 @@ module MediaWiki
       end
     end
 
-    # Returns true if the currently logged in user is in the "bot" group.
-    #   This can be helpful to some developers, but it is mostly for use
-    #   internally in MediaWiki::Butt.
+    # Gets whether the currently logged in user is a bot.
     # @param username [String] The username to check. Optional. Defaults to
     #   the currently logged in user if nil.
     # @return [Boolean] true if logged in as a bot, false if not logged in or
     #   logged in as a non-bot
+    # @since 0.1.0 as is_current_user_bot
+    # @since 0.3.0 as is_user_bot?
+    # @since 0.4.1 as user_bot?
     def user_bot?(username = nil)
       groups = false
 

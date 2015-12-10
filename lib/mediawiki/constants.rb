@@ -1,6 +1,10 @@
 module MediaWiki
   module Constants
-    # Taken from https://www.mediawiki.org/wiki/Extension_default_namespaces
+    # @since 0.2.0 as a module with individual global constants
+    # @since 0.4.0 as a module with a single global hash identical to this.
+    # @since 0.8.0 as its current state.
+    # @see https://www.mediawiki.org/wiki/Extension_default_namespaces
+    #   MediaWiki's list of extension namespace IDs and names.
     NAMESPACES = {
       'MAIN' => 0,
       'TALK' => 1,

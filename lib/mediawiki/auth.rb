@@ -3,11 +3,26 @@ require_relative 'exceptions'
 module MediaWiki
   module Auth
     # Checks the login result for errors. Returns true if it is successful,
-    #   else false with an error raised.
+    # else false with an error raised.
     # @param result [String] The parsed version of the result.
     # @param secondtry [Boolean] Whether this login is the first or second try.
     #   False for first, true for second.
-    # @return [Boolean] true if successful. Does not return anything if not.
+    # @raise [NeedTokenMoreThanOnceError] When secondtry is true and the wiki
+    #   still returns 'NeedToken'
+    # @raise [NoNameError] When the username is nil or undefined.
+    # @raise [IllegalUsernameError] When the username is illegal.
+    # @raise [UsernameNotExistsError] When the username does not exist.
+    # @raise [EmptyPassError] When the password is nil or undefined.
+    # @raise [WrongPassError] When the password is incorrect.
+    # @raise [WrongPluginPassError] When an authentication plugin, not
+    #   MediaWiki, claims that the password is incorrect.
+    # @raise [CreateBlockedError] When the wiki tries to automatically create
+    #   an account, but the user's IP address is already blocked.
+    # @raise [ThrottledError] When the user has logged in, or tried to, too
+    #   much in a particular amount of time.
+    # @raise [BlockedError] When the user is blocked from the wiki.
+    # @since 0.1.0
+    # @return [Boolean] true if successful. Does not return anything otherwise.
     def check_login(result, secondtry)
       case result
       when 'Success'
@@ -37,8 +52,29 @@ module MediaWiki
     end
 
     # Checks the account creation result's error and raises the corresponding
-    #   exception.
+    # exception.
     # @param error [String] The parsed error code string
+    # @raise [NoNameError] When the username was either not provided or is
+    #   invalid.
+    # @raise [UserExistsError] When the username is already in use.
+    # @raise [UserPassMatchError] When the username and password are identical.
+    # @raise [PasswordLoginForbiddenError] When the use of the username and
+    #   password has been forbidden.
+    # @raise [NoEmailTitleError] When there is no provided email address.
+    # @raise [InvalidEmailAddressError] When the email address has an invalid
+    #   format.
+    # @raise [PasswordTooShortError] When the password is shorter than the
+    #   $wgMinimumPasswordLength option.
+    # @raise [NoEmailError] When there is no email address set for the user.
+    # @raise [ThrottledError] When the user has created too many accounts in one
+    #   day.
+    # @raise [AbortedError] When an extension has aborted this action.
+    # @raise [BlockedError] When the IP or logged in user is blocked.
+    # @raise [PermDeniedError] When the user does not have the right to create
+    #   accounts.
+    # @raise [HookAbortedError] Same as AbortedError.
+    # @since 0.1.1
+    # @return [void]
     def check_create(error)
       case error
       when 'noname'
@@ -74,6 +110,9 @@ module MediaWiki
     #   getting restricted data. Will return the result of #check_login
     # @param username [String] The username
     # @param password [String] The password
+    # @see check_login
+    # @see https://www.mediawiki.org/wiki/API:Login MediaWiki Login API Docs
+    # @since 0.1.0
     # @return [Boolean] True if the login was successful, false if not.
     def login(username, password)
       params = {
@@ -106,6 +145,8 @@ module MediaWiki
     end
 
     # Logs the current user out.
+    # @see https://www.mediawiki.org/wiki/API:Logout MediaWiki Logout API Docs
+    # @since 0.1.0
     # @return [Boolean] True if it was able to log anyone out, false if not
     #   (basically, if someone was logged in, it returns true).
     def logout
@@ -131,6 +172,10 @@ module MediaWiki
     #   the name.
     # @param reason [String] The reason for creating the account, as shown in
     #   the account creation log. Optional.
+    # @see check_create
+    # @see https://www.mediawiki.org/wiki/API:Account_creation MediaWiki Account
+    #   Creation Docs
+    # @since 0.1.0
     # @return [Boolean] True if successful, false if not.
     def create_account(username, password, language = 'en', *reason)
       params = {
@@ -179,6 +224,10 @@ module MediaWiki
     #   the name.
     # @param reason [String] The reason for creating the account, as shown in
     #   the account creation log. Optional.
+    # @see check_create
+    # @see https://www.mediawiki.org/wiki/API:Account_creation MediaWiki Account
+    #   Creation Docs
+    # @since 0.1.0
     # @return [Boolean] True if successful, false if not.
     def create_account_email(username, email, language = 'en', *reason)
       params = {
