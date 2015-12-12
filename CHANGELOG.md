@@ -1,5 +1,9 @@
 # Changelog
 ## Version 0
+### Version 0.8.2
+* Fix outdated usage of @namespaces variable, causing a NoMethodError on get_random_pages calls.
+* Greatly improved documentation.
+
 ### Version 0.8.1
 * Fix get_limited's NoMethodError on user_bot?
 * Fix user_bot? always returning false.
