@@ -75,7 +75,7 @@ module MediaWiki
           rnlimit: get_limited(number_of_pages, 10, 20)
         }
 
-        if @namespaces.value?(namespace)
+        if MediaWiki::Constants::NAMESPACES.value?(namespace)
           params[:rnnamespace] = namespace
         else
           params[:rnnamespace] = 0
