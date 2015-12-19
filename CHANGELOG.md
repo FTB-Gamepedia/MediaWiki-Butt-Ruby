@@ -1,5 +1,10 @@
 # Changelog
 ## Version 0
+### Version 0.9.0
+* get_category_members has a new parameter, type, which can be used to get more data in a single result.
+* get_category_members no longer gets files and subcategories by default. Use the above to get more data at once.
+* New get_subcategories and get_files_in_category for specifically getting files or subcategories.
+
 ### Version 0.8.2
 * Fix outdated usage of @namespaces variable, causing a NoMethodError on get_random_pages calls.
 * Greatly improved documentation.
