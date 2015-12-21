@@ -51,7 +51,7 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['search'].each { |search| ret<< search['title'] }
+          response['query']['search'].each { |search| ret << search['title'] }
 
           ret
         end

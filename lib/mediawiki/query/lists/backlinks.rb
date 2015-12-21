@@ -64,8 +64,8 @@ module MediaWiki
           params[:lbltitle] = title unless title.nil?
 
           ret = []
-          # response = post(params)
-          # response['query']['langbacklinks'].each { |bl| ret << bl['title'] }
+          response = post(params)
+          response['query']['langbacklinks'].each { |bl| ret << bl['title'] }
 
           ret
         end

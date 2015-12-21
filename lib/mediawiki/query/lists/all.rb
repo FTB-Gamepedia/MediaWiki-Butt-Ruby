@@ -65,7 +65,7 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['allpages'].each { |p| ret.push(p['title']) }
+          response['query']['allpages'].each { |p| ret << p['title'] }
 
           ret
         end
@@ -133,7 +133,7 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['embeddedin'].each { |e| ret.push(e['title']) }
+          response['query']['embeddedin'].each { |e| ret << e['title'] }
 
           ret
         end
@@ -178,7 +178,7 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['protectedtitles'].each { |t| ret.push(t['title']) }
+          response['query']['protectedtitles'].each { |t| ret << t['title'] }
 
           ret
         end

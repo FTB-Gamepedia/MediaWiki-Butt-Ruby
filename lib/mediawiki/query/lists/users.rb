@@ -45,7 +45,7 @@ module MediaWiki
           if username.nil?
             if @logged_in
               info = get_userlists('groups')
-              info['query']['userinfo']['groups'].each { |i| ret.push(i) }
+              info['query']['userinfo']['groups'].each { |i| ret << i }
             else
               return false
             end
@@ -71,7 +71,7 @@ module MediaWiki
           if username.nil?
             if @logged_in
               info = get_userlists('rights')
-              info['query']['userinfo']['rights'].each { |i| ret.push(i) }
+              info['query']['userinfo']['rights'].each { |i| ret << i }
             else
               return false
             end
@@ -207,7 +207,7 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['watchlist'].each { |t| ret.push(t['title']) }
+          response['query']['watchlist'].each { |t| ret << t['title'] }
 
           ret
         end

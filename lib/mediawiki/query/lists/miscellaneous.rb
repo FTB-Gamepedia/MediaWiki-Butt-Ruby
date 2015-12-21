@@ -27,7 +27,7 @@ module MediaWiki
 
           ret = []
           responce = post(params)
-          responce['query']['random'].each { |a| ret.push(a['title']) }
+          responce['query']['random'].each { |a| ret << a['title'] }
 
           ret
         end
