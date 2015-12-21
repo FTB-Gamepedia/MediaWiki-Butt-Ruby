@@ -1,5 +1,5 @@
 require_relative 'meta/meta'
-require_relative 'lists'
+require_relative 'lists/lists'
 require_relative 'properties/properties'
 
 module MediaWiki
