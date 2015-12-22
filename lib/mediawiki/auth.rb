@@ -177,14 +177,14 @@ module MediaWiki
     #   Creation Docs
     # @since 0.1.0
     # @return [Boolean] True if successful, false if not.
-    def create_account(username, password, language = 'en', *reason)
+    def create_account(username, password, language = 'en', reason = nil)
       params = {
         name: username,
         password: password,
-        reason: reason,
         language: language,
         token: ''
       }
+      params[:reason] = reason unless reason.nil?
 
       result = post(params)
       unless result['error'].nil?
@@ -229,15 +229,15 @@ module MediaWiki
     #   Creation Docs
     # @since 0.1.0
     # @return [Boolean] True if successful, false if not.
-    def create_account_email(username, email, language = 'en', *reason)
+    def create_account_email(username, email, language = 'en', reason = nil)
       params = {
         name: username,
         email: email,
         mailpassword: 'value',
-        reason: reason,
         language: language,
         token: ''
       }
+      params[:reason] = reason unless reason.nil?
 
       result = post(params)
       unless result['error'].nil?

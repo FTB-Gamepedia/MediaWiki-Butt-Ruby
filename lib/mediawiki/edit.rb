@@ -13,7 +13,7 @@ module MediaWiki
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
     # @since 0.2.0
     # @return [String] The new revision ID, or if it failed, the error code.
-    def edit(title, text, minor = false, bot = true, *summary)
+    def edit(title, text, minor = false, bot = true, summary = nil)
       params = {
         action: 'edit',
         title: title,
@@ -24,7 +24,7 @@ module MediaWiki
 
       token = get_token('edit', title)
 
-      params[:summary] = summary if defined? summary
+      params[:summary] = summary unless summary.nil?
       params[:minor] = '1' if minor
       params[:bot] = '1' if bot
       params[:token] = token
