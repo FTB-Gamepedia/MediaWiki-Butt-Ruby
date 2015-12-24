@@ -6,6 +6,7 @@ require_relative 'all'
 require_relative 'search'
 require_relative 'miscellaneous'
 require_relative 'log/log'
+require_relative 'recent_changes'
 
 module MediaWiki
   module Query
@@ -16,6 +17,7 @@ module MediaWiki
       include MediaWiki::Query::Lists::Search
       include MediaWiki::Query::Lists::Miscellaneous
       include MediaWiki::Query::Lists::Log
+      include MediaWiki::Query::Lists::RecentChanges
     end
   end
 end
