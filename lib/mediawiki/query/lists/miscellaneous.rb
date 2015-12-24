@@ -31,6 +31,24 @@ module MediaWiki
 
           ret
         end
+
+        # Gets the valid change tags on the wiki.
+        # @param limit [Int] The maximum number of results to get. Maximum 5000
+        #   for bots and 500 for users.
+        # @see https://www.mediawiki.org/wiki/API:Tags MediaWiki Tags API Docs
+        # @since 0.10.0
+        # @return [Array<String>] All tag names.
+        def get_tags(limit = 500)
+          params = {
+            action: 'query',
+            list: 'tags',
+            limit: get_limited(limit)
+          }
+          response = post(params)
+          ret = []
+          response['query']['tags'].each { |tag| ret << tag['name'] }
+          ret
+        end
       end
     end
   end
