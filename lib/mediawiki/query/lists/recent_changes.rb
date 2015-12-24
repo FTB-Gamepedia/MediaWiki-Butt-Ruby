@@ -80,6 +80,16 @@ module MediaWiki
           ret
         end
 
+        # Gets the recent deleted revisions.
+        # @param user [String] See {#get_recent_changes}
+        # @param start [DateTime] See {#get_recent_changes}
+        # @param stop [DateTime] See {#get_recent_changes}
+        # @param limit [Int] See {#get_recent_changes}
+        # @see https://www.mediawiki.org/wiki/API:Deletedrevs MediaWiki
+        #   Deletedrevs API Docs
+        # @since 0.10.0
+        # @return [Array<Hash>] All of the changes, with the following keys:
+        #   timestamp, user, comment, title.
         def get_recent_deleted_revisions(user = nil, start = nil, stop = nil,
                                          limit = 500)
           time_format = MediaWiki::Constants::TIME_FORMAT
