@@ -55,6 +55,31 @@ module MediaWiki
 
           ret
         end
+
+        # Searches the wiki by a prefix.
+        # @param prefix [String] The prefix.
+        # @param limit [Int] The maximum number of results to get, maximum of
+        #   100 for users and 200 for bots.
+        # @see https://www.mediawiki.org/wiki/API:Prefixsearch MediaWiki
+        #   Prefixsearch API Docs
+        # @since 0.10.0
+        # @return [Array<String>] All of the page titles that match the search.
+        def get_prefix_search(prefix, limit = 100)
+          params = {
+            action: 'query',
+            list: 'prefixsearch',
+            pssearch: prefix,
+            limit: get_limited(limit, 100, 200)
+          }
+
+          response = post(params)
+          ret = []
+          response['query']['prefixsearch'].each do |result|
+            ret << result['title']
+          end
+
+          ret
+        end
       end
     end
   end
