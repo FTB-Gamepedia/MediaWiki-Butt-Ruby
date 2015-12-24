@@ -12,6 +12,9 @@ module MediaWiki
         # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
         # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
         # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+        # @see https://www.mediawiki.org/wiki/API:RecentChanges MediaWiki
+        #   RecentChanges API Docs
+        # @since 0.10.0
         # @return [Array<Hash>] All of the changes, with the following keys:
         #   type, title, revid, old_revid, rcid, user, old_length, new_length,
         #   diff_length, timestamp, comment, parsed_comment, sha, new, minor,
@@ -54,8 +57,7 @@ module MediaWiki
               old_length: old_length,
               new_length: new_length,
               diff_length: diff_length,
-              timestamp: DateTime.strptime(change['timestamp'],
-                                           MediaWiki::Constants::TIME_FORMAT),
+              timestamp: DateTime.strptime(change['timestamp'], time_format),
               comment: change['comment'],
               parsed_comment: change['parsedcomment'],
               sha: change['sha1']
@@ -72,6 +74,35 @@ module MediaWiki
               hash[:logid] = change['logid']
             end
 
+            ret << hash
+          end
+
+          ret
+        end
+
+        def get_recent_deleted_revisions(user = nil, start = nil, stop = nil,
+                                         limit = 500)
+          time_format = MediaWiki::Constants::TIME_FORMAT
+          prop = 'revid|parentid|user|comment|parsedcomment|minor|len|sh1|tags'
+          params = {
+            action: 'query',
+            list: 'deletedrevs',
+            drprop: prop,
+            limit: get_limited(limit)
+          }
+          params[:drstart] = start.strftime(time_format) unless start.nil?
+          params[:drend] = stop.strftime(time_format) unless stop.nil?
+
+          response = post(params)
+          ret = []
+          response['query']['deletedrevs'].each do |rev|
+            r = rev['revisions'][0]
+            hash = {
+              timestamp: DateTime.strptime(r['timestamp'], time_format),
+              user: r['user'],
+              comment: r['comment'],
+              title: rev['title']
+            }
             ret << hash
           end
 
