@@ -18,20 +18,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                current_revision: log['patrol']['cur'],
-                previous_revision: log['patrol']['prev'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-              auto = log['patrol']['auto']
-              hash[:automatic] = auto == 1
-
-              ret << hash
+              ret << get_patrol(log)
             end
 
             ret

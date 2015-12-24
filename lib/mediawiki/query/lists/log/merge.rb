@@ -17,19 +17,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                destination_title: log['params']['dest_title'],
-                mergepoint: DateTime.strptime(log['params']['mergepoint'],
-                                              MediaWiki::Constants::TIME_FORMAT),
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_mergemerge(log)
             end
 
             ret

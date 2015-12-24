@@ -3,7 +3,7 @@ module MediaWiki
     module Lists
       module Log
         module Move
-          # Gets move logs.
+          # Gets move/move logs.
           # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
@@ -17,25 +17,13 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                new_title: log['move']['new_title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              hash[:suppressedredirect] = log['move'].key?('suppressedredirect')
-
-              ret << hash
+              ret << get_move(log)
             end
 
             ret
           end
 
-          # Gets move logs for redirects.
+          # Gets move/move_redir logs for redirects.
           # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
@@ -49,27 +37,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              if log.key?('actionhidden')
-                hash[:hidden] = true
-                hash[:title] = nil
-                hash[:comment] = nil
-                hash[:suppressedredirect] = log.key('suppressed')
-              else
-                hash[:title] = log['title']
-                hash[:new_title] = log['move']['new_title']
-                hash[:user] = log['user']
-                hash[:comment] = log['comment']
-
-                hash[:suppressedredirect] = log['move'].key?('suppressedredirect')
-              end
-
-              ret << hash
+              ret << get_move(log)
             end
 
             ret

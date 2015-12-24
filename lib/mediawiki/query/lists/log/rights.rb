@@ -19,18 +19,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                new_rights: log['rights']['new'].split(', '),
-                old_rights: log['rights']['old'].split(', '),
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_rightsautopromote(log)
             end
 
             ret
@@ -50,19 +39,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                to: log['title'],
-                from: log['user'],
-                new_rights: log['rights']['new'].split(', '),
-                old_rights: log['rights']['old'].split(', '),
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_rightsrights(log)
             end
 
             ret

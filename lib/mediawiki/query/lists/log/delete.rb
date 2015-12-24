@@ -19,16 +19,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_general(log)
             end
 
             ret
@@ -48,16 +39,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_general(log)
             end
 
             ret

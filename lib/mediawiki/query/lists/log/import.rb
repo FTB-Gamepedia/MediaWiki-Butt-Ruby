@@ -17,18 +17,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT),
-                count: log['params']['count'],
-                interwiki_title: log['params']['interwiki_title']
-              }
-
-              ret << hash
+              ret << get_importinterwiki(log)
             end
 
             ret
@@ -48,16 +37,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT),
-                comment: log['comment']
-              }
-
-              ret << hash
+              ret << get_importupload(log)
             end
 
             ret

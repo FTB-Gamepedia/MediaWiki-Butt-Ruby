@@ -17,32 +17,8 @@ module MediaWiki
                                limit)
 
             ret = []
-            time_format = MediaWiki::Constants::TIME_FORMAT
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                description: log['params']['description'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'], time_format)
-              }
-
-              hash[:details] = []
-
-              log['params']['detail'].each do |detail|
-                details_hash = {
-                  type: detail['type'],
-                  level: detail['level']
-                }
-                expire = detail['expiry']
-                if expire != 'infinite'
-                  details_hash[:expiry] = DateTime.strptime(expire, time_format)
-                end
-                hash[:details] << detail_hash
-              end
-
-              ret << hash
+              ret << get_protect(log)
             end
 
             ret
@@ -62,17 +38,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                old_title: log['params']['oldtitle_title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_protectmoveprot(log)
             end
 
             ret
@@ -92,32 +58,8 @@ module MediaWiki
                                limit)
 
             ret = []
-            time_format = MediaWiki::Constants::TIME_FORMAT
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                description: log['params']['description'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'], time_format)
-              }
-
-              hash[:details] = []
-
-              log['params']['detail'].each do |detail|
-                details_hash = {
-                  type: detail['type'],
-                  level: detail['level']
-                }
-                expire = detail['expiry']
-                if expire != 'infinite'
-                  details_hash[:expiry] = DateTime.strptime(expire, time_format)
-                end
-                hash[:details] << detail_hash
-              end
-
-              ret << hash
+              ret << get_protect(log)
             end
 
             ret
@@ -137,16 +79,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                title: log['title'],
-                user: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_protectunprotect(log)
             end
 
             ret

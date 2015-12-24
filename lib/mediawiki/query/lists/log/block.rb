@@ -19,20 +19,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                blocked: log['title'],
-                flags: log['block']['flags'],
-                duration: log['block']['duration'],
-                expiry: DateTime.strptime(log['block']['expiry'],
-                                          MediaWiki::Constants::TIME_FORMAT),
-                blocker: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_blockblock(log)
             end
 
             ret
@@ -52,20 +39,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                blocked: log['title'],
-                flags: log['block']['flags'],
-                duration: log['block']['duration'],
-                expiry: DateTime.strptime(log['block']['expiry'],
-                                          MediaWiki::Constants::TIME_FORMAT),
-                blocker: log['user'],
-                comment: log['comment'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT)
-              }
-
-              ret << hash
+              ret << get_blockreblock(log)
             end
 
             ret
@@ -85,16 +59,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              hash = {
-                id: log['logid'],
-                blocked: log['title'],
-                blocker: log['user'],
-                timestamp: DateTime.strptime(log['timestamp'],
-                                             MediaWiki::Constants::TIME_FORMAT),
-                comment: log['comment']
-              }
-
-              ret << hash
+              ret << get_blockunblock(log)
             end
 
             ret
