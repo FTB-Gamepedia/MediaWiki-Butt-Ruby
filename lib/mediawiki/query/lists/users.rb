@@ -132,14 +132,7 @@ module MediaWiki
             info['query']['users'].each { |i| time = i['registration'] }
           end
 
-          # %Y: Year including century
-          # %m: Month num
-          # %d: day of month
-          # %T: Time as HH:MM:SS
-          timeformat = '%Y-%m-%dT%T'
-          time = DateTime.strptime(time, timeformat)
-
-          time
+          DateTime.strptime(time, '%Y-%m-%dT%T')
         end
 
         # Gets the gender for the provded user.
