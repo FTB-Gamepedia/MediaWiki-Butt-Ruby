@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
   s.summary = 'Interacting with the MediaWiki API'
-  s.version = '0.9.0'
+  s.version = '0.10.0'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
     'lib/mediawiki/edit.rb',
     'lib/mediawiki/exceptions.rb',
 
-    'lib/mediawiki/query/lists.rb',
     'lib/mediawiki/query/query.rb',
 
     'lib/mediawiki/query/meta/filerepoinfo.rb',
@@ -39,7 +38,30 @@ Gem::Specification.new do |s|
     'lib/mediawiki/query/properties/contributors.rb',
     'lib/mediawiki/query/properties/files.rb',
     'lib/mediawiki/query/properties/pages.rb',
-    'lib/mediawiki/query/properties/properties.rb'
+    'lib/mediawiki/query/properties/properties.rb',
+
+    'lib/mediawiki/query/lists/all.rb',
+    'lib/mediawiki/query/lists/backlinks.rb',
+    'lib/mediawiki/query/lists/categories.rb',
+    'lib/mediawiki/query/lists/lists.rb',
+    'lib/mediawiki/query/lists/miscellaneous.rb',
+    'lib/mediawiki/query/lists/querypage.rb',
+    'lib/mediawiki/query/lists/recent_changes.rb',
+    'lib/mediawiki/query/lists/search.rb',
+    'lib/mediawiki/query/lists/users.rb',
+
+    'lib/mediawiki/query/lists/log/block.rb',
+    'lib/mediawiki/query/lists/log/delete.rb',
+    'lib/mediawiki/query/lists/log/import.rb',
+    'lib/mediawiki/query/lists/log/log.rb',
+    'lib/mediawiki/query/lists/log/merge.rb',
+    'lib/mediawiki/query/lists/log/move.rb',
+    'lib/mediawiki/query/lists/log/newusers.rb',
+    'lib/mediawiki/query/lists/log/patrol.rb',
+    'lib/mediawiki/query/lists/log/rights.rb',
+    'lib/mediawiki/query/lists/log/upload.rb',
+
+    'CHANGELOG.md'
   ]
 
   s.add_runtime_dependency('httpclient', '>= 2.6.0.1')

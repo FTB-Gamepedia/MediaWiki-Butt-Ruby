@@ -11,6 +11,10 @@ module MediaWiki
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+          # @see {MediaWiki::Query::Lists::Log#get_log}
+          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
+          #   Logevents API Docs
+          # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
           def get_delete_log(user = nil, title = nil, start = nil, stop = nil,
@@ -31,6 +35,10 @@ module MediaWiki
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+          # @see {MediaWiki::Query::Lists::Log#get_log}
+          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
+          #   Logevents API Docs
+          # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
           def get_deletion_restore_log(user = nil, title = nil, start = nil,

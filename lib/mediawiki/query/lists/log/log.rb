@@ -34,6 +34,10 @@ module MediaWiki
         # @param start [DateTime] See {#get_log}
         # @param stop [DateTime] See {#get_log}
         # @param limit [Int] See {#get_log}
+        # @see {#get_log}
+        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents
+        #   API Docs
+        # @since 0.10.0
         # @return [Array<Hash>] All the log events.
         def get_overall_log(user = nil, title = nil, start = nil, stop = nil,
                             limit = 500)
@@ -138,6 +142,9 @@ module MediaWiki
         # @param start [DateTime] Where to start the log events at.
         # @param stop [DateTime] Where to end the log events.
         # @param limit [Int] The limit, maximum 500 for users or 5000 for bots.
+        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents
+        #   API Docs
+        # @since 0.10.0
         # @return [JSON] The response json.
         def get_log(action, user = nil, title = nil, start = nil, stop = nil,
                     limit = 500)

@@ -56,7 +56,7 @@ module MediaWiki
 
         # @since 0.10.0
         # @see #get_querypage
-        def get_listedredirects_page(limit = 500)
+        def get_listredirects_page(limit = 500)
           get_querypage('Listredirects', limit)
         end
 

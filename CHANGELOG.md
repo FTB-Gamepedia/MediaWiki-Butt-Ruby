@@ -1,5 +1,80 @@
 # Changelog
 ## Version 0
+### Version 0.10.0
+* Remove all incorrectly splatted method arguments, so account creation reasons and edit summaries work now (#12).
+* Support a bunch of more Lists (#17). All of the old methods still exist in various submodules. The new methods are:
+  * Log:
+    * get_interwiki_backlinks
+    * get_language_backlinks
+    * get_image_backlinks
+    * get_url_backlinks
+    * get_block_log
+    * get_reblock_log
+    * get_unblock_log
+    * get_delete_log
+    * get_deletion_restore_log
+    * get_interwiki_import_log
+    * get_upload_import_log
+    * get_overall_log
+    * get_merge_log
+    * get_move_log
+    * get_move_redirect_log
+    * get_autocreate_users_log
+    * get_user_create2_log
+    * get_user_create2_log
+    * get_patrol_log
+    * get_modify_protection_log
+    * get_move_protected_log
+    * get_protect_log
+    * get_unprotect_log
+    * get_autopromotion_log
+    * get_rights_log
+    * get_upload_overwrite_log
+    * get_upload_log
+    * The logs not explicitly supported (they are still supported in get_overall_log) are:
+      * upload/revert
+      * rights/erevoke
+      * delete/event
+      * delete/revision
+  * Miscellaneous:
+    * get_tags
+  * QueryPage:
+    * get_mostrevisions_page
+    * get_mostlinked_page
+    * get_mostlinkedtemplates_page
+    * get_mostlinkedcategories_page
+    * get_mostinterwikis_page
+    * get_mostimages_page
+    * get_mostlinkedcategories_page
+    * get_listduplicatedfiles_page
+    * get_listredirects_page
+    * get_wantedtemplates_page
+    * get_wantedpages_page
+    * get_wantedfiles_page
+    * get_wantedcategories_page
+    * get_unwatchedpages_page
+    * get_unusedtemplates_page
+    * get_unusedcategories_page
+    * get_uncategorizedtemplates_page
+    * get_uncategorizedpages_page
+    * get_uncategorizedcategories_page
+    * get_shortpages_page
+    * get_withoutinterwiki_page
+    * get_fewestrevisions_page
+    * get_lonelypages_page
+    * get_ancientpages_page
+    * get_longpages_page
+    * get_doubleredirects_page
+    * get_brokenredirects_page
+    * get_querypage
+  * RecentChanges:
+    * get_recent_changes
+    * get_recent_deleted_revisions
+  * Search
+    * get_prefix_search
+* New constant MediaWiki::Constants::TIME_FORMAT for the standard MediaWiki timestamp format.
+* Improve performance slightly by using Array#<< instead of Array#push.
+
 ### Version 0.9.0
 * get_category_members has a new parameter, type, which can be used to get more data in a single result.
 * get_category_members no longer gets files and subcategories by default. Use the above to get more data at once.

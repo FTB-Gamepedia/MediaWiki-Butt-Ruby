@@ -11,6 +11,10 @@ module MediaWiki
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+          # @see {MediaWiki::Query::Lists::Log#get_log}
+          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
+          #   Logevents API Docs
+          # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, flags, duration, expiry, blocker, comment, timestamp.
           def get_block_log(user = nil, title = nil, start = nil, stop = nil,
@@ -31,9 +35,13 @@ module MediaWiki
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+          # @see {MediaWiki::Query::Lists::Log#get_log}
+          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
+          #   Logevents API Docs
+          # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, flags, duration, expiry, blocker, comment, timestamp.
-          def get_reblock_logs(user = nil, title = nil, start = nil, stop = nil,
+          def get_reblock_log(user = nil, title = nil, start = nil, stop = nil,
                                limit = 500)
             response = get_log('block/reblock', user, title, start, stop, limit)
 
@@ -51,9 +59,13 @@ module MediaWiki
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
+          # @see {MediaWiki::Query::Lists::Log#get_log}
+          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
+          #   Logevents API Docs
+          # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, blocker, comment, timestamp.
-          def get_unblock_logs(user = nil, title = nil, start = nil, stop = nil,
+          def get_unblock_log(user = nil, title = nil, start = nil, stop = nil,
                                limit = 500)
             response = get_log('block/unblock', user, title, start, stop, limit)
 
