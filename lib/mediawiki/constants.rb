@@ -217,5 +217,8 @@ module MediaWiki
       # Extension:Flow
       'FLW_TOPIC' => 2600
     }
+
+    # This is the most common time format that MediaWiki uses.
+    TIME_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
   end
 end
