@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   s.post_install_message = 'ONE OF US! ONE OF US!'
   s.required_ruby_version = '>= 2.1'
   s.files = [
-    'lib/mediawiki-butt.rb',
-
     'lib/mediawiki/administration.rb',
     'lib/mediawiki/auth.rb',
     'lib/mediawiki/butt.rb',

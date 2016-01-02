@@ -38,4 +38,7 @@ build/
 .buildpath
 .project
 
+# RubyMine
+.idea
+
 test.rb

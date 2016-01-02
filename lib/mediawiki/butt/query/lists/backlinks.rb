@@ -1,3 +1,5 @@
+require_relative '../../../../../lib/mediawiki/page'
+
 module MediaWiki
   module Query
     module Lists
@@ -11,7 +13,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Backlinks MediaWiki Backlinks
         #   API Docs
         # @since 0.1.0
-        # @return [Array<String>] All backlinks until the limit
+        # @return [Array<MediaWiki::Page>] All backlinks until the limit
         def what_links_here(title, limit = 500)
           params = {
             action: 'query',
@@ -22,7 +24,15 @@ module MediaWiki
 
           ret = []
           response = post(params)
-          response['query']['backlinks'].each { |bl| ret << bl['title'] }
+          response['query']['backlinks'].each do |bl|
+            hash = {
+              title: bl['title'],
+              id: bl['id'],
+              namespace: bl['ns'],
+              redirect: bl.key?('redirect')
+            }
+            ret << MediaWiki::Page.new(hash)
+          end
 
           ret
         end
@@ -34,7 +44,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Iwbacklinks MediaWiki
         #   Iwbacklinks API Docs
         # @since 0.10.0
-        # @return [Array<String>] All interwiki backlinking page titles.
+        # @return [Array<MediaWiki::Page>] All interwiki backlinking page titles.
         def get_interwiki_backlinks(prefix = nil, title = nil, limit = 500)
           params = {
             action: 'query',
@@ -46,7 +56,15 @@ module MediaWiki
 
           ret = []
           response = post(params)
-          response['query']['iwbacklinks'].each { |bl| ret << bl['title'] }
+          response['query']['iwbacklinks'].each do |bl|
+            hash = {
+              title: bl['title'],
+              id: bl['id'],
+              namespace: bl['ns'],
+              redirect: bl.key?('redirect')
+            }
+            ret << MediaWiki::Page.new(hash)
+          end
 
           ret
         end
@@ -58,7 +76,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Langlinks MediaWiki Langlinks
         #   API Docs
         # @since 0.10.0
-        # @return [Array<String>] All pages that link to the language links.
+        # @return [Array<MediaWiki::Page>] All pages that link to the language links.
         def get_language_backlinks(language = nil, title = nil, limit = 500)
           language.downcase! if language.match(/[^A-Z]*/)[0].size == 0
           params = {
@@ -71,7 +89,15 @@ module MediaWiki
 
           ret = []
           response = post(params)
-          response['query']['langbacklinks'].each { |bl| ret << bl['title'] }
+          response['query']['langbacklinks'].each do |bl|
+            hash = {
+              title: bl['title'],
+              id: bl['id'],
+              namespace: bl['ns'],
+              redirect: bl.key?('redirect')
+            }
+            ret << MediaWiki::Page.new(hash)
+          end
 
           ret
         end
@@ -81,13 +107,13 @@ module MediaWiki
         # @param list_redirects [Nil/Boolean] Set to nil to list redirects and
         #   non-redirects. Set to true to only list redirects. Set to false to
         #   only list non-redirects.
-        # @param thru_redirect [Boolean] Whether to list pages that link to a
+        # @param thru_redir [Boolean] Whether to list pages that link to a
         #   redirect of the image.
         # @param limit [Int] See {#what_links_here}
         # @see https://www.mediawiki.org/wiki/API:Imageusage MediaWiki
         #   Imageusage API Docs
         # @since 0.10.0
-        # @return [Array<String>] All page titles that fit the requirements.
+        # @return [Array<MediaWiki::Page>] All page titles that fit the requirements.
         def get_image_backlinks(title, list_redirects = nil, thru_redir = false,
                                 limit = 500)
           params = {
@@ -102,7 +128,15 @@ module MediaWiki
 
           response = post(params)
           ret = []
-          response['query']['imageusage'].each { |bl| ret << bl['title'] }
+          response['query']['imageusage'].each do |bl|
+            hash = {
+              title: bl['title'],
+              id: bl['id'],
+              namespace: bl['ns'],
+              redirect: bl.key?('redirect')
+            }
+            ret << MediaWiki::Page.new(hash)
+          end
 
           ret
         end

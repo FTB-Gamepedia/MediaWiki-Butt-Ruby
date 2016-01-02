@@ -1,8 +1,8 @@
-require_relative 'auth'
-require_relative 'query/query'
-require_relative 'constants'
-require_relative 'edit'
-require_relative 'administration'
+require_relative 'butt/auth'
+require_relative 'butt/query/query'
+require_relative 'butt/constants'
+require_relative 'butt/edit'
+require_relative 'butt/administration'
 require 'httpclient'
 require 'json'
 
