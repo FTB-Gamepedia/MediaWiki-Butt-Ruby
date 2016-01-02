@@ -1,5 +1,8 @@
 # Changelog
 ## Version 0
+### Version 0.10.1
+* Add the accidentally forgotten protect.rb file to the list of files for the gemspec.
+
 ### Version 0.10.0
 * Remove all incorrectly splatted method arguments, so account creation reasons and edit summaries work now (#12).
 * Support a bunch of more Lists (#17). All of the old methods still exist in various submodules. The new methods are:
