@@ -1,4 +1,5 @@
 require_relative 'users'
+require_relative '../../../../mediawiki/page'
 
 module MediaWiki
   module Query
@@ -181,7 +182,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Querypage MediaWiki QueryPage
         #   API Docs
         # @since 0.10.0
-        # @return [Hash] The response.
+        # @return [Array<MediaWiki::Page>] All of the pages given.
         def get_querypage(page, limit = 500)
           params = {
             action: 'query',
@@ -192,7 +193,7 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['querypage']['results'].each do |result|
-            ret << result['title']
+            ret << MediaWiki::Page.new(title: result['title'], namespace: result['ns'])
           end
 
           ret

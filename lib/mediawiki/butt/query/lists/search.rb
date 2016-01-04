@@ -1,3 +1,5 @@
+require_relative '../../../page'
+
 module MediaWiki
   module Query
     module Lists
@@ -34,7 +36,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API
         #   Docs
         # @since 0.4.0
-        # @return [Array] The page titles that matched the search.
+        # @return [Array<MediaWiki::Page>] The pages that matched the search.
         def get_search_results(search_value, namespace = 0)
           params = {
             action: 'query',
@@ -51,7 +53,15 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['search'].each { |search| ret << search['title'] }
+          response['query']['search'].each do |search|
+            page = MediaWiki::Page.new(title: search['title'],
+                                       namespace: search['ns'],
+                                       snippet: search['snippet'],
+                                       size: search['size'],
+                                       words: search['wordcount'],
+                                       time: search['timestamp'])
+            ret << page
+          end
 
           ret
         end
@@ -63,7 +73,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Prefixsearch MediaWiki
         #   Prefixsearch API Docs
         # @since 0.10.0
-        # @return [Array<String>] All of the page titles that match the search.
+        # @return [Array<MediaWiki::Page>] All of the pages that match the search.
         def get_prefix_search(prefix, limit = 100)
           params = {
             action: 'query',
@@ -75,7 +85,10 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['prefixsearch'].each do |result|
-            ret << result['title']
+            page = MediaWiki::Page.new(title: search['title'],
+                                       namespace: search['ns'],
+                                       id: search['id'])
+            ret << page
           end
 
           ret

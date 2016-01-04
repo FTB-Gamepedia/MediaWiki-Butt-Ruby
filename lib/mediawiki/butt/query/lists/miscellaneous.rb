@@ -1,3 +1,5 @@
+require_relative '../../../../mediawiki/tag'
+
 module MediaWiki
   module Query
     module Lists
@@ -39,16 +41,23 @@ module MediaWiki
         #   for bots and 500 for users.
         # @see https://www.mediawiki.org/wiki/API:Tags MediaWiki Tags API Docs
         # @since 0.10.0
-        # @return [Array<String>] All tag names.
+        # @return [Array<MediaWiki::Tag>] All tags.
         def get_tags(limit = 500)
           params = {
             action: 'query',
             list: 'tags',
+            prop: 'name|displayname|description|hitcount',
             limit: get_limited(limit)
           }
           response = post(params)
           ret = []
-          response['query']['tags'].each { |tag| ret << tag['name'] }
+          response['query']['tags'].each do |tag|
+            tag = MediaWiki::Tag.new(name: tag['name'],
+                                     display: tag['displayname'],
+                                     desc: tag['description'],
+                                     hitcount: tag['hitcount'].to_i)
+            ret << tag
+          end
           ret
         end
       end
