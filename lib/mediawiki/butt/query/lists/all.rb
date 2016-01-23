@@ -1,3 +1,6 @@
+require_relative '../../../page'
+require_relative '../../constants'
+
 module MediaWiki
   module Query
     module Lists
@@ -20,7 +23,11 @@ module MediaWiki
           response = post(params)
 
           ret = []
-          response['query']['allcategories'].each { |c| ret << c['*'] }
+          namespace = MediaWiki::Constants::NAMESPACE['CATEGORY']
+          response['query']['allcategories'].each do |c|
+            page = MediaWiki::Page.new(title: c['*'], namespace: namespace)
+            ret << page
+          end
 
           ret
         end

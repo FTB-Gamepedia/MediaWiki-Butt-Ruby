@@ -1,4 +1,5 @@
-require_relative '../../../../mediawiki/tag'
+require_relative '../../../tag'
+require_relative '../../../page'
 
 module MediaWiki
   module Query

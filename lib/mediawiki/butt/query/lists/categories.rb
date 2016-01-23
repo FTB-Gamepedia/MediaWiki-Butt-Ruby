@@ -1,3 +1,5 @@
+require_relative '../../../page'
+
 module MediaWiki
   module Query
     module Lists
@@ -18,12 +20,11 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Categorymembers MediaWiki
         #   Category Members API Docs
         # @since 0.1.0
-        # @return [Array] All category members until the limit
+        # @return [Array<MediaWiki::Page>] All category members until the limit
         def get_category_members(category, limit = 500, type = 'page')
           params = {
             action: 'query',
             list: 'categorymembers',
-            cmprop: 'title',
             cmlimit: get_limited(limit),
             cmtype: type
           }
@@ -35,7 +36,10 @@ module MediaWiki
           end
           ret = []
           response = post(params)
-          response['query']['categorymembers'].each { |cm| ret << cm['title'] }
+          response['query']['categorymembers'].each do |cm|
+            page = MediaWiki::Page.new(title: cm['title'], id: cm['pageid'], namespace: cm['ns'])
+            ret << page
+          end
 
           ret
         end
