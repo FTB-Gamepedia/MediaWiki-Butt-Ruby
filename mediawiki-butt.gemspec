@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.authors = ['Eli Foster', 'Eric Schneider (xbony2)']
   s.name = 'mediawiki-butt'
   s.summary = 'Interacting with the MediaWiki API'
-  s.version = '0.10.1'
+  s.version = '0.10.2'
   s.license = 'CC-BY-NC-ND-4.0'
   # Expand on this description eventually.
   s.description = <<-EOF
@@ -65,5 +65,5 @@ Gem::Specification.new do |s|
     'CHANGELOG.md'
   ]
 
-  s.add_runtime_dependency('httpclient', '>= 2.6.0.1')
+  s.add_runtime_dependency('httpclient', '>= 2.7.1')
 end

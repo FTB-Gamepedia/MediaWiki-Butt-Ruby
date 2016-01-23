@@ -1,5 +1,9 @@
 # Changelog
 ## Version 0
+### Version 0.10.2
+* Update to Ruby 2.3 and HTTPClient 2.7
+* All values in Constants, including the keys and values in the NAMESPACES constant, are now frozen objects.
+
 ### Version 0.10.1
 * Add the accidentally forgotten protect.rb file to the list of files for the gemspec.
 
