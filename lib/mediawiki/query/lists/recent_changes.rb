@@ -41,7 +41,6 @@ module MediaWiki
 
           response = post(params)
           ret = []
-          p response
           response['query']['recentchanges'].each do |change|
             old_length = change['oldlen']
             new_length = change['newlen']
