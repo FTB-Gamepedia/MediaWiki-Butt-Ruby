@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem('patron', '~> 0.13')
+gem('data_types')
 
 group :development do
   gem('yard', '~> 0.9')

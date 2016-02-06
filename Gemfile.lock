@@ -1,10 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    data_types (1.1.2)
     github-markup (3.0.4)
     minitest (5.13.0)
     patron (0.13.3)
-    rake (13.0.0)
+    rake (13.0.1)
     redcarpet (3.5.0)
     yard (0.9.20)
 
@@ -12,6 +13,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  data_types
   github-markup (~> 3.0)
   minitest (~> 5.13)
   patron (~> 0.13)
