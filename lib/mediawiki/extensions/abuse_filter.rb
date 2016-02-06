@@ -53,6 +53,33 @@ module MediaWiki
 
         ret
       end
+
+      # Gets the abuse filters on the wiki.
+      # @param start [Int] The abuse filter ID to start at.
+      # @param stop [Int] The abuse filter ID to stop at.
+      # @param limit [Int] The maximum filters to get.
+      # @return [Array<Hash>] An array of all of the abuse filters as hashes.
+      def get_abuse_filters(start = nil, stop = nil, limit = 500)
+        params = {
+          action: 'query',
+          list: 'abusefilters',
+          abflimit: MediaWiki::Query.get_limited(limit),
+          abfprop: 'id|description|pattern|actions|hits|comments|lasteditor|lastedittime|status|private'
+        }
+        params[:abfstartid] = start unless start.nil?
+        params[:abfendid] = stop unless stop.nil?
+
+        response = post(params)
+        ret = []
+        response['query']['abusefilters'].each do |filter|
+          del = filter.delete('enabled')
+          filter[:enabled] = !del.nil?
+          filter = Hash[filter.map { |k, v| [k.to_sym, v] }]
+          ret << filter
+        end
+
+        ret
+      end
     end
   end
 end
