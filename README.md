@@ -14,19 +14,19 @@ There is currently no extension support. Some APIs are also not supported becaus
 
 ## Installation
 ### RubyGems
-``` shell
+```shell
 $ gem install mediawiki-butt
 ```
 
 ### Bundler
 Add this line to application's Gemfile:
 
-``` ruby
+```ruby
 gem('mediawiki-butt')
 ```
 
 And then execute:
-```
+```shell
 $ bundle
 ```
 
