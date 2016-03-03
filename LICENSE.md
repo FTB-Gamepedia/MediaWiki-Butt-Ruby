@@ -1,0 +1,1 @@
+MediaWiki-Butt is licensed under the CC-BY-NC-ND-4.0 License. For a human-readable summary of the license, go [here](https://creativecommons.org/licenses/by-nc-nd/4.0/). For the actual license, go [here](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
