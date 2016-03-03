@@ -45,7 +45,7 @@ module MediaWiki
         # @since 0.10.0
         # @see #get_querypage
         def get_mostcategories_page(limit = 500)
-          get_querypage('Mostcactegories', limit)
+          get_querypage('Mostcategories', limit)
         end
 
         # @since 0.10.0

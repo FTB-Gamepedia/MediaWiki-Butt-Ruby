@@ -1,5 +1,11 @@
 # Changelog
 ## Version 0
+### Version 0.11.0
+* Fix get_mostcategories_page typo (Mostca**c**tegories) (#24).
+* Significant rewrite of the README, arguably the most important part of this version.
+* New Utils module for replicating some of MediaWiki's utilities. Right now this only includes the `#encode_url` method, a Ruby version of the JavaScript method `mw.util.rawurlencode` (#21).
+* Recent Changes responses are no longer printed on every request (#19).
+
 ### Version 0.10.2
 * Update to Ruby 2.3 and HTTPClient 2.7
 * All values in Constants, including the keys and values in the NAMESPACES constant, are now frozen objects.
