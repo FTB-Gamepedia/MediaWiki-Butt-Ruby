@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.name = 'mediawiki-butt'
   s.summary = 'Interacting with the MediaWiki API'
   s.version = '0.11.0'
-  s.license = 'CC-BY-NC-ND-4.0'
+  s.license = 'MIT'
   # Expand on this description eventually.
   s.description = <<-EOF
     MediaWiki::Butt provides a fully-featured interface to the MediaWiki API. \
@@ -63,8 +63,9 @@ Gem::Specification.new do |s|
     'lib/mediawiki/query/lists/log/upload.rb',
     'lib/mediawiki/query/lists/log/protect.rb',
 
-    'CHANGELOG.md'
+    'CHANGELOG.md',
+    'LICENSE.md'
   ]
 
-  s.add_runtime_dependency('httpclient', '>= 2.7.1')
+  s.add_runtime_dependency('httpclient', '~> 2.8')
 end
