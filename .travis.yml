@@ -1,0 +1,19 @@
+language: ruby
+sudo: false
+before_install:
+  - gem install bundler
+before_script:
+  - bundle install
+rvm:
+  - 2.3.0
+notifications:
+  email: false
+  irc:
+    on_success: always
+    on_failure: always
+    channels:
+      - "irc.esper.net#FTB-Wiki-Dev"
+    template:
+      - "%{repository_name}/%{branch}#%{build_number} (%{commit}): %{message}"
+    use_notice: true
+skip_join: true

@@ -1,4 +1,8 @@
-# MediaWiki::Butt [![Gem Version](https://badge.fury.io/rb/mediawiki-butt.svg)](https://badge.fury.io/rb/mediawiki-butt) 
+# MediaWiki::Butt
+[![Gem Version](https://badge.fury.io/rb/mediawiki-butt.svg)](https://badge.fury.io/rb/mediawiki-butt)
+[![Build Status](https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby.svg?branch=master)](https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby)
+
+
 A basic Ruby library for the MediaWiki API, utilizing HTTPClient by Hiroshi Nakamura.
 
 ## Why?
