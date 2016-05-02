@@ -117,6 +117,7 @@ module MediaWiki
         # @see get_userlists
         # @since 0.4.0
         # @return [DateTime] The registration date and time as a DateTime object.
+        # @return [Boolean] False when no username is provided and not logged in, or the user doesn't exist.
         def get_registration_time(username = nil)
           time = nil
           # Do note that in Userinfo, registration is called registrationdate.
@@ -131,6 +132,8 @@ module MediaWiki
             info = get_userlists('registration', username)
             info['query']['users'].each { |i| time = i['registration'] }
           end
+
+          return false if time.nil?
 
           DateTime.strptime(time, '%Y-%m-%dT%T')
         end

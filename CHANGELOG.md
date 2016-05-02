@@ -1,5 +1,10 @@
 # Changelog
 ## Version 0
+### Version 0.11.1
+* Relicense under the MIT license.
+* Bump HTTPClient dependency.
+* Resolve get_registration_time TypeError (#26)
+
 ### Version 0.11.0
 * Fix get_mostcategories_page typo (Mostca**c**tegories) (#24).
 * Significant rewrite of the README, arguably the most important part of this version.
