@@ -3,6 +3,7 @@ GEM
   specs:
     httpclient (2.8.0)
     minitest (5.8.4)
+    rake (11.1.2)
 
 PLATFORMS
   ruby
@@ -10,6 +11,7 @@ PLATFORMS
 DEPENDENCIES
   httpclient (~> 2.8)
   minitest (~> 5.8)
+  rake (~> 11.1)
 
 BUNDLED WITH
    1.11.2
