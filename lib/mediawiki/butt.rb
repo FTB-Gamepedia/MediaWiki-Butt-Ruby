@@ -19,21 +19,17 @@ module MediaWiki
     include MediaWiki::Edit
     include MediaWiki::Administration
 
-    # Creates a new instance of MediaWiki::Butt. To work with any
-    # MediaWiki::Butt methods, you must first create an instance of it.
-    # @param url [String] The FULL wiki URL. api.php can be omitted, but it
-    #   will make harsh assumptions about your wiki configuration.
-    # @param use_ssl [Boolean] Whether or not to use SSL. Will default to true.
-    # @param custom_agent [String] A custom User-Agent to use. Optional.
-    # @since 0.1.0
-    def initialize(url, use_ssl = true, custom_agent = nil)
-      @url = url =~ /api.php$/ ? url : "#{url}/api.php"
+    # Creates a new instance of MediaWiki::Butt.
+    # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
+    # @option opts [String] :url The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
+    # your wiki configuration.
+    # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
+    def initialize(opts = {})
+      @url = opts[:url] =~ /api.php$/ ? opts[:url] : "#{opts[:url]}/api.php"
       @client = HTTPClient.new
       @uri = URI.parse(@url)
-      @ssl = use_ssl
       @logged_in = false
-      @custom_agent = custom_agent unless custom_agent.nil?
-      @tokens = {}
+      @custom_agent = opts[:custom_agent]
     end
 
     # Performs a generic HTTP POST action and provides the response. This
