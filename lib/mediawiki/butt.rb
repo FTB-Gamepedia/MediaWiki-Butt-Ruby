@@ -20,12 +20,12 @@ module MediaWiki
     include MediaWiki::Administration
 
     # Creates a new instance of MediaWiki::Butt.
-    # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
-    # @option opts [String] :url The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
+    # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
     # your wiki configuration.
+    # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
-    def initialize(opts = {})
-      @url = opts[:url] =~ /api.php$/ ? opts[:url] : "#{opts[:url]}/api.php"
+    def initialize(url, opts = {})
+      @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @client = HTTPClient.new
       @uri = URI.parse(@url)
       @logged_in = false
