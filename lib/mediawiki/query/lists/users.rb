@@ -153,19 +153,18 @@ module MediaWiki
 
         # Gets the latest contributions by the user until the limit.
         # @param user [String] The username.
-        # @param limit [Int] See #get_all_images.
         # @see https://www.mediawiki.org/wiki/API:Usercontribs MediaWiki
         #   User Contributions API Docs
         # @since 0.8.0
         # @return [Hash] Each contribution by its revid, containing the title,
         #   summary, total contribution size, and the size change relative to the
         #   previous edit.
-        def get_user_contributions(user, limit = 500)
+        def get_user_contributions(user)
           params = {
             action: 'query',
             list: 'usercontribs',
             ucuser: user,
-            uclimit: get_limited(limit),
+            uclimit: get_limited(@query_limit),
             ucprop: 'ids|title|comment|size|sizediff|flags|patrolled'
           }
 
@@ -187,16 +186,16 @@ module MediaWiki
         # Gets the user's full watchlist. If no user is provided, it will use the
         #   currently logged in user, according to the MediaWiki API.
         # @param user [String] The username.
-        # @param limit [Int] See #get_all_images.
         # @see https://www.mediawiki.org/wiki/API:Watchlist MediaWiki Watchlist
         #   API Docs
         # @since 0.8.0
         # @return [Array] All the watchlist page titles.
-        def get_full_watchlist(user = nil, limit = 500)
+        def get_full_watchlist(user = nil)
           params = {
             action: 'query',
             list: 'watchlist',
-            wlprop: 'title'
+            wlprop: 'title',
+            wllimit: get_limited(@query_limit)
           }
           params[:wluser] = user unless user.nil?
 

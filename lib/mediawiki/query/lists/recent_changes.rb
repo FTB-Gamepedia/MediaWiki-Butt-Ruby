@@ -8,10 +8,8 @@ module MediaWiki
 
         # Gets the RecentChanges log.
         # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
-        # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
         # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
         # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-        # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
         # @see https://www.mediawiki.org/wiki/API:RecentChanges MediaWiki
         #   RecentChanges API Docs
         # @since 0.10.0
@@ -19,7 +17,7 @@ module MediaWiki
         #   type, title, revid, old_revid, rcid, user, old_length, new_length,
         #   diff_length, timestamp, comment, parsed_comment, sha, new, minor,
         #   bot.
-        def get_recent_changes(user = nil, start = nil, stop = nil, limit = 500)
+        def get_recent_changes(user = nil, start = nil, stop = nil)
           time_format = MediaWiki::Constants::TIME_FORMAT
           prop = 'user|comment|parsedcomment|timestamp|title|ids|sha1|sizes' \
                  '|redirect|flags|loginfo'
@@ -33,7 +31,7 @@ module MediaWiki
             action: 'query',
             list: 'recentchanges',
             rcprop: prop,
-            rclimit: get_limited(limit)
+            rclimit: get_limited(@query_limit)
           }
           params[:rcuser] = user unless user.nil?
           params[:rcstart] = start.strftime(time_format) unless start.nil?
@@ -83,21 +81,19 @@ module MediaWiki
         # @param user [String] See {#get_recent_changes}
         # @param start [DateTime] See {#get_recent_changes}
         # @param stop [DateTime] See {#get_recent_changes}
-        # @param limit [Int] See {#get_recent_changes}
         # @see https://www.mediawiki.org/wiki/API:Deletedrevs MediaWiki
         #   Deletedrevs API Docs
         # @since 0.10.0
         # @return [Array<Hash>] All of the changes, with the following keys:
         #   timestamp, user, comment, title.
-        def get_recent_deleted_revisions(user = nil, start = nil, stop = nil,
-                                         limit = 500)
+        def get_recent_deleted_revisions(user = nil, start = nil, stop = nil)
           time_format = MediaWiki::Constants::TIME_FORMAT
           prop = 'revid|parentid|user|comment|parsedcomment|minor|len|sh1|tags'
           params = {
             action: 'query',
             list: 'deletedrevs',
             drprop: prop,
-            limit: get_limited(limit)
+            drlimit: get_limited(@query_limit)
           }
           params[:drstart] = start.strftime(time_format) unless start.nil?
           params[:drend] = stop.strftime(time_format) unless stop.nil?

@@ -9,7 +9,6 @@ module MediaWiki
           # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
           # @see {MediaWiki::Query::Lists::Log#get_log}
           # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
           #   Logevents API Docs
@@ -17,9 +16,8 @@ module MediaWiki
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, new_rights, old_rights, comment, timestamp.
           def get_autopromotion_log(user = nil, title = nil, start = nil,
-                                     stop = nil, limit = 500)
-            resp = get_log('rights/autopromote', user, title, start, stop,
-                           limit)
+                                     stop = nil)
+            resp = get_log('rights/autopromote', user, title, start, stop)
 
             ret = []
             resp['query']['logevents'].each do |log|
@@ -34,16 +32,14 @@ module MediaWiki
           # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
           # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
           # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
           # @see {MediaWiki::Query::Lists::Log#get_log}
           # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
           #   Logevents API Docs
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, to, from, new_rights, old_rights, comment, timestamp.
-          def get_rights_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
-            resp = get_log('rights/rights', user, title, start, stop, limit)
+          def get_rights_log(user = nil, title = nil, start = nil, stop = nil)
+            resp = get_log('rights/rights', user, title, start, stop)
 
             ret = []
             resp['query']['logevents'].each do |log|

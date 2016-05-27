@@ -9,9 +9,6 @@ module MediaWiki
         # @param category [String] The category title. It can include
         #   "Category:", or not, it doesn't really matter because we will add it
         #   if it is missing.
-        # @param limit [Int] The maximum number of members to get. Defaults to
-        #   500, and cannot be greater than that unless the user is a bot.
-        #   If the user is a bot, the limit cannot be greater than 5000.
         # @param type [String] The type of stuff to get. There are 3 valid
         #   values: page, file, and subcat. Separate these with a pipe
         #   character, e.g., 'page|file|subcat'.
@@ -19,12 +16,12 @@ module MediaWiki
         #   Category Members API Docs
         # @since 0.1.0
         # @return [Array] All category members until the limit
-        def get_category_members(category, limit = 500, type = 'page')
+        def get_category_members(category, type = 'page')
           params = {
             action: 'query',
             list: 'categorymembers',
             cmprop: 'title',
-            cmlimit: get_limited(limit),
+            cmlimit: get_limited(@query_limit),
             cmtype: type
           }
 
@@ -42,22 +39,20 @@ module MediaWiki
 
         # Gets the subcategories of a given category.
         # @param category [String] See {#get_category_members}
-        # @param limit [Int] See {#get_category_members}
         # @see {#get_category_members}
         # @since 0.9.0
         # @return [Array<String>] All subcategories.
-        def get_subcategories(category, limit = 500)
-          get_category_members(category, limit, 'subcat')
+        def get_subcategories(category)
+          get_category_members(category, 'subcat')
         end
 
         # Gets all of the files in a given category.
         # @param category [String] See {#get_category_members}
-        # @param limit [Int] See {#get_category_members}
         # @see {#get_category_members}
         # @since 0.9.0
         # @return [Array<String>] All files in the category.
-        def get_files_in_category(category, limit = 500)
-          get_category_members(category, limit, 'file')
+        def get_files_in_category(category)
+          get_category_members(category, 'file')
         end
       end
     end

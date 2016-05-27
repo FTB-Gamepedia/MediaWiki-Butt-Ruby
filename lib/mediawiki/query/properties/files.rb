@@ -6,18 +6,17 @@ module MediaWiki
       module Files
         # Gets the duplicated files of the title.
         # @param title [String] The title to get duplicated files of.
-        # @param limit [Int] The maximum number of files to get.
         # @see https://www.mediawiki.org/wiki/API:Duplicatefiles MediaWiki
         #   Duplicate Files API Docs
         # @since 0.8.0
         # @return [Array] Array of all the duplicated file names.
         # @return [Nil] If there aren't any duplicated files.
-        def get_duplicated_files_of(title, limit = 500)
+        def get_duplicated_files_of(title)
           params = {
             action: 'query',
             prop: 'duplicatefiles',
             titles: title,
-            dflimit: get_limited(limit)
+            dflimit: get_limited(@query_limit)
           }
 
           response = post(params)
@@ -32,17 +31,16 @@ module MediaWiki
         end
 
         # Gets all duplicated files on the wiki.
-        # @param limit [Int] The maximum number of files to get.
         # @see https://www.mediawiki.org/wiki/API:Duplicatefiles MediaWiki
         #   Duplicate Files API Docs
         # @since 0.8.0
         # @return [Array] All duplicate file titles on the wiki.
-        def get_all_duplicated_files(limit = 500)
+        def get_all_duplicated_files
           params = {
             action: 'query',
             generator: 'allimages',
             prop: 'duplicatefiles',
-            dflimit: get_limited(limit)
+            dflimit: get_limited(@query_limit)
           }
 
           response = post(params)
