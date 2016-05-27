@@ -6,28 +6,24 @@ module MediaWiki
       module Contributors
         # Gets the total amount of contributors for the given page.
         # @param title [String] The page title.
-        # @param limit [Int] The maximum number of users to get. Defaults to 500
-        #   and cannot be greater than that unless the user is a bot. If the
-        #   user is a bot, the limit cannot be greater than 5000.
         # @see get_anonymous_contributors_count
         # @see get_logged_in_contributors
         # @since 0.8.0
         # @return [Int] The number of contributors to that page.
-        def get_total_contributors(title, limit = 500)
-          anon_users = get_anonymous_contributors_count(title, limit)
-          users = get_logged_in_contributors(title, limit)
+        def get_total_contributors(title)
+          anon_users = get_anonymous_contributors_count(title)
+          users = get_logged_in_contributors(title)
 
           users.size + anon_users
         end
 
         # Gets the non-anonymous contributors for the given page.
         # @param title [String] See #get_total_contributors
-        # @param limit [Int] See #get_total_contributors
         # @see get_contributors_response
         # @since 0.8.0
         # @return [Array] All usernames for the contributors.
-        def get_logged_in_contributors(title, limit = 500)
-          response = get_contributors_response(title, limit)
+        def get_logged_in_contributors(title)
+          response = get_contributors_response(title)
           pageid = nil
           response['query']['pages'].each { |r, _| pageid = r }
           ret = []
@@ -46,17 +42,16 @@ module MediaWiki
 
         # Gets the parsed response for the contributors property.
         # @param title [String] See #get_total_contributors
-        # @param limit [Int] See #get_total_contributors
         # @see https://www.mediawiki.org/wiki/API:Contributors MediaWiki
         #   Contributors Property API Docs
         # @since 0.8.0
         # @return [JSON] See #post
-        def get_contributors_response(title, limit = 500)
+        def get_contributors_response(title)
           params = {
             action: 'query',
             prop: 'contributors',
             titles: title,
-            pclimit: get_limited(limit)
+            pclimit: get_limited(@query_limit)
           }
 
           post(params)
@@ -64,12 +59,11 @@ module MediaWiki
 
         # Gets the total number of anonymous contributors for the given page.
         # @param title [String] See #get_total_contributors
-        # @param limit [Int] See #get_total_contributors
         # @see get_contributors_response
         # @since 0.8.0
         # @return [Int] The number of anonymous contributors for the page.
-        def get_anonymous_contributors_count(title, limit = 500)
-          response = get_contributors_response(title, limit)
+        def get_anonymous_contributors_count(title)
+          response = get_contributors_response(title)
           pageid = nil
           response['query']['pages'].each { |r, _| pageid = r }
           return nil if response['query']['pages'][pageid]['missing'] == ''

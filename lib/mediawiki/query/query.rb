@@ -18,18 +18,11 @@ module MediaWiki
     # @since 0.8.0
     # @return [Int] The capped number.
     def get_limited(integer, max_user = 500, max_bot = 5000)
-      if integer > max_user
-        if user_bot?
-          if integer > max_bot
-            return max_bot
-          else
-            return integer
-          end
-        else
-          return max_user
-        end
+      return integer if integer < max_user
+      if user_bot?
+        integer > max_bot ? max_bot : integer
       else
-        return integer
+        max_user
       end
     end
   end

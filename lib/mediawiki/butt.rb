@@ -19,13 +19,21 @@ module MediaWiki
     include MediaWiki::Edit
     include MediaWiki::Administration
 
+    # @return [Integer] The limit to give MW for queries. Defaults to 500. See MediaWiki documentation for details.
+    # Query limits are automatically capped in every helper query method, typically to 500 for users, or 5000 for
+    # bots. However, some APIs have different rate limits than that. If you need to have a specific rate limit for
+    # some API, you will need to set it before calling the query `BUTT.query_limit = 100; BUTT.some_query_method`.
+    attr_accessor :query_limit
+
     # Creates a new instance of MediaWiki::Butt.
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
     # your wiki configuration.
     # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
+    # @option opts [Integer] :query_limit The MW query limit. See query_limit attribute.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
+      @query_limit = opts[:query_limit] || 500
       @client = HTTPClient.new
       @uri = URI.parse(@url)
       @logged_in = false
