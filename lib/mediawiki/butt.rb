@@ -50,12 +50,19 @@ module MediaWiki
       header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
       header['User-Agent'] = @custom_agent if defined? @custom_agent
 
-      res = @client.post(@uri, params, header)
-
-      if autoparse
-        return JSON.parse(res.body)
-      else
-        return res
+      @retauto = {}
+      @retstr = ''
+      @lastContinue = {"continue": ""}
+      while true:
+        @par = params.clone
+        par[:continue] = lastContinue
+        res = @client.post(@uri, par, header)
+        retauto.merge(JSON.parse(res.body))
+        retstr << res
+        if res.include? 'continue':
+          break
+        lastContinue = res.continue
+      return if autoparse then retauto else res
       end
     end
 
