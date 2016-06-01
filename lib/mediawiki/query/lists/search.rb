@@ -58,8 +58,8 @@ module MediaWiki
 
         # Searches the wiki by a prefix.
         # @param prefix [String] The prefix.
-        # @param limit [Int] The maximum number of results to get, maximum of
-        #   100 for users and 200 for bots.
+        # @param limit [Int] The maximum number of results to get, maximum of 100 for users and 200 for bots. This is
+        # one of the methods that does *not* use the query_limit_default attribute.
         # @see https://www.mediawiki.org/wiki/API:Prefixsearch MediaWiki
         #   Prefixsearch API Docs
         # @since 0.10.0
@@ -69,7 +69,7 @@ module MediaWiki
             action: 'query',
             list: 'prefixsearch',
             pssearch: prefix,
-            limit: get_limited(limit, 100, 200)
+            pslimit: get_limited(limit, 100, 200)
           }
 
           response = post(params)

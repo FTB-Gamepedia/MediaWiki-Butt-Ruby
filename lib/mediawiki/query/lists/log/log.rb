@@ -39,8 +39,7 @@ module MediaWiki
         #   API Docs
         # @since 0.10.0
         # @return [Array<Hash>] All the log events.
-        def get_overall_log(user = nil, title = nil, start = nil, stop = nil,
-                            limit = 500)
+        def get_overall_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
           time_format = MediaWiki::Constants::TIME_FORMAT
           params = {
             action: 'query',
@@ -146,8 +145,7 @@ module MediaWiki
         #   API Docs
         # @since 0.10.0
         # @return [JSON] The response json.
-        def get_log(action, user = nil, title = nil, start = nil, stop = nil,
-                    limit = 500)
+        def get_log(action, user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'logevents',

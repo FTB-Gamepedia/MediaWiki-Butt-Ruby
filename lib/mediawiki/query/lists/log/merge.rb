@@ -15,8 +15,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, destination_title, mergepoint, timestamp.
-          def get_merge_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
+          def get_merge_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('merge/merge', user, title, start, stop, limit)
 
             ret = []

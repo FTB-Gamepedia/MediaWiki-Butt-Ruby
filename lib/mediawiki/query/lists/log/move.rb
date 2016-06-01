@@ -15,8 +15,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
-          def get_move_log(user = nil, title = nil, start = nil, stop = nil,
-                           limit = 500)
+          def get_move_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('move/move', user, title, start, stop, limit)
 
             ret = []
@@ -39,8 +38,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
-          def get_move_redirect_log(user = nil, title = nil, start = nil,
-                                    stop = nil, limit = 500)
+          def get_move_redirect_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('move/move_redir', user, title, start, stop, limit)
 
             ret = []

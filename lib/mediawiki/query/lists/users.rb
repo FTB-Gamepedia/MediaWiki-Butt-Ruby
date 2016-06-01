@@ -160,7 +160,7 @@ module MediaWiki
         # @return [Hash] Each contribution by its revid, containing the title,
         #   summary, total contribution size, and the size change relative to the
         #   previous edit.
-        def get_user_contributions(user, limit = 500)
+        def get_user_contributions(user, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'usercontribs',
@@ -192,11 +192,12 @@ module MediaWiki
         #   API Docs
         # @since 0.8.0
         # @return [Array] All the watchlist page titles.
-        def get_full_watchlist(user = nil, limit = 500)
+        def get_full_watchlist(user = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'watchlist',
-            wlprop: 'title'
+            wlprop: 'title',
+            wllimit: get_limited(limit)
           }
           params[:wluser] = user unless user.nil?
 

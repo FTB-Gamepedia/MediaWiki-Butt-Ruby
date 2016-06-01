@@ -12,7 +12,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Array] Array of all the duplicated file names.
         # @return [Nil] If there aren't any duplicated files.
-        def get_duplicated_files_of(title, limit = 500)
+        def get_duplicated_files_of(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'duplicatefiles',
@@ -37,7 +37,7 @@ module MediaWiki
         #   Duplicate Files API Docs
         # @since 0.8.0
         # @return [Array] All duplicate file titles on the wiki.
-        def get_all_duplicated_files(limit = 500)
+        def get_all_duplicated_files(limit = @query_limit_default)
           params = {
             action: 'query',
             generator: 'allimages',
