@@ -16,8 +16,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, new_rights, old_rights, comment, timestamp.
-          def get_autopromotion_log(user = nil, title = nil, start = nil,
-                                     stop = nil, limit = 500)
+          def get_autopromotion_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('rights/autopromote', user, title, start, stop,
                            limit)
 
@@ -41,8 +40,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, to, from, new_rights, old_rights, comment, timestamp.
-          def get_rights_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
+          def get_rights_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('rights/rights', user, title, start, stop, limit)
 
             ret = []

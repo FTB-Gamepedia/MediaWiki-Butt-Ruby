@@ -16,8 +16,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, sha, comment, timestamp.
-          def get_upload_overwrite_log(user = nil, title = nil, start = nil,
-                                       stop = nil, limit = 500)
+          def get_upload_overwrite_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('upload/overwrite', user, title, start, stop, limit)
 
             ret = []
@@ -40,8 +39,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, sha, comment, timestamp.
-          def get_upload_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
+          def get_upload_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('upload/upload', user, title, start, stop, limit)
 
             ret = []

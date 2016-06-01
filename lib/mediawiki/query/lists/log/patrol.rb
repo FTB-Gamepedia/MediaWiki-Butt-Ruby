@@ -16,8 +16,7 @@ module MediaWiki
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, current_revision, previous_revision,
           #   timestamp.
-          def get_patrol_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
+          def get_patrol_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('patrol/patrol', user, title, start, stop, limit)
 
             ret = []

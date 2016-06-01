@@ -17,8 +17,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, flags, duration, expiry, blocker, comment, timestamp.
-          def get_block_log(user = nil, title = nil, start = nil, stop = nil,
-                            limit = 500)
+          def get_block_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('block/block', user, title, start, stop, limit)
 
             ret = []
@@ -41,8 +40,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, flags, duration, expiry, blocker, comment, timestamp.
-          def get_reblock_log(user = nil, title = nil, start = nil, stop = nil,
-                               limit = 500)
+          def get_reblock_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('block/reblock', user, title, start, stop, limit)
 
             ret = []
@@ -65,8 +63,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   blocked, blocker, comment, timestamp.
-          def get_unblock_log(user = nil, title = nil, start = nil, stop = nil,
-                               limit = 500)
+          def get_unblock_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('block/unblock', user, title, start, stop, limit)
 
             ret = []

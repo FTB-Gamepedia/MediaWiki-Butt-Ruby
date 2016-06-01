@@ -19,13 +19,19 @@ module MediaWiki
     include MediaWiki::Edit
     include MediaWiki::Administration
 
+    attr_accessor :query_limit_default
+
     # Creates a new instance of MediaWiki::Butt.
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
     # your wiki configuration.
     # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
+    # @option opts [Fixnum] :query_limit_default The query limit to use if no limit parameter is explicitly given to
+    # the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
+    # use that, otherwise, it will use this. Defaults to 500.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
+      @query_limit_default = opts[:query_limit_default] || 500
       @client = HTTPClient.new
       @uri = URI.parse(@url)
       @logged_in = false

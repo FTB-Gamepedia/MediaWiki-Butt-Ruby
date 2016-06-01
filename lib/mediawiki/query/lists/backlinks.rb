@@ -5,14 +5,13 @@ module MediaWiki
         # Gets an array of backlinks to a given title, like
         #   Special:WhatLinksHere.
         # @param title [String] The page to get the backlinks of.
-        # @param limit [Int] The maximum number of pages to get. Defaults to
-        #   500, and cannot be greater than that unless the user is a bot. If
-        #   the user is a bot, the limit cannot be greater than 5000.
+        # @param limit [Int] The maximum number of pages to get. Defaults to query_limit_default attribute. Cannot be
+        # greater than 500 for users or 5000 for bots.
         # @see https://www.mediawiki.org/wiki/API:Backlinks MediaWiki Backlinks
         #   API Docs
         # @since 0.1.0
         # @return [Array<String>] All backlinks until the limit
-        def what_links_here(title, limit = 500)
+        def what_links_here(title, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'backlinks',
@@ -35,7 +34,7 @@ module MediaWiki
         #   Iwbacklinks API Docs
         # @since 0.10.0
         # @return [Array<String>] All interwiki backlinking page titles.
-        def get_interwiki_backlinks(prefix = nil, title = nil, limit = 500)
+        def get_interwiki_backlinks(prefix = nil, title = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'iwbacklinks',
@@ -59,7 +58,7 @@ module MediaWiki
         #   API Docs
         # @since 0.10.0
         # @return [Array<String>] All pages that link to the language links.
-        def get_language_backlinks(language = nil, title = nil, limit = 500)
+        def get_language_backlinks(language = nil, title = nil, limit = @query_limit_default)
           language.downcase! if language.match(/[^A-Z]*/)[0].size == 0
           params = {
             action: 'query',
@@ -88,8 +87,7 @@ module MediaWiki
         #   Imageusage API Docs
         # @since 0.10.0
         # @return [Array<String>] All page titles that fit the requirements.
-        def get_image_backlinks(title, list_redirects = nil, thru_redir = false,
-                                limit = 500)
+        def get_image_backlinks(title, list_redirects = nil, thru_redir = false, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'imageusage',
@@ -115,7 +113,7 @@ module MediaWiki
         # @since 0.10.0
         # @return [Array<String>] All pages that link to the given URL.
         # @return [Array<Hash>] All pages that link to any external links.
-        def get_url_backlinks(url = nil, limit = 500)
+        def get_url_backlinks(url = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'exturlusage',

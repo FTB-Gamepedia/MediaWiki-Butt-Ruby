@@ -94,7 +94,7 @@ module MediaWiki
         #   API Docs
         # @since 0.8.0
         # @return [Array] All external link URLs.
-        def get_external_links(page, limit = 500)
+        def get_external_links(page, limit = @query_limit_default)
           params = {
             action: 'query',
             titles: page,
@@ -330,7 +330,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Array] All of the image titles in the page.
         # @return [Nil] If the page does not exist.
-        def get_images_in_page(page, limit = 500)
+        def get_images_in_page(page, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'images',
@@ -361,7 +361,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Array] All of the templte titles in the page.
         # @return [Nil] If the page does not exist.
-        def get_templates_in_page(page, limit = 500)
+        def get_templates_in_page(page, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'templates',
@@ -392,7 +392,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Array] All interwiki link titles.
         # @return [Nil] If the page does not exist.
-        def get_interwiki_links_in_page(page, limit = 500)
+        def get_interwiki_links_in_page(page, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'iwlinks',
@@ -425,7 +425,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Hash] The data described previously.
         # @return [Nil] If the page does not exist.
-        def get_other_langs_of_page(page, limit = 500)
+        def get_other_langs_of_page(page, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'langlinks',
@@ -461,7 +461,7 @@ module MediaWiki
         # @since 0.8.0
         # @return [Array] All link titles.
         # @return [Nil] If the page does not exist.
-        def get_all_links_in_page(page, limit = 500)
+        def get_all_links_in_page(page, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'links',

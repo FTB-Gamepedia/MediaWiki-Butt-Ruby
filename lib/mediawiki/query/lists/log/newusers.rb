@@ -15,8 +15,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   new_user, user, comment, timestamp.
-          def get_autocreate_users_log(user = nil, title = nil, start = nil,
-                                       stop = nil, limit = 500)
+          def get_autocreate_users_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('newusers/autocreate', user, title, start, stop,
                                limit)
 
@@ -40,8 +39,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, new_user, user, comment, timestamp.
-          def get_user_create2_log(user = nil, title = nil, start = nil,
-                                   stop = nil, limit = 500)
+          def get_user_create2_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('newusers/create2', user, title, start, stop, limit)
 
             ret = []
@@ -64,8 +62,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
-          def get_user_create_log(user = nil, title = nil, start = nil,
-                                  stop = nil, limit = 500)
+          def get_user_create_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('newusers/create', user, title, start, stop, limit)
 
             ret = []

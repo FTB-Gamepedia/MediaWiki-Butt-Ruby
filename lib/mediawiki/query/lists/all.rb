@@ -3,14 +3,13 @@ module MediaWiki
     module Lists
       module All
         # Gets all categories on the entire wiki.
-        # @param limit [Int] The maximum number of categories to get. Defaults
-        #   to 500. Cannot be greater than 500 for normal users, or 5000 for
-        #   bots.
+        # @param limit [Int] The maximum number of categories to get. Defaults to query_limit_default instance value.
+        # Cannot be greater than 500 for users or 5000 for bots.
         # @see https://www.mediawiki.org/wiki/API:Allcategories MediaWiki
         #   Allcategories API Docs
         # @since 0.7.0
         # @return [Array] An array of all categories.
-        def get_all_categories(limit = 500)
+        def get_all_categories(limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'allcategories',
@@ -26,13 +25,12 @@ module MediaWiki
         end
 
         # Gets all the images on the wiki.
-        # @param limit [Int] The maximum number of images to get. Defaults to
-        #   500. Cannot be greater than 500 for normal users, or 5000 for bots.
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Allimages MediaWiki Allimages
         #   API Docs
         # @since 0.7.0
         # @return [Array] An array of all images.
-        def get_all_images(limit = 500)
+        def get_all_images(limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'allimages',
@@ -49,12 +47,12 @@ module MediaWiki
 
         # Gets all pages within a namespace integer.
         # @param namespace [Int] The namespace ID.
-        # @param limit [Int] See #get_all_images
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Allpages MediaWiki Allpages
         #   API Docs
         # @since 0.8.0
         # @return [Array] An array of all page titles.
-        def get_all_pages_in_namespace(namespace, limit = 500)
+        def get_all_pages_in_namespace(namespace, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'allpages',
@@ -72,12 +70,12 @@ module MediaWiki
 
         # Gets all users, or all users in a group.
         # @param group [String] The group to limit this query to.
-        # @param limit [Int] See #get_all_images.
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Allusers MediaWiki Allusers
         #   API Docs
         # @since 0.8.0
         # @return [Hash] A hash of all users, names are keys, IDs are values.
-        def get_all_users(group = nil, limit = 500)
+        def get_all_users(group = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'allusers',
@@ -95,11 +93,11 @@ module MediaWiki
 
         # Gets all block IDs on the wiki. It seems like this only gets non-IP
         #   blocks, but the MediaWiki docs are a bit unclear.
-        # @param limit [Int] See #get_all_images.
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Blocks MediaWiki Blocks API Docs
         # @since 0.8.0
         # @return [Array] All block IDs as strings.
-        def get_all_blocks(limit = 500)
+        def get_all_blocks(limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'blocks',
@@ -117,12 +115,12 @@ module MediaWiki
 
         # Gets all page titles that transclude a given page.
         # @param page [String] The page name.
-        # @param limit [Int] See #get_all_images.
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Embeddedin MediaWiki Embeddedin
         #   API Docs
         # @since 0.8.0
         # @return [Array] All transcluder page titles.
-        def get_all_transcluders(page, limit = 500)
+        def get_all_transcluders(page, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'embeddedin',
@@ -139,13 +137,13 @@ module MediaWiki
         end
 
         # Gets an array of all deleted or archived files on the wiki.
-        # @param limit [Int] See #get_all_images
+        # @param limit [Int] See #get_all_categories
         # @see https://www.mediawiki.org/wiki/API:Filearchive MediaWiki
         #   Filearchive API Docs
         # @since 0.8.0
         # @return [Array] All deleted file names. These are not titles, so they do
         #   not include "File:".
-        def get_all_deleted_files(limit = 500)
+        def get_all_deleted_files(limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'filearchive',
@@ -162,12 +160,12 @@ module MediaWiki
 
         # Gets a list of all protected pages, by protection level if provided.
         # @param protection_level [String] The protection level, e.g., sysop
-        # @param limit [Int] See #get_all_images.
+        # @param limit [Int] See #get_all_categories.
         # @see https://www.mediawiki.org/wiki/API:Protectedtitles MediaWiki
         #   Protectedtitles API Docs
         # @since 0.8.0
         # @return [Array] All protected page titles.
-        def get_all_protected_titles(protection_level = nil, limit = 500)
+        def get_all_protected_titles(protection_level = nil, limit = @query_limit_default)
           params = {
             action: 'query',
             list: 'protectedtitles',

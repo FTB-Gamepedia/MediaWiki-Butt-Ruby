@@ -17,8 +17,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
-          def get_delete_log(user = nil, title = nil, start = nil, stop = nil,
-                             limit = 500)
+          def get_delete_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('delete/delete', user, title, start, stop, limit)
 
             ret = []
@@ -41,8 +40,7 @@ module MediaWiki
           # @since 0.10.0
           # @return [Array<Hash>] The events, containing the following keys: id,
           #   title, user, comment, timestamp.
-          def get_deletion_restore_log(user = nil, title = nil, start = nil,
-                                       stop = nil, limit = 500)
+          def get_deletion_restore_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('delete/restore', user, title, start, stop, limit)
 
             ret = []
