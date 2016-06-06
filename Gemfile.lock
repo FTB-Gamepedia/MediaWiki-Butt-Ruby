@@ -1,17 +1,23 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    github-markup (1.4.0)
     httpclient (2.8.0)
     minitest (5.8.4)
     rake (11.1.2)
+    redcarpet (3.3.4)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  github-markup (~> 1.4)
   httpclient (~> 2.8)
   minitest (~> 5.8)
   rake (~> 11.1)
+  redcarpet (~> 3.3)
+  yard (~> 0.8)
 
 BUNDLED WITH
    1.11.2
