@@ -37,7 +37,6 @@ module MediaWiki
         # @since 0.10.0
         # @return [Array<Hash>] All the log events.
         def get_overall_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
-          time_format = MediaWiki::Constants::TIME_FORMAT
           params = {
             action: 'query',
             list: 'logevents',
@@ -45,8 +44,8 @@ module MediaWiki
           }
           params[:leuser] = user unless user.nil?
           params[:letitle] = title unless title.nil?
-          params[:lestart] = start.strftime(time_format) unless start.nil?
-          params[:leend] = stop.strftime(time_format) unless stop.nil?
+          params[:lestart] = start.xmlschema unless start.nil?
+          params[:leend] = stop.xmlschema unless stop.nil?
           response = post(params)
 
           ret = []
@@ -146,8 +145,8 @@ module MediaWiki
           }
           params[:leuser] = user unless user.nil?
           params[:letitle] = title unless title.nil?
-          params[:lestart] = start.strftime(MediaWiki::Constants::TIME_FORMAT) unless start.nil?
-          params[:leend] = stop.strftime(MediaWiki::Constants::TIME_FORMAT) unless stop.nil?
+          params[:lestart] = start.xmlschema unless start.nil?
+          params[:leend] = stop.xmlschema unless stop.nil?
           post(params)
         end
 
@@ -157,12 +156,10 @@ module MediaWiki
             blocked: log['title'],
             flags: log['block']['flags'],
             duration: log['block']['duration'],
-            expiry: DateTime.strptime(log['block']['expiry'],
-                                      MediaWiki::Constants::TIME_FORMAT),
+            expiry: DateTime.xmlschema(log['block']['expiry']),
             blocker: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -171,8 +168,7 @@ module MediaWiki
             id: log['logid'],
             blocked: log['title'],
             blocker: log['user'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT),
+            timestamp: DateTime.xmlschema(log['timestamp']),
             comment: log['comment']
           }
         end
@@ -183,8 +179,7 @@ module MediaWiki
             title: log['title'],
             user: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT),
+            timestamp: DateTime.xmlschema(log['timestamp']),
             count: log['params']['count'],
             interwiki_title: log['params']['interwiki_title']
           }
@@ -195,8 +190,7 @@ module MediaWiki
             id: log['logid'],
             title: log['title'],
             user: log['user'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT),
+            timestamp: DateTime.xmlschema(log['timestamp']),
             comment: log['comment']
           }
         end
@@ -208,18 +202,15 @@ module MediaWiki
             user: log['user'],
             comment: log['comment'],
             destination_title: log['params']['dest_title'],
-            mergepoint: DateTime.strptime(log['params']['mergepoint'],
-                                          MediaWiki::Constants::TIME_FORMAT),
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            mergepoint: DateTime.xmlschema(log['params']['mergepoint']),
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
         def get_move(log)
           hash = {
             id: log['logid'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
 
           if log.key?('actionhidden')
@@ -245,8 +236,7 @@ module MediaWiki
             new_user: log['title'],
             user: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -258,8 +248,7 @@ module MediaWiki
             comment: log['comment'],
             current_revision: log['patrol']['cur'],
             previous_revision: log['patrol']['prev'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
           auto = log['patrol']['auto']
           hash[:automatic] = auto == 1
@@ -268,14 +257,13 @@ module MediaWiki
         end
 
         def get_protect(log)
-          time_format = MediaWiki::Constants::TIME_FORMAT
           hash = {
             id: log['logid'],
             title: log['title'],
             description: log['params']['description'],
             user: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'], time_format)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
 
           hash[:details] = []
@@ -287,9 +275,9 @@ module MediaWiki
             }
             expire = detail['expiry']
             if expire != 'infinite'
-              details_hash[:expiry] = DateTime.strptime(expire, time_format)
+              details_hash[:expiry] = DateTime.xmlschema(expire)
             end
-            hash[:details] << detail_hash
+            hash[:details] << details_hash
           end
 
           hash
@@ -302,8 +290,7 @@ module MediaWiki
             old_title: log['params']['oldtitle_title'],
             user: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -313,8 +300,7 @@ module MediaWiki
             title: log['title'],
             user: log['user'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -326,8 +312,7 @@ module MediaWiki
             new_rights: log['rights']['new'].split(', '),
             old_rights: log['rights']['old'].split(', '),
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -340,8 +325,7 @@ module MediaWiki
             new_rights: log['rights']['new'].split(', '),
             old_rights: log['rights']['old'].split(', '),
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
 
@@ -352,8 +336,7 @@ module MediaWiki
             user: log['user'],
             sha: log['img_sha1'],
             comment: log['comment'],
-            timestamp: DateTime.strptime(log['timestamp'],
-                                         MediaWiki::Constants::TIME_FORMAT)
+            timestamp: DateTime.xmlschema(log['timestamp'])
           }
         end
       end
