@@ -4,17 +4,11 @@ module MediaWiki
       module Log
         module Protect
           # Gets protect/modify logs.
-          # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
-          # @see {MediaWiki::Query::Lists::Log#get_log}
-          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
-          #   Logevents API Docs
+          # @param (see MediaWiki::Query::Lists::Log::Block#get_block_log)
+          # @see (see MediaWiki::Query::Lists::Log::Block#get_block_log)
           # @since 0.10.0
-          # @return [Array<Hash>] The events, containing the following keys: id,
-          #   title, description, user, comment, timestamp, details.
+          # @return [Array<Hash>] The events, containing the following keys: id, title, description, user, comment,
+          #   timestamp, details.
           def get_modify_protection_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             response = get_log('protect/modify', user, title, start, stop,
                                limit)
@@ -28,17 +22,11 @@ module MediaWiki
           end
 
           # Gets protect/move_prot logs.
-          # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
-          # @see {MediaWiki::Query::Lists::Log#get_log}
-          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
-          #   Logevents API Docs
+          # @param (see MediaWiki::Query::Lists::Log::Block#get_block_log)
+          # @see (see MediaWiki::Query::Lists::Log::Block#get_block_log)
           # @since 0.10.0
-          # @return [Array<Hash>] The events, containing the following keys: id,
-          #   title, old_title, user, comment, timestamp.
+          # @return [Array<Hash>] The events, containing the following keys: id, title, old_title, user, comment,
+          #   timestamp.
           def get_move_protected_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('protect/move_prot', user, title, start, stop, limit)
 
@@ -51,20 +39,13 @@ module MediaWiki
           end
 
           # Gets protect/protect logs.
-          # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
-          # @see {MediaWiki::Query::Lists::Log#get_log}
-          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
-          #   Logevents API Docs
+          # @param (see MediaWiki::Query::Lists::Log::Block#get_block_log)
+          # @see (see MediaWiki::Query::Lists::Log::Block#get_block_log)
           # @since 0.10.0
-          # @return [Array<Hash>] The events, containing the following keys: id,
-          #   title, description, user, comment, timestamp, details.
+          # @return [Array<Hash>] The events, containing the following keys: id, title, description, user, comment,
+          #   timestamp, details.
           def get_protect_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
-            response = get_log('protect/protect', user, title, start, stop,
-                               limit)
+            response = get_log('protect/protect', user, title, start, stop, limit)
 
             ret = []
             response['query']['logevents'].each do |log|
@@ -75,17 +56,10 @@ module MediaWiki
           end
 
           # Gets protect/unprotect logs.
-          # @param user [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param title [String] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param start [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param stop [DateTime] See {MediaWiki::Query::Lists::Log#get_log}
-          # @param limit [Int] See {MediaWiki::Query::Lists::Log#get_log}
-          # @see {MediaWiki::Query::Lists::Log#get_log}
-          # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki
-          #   Logevents API Docs
+          # @param (see MediaWiki::Query::Lists::Log::Block#get_block_log)
+          # @see (see MediaWiki::Query::Lists::Log::Block#get_block_log)
           # @since 0.10.0
-          # @return [Array<Hash>] The events, containing the following keys: id,
-          #   title, user, comment, timestamp.
+          # @return [Array<Hash>] The events, containing the following keys: id, title, user, comment, timestamp.
           def get_unprotect_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
             resp = get_log('protect/unprotect', user, title, start, stop, limit)
 

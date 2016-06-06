@@ -6,10 +6,9 @@ module MediaWiki
       module Pages
         # Gets all categories in the page.
         # @param title [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Property/Categories
-        #   MediaWiki Categories Property API Docs
+        # @see https://www.mediawiki.org/wiki/API:Property/Categories MediaWiki Categories Property API Docs
         # @since 0.8.0
-        # @return [Array] All the categories
+        # @return [Array<String>] All the categories
         # @return [Nil] If the title does not exist.
         def get_categories_in_page(title)
           params = {
@@ -33,13 +32,12 @@ module MediaWiki
           ret
         end
 
-        # Gets the wiki text for the given page. Returns nil if it for some
-        #   reason cannot get the text, for example, if the page does not exist.
-        # @param title [String] The page title
-        # @see https://www.mediawiki.org/wiki/API:Revisions MediaWiki Revisions
-        #   API Docs
+        # Gets the wiki text for the given page. Returns nil if it for some reason cannot get the text, for example,
+        # if the page does not exist.
+        # @param (see #get_categories_in_page)
+        # @see https://www.mediawiki.org/wiki/API:Revisions MediaWiki Revisions API Docs
         # @since 0.8.0
-        # @return [String/nil] String containing page contents.
+        # @return [String] String containing page contents.
         # @return [Nil] If the page does not exist.
         def get_text(title)
           params = {
@@ -53,19 +51,16 @@ module MediaWiki
           revid = nil
           response['query']['pages'].each { |r, _| revid = r }
 
-          if response['query']['pages'][revid]['missing'] == ''
-            return nil
-          else
-            return response['query']['pages'][revid]['revisions'][0]['*']
-          end
+          revision = response['query']['pages'][revid]
+
+          revision['missing'] == '' ? nil : revision['revisions'][0]['*']
         end
 
         # Gets the revision ID for the given page.
-        # @param title [String] The page title
-        # @see https://www.mediawiki.org/wiki/API:Revisions MediaWiki Revisions
-        #   API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #get_text)
         # @since 0.8.0
-        # @return [Int/nil] The page's ID
+        # @return [Fixnum] The page's ID
         # @return [Nil] If the page does not exist.
         def get_id(title)
           params = {
@@ -86,18 +81,16 @@ module MediaWiki
         end
 
         # Gets all the external links on a given page.
-        # @param page [String] The page title.
-        # @param limit [Int] The maximum number of members to get. Defaults to
-        #   500, and cannot be greater than that unless the user is a bot.
-        #   If the user is a bot, the limit cannot be greater than 5000.
-        # @see https://www.mediawiki.org/wiki/API:Extlinks MediaWiki Extlinks
-        #   API Docs
+        # @param (see #get_categories_in_page)
+        # @param limit [Fixnum] The maximum number of members to get. Defaults to 500, and cannot be greater than
+        #   that unless the user is a bot. If the user is a bot, the limit cannot be greater than 5000.
+        # @see https://www.mediawiki.org/wiki/API:Extlinks MediaWiki Extlinks API Docs
         # @since 0.8.0
-        # @return [Array] All external link URLs.
-        def get_external_links(page, limit = @query_limit_default)
+        # @return [Array<String>] All external link URLs.
+        def get_external_links(title, limit = @query_limit_default)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'extlinks',
             ellimit: get_limited(limit)
           }
@@ -107,7 +100,7 @@ module MediaWiki
           response['query']['pages'].each do |revid, _|
             if revid != '-1'
               response['query']['pages'][revid]['extlinks'].each do |l|
-                ret.push(l['*'])
+                ret << l['*']
               end
             else
               return nil
@@ -118,17 +111,17 @@ module MediaWiki
         end
 
         # Gets whether the current user watches the page.
-        # @param page [String] The page title.
+        # @param (see #get_categories_in_page)
         # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
         # @since 0.8.0
         # @return [Boolean] Whether the user watches the page.
         # @return [Boolean] False if the user is not logged in.
         # @return [Nil] If the page does not exist.
-        def do_i_watch?(page)
+        def do_i_watch?(title)
           if @logged_in
             params = {
               action: 'query',
-              titles: page,
+              titles: title,
               prop: 'info',
               inprop: 'watched'
             }
@@ -142,20 +135,20 @@ module MediaWiki
               end
             end
           else
-            return false
+            false
           end
         end
 
         # Gets whether the current user (can be anonymous) can read the page.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [Boolean] Whether the user can read the page.
         # @return [Nil] If the page does not exist.
-        def can_i_read?(page)
+        def can_i_read?(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info',
             inprop: 'readable'
           }
@@ -171,15 +164,15 @@ module MediaWiki
         end
 
         # Gets whether the given page is a redirect.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [Boolean] Whether the page is a redirect.
         # @return [Nil] If the page does not exist.
-        def page_redirect?(page)
+        def page_redirect?(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info'
           }
 
@@ -194,15 +187,15 @@ module MediaWiki
         end
 
         # Gets whether the given page only has one edit.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [Boolean] Whether the page only has one edit.
         # @return [Nil] If the page does not exist.
-        def page_new?(page)
+        def page_new?(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info'
           }
 
@@ -217,15 +210,15 @@ module MediaWiki
         end
 
         # Gets the number of users that watch the given page.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categoeries_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [Fixnum] The number of watchers.
         # @return [Nil] If the page does not exist.
-        def get_number_of_watchers(page)
+        def get_number_of_watchers(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info',
             inprop: 'watchers'
           }
@@ -240,18 +233,17 @@ module MediaWiki
           end
         end
 
-        # Gets the way the title is actually displayed, after any in-page
-        #   changes to its display, e.g., using a template to make the first
-        #   letter lowercase, in cases like iPhone.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # Gets the way the title is actually displayed, after any in-page changes to its display, e.g., using a
+        # template to make the first letter lowercase, in cases like iPhone.
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [String] The page's display title.
         # @return [Nil] If the page does not exist.
-        def get_display_title(page)
+        def get_display_title(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info',
             inprop: 'displaytitle'
           }
@@ -267,20 +259,18 @@ module MediaWiki
         end
 
         # Gets the levels of protection on the page.
-        # @param page [String] The page title.
-        # @return [Array] Hashes of all the protection levels. Each has includes
-        #   a 'type', a 'level', and an 'expiry'. Type refers to the type of
-        #   change protected against, like 'edit'. Level refers to the usergroup
-        #   that is needed to perform that type of edit, like 'sysop'. Expiry
-        #   refers to when the protection will expire, if never, it will be
-        #   'infinity'.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
+        # @return [Array<Hash<Symbol, String>>] Hashes of all the protection levels. Each has includes a 'type', a
+        #   'level', and an 'expiry'. Type refers to the type of change protected against, like 'edit'. Level refers to
+        #   the usergroup that is needed to perform that type of edit, like 'sysop'. Expiry refers to when the
+        #   protection will expire, if never, it will be 'infinity.
         # @return [Nil] If the page does not exist.
-        def get_protection_levels(page)
+        def get_protection_levels(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info',
             inprop: 'protection'
           }
@@ -300,15 +290,15 @@ module MediaWiki
         end
 
         # Gets the size, in bytes, of the page.
-        # @param page [String] The page title.
-        # @see https://www.mediawiki.org/wiki/API:Info MediaWiki Info API Docs
+        # @param (see #get_categories_in_page)
+        # @see (see #do_i_watch?)
         # @since 0.8.0
         # @return [Fixnum] The number of bytes.
         # @return [Nil] If the page does not exist.
-        def get_page_size(page)
+        def get_page_size(title)
           params = {
             action: 'query',
-            titles: page,
+            titles: title,
             prop: 'info'
           }
 
@@ -323,18 +313,16 @@ module MediaWiki
         end
 
         # Gets all of the images in the given page.
-        # @param page [String] The page title.
-        # @param limit [Fixnum] See #get_external_links
-        # @see https://www.mediawiki.org/wiki/API:Images MediaWiki Images API
-        #   Docs
+        # @param (see #get_external_links)
+        # @see https://www.mediawiki.org/wiki/API:Images MediaWiki Images API Docs
         # @since 0.8.0
-        # @return [Array] All of the image titles in the page.
+        # @return [Array<String>] All of the image titles in the page.
         # @return [Nil] If the page does not exist.
-        def get_images_in_page(page, limit = @query_limit_default)
+        def get_images_in_page(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'images',
-            titles: page,
+            titles: title,
             imlimit: get_limited(limit)
           }
 
@@ -343,7 +331,7 @@ module MediaWiki
           response['query']['pages'].each do |revid, _|
             if revid != '-1'
               response['query']['pages'][revid]['images'].each do |img|
-                ret.push(img['title'])
+                ret << img['title']
               end
             else
               return nil
@@ -354,18 +342,16 @@ module MediaWiki
         end
 
         # Gets all of the templates in the given page.
-        # @param page [String] The page title.
-        # @param limit [Fixnum] See #get_external_links
-        # @see https://www.mediawiki.org/wiki/API:Templates MediaWiki Templates
-        #   API Docs
+        # @param (see #get_external_links)
+        # @see https://www.mediawiki.org/wiki/API:Templates MediaWiki Templates API Docs
         # @since 0.8.0
-        # @return [Array] All of the templte titles in the page.
+        # @return [Array<String>] All of the template titles in the page.
         # @return [Nil] If the page does not exist.
-        def get_templates_in_page(page, limit = @query_limit_default)
+        def get_templates_in_page(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'templates',
-            titles: page,
+            titles: title,
             tllimit: get_limited(limit)
           }
 
@@ -374,7 +360,7 @@ module MediaWiki
           response['query']['pages'].each do |revid, _|
             if revid != '-1'
               response['query']['pages'][revid]['templates'].each do |tmp|
-                ret.push(tmp['title'])
+                ret << tmp['title']
               end
             else
               return nil
@@ -385,18 +371,16 @@ module MediaWiki
         end
 
         # Gets all of the interwiki links on the given page.
-        # @param page [String] The page title.
-        # @param limit [Fixnum] See #get_external_links.
-        # @see https://www.mediawiki.org/wiki/API:Iwlinks MediaWiki Interwiki
-        #   Links API Docs
+        # @param (see #get_external_links)
+        # @see https://www.mediawiki.org/wiki/API:Iwlinks MediaWiki Interwiki Links API Docs
         # @since 0.8.0
-        # @return [Array] All interwiki link titles.
+        # @return [Array<String>] All interwiki link titles.
         # @return [Nil] If the page does not exist.
-        def get_interwiki_links_in_page(page, limit = @query_limit_default)
+        def get_interwiki_links_in_page(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'iwlinks',
-            titles: page,
+            titles: title,
             tllimit: get_limited(limit)
           }
 
@@ -405,7 +389,7 @@ module MediaWiki
           response['query']['pages'].each do |revid, _|
             if revid != '-1'
               response['query']['pages'][revid]['iwlinks'].each do |l|
-                ret.push(l['*'])
+                ret << l['*']
               end
             else
               return nil
@@ -415,21 +399,18 @@ module MediaWiki
           ret
         end
 
-        # Gets a hash of data for the page in every language that it is
-        #   available in. This includes url, language name, autonym, and its
-        #   title. This method does not work with the Translate extension.
-        # @param page [String] The page title.
-        # @param limit [Fixnum] See #get_external_links
-        # @see https://www.mediawiki.org/wiki/API:Langlinks MediaWiki Langlinks
-        #   API Docs
+        # Gets a hash of data for the page in every language that it is available in. This includes url, language
+        # name, autonym, and its title. This method does not work with the Translate extension.
+        # @param (see #get_external_links)
+        # @see https://www.mediawiki.org/wiki/API:Langlinks MediaWiki Langlinks API Docs
         # @since 0.8.0
         # @return [Hash] The data described previously.
         # @return [Nil] If the page does not exist.
-        def get_other_langs_of_page(page, limit = @query_limit_default)
+        def get_other_langs_of_page(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'langlinks',
-            titles: page,
+            titles: title,
             lllimit: get_limited(limit),
             llprop: 'url|langname|autonym'
           }
@@ -455,17 +436,16 @@ module MediaWiki
         end
 
         # Gets every single link in a page.
-        # @param page [String] The page title.
-        # @param limit [Fixnum] See #get_external_links.
+        # @param (see #get_external_links)
         # @see https://www.mediawiki.org/wiki/API:Links MediaWiki Links API Docs
         # @since 0.8.0
-        # @return [Array] All link titles.
+        # @return [Array<String>] All link titles.
         # @return [Nil] If the page does not exist.
-        def get_all_links_in_page(page, limit = @query_limit_default)
+        def get_all_links_in_page(title, limit = @query_limit_default)
           params = {
             action: 'query',
             prop: 'links',
-            titles: page,
+            titles: title,
             pllimit: get_limited(limit)
           }
 
@@ -474,7 +454,7 @@ module MediaWiki
           response['query']['pages'].each do |revid, _|
             if revid != '-1'
               response['query']['pages'][revid]['links'].each do |l|
-                ret.push(l['title'])
+                ret << l['title']
               end
             else
               return nil

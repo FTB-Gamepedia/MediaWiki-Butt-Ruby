@@ -1,13 +1,12 @@
 module MediaWiki
   module Query
     module Meta
-      # @see https://www.mediawiki.org/wiki/API:Filerepoinfo MediaWiki
-      #   Filerepoinfo API Docs
+      # @see https://www.mediawiki.org/wiki/API:Filerepoinfo MediaWiki Filerepoinfo API Docs
       module FileRepoInfo
         # Gets FileRepoInfo for the property.
         # @param prop [String] The friprop to get.
         # @since 0.7.0
-        # @return [Response] The full parsed response.
+        # @return [Hash] The full parsed response.
         def get_filerepoinfo(prop)
           params = {
             action: 'query',
@@ -30,8 +29,7 @@ module MediaWiki
 
         # Gets the root URLs for the file repositories.
         # @since 0.7.0
-        # @return [Hash] A hash containing keys of the names, and values of the
-        #   root URLs.
+        # @return [Hash] A hash containing keys of the names, and values of the root URLs.
         def get_filerepo_rooturls
           response = get_filerepoinfo('name|rootUrl')
           ret = {}
@@ -46,7 +44,7 @@ module MediaWiki
           response = get_filerepoinfo('name|local')
           ret = []
           response['query']['repos'].each do |n, l|
-            ret.push(n) if l == 'true'
+            ret << n if l == 'true'
           end
 
           ret
@@ -59,7 +57,7 @@ module MediaWiki
           response = get_filerepoinfo('name|local')
           ret = []
           response['query']['repos'].each do |n, l|
-            ret.push(n) if l == 'false'
+            ret << n if l == 'false'
           end
 
           ret

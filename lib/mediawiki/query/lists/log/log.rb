@@ -25,18 +25,15 @@ module MediaWiki
         include MediaWiki::Query::Lists::Log::Rights
         include MediaWiki::Query::Lists::Log::Upload
 
-        # Gets the general log as seen in Special:Log. Since not every single
-        #   log type possible can be supported, non-default MW logs will be
-        #   represented exactly as provided by the API, with the :skipped key
-        #   as true.
-        # @param user [String] See {#get_log}
-        # @param title [String] See {#get_log}
-        # @param start [DateTime] See {#get_log}
-        # @param stop [DateTime] See {#get_log}
-        # @param limit [Int] See {#get_log}
-        # @see {#get_log}
-        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents
-        #   API Docs
+        # Gets the general log as seen in Special:Log. Since not every single log type possible can be supported,
+        # non-default MW logs will be represented exactly as provided by the API, with the :skipped key as true.
+        # @param user [String] The user to filter by.
+        # @param title [String] The title to filter by.
+        # @param start [DateTime] Where to start the log events at.
+        # @param stop [DateTime] Where to end the log events.
+        # @param limit [Fixnum] The limit, maximum 500 for users or 5000 for bots.
+        # @see #get_log
+        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents API Docs
         # @since 0.10.0
         # @return [Array<Hash>] All the log events.
         def get_overall_log(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
@@ -136,15 +133,10 @@ module MediaWiki
 
         # Gets log events.
         # @param action [String] The action, e.g., block/block.
-        # @param user [String] The user to filter by.
-        # @param title [String] The title to filter by.
-        # @param start [DateTime] Where to start the log events at.
-        # @param stop [DateTime] Where to end the log events.
-        # @param limit [Int] The limit, maximum 500 for users or 5000 for bots.
-        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents
-        #   API Docs
+        # @param (see #get_overall_log)
+        # @see https://www.mediawiki.org/wiki/API:Logevents MediaWiki Logevents API Docs
         # @since 0.10.0
-        # @return [JSON] The response json.
+        # @return [Hash] The response.
         def get_log(action, user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)
           params = {
             action: 'query',

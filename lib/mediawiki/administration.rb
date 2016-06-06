@@ -1,14 +1,12 @@
 module MediaWiki
   module Administration
     # Blocks the user.
-    # @param user [String] The user to block.
+    # @param (see #unblock)
     # @param expiry [String] The expiry timestamp using a relative expiry time.
-    # @param reason [String] The reason to show in the block log.
     # @param nocreate [Boolean] Whether to allow them to create an account.
     # @see https://www.mediawiki.org/wiki/API:Block MediaWiki Block API Docs
     # @since 0.5.0
-    # @return [String] The error code.
-    # @return [Int] The block ID.
+    # @return (see #unblock)
     def block(user, expiry = '2 weeks', reason = nil, nocreate = true)
       params = {
         action: 'block',
@@ -23,20 +21,16 @@ module MediaWiki
 
       response = post(params)
 
-      if !response['error'].nil?
-        return response['error']['code']
-      else
-        return response['id'].to_i
-      end
+      response['error'].nil? ? response['id'].to_i : response['error']['code']
     end
 
     # Unblocks the user.
-    # @param user [String] The user to unblock.
+    # @param user [String] The user affected.
     # @param reason [String] The reason to show in the block log.
     # @see https://www.mediawiki.org/wiki/API:Block MediaWiki Block API Docs
     # @since 0.5.0
     # @return [String] The error code.
-    # @return [Int] The block ID.
+    # @return [Fixnum] The block ID.
     def unblock(user, reason = nil)
       params = {
         action: 'unblock',
@@ -48,11 +42,7 @@ module MediaWiki
 
       response = post(params)
 
-      if !response['error'].nil?
-        return response['error']['code']
-      else
-        return response['id'].to_i
-      end
+      response['error'].nil? ? response['id'].to_i : response['error']['code']
     end
   end
 end

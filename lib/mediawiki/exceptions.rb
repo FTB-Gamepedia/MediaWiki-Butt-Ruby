@@ -4,8 +4,7 @@ module MediaWiki
 
     class NeedTokenMoreThanOnceError < AuthenticationError
       def message
-        'You tried to get the token more than once. You likely have some' \
-        'problem with your login call.'
+        'You tried to get the token more than once. You likely have some problem with your login call.'
       end
     end
 
@@ -47,8 +46,7 @@ module MediaWiki
 
     class CreateBlockedError < AuthenticationError
       def message
-        'MediaWiki tried to automatically create an account for you, but your' \
-        'IP is blocked from account creation.'
+        'MediaWiki tried to automatically create an account for you, but your IP is blocked from account creation.'
       end
     end
 

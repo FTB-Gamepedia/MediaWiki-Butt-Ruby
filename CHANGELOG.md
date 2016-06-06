@@ -197,7 +197,7 @@
   * New get_general method, for getting hash of the 'general' wiki information.
   * New get_extensions method, for getting an array of all extension names installed.
   * New get_languages method, for getting a hash of all the languages, formatted as code => name.
-* User-Agent header is now set for each post. It defaults to 'NotLoggedIn/MediaWiki::Butt', or "#{name}/MediaWiki::Butt" if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
+* User-Agent header is now set for each post. It defaults to `NotLoggedIn/MediaWiki::Butt`, or `#{name}/MediaWiki::Butt` if logged in. This might cause some slight performance issues ([#5](https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5))
 
 ### Version 0.5.0
 * New Administration module for administrative methods.
@@ -240,8 +240,8 @@
 * New get_contrib_count method.
 * Refactor get_usergroups and is_current_user_bot? to use new get_userinfo method.
 * Minor refactors to make optional arguments more Ruby-like with splat arguments.
-* #edit no longer prints the edit token, because that's stupid.
-* #edit no longer sets the summary if it is nil.
+* `#edit` no longer prints the edit token, because that's stupid.
+* `#edit` no longer sets the summary if it is nil.
 
 ### Version 0.2.1
 * Fix gemspec. You should actually have the new stuff now.
@@ -259,8 +259,8 @@
 * Got rid of pointless array in is_current_user_bot
 * Potentially fixed docs
 * Raise errors on unsuccessful account creation
-* #login properly returns true if the login is successful on the first try
-* #logout returns true/false if it logs the user out. Basically returns true if @logged_in is true, and false if not, because the logout action has no errors.
+* `#login` properly returns true if the login is successful on the first try
+* `#logout` returns true/false if it logs the user out. Basically returns true if @logged_in is true, and false if not, because the logout action has no errors.
 * Account creation stuff actually returns true/false on success/fail. It also handles errors now.
 * Better Category title regex in get_category_members
 

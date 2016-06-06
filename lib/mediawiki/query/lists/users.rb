@@ -5,10 +5,9 @@ module MediaWiki
         # Gets user information. This method should rarely be used by
         # normal users, unless they want a huge amount of user data at once.
         # @param prop [String] The usprop parameter.
-        # @param username [String] The username to get info for. Optional.
-        #   Defaults to the currently logged in user if ommitted.
-        # @see https://www.mediawiki.org/wiki/API:Users MediaWiki User Lists API
-        #   Docs
+        # @param username [String] The username to get info for. Optional. Defaults to the currently logged in user
+        # if omitted.
+        # @see https://www.mediawiki.org/wiki/API:Users MediaWiki User Lists API Docs
         # @since 0.3.0
         # @return [String] Parsed full response if successful.
         # @return [Nil] If the username is nil and the Butt is not logged in.
@@ -34,11 +33,10 @@ module MediaWiki
         end
 
         # Gets an array of all the user's groups.
-        # @param username [String] The username to get groups of. Optional.
-        #   Defaults to the currently logged in user.
+        # @param username [String] The username to get groups of. Optional. Defaults to the currently logged in user.
         # @see get_userlists
         # @since 0.3.0
-        # @return [Array] All of the user's groups.
+        # @return [Array<String>] All of the user's groups.
         # @return [Boolean] False if username is nil and not logged in.
         def get_usergroups(username = nil)
           ret = []
@@ -52,7 +50,7 @@ module MediaWiki
           else
             info = get_userlists('groups', username)
             info['query']['users'].each do |i|
-              i['groups'].each { |g| ret.push(g) }
+              i['groups'].each { |g| ret << g }
             end
           end
 
@@ -60,11 +58,10 @@ module MediaWiki
         end
 
         # Gets the user rights for the user.
-        # @param username [String] The user to get the rights for. Optional.
-        #   Defaults to the currently logged in user.
+        # @param username [String] The user to get the rights for. Optional. Defaults to the currently logged in user.
         # @see get_userlists
         # @since 0.3.0
-        # @return [Array] All of the user's groups.
+        # @return [Array<String>] All of the user's groups.
         # @return [Boolean] False if username is nil and not logged in.
         def get_userrights(username = nil)
           ret = []
@@ -79,7 +76,7 @@ module MediaWiki
             info = get_userlists('rights', username)
             info['query']['users'].each do |i|
               i['rights'].each do |g|
-                ret.push(g)
+                ret << g
               end
             end
           end
@@ -88,12 +85,12 @@ module MediaWiki
         end
 
         # Gets contribution count for the user.
-        # @param username [String] The username to get the contribution count of.
-        #   Optional. Defaults to the currently logged in user.
+        # @param username [String] The username to get the contribution count of. Optional. Defaults to the currently
+        # logged in user.
         # @see get_userlists
         # @since 0.3.0
         # @return [Boolean] False if username is nil and not logged in.
-        # @return [Int] The number of contributions the user has made.
+        # @return [Fixnum] The number of contributions the user has made.
         def get_contrib_count(username = nil)
           count = nil
           if username.nil?
@@ -112,8 +109,8 @@ module MediaWiki
         end
 
         # Gets when the user registered.
-        # @param username [String] The username to get the registration date and
-        #   time of. Optional. Defaults to the currently logged in user.
+        # @param username [String] The username to get the registration date and time of. Optional. Defaults to the
+        # currently logged in user.
         # @see get_userlists
         # @since 0.4.0
         # @return [DateTime] The registration date and time as a DateTime object.
@@ -153,13 +150,13 @@ module MediaWiki
 
         # Gets the latest contributions by the user until the limit.
         # @param user [String] The username.
-        # @param limit [Int] See #get_all_images.
-        # @see https://www.mediawiki.org/wiki/API:Usercontribs MediaWiki
-        #   User Contributions API Docs
+        # @param limit [Fixnum] See #{get_all_images}.
+        # @see https://www.mediawiki.org/wiki/API:Usercontribs MediaWiki User Contributions API Docs
         # @since 0.8.0
-        # @return [Hash] Each contribution by its revid, containing the title,
-        #   summary, total contribution size, and the size change relative to the
-        #   previous edit.
+        # @return [Hash<Fixnum, Hash<Symbol, Any>>] Each contribution by its revid, containing the title, summary,
+        # total
+        # contribution size, and
+        # the size change relative to the previous edit.
         def get_user_contributions(user, limit = @query_limit_default)
           params = {
             action: 'query',
@@ -184,14 +181,13 @@ module MediaWiki
           ret
         end
 
-        # Gets the user's full watchlist. If no user is provided, it will use the
-        #   currently logged in user, according to the MediaWiki API.
+        # Gets the user's full watchlist. If no user is provided, it will use the currently logged in user, according
+        # to the MediaWiki API.
         # @param user [String] The username.
-        # @param limit [Int] See #get_all_images.
-        # @see https://www.mediawiki.org/wiki/API:Watchlist MediaWiki Watchlist
-        #   API Docs
+        # @param limit [Fixnum] See #{get_all_images}.
+        # @see https://www.mediawiki.org/wiki/API:Watchlist MediaWiki Watchlist API Docs
         # @since 0.8.0
-        # @return [Array] All the watchlist page titles.
+        # @return [Array<String>] All the watchlist page titles.
         def get_full_watchlist(user = nil, limit = @query_limit_default)
           params = {
             action: 'query',

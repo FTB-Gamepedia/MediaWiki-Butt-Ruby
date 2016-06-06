@@ -3,9 +3,9 @@ module MediaWiki
     # @since 0.2.0 as a module with individual global constants
     # @since 0.4.0 as a module with a single global hash identical to this.
     # @since 0.8.0 as its current state.
-    # @see https://www.mediawiki.org/wiki/Extension_default_namespaces
-    #   MediaWiki's list of extension namespace IDs and names.
-    # @return [Hash<String, Integer>] The upcased namespace names, and their according ID. The keys, values, and
+    # @see https://www.mediawiki.org/wiki/Extension_default_namespaces MediaWiki's list of extension namespace IDs
+    #   and names.
+    # @return [Hash<String, Fixnum>] The upcased namespace names, and their according ID. The keys, values, and
     #   return value itself are all immutable.
     NAMESPACES = {
       'MAIN'.freeze => 0.freeze,
@@ -219,8 +219,5 @@ module MediaWiki
       # Extension:Flow
       'FLW_TOPIC'.freeze => 2600.freeze
     }.freeze
-
-    # @return [String] MediaWiki's timestamp format as an immutable string for DateTime uses.
-    TIME_FORMAT = '%Y-%m-%dT%H:%M:%SZ'.freeze
   end
 end

@@ -3,7 +3,7 @@ module MediaWiki
   # requiring 'mediawiki-butt' or 'mediawiki/butt'; you must require it explicitly.
   class Utils
     # Encodes the URL like mw.util.rawurlencode JS.
-    # @todo Perhaps write a StringUtility method for better gsubs?
+    # @todo Require StringUtility and use its safely_gsub method.
     # @param str [String] The string to replace (typically a page title).
     # @return [String] The encoded string.
     def self.encode_url(str)

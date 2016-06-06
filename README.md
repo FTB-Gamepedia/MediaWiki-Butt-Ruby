@@ -30,9 +30,10 @@ gem('mediawiki-butt')
 ```
 
 And then execute:
+
 ```shell
 $ bundle
 ```
 
 ## Documentation
-The [RubyDocs](http://www.rubydoc.info/gems/mediawiki-butt) are the most actively updated with each gem update, however, there are sometimes formatting issues.
+The [RubyDocs](http://www.rubydoc.info/gems/mediawiki-butt) are the most actively updated with each gem update.

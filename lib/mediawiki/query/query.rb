@@ -10,27 +10,27 @@ module MediaWiki
 
     protected
 
-    # Gets the limited version of the integer, to ensure nobody provides an int
-    # that is too large.
-    # @param integer [Int] The number to limit.
-    # @param max_user [Int] The maximum limit for normal users.
-    # @param max_bot [Int] The maximum limit for bot users.
+    # Gets the limited version of the integer, to ensure nobody provides an int that is too large.
+    # @param integer [Fixnum] The number to limit.
+    # @param max_user [Fixnum] The maximum limit for normal users.
+    # @param max_bot [Fixnum] The maximum limit for bot users.
     # @since 0.8.0
-    # @return [Int] The capped number.
+    # @return [Fixnum] The capped number.
     def get_limited(integer, max_user = 500, max_bot = 5000)
-      if integer > max_user
-        if user_bot?
-          if integer > max_bot
-            return max_bot
-          else
-            return integer
-          end
-        else
-          return max_user
-        end
+      return integer if integer <= max_user
+
+      if user_bot?
+        integer > max_bot ? max_bot : integer
       else
-        return integer
+        max_user
       end
+    end
+
+    # Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.
+    # @param namespace [Fixnum] The namespace ID.
+    # @return [Fixnum] Either the given namespace, if valid, or the main namespace ID 0 if invalid.
+    def validate_namespace(namespace)
+      MediaWiki::Constants::NAMESPACES.value?(namespace) ? namespace : 0
     end
   end
 end
