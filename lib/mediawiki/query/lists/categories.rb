@@ -20,11 +20,7 @@ module MediaWiki
             cmtype: type
           }
 
-          if category =~ /[Cc]ategory\:/
-            params[:cmtitle] = category
-          else
-            params[:cmtitle] = "Category:#{category}"
-          end
+          params[:cmtitle] = category =~ /[Cc]ategory:/ ? category : "Category:#{category}"
           ret = []
           response = post(params)
           response['query']['categorymembers'].each { |cm| ret << cm['title'] }

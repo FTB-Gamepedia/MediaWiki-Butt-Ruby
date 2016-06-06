@@ -69,13 +69,8 @@ module MediaWiki
     # @since 0.4.1 as user_bot?
     def user_bot?(username = nil)
       groups = false
-
-      if username
-        groups = get_usergroups(username)
-      else
-        groups = get_usergroups if @logged_in
-      end
-
+      name = username || @name
+      groups = get_usergroups(name) if name
       groups && groups.include?('bot')
     end
   end

@@ -7,13 +7,14 @@ module MediaWiki
     # @param str [String] The string to replace (typically a page title).
     # @return [String] The encoded string.
     def self.encode_url(str)
-      str.gsub!(/!/,'%21') || str
-      str.gsub!(/'/,'%27') || str
-      str.gsub!(/\(/,'%28') || str
-      str.gsub!(/\)/,'%29') || str
-      str.gsub!(/\*/,'%2A') || str
-      str.gsub!(/~/,'%7E') || str
-      return str
+      str.gsub!(/!/, '%21') || str
+      str.gsub!(/'/, '%27') || str
+      str.gsub!(/\(/, '%28') || str
+      str.gsub!(/\)/, '%29') || str
+      str.gsub!(/\*/, '%2A') || str
+      str.gsub!(/~/, '%7E') || str
+
+      str
     end
   end
 end

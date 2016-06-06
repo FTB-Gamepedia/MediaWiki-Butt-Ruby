@@ -37,5 +37,3 @@ build/
 # Eclipse
 .buildpath
 .project
-
-test.rb

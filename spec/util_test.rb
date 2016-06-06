@@ -28,9 +28,11 @@ describe 'MediaWiki::Utils' do
   end
 end
 
-module MediaWiki::Query
-  public :get_limited
-  public :validate_namespace
+module MediaWiki
+  module Query
+    public :get_limited
+    public :validate_namespace
+  end
 end
 
 describe 'MediaWiki::Query' do
@@ -61,7 +63,7 @@ describe 'MediaWiki::Query' do
   describe '#validate_namespace' do
     it 'Validates the namespaces' do
       MW_BUTT_NO_URL.validate_namespace(0).must_equal(0) # Main/default namespace
-      MW_BUTT_NO_URL.validate_namespace(10000000).must_equal(0) # Nonexistent namespace
+      MW_BUTT_NO_URL.validate_namespace(10_000_000).must_equal(0) # Nonexistent namespace
       MW_BUTT_NO_URL.validate_namespace(4).must_equal(4) # Project namespace
     end
   end

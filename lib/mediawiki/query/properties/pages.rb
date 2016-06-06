@@ -21,12 +21,10 @@ module MediaWiki
           pageid = nil
           ret = []
           response['query']['pages'].each { |r, _| pageid = r }
-          if response['query']['pages'][pageid]['missing'] == ''
-            return nil
-          else
-            response['query']['pages'][pageid]['categories'].each do |c|
-              ret.push(c['title'])
-            end
+          return if response['query']['pages'][pageid]['missing'] == ''
+
+          response['query']['pages'][pageid]['categories'].each do |c|
+            ret << c['title']
           end
 
           ret
@@ -72,11 +70,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return revid.to_i
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : revid.to_i
           end
         end
 
@@ -98,12 +92,9 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['extlinks'].each do |l|
-                ret << l['*']
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['extlinks'].each do |l|
+              ret << l['*']
             end
           end
 
@@ -118,24 +109,17 @@ module MediaWiki
         # @return [Boolean] False if the user is not logged in.
         # @return [Nil] If the page does not exist.
         def do_i_watch?(title)
-          if @logged_in
-            params = {
-              action: 'query',
-              titles: title,
-              prop: 'info',
-              inprop: 'watched'
-            }
+          return false unless @logged_in
+          params = {
+            action: 'query',
+            titles: title,
+            prop: 'info',
+            inprop: 'watched'
+          }
 
-            response = post(params)
-            response['query']['pages'].each do |revid, _|
-              if revid != '-1'
-                return response['query']['pages'][revid].key?('watched')
-              else
-                return nil
-              end
-            end
-          else
-            false
+          response = post(params)
+          response['query']['pages'].each do |revid, _|
+            return revid == '-1' ? nil : response['query']['pages'][revid].key?('watched')
           end
         end
 
@@ -155,11 +139,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid].key?('readable')
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid].key?('readable')
           end
         end
 
@@ -178,11 +158,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid].key?('redirect')
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid].key?('redirect')
           end
         end
 
@@ -201,11 +177,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid].key?('new')
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid].key?('new')
           end
         end
 
@@ -225,11 +197,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid]['watchers']
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid]['watchers']
           end
         end
 
@@ -250,11 +218,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid]['displaytitle']
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid]['displaytitle']
           end
         end
 
@@ -277,15 +241,12 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              protection = response['query']['pages'][revid]['protection']
-              protection.each do |p|
-                p.keys.each { |k| p[k.to_sym] = p.delete(k) }
-              end
-              return protection
-            else
-              return nil
+            return if revid == '-1'
+            protection = response['query']['pages'][revid]['protection']
+            protection.each do |p|
+              p.keys.each { |k| p[k.to_sym] = p.delete(k) }
             end
+            return protection
           end
         end
 
@@ -304,11 +265,7 @@ module MediaWiki
 
           response = post(params)
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              return response['query']['pages'][revid]['length']
-            else
-              return nil
-            end
+            return revid == '-1' ? nil : response['query']['pages'][revid]['length']
           end
         end
 
@@ -329,12 +286,9 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['images'].each do |img|
-                ret << img['title']
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['images'].each do |img|
+              ret << img['title']
             end
           end
 
@@ -358,12 +312,9 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['templates'].each do |tmp|
-                ret << tmp['title']
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['templates'].each do |tmp|
+              ret << tmp['title']
             end
           end
 
@@ -387,12 +338,9 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['iwlinks'].each do |l|
-                ret << l['*']
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['iwlinks'].each do |l|
+              ret << l['*']
             end
           end
 
@@ -418,17 +366,14 @@ module MediaWiki
           response = post(params)
           ret = {}
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['langlinks'].each do |l|
-                ret[l['lang'].to_sym] = {
-                  url: l['url'],
-                  langname: l['langname'],
-                  autonym: l['autonym'],
-                  title: l['*']
-                }
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['langlinks'].each do |l|
+              ret[l['lang'].to_sym] = {
+                url: l['url'],
+                langname: l['langname'],
+                autonym: l['autonym'],
+                title: l['*']
+              }
             end
           end
 
@@ -452,12 +397,9 @@ module MediaWiki
           response = post(params)
           ret = []
           response['query']['pages'].each do |revid, _|
-            if revid != '-1'
-              response['query']['pages'][revid]['links'].each do |l|
-                ret << l['title']
-              end
-            else
-              return nil
+            return if revid == '-1'
+            response['query']['pages'][revid]['links'].each do |l|
+              ret << l['title']
             end
           end
 

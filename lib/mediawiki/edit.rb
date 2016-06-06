@@ -81,28 +81,20 @@ module MediaWiki
         format: 'json'
       }
 
-      if filename.nil?
-        filename = url.split('/')[-1]
-      else
-        filename = filename.sub(/^File:/, '')
-      end
+      filename = filename.nil? ? url.split('/')[-1] : filename.sub(/^File:/, '')
 
       ext = filename.split('.')[-1]
       allowed_extensions = get_allowed_file_extensions
-      if allowed_extensions.include?(ext)
+      return false unless allowed_extensions.include?(ext)
 
-        token = get_token('edit', filename)
-        params[:filename] = filename
-        params[:token] = token
+      token = get_token('edit', filename)
+      params[:filename] = filename
+      params[:token] = token
 
-        response = post(params)
+      response = post(params)
 
-        if response['upload']['result'] == 'Success'
-          return true
-        elsif response['upload']['result'] == 'Warning'
-          return response['upload']['warnings'].keys[0]
-        end
-      end
+      return true if response['upload']['result'] == 'Success'
+      return response['upload']['warnings'].keys[0] if response['upload']['result'] == 'Warning'
 
       false
     end

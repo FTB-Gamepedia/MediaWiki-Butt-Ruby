@@ -13,11 +13,8 @@ module MediaWiki
         # @return [Nil] If the username is nil and the Butt is not logged in.
         def get_userlists(prop, username = nil)
           if username.nil?
-            if @logged_in
-              response = get_current_user_meta(prop)
-            else
-              return false
-            end
+            return unless @logged_in
+            response = get_current_user_meta(prop)
           else
             params = {
               action: 'query',
@@ -41,12 +38,9 @@ module MediaWiki
         def get_usergroups(username = nil)
           ret = []
           if username.nil?
-            if @logged_in
-              info = get_userlists('groups')
-              info['query']['userinfo']['groups'].each { |i| ret << i }
-            else
-              return false
-            end
+            return false unless @logged_in
+            info = get_userlists('groups')
+            info['query']['userinfo']['groups'].each { |i| ret << i }
           else
             info = get_userlists('groups', username)
             info['query']['users'].each do |i|
@@ -66,12 +60,9 @@ module MediaWiki
         def get_userrights(username = nil)
           ret = []
           if username.nil?
-            if @logged_in
-              info = get_userlists('rights')
-              info['query']['userinfo']['rights'].each { |i| ret << i }
-            else
-              return false
-            end
+            return false unless @logged_in
+            info = get_userlists('rights')
+            info['query']['userinfo']['rights'].each { |i| ret << i }
           else
             info = get_userlists('rights', username)
             info['query']['users'].each do |i|
@@ -94,12 +85,9 @@ module MediaWiki
         def get_contrib_count(username = nil)
           count = nil
           if username.nil?
-            if @logged_in
-              info = get_userlists('editcount')
-              count = info['query']['userinfo']['editcount']
-            else
-              return false
-            end
+            return false unless @logged_in
+            info = get_userlists('editcount')
+            count = info['query']['userinfo']['editcount']
           else
             info = get_userlists('editcount', username)
             info['query']['users'].each { |i| count = i['editcount'] }
@@ -119,12 +107,9 @@ module MediaWiki
           time = nil
           # Do note that in Userinfo, registration is called registrationdate.
           if username.nil?
-            if @logged_in
-              info = get_userlists('registrationdate')
-              time = info['query']['userinfo']['registrationdate']
-            else
-              return false
-            end
+            return false unless @logged_in
+            info = get_userlists('registrationdate')
+            time = info['query']['userinfo']['registrationdate']
           else
             info = get_userlists('registration', username)
             info['query']['users'].each { |i| time = i['registration'] }

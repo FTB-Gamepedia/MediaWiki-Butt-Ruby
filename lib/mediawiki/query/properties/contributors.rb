@@ -6,7 +6,7 @@ module MediaWiki
       module Contributors
         # Gets the total amount of contributors for the given page.
         # @param title [String] The page title.
-        # @param limit [Fixnum] The maximum number of users to get. Defaults to 500 and cannot be greater than that 
+        # @param limit [Fixnum] The maximum number of users to get. Defaults to 500 and cannot be greater than that
         # unless the user is a bot. If the user is a bot, the limit cannot be greater than 5000.
         # @see #get_anonymous_contributors_count
         # @see #get_logged_in_contributors

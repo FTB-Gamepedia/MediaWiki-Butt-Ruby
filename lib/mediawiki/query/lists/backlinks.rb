@@ -54,7 +54,7 @@ module MediaWiki
         # @since 0.10.0
         # @return [Array<String>] All pages that link to the language links.
         def get_language_backlinks(language = nil, title = nil, limit = @query_limit_default)
-          language.downcase! if language.match(/[^A-Z]*/)[0].size == 0
+          language.downcase! if language.match(/[^A-Z]*/)[0].empty?
           params = {
             action: 'query',
             list: 'langbacklinks',
