@@ -19,32 +19,32 @@ module MediaWiki
 
         # Returns an array of all the wiki's file repository names.
         # @since 0.1.0
-        # @return [Array] All wiki's file repository names.
+        # @return [Hash<String, String>] All wiki's file repository names. Keys are names, values are display names.
         def get_filerepo_names
           response = get_filerepoinfo('name|displayname')
           ret = {}
-          response['query']['repos'].each { |n, dn| ret[n] = dn }
+          response['query']['repos'].each { |h| ret[h['name']] = h['displayname'] }
           ret
         end
 
         # Gets the root URLs for the file repositories.
         # @since 0.7.0
-        # @return [Hash] A hash containing keys of the names, and values of the root URLs.
+        # @return [Hash<String, String>] A hash containing keys of the names, and values of the root URLs.
         def get_filerepo_rooturls
           response = get_filerepoinfo('name|rootUrl')
           ret = {}
-          response['query']['repos'].each { |n, r| ret[n] = r }
+          response['query']['repos'].each { |h| ret[h['name']] = h['rootUrl'] }
           ret
         end
 
         # Gets an array containing all local repositories.
         # @since 0.7.0
-        # @return [Array] All repositories that are marked as local.
+        # @return [Array<String>] All repository names that are marked as local.
         def get_local_filerepos
           response = get_filerepoinfo('name|local')
           ret = []
-          response['query']['repos'].each do |n, l|
-            ret << n if l == 'true'
+          response['query']['repos'].each do |h|
+            ret << h['name'] if h.key?('local')
           end
 
           ret
@@ -52,12 +52,12 @@ module MediaWiki
 
         # Gets an array containing all repositories that aren't local.
         # @since 0.7.0
-        # @return [Array] All repositories that are not marked as local.
+        # @return [Array<String>] All repositories that are not marked as local.
         def get_nonlocal_filerepos
           response = get_filerepoinfo('name|local')
           ret = []
-          response['query']['repos'].each do |n, l|
-            ret << n if l == 'false'
+          response['query']['repos'].each do |h|
+            ret << h['name'] unless h.key?('local')
           end
 
           ret
@@ -65,31 +65,31 @@ module MediaWiki
 
         # Gets the repository names and their according URLs.
         # @since 0.7.0
-        # @return [Hash] Names as the keys, with their URLs as the values.
+        # @return [Hash<String, String>] Names as the keys, with their URLs as the values.
         def get_filerepo_urls
           response = get_filerepoinfo('name|url')
           ret = {}
-          response['query']['repos'].each { |n, u| ret[n] = u }
+          response['query']['repos'].each { |h| ret[h['name']] = h['url'] }
           ret
         end
 
         # Gets the repository names and their accoring thumbnail URLs.
         # @since 0.7.0
-        # @return [Hash] Names as the keys, with their URLs as the values.
+        # @return [Hash<String, String>] Names as the keys, with their URLs as the values.
         def get_filerepo_thumburls
           response = get_filerepoinfo('name|thumbUrl')
           ret = {}
-          response['query']['repos'].each { |n, u| ret[n] = u }
+          response['query']['repos'].each { |h| ret[h['name']] = h['thumbUrl'] }
           ret
         end
 
         # Gets the repository names and their according favicon URLs.
         # @since 0.7.0
-        # @return [Hash] Names as the keys, with their favicons as the values.
+        # @return [Hash<String, String>] Names as the keys, with their favicons as the values.
         def get_filerepo_favicons
           response = get_filerepoinfo('name|favicon')
           ret = {}
-          response['query']['repos'].each { |n, f| ret[n] = f }
+          response['query']['repos'].each { |h| ret[h['name']] = h['favicon'] }
           ret
         end
       end
