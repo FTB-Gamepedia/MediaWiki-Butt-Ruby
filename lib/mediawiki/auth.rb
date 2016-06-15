@@ -111,7 +111,6 @@ module MediaWiki
       result = post(params)
       if check_login(result['login']['result'], false)
         @logged_in = true
-        @tokens.clear
         true
       elsif result['login']['result'] == 'NeedToken' &&
             !result['login']['token'].nil?
@@ -146,7 +145,6 @@ module MediaWiki
 
         post(params)
         @logged_in = false
-        @tokens.clear
 
         true
       else
