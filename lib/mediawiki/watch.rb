@@ -35,13 +35,10 @@ module MediaWiki
         params[:unwatch] = 1
         success_key = 'unwatched'
       end
-      params[:unwatch] = 1 if unwatch
 
       response = post(params)
-      p response
       ret = {}
       response['watch'].each do |entry|
-        p entry
         title = entry['title']
         if entry.key?(success_key)
           ret[title] = entry.key?('missing') ? nil : true
