@@ -36,4 +36,4 @@ $ bundle
 ```
 
 ## Documentation
-The [RubyDocs](http://www.rubydoc.info/gems/mediawiki-butt) are the most actively updated with each gem update.
+Documentation can be found [here](http://ftb-gamepedia.github.io/MediaWiki-Butt-Ruby).
