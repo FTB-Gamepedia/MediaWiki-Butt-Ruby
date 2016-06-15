@@ -29,7 +29,7 @@ describe 'MediaWiki::Utils' do
 end
 
 module MediaWiki
-  module Query
+  class Butt
     public :get_limited
     public :validate_namespace
   end
