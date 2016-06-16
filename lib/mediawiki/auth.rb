@@ -18,7 +18,8 @@ module MediaWiki
         lgpassword: password
       }
       params[:lgtoken] = token if token
-      header = @cookie ? { 'Set-Cookie' => @cookie } : {}
+      header = {}
+      header['Set-Cookie'] = @cookie if @cookie
 
       response = post(params, true, header)
       result = response['login']['result']
