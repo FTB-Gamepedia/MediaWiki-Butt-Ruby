@@ -37,3 +37,12 @@ $ bundle
 
 ## Documentation
 Documentation can be found [here](http://ftb-gamepedia.github.io/MediaWiki-Butt-Ruby).
+
+## Quick start
+To get the text of the main page:
+```ruby
+require 'mediawiki/butt'
+wiki = MediaWiki::Butt.new('https://en.wikipedia.org/w/api.php')
+wiki.login(username, password)
+main_page_text = wiki.get_text('Main Page')
+```
