@@ -30,7 +30,13 @@ module MediaWiki
 
       response = post(params)
 
-      response['edit']['result'] == 'Success' ? response['edit']['newrevid'] : response['error']['code']
+      if response.key?('edit') && response['edit'].key?('result') && response['edit']['result'] == 'Success'
+        response['edit'].fetch('newrevid', 'Unknown newrevid')
+      elsif response.key?('error')
+        response['error'].fetch('code', 'Unknown error')
+      else
+        'Unknown error'
+      end
     end
 
     # Creates a new page.
