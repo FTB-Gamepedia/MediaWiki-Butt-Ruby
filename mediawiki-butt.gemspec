@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     'lib/mediawiki/edit.rb',
     'lib/mediawiki/exceptions.rb',
     'lib/mediawiki/utils.rb',
+    'lib/mediawiki/watch.rb',
 
     'lib/mediawiki/query/query.rb',
 

@@ -23,11 +23,7 @@ module MediaWiki
           response['query']['pages'].each { |r, _| pageid = r }
           return if response['query']['pages'][pageid]['missing'] == ''
 
-          response['query']['pages'][pageid]['categories'].each do |c|
-            ret << c['title']
-          end
-
-          ret
+          response['query']['pages'][pageid].fetch('categories', []).map { |c| c['title'] }
         end
 
         # Gets the wiki text for the given page. Returns nil if it for some reason cannot get the text, for example,
