@@ -11,7 +11,8 @@ module MediaWiki
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
     # @since 0.2.0
-    # @return [String] The new revision ID, or if it failed, the error code.
+    # @raise [EditError] if the edit failed somehow
+    # @return [String] The new revision ID, or false if no change was made
     def edit(title, text, minor = false, bot = true, summary = nil)
       params = {
         action: 'edit',
@@ -34,11 +35,12 @@ module MediaWiki
         if response['edit'].key? 'newrevid'
           response['edit']['newrevid']
         elsif response['edit'].key? 'nochange'
-          'Page did not change'
+          false
+        end
       elsif response.key?('error')
-        response['error'].fetch('code', 'Unknown error code')
+        raise EditError.new(response['error'].fetch('code', 'Unknown error code'))
       else
-        'Unknown error'
+        raise EditError.new('Unknown error')
       end
     end
 

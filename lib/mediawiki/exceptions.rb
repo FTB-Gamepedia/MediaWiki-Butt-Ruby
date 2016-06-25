@@ -122,5 +122,7 @@ module MediaWiki
         'An extension aborted the account creation.'
       end
     end
+
+    class EditError < StandardError; end
   end
 end
