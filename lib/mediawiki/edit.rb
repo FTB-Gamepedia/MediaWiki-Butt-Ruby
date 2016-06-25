@@ -31,9 +31,12 @@ module MediaWiki
       response = post(params)
 
       if response.key?('edit') && response['edit'].key?('result') && response['edit']['result'] == 'Success'
-        response['edit'].fetch('newrevid', 'Unknown newrevid')
+        if response['edit'].key? 'newrevid'
+          response['edit']['newrevid']
+        elsif response['edit'].key? 'nochange'
+          'Page did not change'
       elsif response.key?('error')
-        response['error'].fetch('code', 'Unknown error')
+        response['error'].fetch('code', 'Unknown error code')
       else
         'Unknown error'
       end
