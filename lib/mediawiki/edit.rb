@@ -1,3 +1,5 @@
+require_relative 'exceptions'
+
 module MediaWiki
   module Edit
     # Performs a standard non-creation edit.
@@ -37,7 +39,7 @@ module MediaWiki
         return response.dig('edit', 'newrevid')
       end
 
-      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
+      raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Creates a new page.
@@ -70,7 +72,7 @@ module MediaWiki
       response = post(params)
 
       return response['edit']['pageid'] if response.dig('edit', 'result') == 'Success'
-      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
+      raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Uploads a file from a URL.
@@ -138,7 +140,7 @@ module MediaWiki
       response = post(params)
 
       return true if response['move']
-      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
+      raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Deletes a page.
@@ -162,7 +164,7 @@ module MediaWiki
 
       response = post(params)
       return true if response['delete']
-      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
+      raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
   end
 end
