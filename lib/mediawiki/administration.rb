@@ -1,3 +1,5 @@
+require_relative 'exceptions'
+
 module MediaWiki
   module Administration
     # Blocks the user.
@@ -6,6 +8,7 @@ module MediaWiki
     # @param nocreate [Boolean] Whether to allow them to create an account.
     # @see https://www.mediawiki.org/wiki/API:Block MediaWiki Block API Docs
     # @since 0.5.0
+    # @raise [BlockError]
     # @return (see #unblock)
     def block(user, expiry = '2 weeks', reason = nil, nocreate = true)
       params = {
@@ -15,13 +18,17 @@ module MediaWiki
       }
 
       token = get_token('block')
-      params[:reason] = reason unless reason.nil?
+      params[:reason] = reason if reason
       params[:nocreate] = '1' if nocreate
       params[:token] = token
 
       response = post(params)
 
-      response['error'].nil? ? response['id'].to_i : response['error']['code']
+      if response.key?('error')
+        raise MediaWiki::Butt::BlockError.new(response.dig('error', 'code') || 'Unknown error code')
+      end
+
+      response['id'].to_i
     end
 
     # Unblocks the user.
@@ -29,7 +36,7 @@ module MediaWiki
     # @param reason [String] The reason to show in the block log.
     # @see https://www.mediawiki.org/wiki/API:Block MediaWiki Block API Docs
     # @since 0.5.0
-    # @return [String] The error code.
+    # @raise [BlockError]
     # @return [Fixnum] The block ID.
     def unblock(user, reason = nil)
       params = {
@@ -37,12 +44,16 @@ module MediaWiki
         user: user
       }
       token = get_token('unblock')
-      params[:reason] = reason unless reason.nil?
+      params[:reason] = reason if reason
       params[:token] = token
 
       response = post(params)
 
-      response['error'].nil? ? response['id'].to_i : response['error']['code']
+      if response.key?('error')
+        raise MediaWiki::Butt::BlockError.new(response.dig('error', 'code') || 'Unknown error code')
+      end
+
+      response['id'].to_i
     end
   end
 end

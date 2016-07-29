@@ -124,5 +124,6 @@ module MediaWiki
     end
 
     class EditError < StandardError; end
+    class BlockError < StandardError; end
   end
 end
