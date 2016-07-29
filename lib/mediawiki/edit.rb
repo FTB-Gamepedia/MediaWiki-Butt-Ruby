@@ -12,7 +12,8 @@ module MediaWiki
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
     # @since 0.2.0
     # @raise [EditError] if the edit failed somehow
-    # @return [String] The new revision ID, or false if no change was made
+    # @return [String] The new revision ID
+    # @return [Boolean] False if there was no change in the edit.
     def edit(title, text, minor = false, bot = true, summary = nil)
       params = {
         action: 'edit',
@@ -31,17 +32,12 @@ module MediaWiki
 
       response = post(params)
 
-      if response.key?('edit') && response['edit'].key?('result') && response['edit']['result'] == 'Success'
-        if response['edit'].key? 'newrevid'
-          response['edit']['newrevid']
-        elsif response['edit'].key? 'nochange'
-          false
-        end
-      elsif response.key?('error')
-        raise EditError.new(response['error'].fetch('code', 'Unknown error code'))
-      else
-        raise EditError.new('Unknown error')
+      if response.dig('edit', 'result') == 'Success'
+        return false if response.dig('edit', 'nochange')
+        return response.dig('edit', 'newrevid')
       end
+
+      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Creates a new page.
@@ -54,7 +50,8 @@ module MediaWiki
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
     # @since 0.3.0
-    # @return [String] The new page ID, or if it failed, the error code.
+    # @raise [EditError] If there was some error when creating the page.
+    # @return [String] The new page ID
     def create_page(title, text, summary = 'New page', bot = true)
       params = {
         action: 'edit',
@@ -72,7 +69,8 @@ module MediaWiki
 
       response = post(params)
 
-      response['edit']['result'] == 'Success' ? response['edit']['pageid'] : response['error']['code']
+      return response['edit']['pageid'] if response.dig('edit', 'result') == 'Success'
+      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Uploads a file from a URL.
@@ -84,7 +82,8 @@ module MediaWiki
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Upload MediaWiki Upload API Docs
     # @since 0.3.0
-    # @return [String] The warning's key if it was unsuccessful.
+    # @return [Boolean] Whether the upload was successful. It is likely that if it returns false, it also raised a
+    #   warning.
     def upload(url, filename = nil)
       params = {
         action: 'upload',
@@ -104,10 +103,11 @@ module MediaWiki
 
       response = post(params)
 
-      return true if response['upload']['result'] == 'Success'
-      return response['upload']['warnings'].keys[0] if response['upload']['result'] == 'Warning'
+      response.dig('upload', 'warnings')&.each do |warning|
+        warn warning
+      end
 
-      false
+      response.dig('upload', 'result') == 'Success'
     end
 
     # Performs a move on a page.
@@ -120,8 +120,8 @@ module MediaWiki
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Move MediaWiki Move API Docs
     # @since 0.5.0
+    # @raise [EditError]
     # @return [Boolean] True if it was successful.
-    # @return [String] The error code if it was unsuccessful.
     def move(from, to, reason = nil, talk = true, redirect = false)
       params = {
         action: 'move',
@@ -137,7 +137,8 @@ module MediaWiki
 
       response = post(params)
 
-      response['move'].nil? ? response['error']['code'] : true
+      return true if response['move']
+      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Deletes a page.
@@ -147,8 +148,8 @@ module MediaWiki
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Delete MediaWiki Delete API Docs
     # @since 0.5.0
+    # @raise [EditError]
     # @return [Boolean] True if successful.
-    # @return [String] The error code if it was not successful.
     def delete(title, reason = nil)
       params = {
         action: 'delete',
@@ -160,7 +161,8 @@ module MediaWiki
       params[:token] = token
 
       response = post(params)
-      response['delete'].nil? ? response['error']['code'] : true
+      return true if response['delete']
+      raise EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
   end
 end
