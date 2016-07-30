@@ -1,4 +1,27 @@
 # Changelog
+## Version 1
+### Version 1.0.0
+* Important: MediaWiki::Butt now depends on Ruby 2.3. If you aren't using that yet, use it. It's worth it.
+* MediaWiki::Butt.new now takes two parameters, `url`, and an options hash. See the documentation for initialize for more details.
+* Improvements to the way we handle query limits (#28, #31, and #37):
+  * `get_recent_revisions`, `get_prefix_search`, and `get_full_watchlist` now properly set their limits.
+  * Most query lists that took a limit parameter now use the attribute `:query_limit_default` instead of each having a set default of 500.
+  * New `:query_limit_default` attribute accessor. This means you can change your default limits whenever you want!
+  * Support using 'max' as the limit.
+* Major cleanup of documentation. The YARD server at ftb-gamepedia.github.io/MediaWiki-Butt-Ruby is now the recommended place for documentation.
+* Improve testing slightly.
+* Remove the TIME_FORMAT constant and instead use DateTime's methods properly.
+* Fix FileRepoInfo methods returning hashes with nil values instead of arrays of hashes (#34).
+* Add support for the MediaWiki Watching/Unwatching APIs (#38)
+* Remove the unused `:tokens` instance variable. This should silence some errors when logging in/out.
+* Improve authentication methods by making them recursive. `login` and `create_account(_email)` now take an optional third parameter, token.
+* Fix error in `get_categories_in_page` (APerson241)
+* Error handling improvements (APerson241 and elifoster) (#32):
+  * New EditError that is thrown when there is an error when editing. It contains the error code.
+  * `edit` returns false when there is no change (error: nochange), rather than throwing an error.
+  * New BlockError that is thrown when there is an error when blocking/unblocking.
+  * Removed AuthenticationError subclasses, as well as `check_login` and `check_create`. All authentication errors now return a generic AuthenticationError with the provided error message from MediaWiki.
+
 ## Version 0
 ### Version 0.11.1
 * Relicense under the MIT license.
