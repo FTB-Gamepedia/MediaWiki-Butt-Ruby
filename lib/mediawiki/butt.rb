@@ -30,7 +30,8 @@ module MediaWiki
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
     # @option opts [Fixnum] :query_limit_default The query limit to use if no limit parameter is explicitly given to
     #   the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
-    #   use that, otherwise, it will use this. Defaults to 500.
+    #   use that, otherwise, it will use this. Defaults to 500. It can be set to 'max' to use MW's default max for
+    #   each API.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @query_limit_default = opts[:query_limit_default] || 500
@@ -85,6 +86,10 @@ module MediaWiki
     # @since 0.8.0
     # @return [Fixnum] The capped number.
     def get_limited(integer, max_user = 500, max_bot = 5000)
+      if integer.is_a?(String)
+        return integer if integer == 'max'
+        return 500
+      end
       return integer if integer <= max_user
 
       if user_bot?

@@ -58,6 +58,12 @@ describe 'MediaWiki::Query' do
         MW_BUTT_NO_URL.get_limited(10_000).must_equal(5000)
       end
     end
+
+    it 'uses max as the limit' do
+      MW_BUTT_NO_URL.get_limited('max').must_equal('max')
+      MW_BUTT_NO_URL.get_limited('MAX').must_equal(500)
+      MW_BUTT_NO_URL.get_limited('min').must_equal(500)
+    end
   end
 
   describe '#validate_namespace' do
