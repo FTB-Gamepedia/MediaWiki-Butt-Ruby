@@ -14,9 +14,7 @@ module MediaWiki
             aclimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['allcategories'].each { |c| return_val << c['*'] }
-          end
+          query_ary(params, 'allcategories', '*')
         end
 
         # Gets all the images on the wiki.
@@ -30,9 +28,7 @@ module MediaWiki
             ailimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['allimages'].each { |i| return_val << i['name'] }
-          end
+          query_ary(params, 'allimages', 'name')
         end
 
         # Gets all pages within a namespace integer.
@@ -48,9 +44,7 @@ module MediaWiki
             aplimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['allpages'].each { |p| return_val << p['title'] }
-          end
+          query_ary(params, 'allpages', 'title')
         end
 
         # Gets all users, or all users in a group.
@@ -61,7 +55,6 @@ module MediaWiki
         # @return [Hash<String, Fixnum>] A hash of all users, names are keys, IDs are values.
         def get_all_users(group = nil, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'allusers',
             aulimit: get_limited(limit)
           }
@@ -85,9 +78,7 @@ module MediaWiki
             bkprop: 'id'
           }
 
-          query(params) do |return_val, query|
-            query['blocks'].each { |b| return_val << b['id'] }
-          end
+          query_ary(params, 'blocks', 'id')
         end
 
         # Gets all page titles that transclude a given page.
@@ -103,9 +94,7 @@ module MediaWiki
             eilimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['embeddedin'].each { |e| return_val << e['title'] }
-          end
+          query_ary(params, 'embeddedin', 'title')
         end
 
         # Gets an array of all deleted or archived files on the wiki.
@@ -119,9 +108,7 @@ module MediaWiki
             falimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['filearchive'].each { |f| return_val << f['name'] }
-          end
+          query_ary(params, 'filearchive', 'name')
         end
 
         # Gets a list of all protected pages, by protection level if provided.
@@ -137,9 +124,7 @@ module MediaWiki
           }
           params[:ptlevel] = protection_level unless protection_level.nil?
 
-          query(params) do |return_val, query|
-            query['protectedtitles'].each { |t| return_val << t['title'] }
-          end
+          query_ary(params, 'protectedtitles', 'title')
         end
       end
     end

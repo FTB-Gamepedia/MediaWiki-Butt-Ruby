@@ -4,7 +4,8 @@ module MediaWiki
       module Miscellaneous
         # Returns an array of random pages titles.
         # @param limit [Fixnum] The number of articles to get. Defaults to 1. Cannot be greater than 10 for normal
-        #   users, or 20 for bots. This method does *not* use the query_limit_default attribute.
+        #   users, or 20 for bots. This method does *not* use the query_limit_default attribute. This method does not
+        #   use continuation.
         # @param namespace [Fixnum] The namespace ID. Defaults to 0 (the main namespace).
         # @see https://www.mediawiki.org/wiki/API:Random MediaWiki Random API Docs
         # @since 0.2.0
@@ -16,9 +17,11 @@ module MediaWiki
             rnnamespace: validate_namespace(namespace)
           }
 
-          query(params) do |return_val, query|
-            query['random'].each { |a| return_val << a['title'] }
-          end
+          continue = @use_continuation
+          @use_continuation = false
+          ret = query_ary(params, 'random', 'title')
+          @use_continuation = continue
+          ret
         end
 
         # Gets the valid change tags on the wiki.
@@ -32,9 +35,7 @@ module MediaWiki
             limit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['tags'].each { |tag| return_val << tag['name'] }
-          end
+          query_ary(params, 'tags', 'name')
         end
       end
     end

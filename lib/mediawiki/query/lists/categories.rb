@@ -21,9 +21,7 @@ module MediaWiki
 
           params[:cmtitle] = category =~ /[Cc]ategory:/ ? category : "Category:#{category}"
 
-          query(params) do |return_val, query|
-            query['categorymembers'].each { |cm| return_val << cm['title'] }
-          end
+          query_ary(params, 'categorymembers', 'title')
         end
 
         # Gets the subcategories of a given category.

@@ -90,6 +90,17 @@ module MediaWiki
       base_return
     end
 
+    # Helper method for query methods that return an array built from the query objects.
+    # @param params [Hash] A hash containing MediaWiki API parameters.
+    # @param
+    def query_ary(params, base_response_key, property_key)
+      p params
+      query(params) do |return_val, query|
+        p query[base_response_key]
+        query[base_response_key].each { |obj| return_val << obj[property_key] }
+      end
+    end
+
     # Gets whether the currently logged in user is a bot.
     # @param username [String] The username to check. Optional. Defaults to
     #   the currently logged in user if nil.

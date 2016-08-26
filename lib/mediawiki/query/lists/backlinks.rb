@@ -16,11 +16,7 @@ module MediaWiki
             bllimit: get_limited(limit)
           }
 
-          ret = []
-          response = post(params)
-          response['query']['backlinks'].each { |bl| ret << bl['title'] }
-
-          ret
+          query_ary(params, 'backlinks', 'title')
         end
 
         # Gets interwiki backlinks by the prefix and title.
@@ -38,9 +34,7 @@ module MediaWiki
           params[:iwblprefix] = prefix unless prefix.nil?
           params[:iwbltitle] = title unless title.nil?
 
-          query(params) do |return_val, query|
-            query['iwbacklinks'].each { |bl| return_val << bl['title'] }
-          end
+          query_ary(params, 'iwbacklinks', 'title')
         end
 
         # Gets language backlinks by the language and title.
@@ -58,9 +52,7 @@ module MediaWiki
           params[:lbllang] = language unless language.nil?
           params[:lbltitle] = title unless title.nil?
 
-          query(params) do |return_val, query|
-            query['langbacklinks'].each { |bl| return_val << bl['title'] }
-          end
+          query_ary(params, 'langbacklinks', 'title')
         end
 
         # Gets image backlinks, or the pages that use a given image.
@@ -77,13 +69,10 @@ module MediaWiki
             iutitle: title,
             iulimit: get_limited(limit)
           }
-
           params[:iufilterredir] = list_redirects.nil? ? 'all' : list_redirects
           params[:iuredirect] = '1' if thru_redir
 
-          query(params) do |return_val, query|
-            query['imageusage'].each { |bl| return_val << bl['title'] }
-          end
+          query_ary(params, 'imageusage', 'title')
         end
 
         # Gets all external link page titles.
@@ -99,7 +88,7 @@ module MediaWiki
             list: 'exturlusage',
             eulimit: get_limited(limit)
           }
-          params[:euquery] = url unless url
+          params[:euquery] = url if url
 
           query(params) do |return_val, query|
            query['exturlusage'].each { |bl| return_val << url ? bl['title'] : { url: bl['url'], title: bl['title'] } }

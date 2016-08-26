@@ -33,9 +33,7 @@ module MediaWiki
             srnamespace: validate_namespace(namespace)
           }
 
-          query(params) do |return_val, query|
-            query['search'].each { |search| return_val << search['title'] }
-          end
+          query_ary(params, 'search', 'title')
         end
 
         # Searches the wiki by a prefix.
@@ -52,9 +50,7 @@ module MediaWiki
             pslimit: get_limited(limit, 100, 200)
           }
 
-          query(params) do |return_val, query|
-            query['prefixsearch'].each { |result| return_val << result['title'] }
-          end
+          query_ary(params, 'prefixsearch', 'title')
         end
       end
     end

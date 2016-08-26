@@ -37,9 +37,7 @@ module MediaWiki
             dflimit: get_limited(limit)
           }
 
-          query(params) do |return_val, query|
-            query['pages'].each { |_, c| return_val << c['title'] }
-          end
+          query_ary(params, 'pages', 'title')
         end
 
         # Gets the size of an image in bytes.

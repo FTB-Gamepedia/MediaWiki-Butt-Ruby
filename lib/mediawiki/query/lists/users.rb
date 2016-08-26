@@ -175,11 +175,9 @@ module MediaWiki
             wlprop: 'title',
             wllimit: get_limited(limit)
           }
-          params[:wluser] = user unless user
+          params[:wluser] = user if user
 
-          query(params) do |return_val, query|
-            query['watchlist'].each { |t| return_val << t['title'] }
-          end
+          query_ary(params, 'watchlist', 'title')
         end
       end
     end

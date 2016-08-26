@@ -61,9 +61,9 @@ module MediaWiki
         def get_anonymous_contributors_count(title, limit = @query_limit_default)
           ret = 0
 
-          get_contributors_response(title, limit) do |return_val, query|
+          get_contributors_response(title, limit) do |_, query|
             pageid = nil
-            query['pages'].each { |r, _| pageid = r }
+            query['pages'].each { |r, __| pageid = r }
             return if query['pages'][pageid].key?('missing')
             ret += query['pages'][pageid]['anoncontributors'].to_i
           end
