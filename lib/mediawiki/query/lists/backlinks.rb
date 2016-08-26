@@ -11,17 +11,12 @@ module MediaWiki
         # @return [Array<String>] All backlinks until the limit
         def what_links_here(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'backlinks',
             bltitle: title,
             bllimit: get_limited(limit)
           }
 
-          ret = []
-          response = post(params)
-          response['query']['backlinks'].each { |bl| ret << bl['title'] }
-
-          ret
+          query_ary(params, 'backlinks', 'title')
         end
 
         # Gets interwiki backlinks by the prefix and title.
@@ -33,18 +28,13 @@ module MediaWiki
         # @return [Array<String>] All interwiki backlinking page titles.
         def get_interwiki_backlinks(prefix = nil, title = nil, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'iwbacklinks',
             iwbllimit: get_limited(limit)
           }
           params[:iwblprefix] = prefix unless prefix.nil?
           params[:iwbltitle] = title unless title.nil?
 
-          ret = []
-          response = post(params)
-          response['query']['iwbacklinks'].each { |bl| ret << bl['title'] }
-
-          ret
+          query_ary(params, 'iwbacklinks', 'title')
         end
 
         # Gets language backlinks by the language and title.
@@ -56,18 +46,13 @@ module MediaWiki
         def get_language_backlinks(language = nil, title = nil, limit = @query_limit_default)
           language.downcase! if language.match(/[^A-Z]*/)[0].empty?
           params = {
-            action: 'query',
             list: 'langbacklinks',
             lbltitle: get_limited(limit)
           }
           params[:lbllang] = language unless language.nil?
           params[:lbltitle] = title unless title.nil?
 
-          ret = []
-          response = post(params)
-          response['query']['langbacklinks'].each { |bl| ret << bl['title'] }
-
-          ret
+          query_ary(params, 'langbacklinks', 'title')
         end
 
         # Gets image backlinks, or the pages that use a given image.
@@ -80,20 +65,14 @@ module MediaWiki
         # @return [Array<String>] All page titles that fit the requirements.
         def get_image_backlinks(title, list_redirects = nil, thru_redir = false, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'imageusage',
             iutitle: title,
             iulimit: get_limited(limit)
           }
-
           params[:iufilterredir] = list_redirects.nil? ? 'all' : list_redirects
           params[:iuredirect] = '1' if thru_redir
 
-          response = post(params)
-          ret = []
-          response['query']['imageusage'].each { |bl| ret << bl['title'] }
-
-          ret
+          query_ary(params, 'imageusage', 'title')
         end
 
         # Gets all external link page titles.
@@ -106,27 +85,14 @@ module MediaWiki
         #   hash, url and title.
         def get_url_backlinks(url = nil, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'exturlusage',
             eulimit: get_limited(limit)
           }
-          params[:euquery] = url unless url.nil?
+          params[:euquery] = url if url
 
-          response = post(params)
-          ret = []
-          response['query']['exturlusage'].each do |bl|
-            if url.nil?
-              hash = {
-                url: bl['url'],
-                title: bl['title']
-              }
-              ret << hash
-            else
-              ret << bl['title']
-            end
+          query(params) do |return_val, query|
+           query['exturlusage'].each { |bl| return_val << url ? bl['title'] : { url: bl['url'], title: bl['title'] } }
           end
-
-          ret
         end
       end
     end

@@ -10,24 +10,19 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Duplicatefiles MediaWiki Duplicate Files API Docs
         # @since 0.8.0
         # @return [Array<String>] Array of all the duplicated file names.
-        # @return [Nil] If there aren't any duplicated files.
         def get_duplicated_files_of(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'duplicatefiles',
             titles: title,
             dflimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |_, c|
-            return nil if c['duplicatefiles'].nil?
-            c['duplicatefiles'].each do |f|
-              ret << f['name']
+          query(params) do |return_val, query|
+            query['pages'].each do |_, c|
+              next unless c['duplicatefies']
+              c['duplicatefiles'].each { |f| return_val << f['name'] }
             end
           end
-          ret
         end
 
         # Gets all duplicated files on the wiki.
@@ -37,18 +32,12 @@ module MediaWiki
         # @return [Array<String>] All duplicate file titles on the wiki.
         def get_all_duplicated_files(limit = @query_limit_default)
           params = {
-            action: 'query',
             generator: 'allimages',
-            prop: 'duplicatefiles',
+            prop: 'duplicatedfiles',
             dflimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |_, c|
-            ret << c['title']
-          end
-          ret
+          query_ary(params, 'pages', 'title')
         end
 
         # Gets the size of an image in bytes.

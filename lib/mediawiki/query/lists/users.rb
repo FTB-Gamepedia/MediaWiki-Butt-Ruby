@@ -3,7 +3,7 @@ module MediaWiki
     module Lists
       module Users
         # Gets user information. This method should rarely be used by
-        # normal users, unless they want a huge amount of user data at once.
+        # normal users, unless they want a huge amount of usnot g data at once.
         # @param prop [String] The usprop parameter.
         # @param username [String] The username to get info for. Optional. Defaults to the currently logged in user
         # if omitted.
@@ -144,26 +144,22 @@ module MediaWiki
         # the size change relative to the previous edit.
         def get_user_contributions(user, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'usercontribs',
             ucuser: user,
             uclimit: get_limited(limit),
             ucprop: 'ids|title|comment|size|sizediff|flags|patrolled'
           }
 
-          response = post(params)
-
-          ret = {}
-          response['query']['usercontribs'].each do |item|
-            ret[item['revid']] = {
-              title: item['title'],
-              summary: item['comment'],
-              total_size: item['size'],
-              diff_size: item['sizediff']
-            }
+          query(params, {}) do |return_val, query|
+            query['usercontribs'].each do |item|
+              return_val[item['revid']] = {
+                title: item['title'],
+                summary: item['comment'],
+                total_size: item['size'],
+                diff_size: item['sizediff']
+              }
+            end
           end
-
-          ret
         end
 
         # Gets the user's full watchlist. If no user is provided, it will use the currently logged in user, according
@@ -175,19 +171,13 @@ module MediaWiki
         # @return [Array<String>] All the watchlist page titles.
         def get_full_watchlist(user = nil, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'watchlist',
             wlprop: 'title',
             wllimit: get_limited(limit)
           }
-          params[:wluser] = user unless user.nil?
+          params[:wluser] = user if user
 
-          response = post(params)
-
-          ret = []
-          response['query']['watchlist'].each { |t| ret << t['title'] }
-
-          ret
+          query_ary(params, 'watchlist', 'title')
         end
       end
     end

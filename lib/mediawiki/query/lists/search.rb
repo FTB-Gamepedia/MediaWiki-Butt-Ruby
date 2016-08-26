@@ -28,18 +28,12 @@ module MediaWiki
         # @return [Array<String>] The page titles that matched the search.
         def get_search_results(search_value, namespace = 0)
           params = {
-            action: 'query',
             list: 'search',
             srsearch: search_value,
             srnamespace: validate_namespace(namespace)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['search'].each { |search| ret << search['title'] }
-
-          ret
+          query_ary(params, 'search', 'title')
         end
 
         # Searches the wiki by a prefix.
@@ -51,19 +45,12 @@ module MediaWiki
         # @return [Array<String>] All of the page titles that match the search.
         def get_prefix_search(prefix, limit = 100)
           params = {
-            action: 'query',
             list: 'prefixsearch',
             pssearch: prefix,
             pslimit: get_limited(limit, 100, 200)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['prefixsearch'].each do |result|
-            ret << result['title']
-          end
-
-          ret
+          query_ary(params, 'prefixsearch', 'title')
         end
       end
     end

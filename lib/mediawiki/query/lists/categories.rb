@@ -13,7 +13,6 @@ module MediaWiki
         # @return [Array<String>] All category members until the limit
         def get_category_members(category, limit = @query_limit_default, type = 'page')
           params = {
-            action: 'query',
             list: 'categorymembers',
             cmprop: 'title',
             cmlimit: get_limited(limit),
@@ -21,11 +20,8 @@ module MediaWiki
           }
 
           params[:cmtitle] = category =~ /[Cc]ategory:/ ? category : "Category:#{category}"
-          ret = []
-          response = post(params)
-          response['query']['categorymembers'].each { |cm| ret << cm['title'] }
 
-          ret
+          query_ary(params, 'categorymembers', 'title')
         end
 
         # Gets the subcategories of a given category.

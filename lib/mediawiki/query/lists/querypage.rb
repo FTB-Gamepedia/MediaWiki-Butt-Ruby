@@ -89,11 +89,7 @@ module MediaWiki
         # @return [Nil] If the user does not have the necessary rights.
         def get_unwatchedpages_page(limit = @query_limit_default)
           rights = get_userrights
-          if rights != false && rights.include?('unwatchedpages')
-            get_querypage('Unwatchedpages', limit)
-          else
-            return nil
-          end
+          rights && rights.include?('unwatchedpages') ? get_querypage('Unwatchedpages', limit) : nil
         end
 
         # @since 0.10.0
@@ -182,18 +178,14 @@ module MediaWiki
         # @return [Array<String>] All of the page titles in the querypage.
         def get_querypage(page, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'querypage',
             qppage: page,
             qplimit: get_limited(limit)
           }
-          response = post(params)
-          ret = []
-          response['query']['querypage']['results'].each do |result|
-            ret << result['title']
-          end
 
-          ret
+          query(params) do |return_val, query|
+            query['querypage']['results'].each { |result| return_val << result['title'] }
+          end
         end
       end
     end

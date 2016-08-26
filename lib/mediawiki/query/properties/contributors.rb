@@ -12,10 +12,12 @@ module MediaWiki
         # @see #get_logged_in_contributors
         # @since 0.8.0
         # @return [Fixnum] The number of contributors to that page.
+        # @return [Nil] If the page does not exist.
         def get_total_contributors(title, limit = @query_limit_default)
           anon_users = get_anonymous_contributors_count(title, limit)
           users = get_logged_in_contributors(title, limit)
 
+          return if users.nil?
           users.size + anon_users
         end
 
@@ -23,21 +25,14 @@ module MediaWiki
         # @param (see #get_total_contributors)
         # @see #get_contributors_response
         # @since 0.8.0
-        # @return [Array] All usernames for the contributors.
+        # @return [Array<String>] All usernames for the contributors.
         def get_logged_in_contributors(title, limit = @query_limit_default)
-          response = get_contributors_response(title, limit)
-          pageid = nil
-          response['query']['pages'].each { |r, _| pageid = r }
-          ret = []
-          if response['query']['pages'][pageid]['missing'] == ''
-            return nil
-          else
-            response['query']['pages'][pageid]['contributors'].each do |c|
-              ret.push(c['name'])
-            end
+          get_contributors_response(title, limit) do |return_val, query|
+            pageid = nil
+            query['pages'].each { |r, _| pageid = r }
+            return if query['pages'][pageid].key?('missing')
+            query['pages'][pageid]['contributors'].each { |c| return_val << c['name'] }
           end
-
-          ret
         end
 
         private
@@ -46,16 +41,15 @@ module MediaWiki
         # @param (see #get_total_contributors)
         # @see https://www.mediawiki.org/wiki/API:Contributors MediaWiki Contributors Property API Docs
         # @since 0.8.0
-        # @return [Hash] See {MediaWiki::Butt#post}
+        # @return [Hash] See {MediaWiki::Butt#query}
         def get_contributors_response(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'contributors',
             titles: title,
             pclimit: get_limited(limit)
           }
 
-          post(params)
+          query(params) { |return_val, query| yield(return_val, query) }
         end
 
         # Gets the total number of anonymous contributors for the given page.
@@ -65,12 +59,16 @@ module MediaWiki
         # @return [Fixnum] The number of anonymous contributors for the page.
         # @return [Nil] If title is not a valid page.
         def get_anonymous_contributors_count(title, limit = @query_limit_default)
-          response = get_contributors_response(title, limit)
-          pageid = nil
-          response['query']['pages'].each { |r, _| pageid = r }
-          return nil if response['query']['pages'][pageid]['missing'] == ''
+          ret = 0
 
-          response['query']['pages'][pageid]['anoncontriburors'].to_i
+          get_contributors_response(title, limit) do |_, query|
+            pageid = nil
+            query['pages'].each { |r, __| pageid = r }
+            return if query['pages'][pageid].key?('missing')
+            ret += query['pages'][pageid]['anoncontributors'].to_i
+          end
+
+          ret
         end
       end
     end
