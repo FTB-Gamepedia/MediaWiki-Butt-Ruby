@@ -11,17 +11,14 @@ module MediaWiki
         # @return [Array<String>] All members
         def get_random_pages(limit = 1, namespace = 0)
           params = {
-            action: 'query',
             list: 'random',
             rnlimit: get_limited(limit, 10, 20),
             rnnamespace: validate_namespace(namespace)
           }
 
-          ret = []
-          responce = post(params)
-          responce['query']['random'].each { |a| ret << a['title'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['random'].each { |a| return_val << a['title'] }
+          end
         end
 
         # Gets the valid change tags on the wiki.
@@ -31,14 +28,13 @@ module MediaWiki
         # @return [Array<String>] All tag names.
         def get_tags(limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'tags',
             limit: get_limited(limit)
           }
-          response = post(params)
-          ret = []
-          response['query']['tags'].each { |tag| ret << tag['name'] }
-          ret
+
+          query(params) do |return_val, query|
+            query['tags'].each { |tag| return_val << tag['name'] }
+          end
         end
       end
     end

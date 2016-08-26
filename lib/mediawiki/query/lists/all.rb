@@ -10,17 +10,13 @@ module MediaWiki
         # @return [Array<String>] An array of all categories.
         def get_all_categories(limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'allcategories',
             aclimit: get_limited(limit)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['allcategories'].each { |c| ret << c['*'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['allcategories'].each { |c| return_val << c['*'] }
+          end
         end
 
         # Gets all the images on the wiki.
@@ -30,17 +26,13 @@ module MediaWiki
         # @return [Array<String>] An array of all images.
         def get_all_images(limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'allimages',
             ailimit: get_limited(limit)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['allimages'].each { |i| ret << i['name'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['allimages'].each { |i| return_val << i['name'] }
+          end
         end
 
         # Gets all pages within a namespace integer.
@@ -51,18 +43,14 @@ module MediaWiki
         # @return [Array<String>] An array of all page titles.
         def get_all_pages_in_namespace(namespace, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'allpages',
             apnamespace: namespace,
             aplimit: get_limited(limit)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['allpages'].each { |p| ret << p['title'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['allpages'].each { |p| return_val << p['title'] }
+          end
         end
 
         # Gets all users, or all users in a group.
@@ -79,12 +67,9 @@ module MediaWiki
           }
           params[:augroup] = group unless group.nil?
 
-          response = post(params)
-
-          ret = {}
-          response['query']['allusers'].each { |u| ret[u['name']] = u['userid'] }
-
-          ret
+          query(params, {}) do |return_val, query|
+            query['allusers'].each { |u| return_val[u['name']] = u['userid']}
+          end
         end
 
         # Gets all block IDs on the wiki. It seems like this only gets non-IP blocks, but the MediaWiki docs are a
@@ -95,18 +80,14 @@ module MediaWiki
         # @return [Array<Fixnum>] All block IDs as strings.
         def get_all_blocks(limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'blocks',
             bklimit: get_limited(limit),
             bkprop: 'id'
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['blocks'].each { |b| ret.push(b['id']) }
-
-          ret
+          query(params) do |return_val, query|
+            query['blocks'].each { |b| return_val << b['id'] }
+          end
         end
 
         # Gets all page titles that transclude a given page.
@@ -117,18 +98,14 @@ module MediaWiki
         # @return [Array<String>] All transcluder page titles.
         def get_all_transcluders(page, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'embeddedin',
             eititle: page,
             eilimit: get_limited(limit)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['embeddedin'].each { |e| ret << e['title'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['embeddedin'].each { |e| return_val << e['title'] }
+          end
         end
 
         # Gets an array of all deleted or archived files on the wiki.
@@ -138,17 +115,13 @@ module MediaWiki
         # @return [Array<String>] All deleted file names. These are not titles, so they do not include "File:".
         def get_all_deleted_files(limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'filearchive',
             falimit: get_limited(limit)
           }
 
-          response = post(params)
-
-          ret = []
-          response['query']['filearchive'].each { |f| ret.push(f['name']) }
-
-          ret
+          query(params) do |return_val, query|
+            query['filearchive'].each { |f| return_val << f['name'] }
+          end
         end
 
         # Gets a list of all protected pages, by protection level if provided.
@@ -159,18 +132,14 @@ module MediaWiki
         # @return [Array<String>] All protected page titles.
         def get_all_protected_titles(protection_level = nil, limit = @query_limit_default)
           params = {
-            action: 'query',
             list: 'protectedtitles',
             ptlimit: get_limited(limit)
           }
           params[:ptlevel] = protection_level unless protection_level.nil?
 
-          response = post(params)
-
-          ret = []
-          response['query']['protectedtitles'].each { |t| ret << t['title'] }
-
-          ret
+          query(params) do |return_val, query|
+            query['protectedtitles'].each { |t| return_val << t['title'] }
+          end
         end
       end
     end

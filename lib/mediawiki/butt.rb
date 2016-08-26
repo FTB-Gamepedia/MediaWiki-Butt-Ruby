@@ -22,6 +22,7 @@ module MediaWiki
     include MediaWiki::Watch
 
     attr_accessor :query_limit_default
+    attr_accessor :use_continuation
 
     # Creates a new instance of MediaWiki::Butt.
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
@@ -32,6 +33,7 @@ module MediaWiki
     #   the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
     #   use that, otherwise, it will use this. Defaults to 500. It can be set to 'max' to use MW's default max for
     #   each API.
+    # @option opts [Boolean] :use_continuation Whether to use the continuation API on queries.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @query_limit_default = opts[:query_limit_default] || 500
@@ -39,6 +41,7 @@ module MediaWiki
       @uri = URI.parse(@url)
       @logged_in = false
       @custom_agent = opts[:custom_agent]
+      @use_continuation = opts[:use_continuation]
     end
 
     # Performs a generic HTTP POST request and provides the response. This method generally should not be used by the
@@ -60,6 +63,31 @@ module MediaWiki
       res = @client.post(@uri, params, header)
 
       autoparse ? JSON.parse(res.body) : res
+    end
+
+    # Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.
+    # @param params [Hash] A hash containing MediaWiki API parameters.
+    # @param base_return [Any] The return value to start with. Defaults to an empty array.
+    # @yield [base_return, query] Provides the value provided to the base_return parameter, and the value in the
+    #   'query' key in the API response. See the API documentation for more information on this. If the base_return
+    #   value is modified in the block, its modifications will persist across each continuation loop.
+    # @return [Any] The base_return value as modified by the yielded block.
+    def query(params, base_return = [])
+      params[:action] = 'query'
+      params[:continue] = ''
+
+      loop do
+        result = post(params)
+        yield(base_return, result['query']) if result.key?('query')
+        break unless @use_continuation
+        break unless result.key?('continue')
+        continue = result['continue']
+        continue.each do |key, val|
+          params[key.to_sym] = val
+        end
+      end
+
+      base_return
     end
 
     # Gets whether the currently logged in user is a bot.

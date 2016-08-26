@@ -12,18 +12,20 @@ module MediaWiki
         # @return [Nil] If the title does not exist.
         def get_categories_in_page(title)
           params = {
-            action: 'query',
             prop: 'categories',
             titles: title
           }
 
-          response = post(params)
-          pageid = nil
-          ret = []
-          response['query']['pages'].each { |r, _| pageid = r }
-          return if response['query']['pages'][pageid]['missing'] == ''
+          query(params) do |return_val, query|
+            pageid = nil
+            query['pages'].each do |r, _|
+              pageid = r
+              break
+            end
 
-          response['query']['pages'][pageid].fetch('categories', []).map { |c| c['title'] }
+            return if query['pages'][pageid].key?('missing')
+            query['pages'][pageid].fetch('categories', []).each { |c| return_val << c['title'] }
+          end
         end
 
         # Gets the wiki text for the given page. Returns nil if it for some reason cannot get the text, for example,
@@ -85,16 +87,12 @@ module MediaWiki
             ellimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['extlinks'].each do |l|
-              ret << l['*']
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid]['extlinks'].each { |l| return_val << l['*'] }
             end
           end
-
-          ret
         end
 
         # Gets whether the current user watches the page.
@@ -273,22 +271,17 @@ module MediaWiki
         # @return [Nil] If the page does not exist.
         def get_images_in_page(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'images',
             titles: title,
             imlimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['images'].each do |img|
-              ret << img['title']
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid]['images'].each { |img| return_val << img['title'] }
             end
           end
-
-          ret
         end
 
         # Gets all of the templates in the given page.
@@ -299,48 +292,40 @@ module MediaWiki
         # @return [Nil] If the page does not exist.
         def get_templates_in_page(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'templates',
             titles: title,
             tllimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['templates'].each do |tmp|
-              ret << tmp['title']
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid]['templates'].each { |template| return_val << template['title'] }
             end
           end
-
-          ret
         end
 
         # Gets all of the interwiki links on the given page.
         # @param (see #get_external_links)
         # @see https://www.mediawiki.org/wiki/API:Iwlinks MediaWiki Interwiki Links API Docs
         # @since 0.8.0
-        # @return [Array<String>] All interwiki link titles.
+        # @return [Array<Hash<Symbol, String>>] All interwiki links. Each hash has a :prefix and :title
         # @return [Nil] If the page does not exist.
         def get_interwiki_links_in_page(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'iwlinks',
             titles: title,
             tllimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['iwlinks'].each do |l|
-              ret << l['*']
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid].fetch('iwlinks', []).each do |l|
+                return_val << { prefix: l['prefix'], title: l['*'] }
+              end
             end
           end
-
-          ret
         end
 
         # Gets a hash of data for the page in every language that it is available in. This includes url, language
@@ -352,28 +337,25 @@ module MediaWiki
         # @return [Nil] If the page does not exist.
         def get_other_langs_of_page(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'langlinks',
             titles: title,
             lllimit: get_limited(limit),
             llprop: 'url|langname|autonym'
           }
 
-          response = post(params)
-          ret = {}
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['langlinks'].each do |l|
-              ret[l['lang'].to_sym] = {
-                url: l['url'],
-                langname: l['langname'],
-                autonym: l['autonym'],
-                title: l['*']
-              }
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid]['langlinks'].each do |l|
+                return_val[l['lang'].to_sym] = {
+                  url: l['url'],
+                  langname: l['langname'],
+                  autonym: l['autonym'],
+                  title: l['*']
+                }
+              end
             end
           end
-
-          ret
         end
 
         # Gets every single link in a page.
@@ -384,22 +366,17 @@ module MediaWiki
         # @return [Nil] If the page does not exist.
         def get_all_links_in_page(title, limit = @query_limit_default)
           params = {
-            action: 'query',
             prop: 'links',
             titles: title,
             pllimit: get_limited(limit)
           }
 
-          response = post(params)
-          ret = []
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            response['query']['pages'][revid]['links'].each do |l|
-              ret << l['title']
+          query(params) do |return_val, query|
+            query['pages'].each do |revid, _|
+              return if revid == '-1'
+              query['pages'][revid]['links'].each { |l| return_val << l['title'] }
             end
           end
-
-          ret
         end
       end
     end
