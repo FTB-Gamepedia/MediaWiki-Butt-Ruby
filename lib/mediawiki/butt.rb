@@ -79,8 +79,7 @@ module MediaWiki
       loop do
         result = post(params)
         yield(base_return, result['query']) if result.key?('query')
-        break unless @use_continuation
-        break unless result.key?('continue')
+        break unless @use_continuation || result.key?('continue')
         continue = result['continue']
         continue.each do |key, val|
           params[key.to_sym] = val
@@ -94,9 +93,7 @@ module MediaWiki
     # @param params [Hash] A hash containing MediaWiki API parameters.
     # @param
     def query_ary(params, base_response_key, property_key)
-      p params
       query(params) do |return_val, query|
-        p query[base_response_key]
         query[base_response_key].each { |obj| return_val << obj[property_key] }
       end
     end
