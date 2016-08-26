@@ -1,5 +1,8 @@
 # Changelog
 ## Version 1
+### Version 1.1.0
+* Support for the continuation API (Issue #9 and PR #47)
+
 ### Version 1.0.0
 * Important: MediaWiki::Butt now depends on Ruby 2.3. If you aren't using that yet, use it. It's worth it.
 * MediaWiki::Butt.new now takes two parameters, `url`, and an options hash. See the documentation for initialize for more details.
