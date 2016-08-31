@@ -1,5 +1,8 @@
 # Changelog
 ## Version 1
+### Version 1.1.1
+* Fix query methods throwing NoMethodErrors.
+
 ### Version 1.1.0
 * Support for the continuation API (Issue #9 and PR #47)
 
