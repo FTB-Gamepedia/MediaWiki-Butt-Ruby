@@ -1,5 +1,8 @@
 # Changelog
 ## Version 1
+### Version 1.2.0
+* Add support for the Purge API (#48)
+
 ### Version 1.1.1
 * Fix query methods throwing NoMethodErrors.
 
