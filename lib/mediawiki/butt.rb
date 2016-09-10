@@ -4,6 +4,7 @@ require_relative 'constants'
 require_relative 'edit'
 require_relative 'administration'
 require_relative 'watch'
+require_relative 'purge'
 require 'httpclient'
 require 'json'
 
@@ -20,6 +21,7 @@ module MediaWiki
     include MediaWiki::Edit
     include MediaWiki::Administration
     include MediaWiki::Watch
+    include MediaWiki::Purge
 
     attr_accessor :query_limit_default
     attr_accessor :use_continuation
