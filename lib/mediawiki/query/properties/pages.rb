@@ -1,4 +1,5 @@
 require_relative '../query'
+require_relative '../../constants'
 
 module MediaWiki
   module Query
@@ -17,14 +18,9 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            pageid = nil
-            query['pages'].each do |r, _|
-              pageid = r
-              break
-            end
-
+            pageid = query['pages'].keys.find(MediaWiki::Constants::MISSING_PAGEID_PROC) { |id| id != '-1' }
             return if query['pages'][pageid].key?('missing')
-            query['pages'][pageid].fetch('categories', []).each { |c| return_val << c['title'] }
+            return_val.concat(query['pages'][pageid].fetch('categories', []).collect { |c| c['title'] })
           end
         end
 
@@ -44,11 +40,8 @@ module MediaWiki
           }
 
           response = post(params)
-          revid = nil
-          response['query']['pages'].each { |r, _| revid = r }
-
+          revid = response['query']['pages'].keys.find(MediaWiki::Constants::MISSING_PAGEID_PROC) { |id| id != '-1' }
           revision = response['query']['pages'][revid]
-
           revision['missing'] == '' ? nil : revision['revisions'][0]['*']
         end
 
@@ -66,10 +59,7 @@ module MediaWiki
             titles: title
           }
 
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : revid.to_i
-          end
+          post(params)['query']['pages'].keys.find { |id| id != '-1' }&.to_i
         end
 
         # Gets all the external links on a given page.
@@ -88,10 +78,9 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid]['extlinks'].each { |l| return_val << l['*'] }
-            end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            return_val.concat(query['pages'][pageid]['extlinks'].collect { |l| l['*'] })
           end
         end
 
@@ -104,17 +93,7 @@ module MediaWiki
         # @return [Nil] If the page does not exist.
         def do_i_watch?(title)
           return false unless @logged_in
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info',
-            inprop: 'watched'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid].key?('watched')
-          end
+          page_info_contains_key(title, 'watched', 'watched')
         end
 
         # Gets whether the current user (can be anonymous) can read the page.
@@ -124,17 +103,7 @@ module MediaWiki
         # @return [Boolean] Whether the user can read the page.
         # @return [Nil] If the page does not exist.
         def can_i_read?(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info',
-            inprop: 'readable'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid].key?('readable')
-          end
+          page_info_contains_key(title, 'readable', 'readable')
         end
 
         # Gets whether the given page is a redirect.
@@ -144,16 +113,7 @@ module MediaWiki
         # @return [Boolean] Whether the page is a redirect.
         # @return [Nil] If the page does not exist.
         def page_redirect?(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid].key?('redirect')
-          end
+          page_info_contains_key(title, 'redirect')
         end
 
         # Gets whether the given page only has one edit.
@@ -163,16 +123,7 @@ module MediaWiki
         # @return [Boolean] Whether the page only has one edit.
         # @return [Nil] If the page does not exist.
         def page_new?(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid].key?('new')
-          end
+          page_info_contains_key(title, 'new')
         end
 
         # Gets the number of users that watch the given page.
@@ -182,17 +133,7 @@ module MediaWiki
         # @return [Fixnum] The number of watchers.
         # @return [Nil] If the page does not exist.
         def get_number_of_watchers(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info',
-            inprop: 'watchers'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid]['watchers']
-          end
+          page_info_get_val(title, 'watchers', 'watchers')
         end
 
         # Gets the way the title is actually displayed, after any in-page changes to its display, e.g., using a
@@ -203,17 +144,7 @@ module MediaWiki
         # @return [String] The page's display title.
         # @return [Nil] If the page does not exist.
         def get_display_title(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info',
-            inprop: 'displaytitle'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid]['displaytitle']
-          end
+          page_info_get_val(title, 'displaytitle', 'displaytitle')
         end
 
         # Gets the levels of protection on the page.
@@ -234,14 +165,15 @@ module MediaWiki
           }
 
           response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return if revid == '-1'
-            protection = response['query']['pages'][revid]['protection']
-            protection.each do |p|
-              p.keys.each { |k| p[k.to_sym] = p.delete(k) }
-            end
-            return protection
+
+          pageid = response['query']['pages'].keys.find { |id| id != '-1' }
+          return unless pageid
+          protection = response['query']['pages'][pageid]['protection']
+          protection.each do |p|
+            p.keys.each { |k| p[k.to_sym] = p.delete(k) }
           end
+
+          protection
         end
 
         # Gets the size, in bytes, of the page.
@@ -251,16 +183,7 @@ module MediaWiki
         # @return [Fixnum] The number of bytes.
         # @return [Nil] If the page does not exist.
         def get_page_size(title)
-          params = {
-            action: 'query',
-            titles: title,
-            prop: 'info'
-          }
-
-          response = post(params)
-          response['query']['pages'].each do |revid, _|
-            return revid == '-1' ? nil : response['query']['pages'][revid]['length']
-          end
+          page_info_get_val(title, 'length')
         end
 
         # Gets all of the images in the given page.
@@ -277,10 +200,9 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid]['images'].each { |img| return_val << img['title'] }
-            end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            return_val.concat(query['pages'][pageid]['images'].collect { |img| img['title'] })
           end
         end
 
@@ -298,10 +220,9 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid]['templates'].each { |template| return_val << template['title'] }
-            end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            return_val.concat(query['pages'][pageid]['templates'].collect { |template| template['title'] })
           end
         end
 
@@ -319,12 +240,10 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid].fetch('iwlinks', []).each do |l|
-                return_val << { prefix: l['prefix'], title: l['*'] }
-              end
-            end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            iwlinks = query['pages'][pageid].fetch('iwlinks', [])
+            return_val.concat(iwlinks.collect { |l| { prefix: l['prefix'], title: l['*']} })
           end
         end
 
@@ -344,16 +263,15 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid]['langlinks'].each do |l|
-                return_val[l['lang'].to_sym] = {
-                  url: l['url'],
-                  langname: l['langname'],
-                  autonym: l['autonym'],
-                  title: l['*']
-                }
-              end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            query['pages'][pageid]['langlinks'].each do |l|
+              return_val[l['lang'].to_sym] = {
+                url: l['url'],
+                langname: l['langname'],
+                autonym: l['autonym'],
+                title: l['*']
+              }
             end
           end
         end
@@ -372,11 +290,53 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['pages'].each do |revid, _|
-              return if revid == '-1'
-              query['pages'][revid]['links'].each { |l| return_val << l['title'] }
-            end
+            pageid = query['pages'].keys.find { |id| id != '-1' }
+            return unless pageid
+            return_val.concat(query['pages'][pageid]['links'].collect { |l| l['title'] })
           end
+        end
+
+        private
+
+        # Performs a query for the page info with the provided property.
+        # @param title [String] The page name
+        # @param inprop [String] The inprop to use. See the MediaWiki API documentation.
+        # @return (see #post)
+        def get_basic_page_info(title, inprop = nil)
+          params = {
+            action: 'query',
+            titles: title,
+            prop: 'info'
+          }
+          params[:inprop] = inprop if inprop
+
+          post(params)
+        end
+
+        # Performs a query for the page info with the provided property. Checks if the first non-missing page returned
+        #   contains the provided key.
+        # @param title [String] The page name
+        # @param key [String] The key to check for
+        # @param inprop [String] The inprop to use. See the MediaWiki API documentation.
+        # @return [Nil] If the page is not found.
+        # @return [Boolean] If the page object contains the provided key.
+        def page_info_contains_key(title, key, inprop = nil)
+          response = get_basic_page_info(title, inprop)
+          pageid = response['query']['pages'].keys.find { |id| id != '-1' }
+          return unless pageid
+          response['query']['pages'][pageid].key?(key)
+        end
+
+        # Performs a query for the page info with the provided property, and returns a value by the provided key in
+        #   the page's returned object.
+        # @param (see #page_info_contains_key)
+        # @return [Nil] If the page is not found.
+        # @return [Any] The returned value for the key.
+        def page_info_get_val(title, key, inprop = nil)
+          response = get_basic_page_info(title, inprop)
+          pageid = response['query']['pages'].keys.find { |id| id != '-1' }
+          return unless pageid
+          response['query']['pages'][pageid][key]
         end
       end
     end

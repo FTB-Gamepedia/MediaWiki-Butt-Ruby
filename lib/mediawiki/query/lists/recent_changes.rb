@@ -34,9 +34,7 @@ module MediaWiki
           params[:rcstart] = start.xmlschema unless start.nil?
           params[:rcend] = stop.xmlschema unless stop.nil?
 
-          response = post(params)
-          ret = []
-          response['query']['recentchanges'].each do |change|
+          post(params)['query']['recentchanges'].collect do |change|
             old_length = change['oldlen']
             new_length = change['newlen']
             diff_length = new_length - old_length
@@ -68,10 +66,8 @@ module MediaWiki
               hash[:logid] = change['logid']
             end
 
-            ret << hash
+            hash
           end
-
-          ret
         end
 
         # Gets the recent deleted revisions.
@@ -90,9 +86,7 @@ module MediaWiki
           params[:drstart] = start.xmlschema unless start.nil?
           params[:drend] = stop.xmlschema unless stop.nil?
 
-          response = post(params)
-          ret = []
-          response['query']['deletedrevs'].each do |rev|
+          post(params)['query']['deletedrevs'].collect do |rev|
             r = rev['revisions'][0]
             hash = {
               timestamp: DateTime.xmlschema(r['timestamp']),
@@ -100,10 +94,9 @@ module MediaWiki
               comment: r['comment'],
               title: rev['title']
             }
-            ret << hash
-          end
 
-          ret
+            hash
+          end
         end
       end
     end

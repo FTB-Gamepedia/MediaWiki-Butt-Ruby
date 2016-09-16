@@ -41,10 +41,7 @@ module MediaWiki
         # @since 0.6.0
         # @return [Array<String>] All extension names.
         def get_extensions
-          response = get_siteinfo('extensions')
-          ret = []
-          response['query']['extensions'].each { |e| ret << e['name'] }
-          ret
+           get_siteinfo('extensions')['query']['extensions'].collect { |e| e['name'] }
         end
 
         # Gets all languages and their codes.
@@ -123,12 +120,7 @@ module MediaWiki
         # @since 0.6.0
         # @return [Array<String>] All file extensions.
         def get_allowed_file_extensions
-          response = get_siteinfo('fileextensions')
-          ret = []
-          response['query']['fileextensions'].each do |e|
-            ret << e['ext']
-          end
-          ret
+          get_siteinfo('fileextensions')['query']['fileextensions'].collect { |e| e['ext'] }
         end
 
         # Gets the response for the restrictions siteinfo API. Not really for use by users, mostly for the other two
@@ -136,28 +128,21 @@ module MediaWiki
         # @since 0.6.0
         # @return [Hash<String, Array<String>>] All restriction data. See the other restriction methods.
         def get_restrictions_data
-          response = get_siteinfo('restrictions')
-          response['query']['restrictions']
+          get_siteinfo('restrictions')['query']['restrictions']
         end
 
         # Gets all restriction/protection types.
         # @since 0.6.0
         # @return [Array<String>] All protection types.
         def get_restriction_types
-          restrictions = get_restrictions_data
-          ret = []
-          restrictions['types'].each { |t| ret << t }
-          ret
+          get_restrictions_data['types']
         end
 
         # Gets all restriction/protection levels.
         # @since 0.6.0
         # @return [Array<String>] All protection levels.
         def get_restriction_levels
-          restrictions = get_restrictions_data
-          ret = []
-          restrictions['levels'].each { |l| ret << l }
-          ret
+          get_restrictions_data['levels']
         end
 
         # Gets all skins and their codes.
@@ -176,36 +161,21 @@ module MediaWiki
         # @since 0.6.0
         # @return [Array<String>] All extension tags.
         def get_extension_tags
-          response = get_siteinfo('extensiontags')
-          ret = []
-          response['query']['extensiontags'].each do |t|
-            ret << t
-          end
-          ret
+          get_siteinfo('extensiontags')['query']['extensiontags']
         end
 
         # Gets all function hooks.
         # @since 0.6.0
         # @return [Array<String>] All function hooks.
         def get_function_hooks
-          response = get_siteinfo('functionhooks')
-          ret = []
-          response['query']['functionhooks'].each do |h|
-            ret << h
-          end
-          ret
+          get_siteinfo('functionhooks')['query']['functionhooks']
         end
 
         # Gets all variables that are usable on the wiki, such as NUMBEROFPAGES.
         # @since 0.6.0
         # @return [Array<String>] All variable string values.
         def get_variables
-          response = get_siteinfo('variables')
-          ret = []
-          response['query']['variables'].each do |v|
-            ret << v
-          end
-          ret
+          get_siteinfo('variables')['query']['variables']
         end
       end
     end

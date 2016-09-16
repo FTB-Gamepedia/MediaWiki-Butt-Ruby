@@ -36,17 +36,16 @@ module MediaWiki
         success_key = 'unwatched'
       end
 
-      response = post(params)
-      ret = {}
-      response['watch'].each do |entry|
+      post(params)['watch'].inject({}) do |result, entry|
         title = entry['title']
         if entry.key?(success_key)
-          ret[title] = entry.key?('missing') ? nil : true
+          result[title] = entry.key?('missing') ? nil : true
         else
-          ret[title] = false
+          result[title] = false
         end
+
+        result
       end
-      ret
     end
   end
 end
