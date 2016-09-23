@@ -41,26 +41,14 @@ module MediaWiki
         # @since 0.7.0
         # @return [Array<String>] All repository names that are marked as local.
         def get_local_filerepos
-          response = get_filerepoinfo('name|local')
-          ret = []
-          response['query']['repos'].each do |h|
-            ret << h['name'] if h.key?('local')
-          end
-
-          ret
+          get_filerepoinfo('name|local')['query']['repos'].select { |h| h.key?('local') }.collect { |h| h['name'] }
         end
 
         # Gets an array containing all repositories that aren't local.
         # @since 0.7.0
         # @return [Array<String>] All repositories that are not marked as local.
         def get_nonlocal_filerepos
-          response = get_filerepoinfo('name|local')
-          ret = []
-          response['query']['repos'].each do |h|
-            ret << h['name'] unless h.key?('local')
-          end
-
-          ret
+          get_filerepoinfo('name|local')['query']['repos'].reject { |h| h.key?('local') }.collect { |h| h['name'] }
         end
 
         # Gets the repository names and their according URLs.

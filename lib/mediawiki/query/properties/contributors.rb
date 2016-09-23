@@ -1,4 +1,5 @@
 require_relative '../query'
+require_relative '../../constants'
 
 module MediaWiki
   module Query
@@ -28,8 +29,7 @@ module MediaWiki
         # @return [Array<String>] All usernames for the contributors.
         def get_logged_in_contributors(title, limit = @query_limit_default)
           get_contributors_response(title, limit) do |return_val, query|
-            pageid = nil
-            query['pages'].each { |r, _| pageid = r }
+            pageid = query['pages'].keys.find(MediaWiki::Constants::MISSING_PAGEID_PROC) { |id| id != '-1' }
             return if query['pages'][pageid].key?('missing')
             query['pages'][pageid]['contributors'].each { |c| return_val << c['name'] }
           end
@@ -62,8 +62,7 @@ module MediaWiki
           ret = 0
 
           get_contributors_response(title, limit) do |_, query|
-            pageid = nil
-            query['pages'].each { |r, __| pageid = r }
+            pageid = query['pages'].keys.find(MediaWiki::Constants::MISSING_PAGEID_PROC) { |id| id != '-1' }
             return if query['pages'][pageid].key?('missing')
             ret += query['pages'][pageid]['anoncontributors'].to_i
           end

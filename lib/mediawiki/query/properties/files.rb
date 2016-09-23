@@ -1,4 +1,5 @@
 require_relative '../query'
+require_relative '../../constants'
 
 module MediaWiki
   module Query
@@ -82,14 +83,9 @@ module MediaWiki
           }
 
           response = post(params)
-          pageid = nil
-          response['query']['pages'].each { |r, _| pageid = r }
+          pageid = response['query']['pages'].keys.find(MediaWiki::Constants::MISSING_PAGEID_PROC) { |id| id != '-1'}
           return nil if pageid == '-1'
-          ret = {}
-          response['query']['pages'][pageid]['imageinfo'].each do |i|
-            i.each { |k, v| ret[k] = v }
-          end
-          ret
+          response['query']['pages'][pageid]['imageinfo'].reduce({}, :merge)
         end
       end
     end

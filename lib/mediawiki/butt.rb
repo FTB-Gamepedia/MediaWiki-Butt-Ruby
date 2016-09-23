@@ -97,7 +97,7 @@ module MediaWiki
     # @param
     def query_ary(params, base_response_key, property_key)
       query(params) do |return_val, query|
-        query[base_response_key].each { |obj| return_val << obj[property_key] }
+        return_val.concat(query[base_response_key].collect { |obj| obj[property_key] })
       end
     end
 

@@ -184,7 +184,7 @@ module MediaWiki
           }
 
           query(params) do |return_val, query|
-            query['querypage']['results'].each { |result| return_val << result['title'] }
+            return_val.concat(query['querypage']['results'].collect { |result| result['title'] })
           end
         end
       end

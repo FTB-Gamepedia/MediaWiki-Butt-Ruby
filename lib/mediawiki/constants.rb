@@ -219,5 +219,9 @@ module MediaWiki
       # Extension:Flow
       'FLW_TOPIC'.freeze => 2600
     }.freeze
+
+    # @return [Proc] A proc that returns the missing page ID, -1. This is useful for using methods like Enumerable#find
+    #   and not creating a new Proc object for every call.
+    MISSING_PAGEID_PROC = Proc.new { '-1' }
   end
 end

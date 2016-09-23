@@ -45,27 +45,19 @@ module MediaWiki
         # Gets a hash-of-arrays containing all the groups the user can add and remove people from.
         # @since 0.7.0
         # @return [Boolean] False if get_current_user_meta is false
-        # @return [Hash<String, Array<String>>] All the groups that the user can add, remove, add-self, and remove-self.
+        # @return [Hash<String, Array<String>>] All the groups that the user can :add, :remove, :addself, and
+        #   :remove-self.
         def get_changeable_groups
           response = get_current_user_meta('changeablegroups')
           return false unless response
 
-          ret = {}
-          add = []
-          remove = []
-          addself = []
-          removeself = []
           changeablegroups = response['query']['userinfo']['changeablegroups']
-          changeablegroups['add'].each { |g| add.push(g) }
-          changeablegroups['remove'].each { |g| remove.push(g) }
-          changeablegroups['add-self'].each { |g| addself.push(g) }
-          changeablegroups['remove-self'].each { |g| removeself.push(g) }
-          ret['add'] = add
-          ret['remove'] = remove
-          ret['addself'] = addself
-          ret['removeself'] = removeself
-
-          ret
+          {
+            :add => changeablegroups['add'],
+            :remove => changeablegroups['remove'],
+            :addself => changeablegroups['add-self'],
+            :removeself => changeablegroups['add-self']
+          }
         end
 
         # Gets the currently logged in user's real name.

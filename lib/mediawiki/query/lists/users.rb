@@ -36,19 +36,13 @@ module MediaWiki
         # @return [Array<String>] All of the user's groups.
         # @return [Boolean] False if username is nil and not logged in.
         def get_usergroups(username = nil)
-          ret = []
           if username.nil?
             return false unless @logged_in
-            info = get_userlists('groups')
-            info['query']['userinfo']['groups'].each { |i| ret << i }
+            get_userlists('groups')['query']['userinfo']['groups']
           else
             info = get_userlists('groups', username)
-            info['query']['users'].each do |i|
-              i['groups'].each { |g| ret << g }
-            end
+            info['query']['users'].collect { |i| i['groups'] }.flatten
           end
-
-          ret
         end
 
         # Gets the user rights for the user.
@@ -58,21 +52,14 @@ module MediaWiki
         # @return [Array<String>] All of the user's groups.
         # @return [Boolean] False if username is nil and not logged in.
         def get_userrights(username = nil)
-          ret = []
           if username.nil?
             return false unless @logged_in
             info = get_userlists('rights')
-            info['query']['userinfo']['rights'].each { |i| ret << i }
+            info['query']['userinfo']['rights']
           else
             info = get_userlists('rights', username)
-            info['query']['users'].each do |i|
-              i['rights'].each do |g|
-                ret << g
-              end
-            end
+            info['query']['users'].find { |hash| hash['name'] == username }['rights']
           end
-
-          ret
         end
 
         # Gets contribution count for the user.
@@ -83,17 +70,14 @@ module MediaWiki
         # @return [Boolean] False if username is nil and not logged in.
         # @return [Fixnum] The number of contributions the user has made.
         def get_contrib_count(username = nil)
-          count = nil
           if username.nil?
             return false unless @logged_in
             info = get_userlists('editcount')
-            count = info['query']['userinfo']['editcount']
+            info['query']['userinfo']['editcount']
           else
             info = get_userlists('editcount', username)
-            info['query']['users'].each { |i| count = i['editcount'] }
+            info['query']['users'].find { |hash| hash['name'] == username }['editcount']
           end
-
-          count
         end
 
         # Gets when the user registered.
@@ -104,7 +88,6 @@ module MediaWiki
         # @return [DateTime] The registration date and time as a DateTime object.
         # @return [Boolean] False when no username is provided and not logged in, or the user doesn't exist.
         def get_registration_time(username = nil)
-          time = nil
           # Do note that in Userinfo, registration is called registrationdate.
           if username.nil?
             return false unless @logged_in
@@ -112,7 +95,7 @@ module MediaWiki
             time = info['query']['userinfo']['registrationdate']
           else
             info = get_userlists('registration', username)
-            info['query']['users'].each { |i| time = i['registration'] }
+            time = info['query']['users'].find { |hash| hash['name'] == username }['registration']
           end
 
           return false if time.nil?
@@ -126,11 +109,8 @@ module MediaWiki
         # @since 0.4.0
         # @return [String] The gender. 'male', 'female', or 'unknown'.
         def get_user_gender(username)
-          gender = nil
           info = get_userlists('gender', username)
-          info['query']['users'].each { |i| gender = i['gender'] }
-
-          gender
+          info['query']['users'].find { |hash| hash['name'] == username }['gender']
         end
 
         # Gets the latest contributions by the user until the limit.

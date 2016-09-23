@@ -41,17 +41,12 @@ module MediaWiki
       params[:action] = 'purge'
       params[:titles] = titles.join('|')
 
-      response = post(params)
-
-      ret = {}
-
-      response['purge'].each do |hash|
+      post(params)['purge'].inject({}) do |result, hash|
         title = hash['title']
-        ret[title] = hash.key?('purged') && !hash.key?('missing')
+        result[title] = hash.key?('purged') && !hash.key?('missing')
         warn "Invalid purge (#{title}) #{hash['invalidreason']}" if hash.key?('invalid')
+        result
       end
-
-      ret
     end
   end
 end
