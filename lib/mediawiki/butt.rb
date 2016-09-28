@@ -92,9 +92,19 @@ module MediaWiki
       base_return
     end
 
+    # Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the
+    #   returning value. In most cases this key is a redundant page or revision ID that is also available in the object.
+    # @param (see #query_ary)
+    def query_ary_irrelevant_keys(params, base_response_key, property_key)
+      query(params) do |return_val, query|
+        return_val.concat(query[base_response_key].values.collect { |obj| obj[property_key] })
+      end
+    end
+
     # Helper method for query methods that return an array built from the query objects.
     # @param params [Hash] A hash containing MediaWiki API parameters.
-    # @param
+    # @param base_response_key [String] The key inside the "query" object to collect.
+    # @param property_key [String] The key inside the object (under the base_response_key) to collect.
     def query_ary(params, base_response_key, property_key)
       query(params) do |return_val, query|
         return_val.concat(query[base_response_key].collect { |obj| obj[property_key] })

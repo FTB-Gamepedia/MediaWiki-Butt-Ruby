@@ -38,7 +38,7 @@ module MediaWiki
             dflimit: get_limited(limit)
           }
 
-          query_ary(params, 'pages', 'title')
+          query_ary_irrelevant_keys(params, 'pages', 'title')
         end
 
         # Gets the size of an image in bytes.
