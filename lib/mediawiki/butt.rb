@@ -67,7 +67,7 @@ module MediaWiki
     # @return [HTTPMessage] Raw HTTP response if autoparse is not true.
     def post(params, autoparse = true, header = nil, override_assertion = false)
       params[:format] = 'json'
-      params[:assert] = @assertion.to_s if @assertion && !override_assertion
+      params[:assert] = @assertion.to_s if @assertion && !override_assertion && !params.key?(:assert)
       header = {} if header.nil?
 
       header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
@@ -80,10 +80,8 @@ module MediaWiki
 
       if !override_assertion || @assertion
         code = parsed.dig('error', 'code')
-        if code == 'assertuserfailed' || code == 'assertbotfailed'
-          fail MediaWiki::Butt::NotLoggedInError.new(parsed['error']['info']) if code == 'assertuserfailed'
-          fail MediaWiki::Butt::NotBotError.new(parsed['error']['info']) if code == 'assertbotfailed'
-        end
+        fail MediaWiki::Butt::NotLoggedInError.new(parsed['error']['info']) if code == 'assertuserfailed'
+        fail MediaWiki::Butt::NotBotError.new(parsed['error']['info']) if code == 'assertbotfailed'
       end
       parsed
     end
@@ -141,9 +139,9 @@ module MediaWiki
     def user_bot?
       begin
         post({ action: 'query', assert: 'bot' })
-        return true
-      rescue MediaWiki::Butt::NotBotError, MediaWiki::Butt::NotLoggedInError
-        return false
+        true
+      rescue MediaWiki::Butt::NotBotError
+        false
       end
     end
 
@@ -152,9 +150,9 @@ module MediaWiki
     def logged_in?
       begin
         post({ action: 'query', assert: 'user' })
-        return true
+        true
       rescue MediaWiki::Butt::NotLoggedInError
-        return false
+        false
       end
     end
 
