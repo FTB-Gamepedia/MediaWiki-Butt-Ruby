@@ -1,5 +1,15 @@
 # Changelog
 ## Version 1
+### Version 1.3.0
+**Security update!**
+* Add support for the Assert API (PR #51).
+  * New `:assertion` option in initialize opts. It takes either `:user` or `:bot`.
+  * New `override_assertion` parameter in `post` to prevent assertion errors being thrown.
+    * **Note**: Assertions will only happen if `post`'s `autoparse` parameter is true.
+  * New NotLoggedInError and NotBotError for the according assertions.
+  * `Butt#user_bot?` no longer has a parameter. It now queries with an assertion rather than checking the user's groups.
+  * New method `Butt#logged_in?` to check if the current instance is logged in.
+
 ### Version 1.2.0
 * Add support for the Purge API (#48)
 
