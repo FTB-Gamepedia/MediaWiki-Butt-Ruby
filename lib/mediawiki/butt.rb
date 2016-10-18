@@ -25,6 +25,7 @@ module MediaWiki
 
     attr_accessor :query_limit_default
     attr_accessor :use_continuation
+    attr_accessor :assertion
 
     # Creates a new instance of MediaWiki::Butt.
     # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
@@ -36,6 +37,10 @@ module MediaWiki
     #   use that, otherwise, it will use this. Defaults to 500. It can be set to 'max' to use MW's default max for
     #   each API.
     # @option opts [Boolean] :use_continuation Whether to use the continuation API on queries.
+    # @option opts [Symbol] :assertion If set to :user or :bot, will use the assert parameter in all requests.
+    #   Setting this will open up the possibility for NotLoggedInErrors and NotBotErrors. It is important to keep in
+    #   mind that methods that check if the user is logged in do not use the API, but check if the user has *ever*
+    #   logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @query_limit_default = opts[:query_limit_default] || 500
@@ -44,6 +49,9 @@ module MediaWiki
       @logged_in = false
       @custom_agent = opts[:custom_agent]
       @use_continuation = opts[:use_continuation]
+
+      assertion = opts[:assertion]
+      @assertion = assertion == :user || assertion == :bot ? assertion : nil
     end
 
     # Performs a generic HTTP POST request and provides the response. This method generally should not be used by the
@@ -52,11 +60,14 @@ module MediaWiki
     #   information.
     # @param autoparse [Boolean] Whether or not to provide a parsed version of the response's JSON.
     # @param header [Hash] The header hash. Optional.
+    # @param override_assertion [Boolean] Whether to override the @assertion check. This is used in #login because
+    #   that can never be done while already logged in.
     # @since 0.1.0
     # @return [Hash] Parsed JSON if autoparse is true.
     # @return [HTTPMessage] Raw HTTP response if autoparse is not true.
-    def post(params, autoparse = true, header = nil)
+    def post(params, autoparse = true, header = nil, override_assertion = false)
       params[:format] = 'json'
+      params[:assert] = @assertion.to_s if @assertion && !override_assertion
       header = {} if header.nil?
 
       header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
@@ -64,7 +75,17 @@ module MediaWiki
 
       res = @client.post(@uri, params, header)
 
-      autoparse ? JSON.parse(res.body) : res
+      return res unless autoparse
+      parsed = JSON.parse(res.body)
+
+      if !override_assertion || @assertion
+        code = parsed.dig('error', 'code')
+        if code == 'assertuserfailed' || code == 'assertbotfailed'
+          fail MediaWiki::Butt::NotLoggedInError.new(parsed['error']['info']) if code == 'assertuserfailed'
+          fail MediaWiki::Butt::NotBotError.new(parsed['error']['info']) if code == 'assertbotfailed'
+        end
+      end
+      parsed
     end
 
     # Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.
@@ -112,18 +133,29 @@ module MediaWiki
     end
 
     # Gets whether the currently logged in user is a bot.
-    # @param username [String] The username to check. Optional. Defaults to
-    #   the currently logged in user if nil.
     # @return [Boolean] true if logged in as a bot, false if not logged in or
     #   logged in as a non-bot
     # @since 0.1.0 as is_current_user_bot
     # @since 0.3.0 as is_user_bot?
     # @since 0.4.1 as user_bot?
-    def user_bot?(username = nil)
-      groups = false
-      name = username || @name
-      groups = get_usergroups(name) if name
-      groups && groups.include?('bot')
+    def user_bot?
+      begin
+        post({ action: 'query', assert: 'bot' })
+        return true
+      rescue MediaWiki::Butt::NotBotError, MediaWiki::Butt::NotLoggedInError
+        return false
+      end
+    end
+
+    # Checks whether this instance is logged in.
+    # @return [Boolean] true if logged in, false if not.
+    def logged_in?
+      begin
+        post({ action: 'query', assert: 'user' })
+        return true
+      rescue MediaWiki::Butt::NotLoggedInError
+        return false
+      end
     end
 
     protected
