@@ -22,7 +22,7 @@ module MediaWiki
       header = {}
       header['Set-Cookie'] = @cookie if @cookie
 
-      response = post(params, true, header)
+      response = post(params, true, header, true)
       result = response['login']['result']
 
       if result == 'NeedToken'
@@ -50,7 +50,7 @@ module MediaWiki
           action: 'logout'
         }
 
-        post(params)
+        post(params, true, nil, true)
         @logged_in = false
 
         true
