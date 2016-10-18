@@ -38,15 +38,19 @@ end
 describe 'MediaWiki::Query' do
   describe '#get_limited' do
     it 'uses default maximums to limit the value' do
-      MW_BUTT_NO_URL.get_limited(500).must_equal(500)
-      MW_BUTT_NO_URL.get_limited(400).must_equal(400)
-      MW_BUTT_NO_URL.get_limited(600).must_equal(500)
+      MW_BUTT_NO_URL.stub(:user_bot?, false) do
+        MW_BUTT_NO_URL.get_limited(500).must_equal(500)
+        MW_BUTT_NO_URL.get_limited(400).must_equal(400)
+        MW_BUTT_NO_URL.get_limited(600).must_equal(500)
+      end
     end
 
     it 'uses custom user maximum values to limit the value' do
-      MW_BUTT_NO_URL.get_limited(400, 600).must_equal(400)
-      MW_BUTT_NO_URL.get_limited(600, 600).must_equal(600)
-      MW_BUTT_NO_URL.get_limited(700, 600).must_equal(600)
+      MW_BUTT_NO_URL.stub(:user_bot?, false) do
+        MW_BUTT_NO_URL.get_limited(400, 600).must_equal(400)
+        MW_BUTT_NO_URL.get_limited(600, 600).must_equal(600)
+        MW_BUTT_NO_URL.get_limited(700, 600).must_equal(600)
+      end
     end
 
     it 'limits the value while using a bot account' do
