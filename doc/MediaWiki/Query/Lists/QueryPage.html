@@ -1,0 +1,2557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: MediaWiki::Query::Lists::QueryPage
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!MediaWiki/Query/Lists/QueryPage.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (Q)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Query.html" title="MediaWiki::Query (module)">Query</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">Lists</a></span></span>
+     &raquo; 
+    <span class="title">QueryPage</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: MediaWiki::Query::Lists::QueryPage
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="Users.html" title="MediaWiki::Query::Lists::Users (module)">Users</a></span></dd>
+      
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">MediaWiki::Query::Lists</a></span></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/mediawiki/query/lists/querypage.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_ancientpages_page-instance_method" title="#get_ancientpages_page (instance method)">- (Object) <strong>get_ancientpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_brokenredirects_page-instance_method" title="#get_brokenredirects_page (instance method)">- (Object) <strong>get_brokenredirects_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_doubleredirects_page-instance_method" title="#get_doubleredirects_page (instance method)">- (Object) <strong>get_doubleredirects_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_fewestrevisions_page-instance_method" title="#get_fewestrevisions_page (instance method)">- (Object) <strong>get_fewestrevisions_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_listduplicatedfiles_page-instance_method" title="#get_listduplicatedfiles_page (instance method)">- (Object) <strong>get_listduplicatedfiles_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_listredirects_page-instance_method" title="#get_listredirects_page (instance method)">- (Object) <strong>get_listredirects_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_lonelypages_page-instance_method" title="#get_lonelypages_page (instance method)">- (Object) <strong>get_lonelypages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_longpages_page-instance_method" title="#get_longpages_page (instance method)">- (Object) <strong>get_longpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostcategories_page-instance_method" title="#get_mostcategories_page (instance method)">- (Object) <strong>get_mostcategories_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostimages_page-instance_method" title="#get_mostimages_page (instance method)">- (Object) <strong>get_mostimages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostinterwikis_page-instance_method" title="#get_mostinterwikis_page (instance method)">- (Object) <strong>get_mostinterwikis_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostlinked_page-instance_method" title="#get_mostlinked_page (instance method)">- (Object) <strong>get_mostlinked_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostlinkedcategories_page-instance_method" title="#get_mostlinkedcategories_page (instance method)">- (Object) <strong>get_mostlinkedcategories_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostlinkedtemplates_page-instance_method" title="#get_mostlinkedtemplates_page (instance method)">- (Object) <strong>get_mostlinkedtemplates_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_mostrevisions_page-instance_method" title="#get_mostrevisions_page (instance method)">- (Object) <strong>get_mostrevisions_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_querypage-instance_method" title="#get_querypage (instance method)">- (Array&lt;String&gt;) <strong>get_querypage</strong>(page, limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a QueryPage request.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_shortpages_page-instance_method" title="#get_shortpages_page (instance method)">- (Object) <strong>get_shortpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_uncategorizedcategories_page-instance_method" title="#get_uncategorizedcategories_page (instance method)">- (Object) <strong>get_uncategorizedcategories_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_uncategorizedpages_page-instance_method" title="#get_uncategorizedpages_page (instance method)">- (Object) <strong>get_uncategorizedpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_uncategorizedtemplates_page-instance_method" title="#get_uncategorizedtemplates_page (instance method)">- (Object) <strong>get_uncategorizedtemplates_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_unusedcategories_page-instance_method" title="#get_unusedcategories_page (instance method)">- (Object) <strong>get_unusedcategories_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_unusedtemplates_page-instance_method" title="#get_unusedtemplates_page (instance method)">- (Object) <strong>get_unusedtemplates_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_unwatchedpages_page-instance_method" title="#get_unwatchedpages_page (instance method)">- (Nil) <strong>get_unwatchedpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If the user does not have the necessary rights.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_wantedcategories_page-instance_method" title="#get_wantedcategories_page (instance method)">- (Object) <strong>get_wantedcategories_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_wantedfiles_page-instance_method" title="#get_wantedfiles_page (instance method)">- (Object) <strong>get_wantedfiles_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_wantedpages_page-instance_method" title="#get_wantedpages_page (instance method)">- (Object) <strong>get_wantedpages_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_wantedtemplates_page-instance_method" title="#get_wantedtemplates_page (instance method)">- (Object) <strong>get_wantedtemplates_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_withoutinterwiki_page-instance_method" title="#get_withoutinterwiki_page (instance method)">- (Object) <strong>get_withoutinterwiki_page</strong>(limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Users.html" title="MediaWiki::Query::Lists::Users (module)">Users</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Users.html#get_contrib_count-instance_method" title="MediaWiki::Query::Lists::Users#get_contrib_count (method)">#get_contrib_count</a></span>, <span class='object_link'><a href="Users.html#get_full_watchlist-instance_method" title="MediaWiki::Query::Lists::Users#get_full_watchlist (method)">#get_full_watchlist</a></span>, <span class='object_link'><a href="Users.html#get_registration_time-instance_method" title="MediaWiki::Query::Lists::Users#get_registration_time (method)">#get_registration_time</a></span>, <span class='object_link'><a href="Users.html#get_user_contributions-instance_method" title="MediaWiki::Query::Lists::Users#get_user_contributions (method)">#get_user_contributions</a></span>, <span class='object_link'><a href="Users.html#get_user_gender-instance_method" title="MediaWiki::Query::Lists::Users#get_user_gender (method)">#get_user_gender</a></span>, <span class='object_link'><a href="Users.html#get_usergroups-instance_method" title="MediaWiki::Query::Lists::Users#get_usergroups (method)">#get_usergroups</a></span>, <span class='object_link'><a href="Users.html#get_userlists-instance_method" title="MediaWiki::Query::Lists::Users#get_userlists (method)">#get_userlists</a></span>, <span class='object_link'><a href="Users.html#get_userrights-instance_method" title="MediaWiki::Query::Lists::Users#get_userrights (method)">#get_userrights</a></span></p>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_ancientpages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_ancientpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_ancientpages_page'>get_ancientpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ancientpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_brokenredirects_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_brokenredirects_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_brokenredirects_page'>get_brokenredirects_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BrokenRedirects</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_doubleredirects_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_doubleredirects_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_doubleredirects_page'>get_doubleredirects_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DoubleRedirects</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_fewestrevisions_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_fewestrevisions_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_fewestrevisions_page'>get_fewestrevisions_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fewestrevisions</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_listduplicatedfiles_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_listduplicatedfiles_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_listduplicatedfiles_page'>get_listduplicatedfiles_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ListDuplicatedFiles</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_listredirects_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_listredirects_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_listredirects_page'>get_listredirects_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Listredirects</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_lonelypages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_lonelypages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 145</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_lonelypages_page'>get_lonelypages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Lonelypages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_longpages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_longpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_longpages_page'>get_longpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Longpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostcategories_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostcategories_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostcategories_page'>get_mostcategories_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostcategories</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostimages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostimages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostimages_page'>get_mostimages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostimages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostinterwikis_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostinterwikis_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostinterwikis_page'>get_mostinterwikis_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostinterwikis</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostlinked_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostlinked_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostlinked_page'>get_mostlinked_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostlinked</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostlinkedcategories_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostlinkedcategories_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostlinkedcategories_page'>get_mostlinkedcategories_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostlinkedcategories</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostlinkedtemplates_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostlinkedtemplates_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostlinkedtemplates_page'>get_mostlinkedtemplates_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostlinkedtemplates</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_mostrevisions_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_mostrevisions_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_mostrevisions_page'>get_mostrevisions_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mostrevisions</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_querypage-instance_method">
+  
+    - (<tt>Array&lt;String&gt;</tt>) <strong>get_querypage</strong>(page, limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a QueryPage request.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>page</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The special page (not including Special:) to query.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The limit.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>All of the page titles in the querypage.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Querypage" target="_parent" title="MediaWiki QueryPage API Docs">MediaWiki QueryPage API Docs</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>list:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>querypage</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>qppage:</span> <span class='id identifier rubyid_page'>page</span><span class='comma'>,</span>
+    <span class='label'>qplimit:</span> <span class='id identifier rubyid_get_limited'>get_limited</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
+    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>querypage</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>results</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_result'>result</span><span class='op'>|</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_shortpages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_shortpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_shortpages_page'>get_shortpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Shortpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_uncategorizedcategories_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_uncategorizedcategories_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_uncategorizedcategories_page'>get_uncategorizedcategories_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Uncategorizedcategories</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_uncategorizedpages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_uncategorizedpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_uncategorizedpages_page'>get_uncategorizedpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Uncategorizedpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_uncategorizedtemplates_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_uncategorizedtemplates_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_uncategorizedtemplates_page'>get_uncategorizedtemplates_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Uncategorizedtemplates</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_unusedcategories_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_unusedcategories_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_unusedcategories_page'>get_unusedcategories_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unusedcategories</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_unusedtemplates_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_unusedtemplates_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_unusedtemplates_page'>get_unusedtemplates_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unusedtemplates</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_unwatchedpages_page-instance_method">
+  
+    - (<tt>Nil</tt>) <strong>get_unwatchedpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns If the user does not have the necessary rights.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If the user does not have the necessary rights.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_unwatchedpages_page'>get_unwatchedpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rights'>rights</span> <span class='op'>=</span> <span class='id identifier rubyid_get_userrights'>get_userrights</span>
+  <span class='id identifier rubyid_rights'>rights</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_rights'>rights</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unwatchedpages</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unwatchedpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_wantedcategories_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_wantedcategories_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_wantedcategories_page'>get_wantedcategories_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wantedcategories</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_wantedfiles_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_wantedfiles_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_wantedfiles_page'>get_wantedfiles_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wantedfiles</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_wantedpages_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_wantedpages_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_wantedpages_page'>get_wantedpages_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wantedpages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_wantedtemplates_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_wantedtemplates_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_wantedtemplates_page'>get_wantedtemplates_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wantedtemplates</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_withoutinterwiki_page-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_withoutinterwiki_page</strong>(limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>MediaWiki::Query::Lists::QueryPage.{{#get_querypage}</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/querypage.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_withoutinterwiki_page'>get_withoutinterwiki_page</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_querypage'>get_querypage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Withoutinterwiki</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Oct 19 09:55:13 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.3.0).
+</div>
+
+  </body>
+</html>

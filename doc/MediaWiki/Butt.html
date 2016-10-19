@@ -1,0 +1,2026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: MediaWiki::Butt
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!MediaWiki/Butt.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span>
+     &raquo; 
+    <span class="title">Butt</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: MediaWiki::Butt
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">MediaWiki::Butt</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Administration.html" title="MediaWiki::Administration (module)">Administration</a></span>, <span class='object_link'><a href="Auth.html" title="MediaWiki::Auth (module)">Auth</a></span>, <span class='object_link'><a href="Constants.html" title="MediaWiki::Constants (module)">Constants</a></span>, <span class='object_link'><a href="Edit.html" title="MediaWiki::Edit (module)">Edit</a></span>, <span class='object_link'><a href="Purge.html" title="MediaWiki::Purge (module)">Purge</a></span>, <span class='object_link'><a href="Query.html" title="MediaWiki::Query (module)">Query</a></span>, <span class='object_link'><a href="Query/Lists.html" title="MediaWiki::Query::Lists (module)">Query::Lists</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html" title="MediaWiki::Query::Meta::FileRepoInfo (module)">Query::Meta::FileRepoInfo</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html" title="MediaWiki::Query::Meta::SiteInfo (module)">Query::Meta::SiteInfo</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html" title="MediaWiki::Query::Meta::UserInfo (module)">Query::Meta::UserInfo</a></span>, <span class='object_link'><a href="Query/Properties.html" title="MediaWiki::Query::Properties (module)">Query::Properties</a></span>, <span class='object_link'><a href="Watch.html" title="MediaWiki::Watch (module)">Watch</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/mediawiki/butt.rb<span class="defines">,<br />
+  lib/mediawiki/exceptions.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Butt/AuthenticationError.html" title="MediaWiki::Butt::AuthenticationError (class)">AuthenticationError</a></span>, <span class='object_link'><a href="Butt/BlockError.html" title="MediaWiki::Butt::BlockError (class)">BlockError</a></span>, <span class='object_link'><a href="Butt/EditError.html" title="MediaWiki::Butt::EditError (class)">EditError</a></span>, <span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span>, <span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Constants.html#MISSING_PAGEID_PROC-constant" title="MediaWiki::Constants::MISSING_PAGEID_PROC (constant)">Constants::MISSING_PAGEID_PROC</a></span>, <span class='object_link'><a href="Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">Constants::NAMESPACES</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assertion-instance_method" title="#assertion (instance method)">- (Object) <strong>assertion</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute assertion.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_limit_default-instance_method" title="#query_limit_default (instance method)">- (Object) <strong>query_limit_default</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute query_limit_default.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#use_continuation-instance_method" title="#use_continuation (instance method)">- (Object) <strong>use_continuation</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute use_continuation.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#get_limited-instance_method" title="#get_limited (instance method)">- (Fixnum) <strong>get_limited</strong>(integer, max_user = 500, max_bot = 5000) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Butt) <strong>initialize</strong>(url, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new instance of MediaWiki::Butt.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logged_in%3F-instance_method" title="#logged_in? (instance method)">- (Boolean) <strong>logged_in?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks whether this instance is logged in.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#post-instance_method" title="#post (instance method)">- (Hash, HTTPMessage) <strong>post</strong>(params, autoparse = true, header = nil, override_assertion = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a generic HTTP POST request and provides the response.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query-instance_method" title="#query (instance method)">- (Any) <strong>query</strong>(params, base_return = []) {|base_return, query| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_ary-instance_method" title="#query_ary (instance method)">- (Object) <strong>query_ary</strong>(params, base_response_key, property_key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Helper method for query methods that return an array built from the query objects.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_ary_irrelevant_keys-instance_method" title="#query_ary_irrelevant_keys (instance method)">- (Object) <strong>query_ary_irrelevant_keys</strong>(params, base_response_key, property_key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the   returning value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#user_bot%3F-instance_method" title="#user_bot? (instance method)">- (Boolean) <strong>user_bot?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets whether the currently logged in user is a bot.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#validate_namespace-instance_method" title="#validate_namespace (instance method)">- (Fixnum) <strong>validate_namespace</strong>(namespace) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Purge.html" title="MediaWiki::Purge (module)">Purge</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Purge.html#purge-instance_method" title="MediaWiki::Purge#purge (method)">#purge</a></span>, <span class='object_link'><a href="Purge.html#purge_link_update-instance_method" title="MediaWiki::Purge#purge_link_update (method)">#purge_link_update</a></span>, <span class='object_link'><a href="Purge.html#purge_recursive_link_update-instance_method" title="MediaWiki::Purge#purge_recursive_link_update (method)">#purge_recursive_link_update</a></span>, <span class='object_link'><a href="Purge.html#purge_request-instance_method" title="MediaWiki::Purge#purge_request (method)">#purge_request</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Watch.html" title="MediaWiki::Watch (module)">Watch</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Watch.html#unwatch-instance_method" title="MediaWiki::Watch#unwatch (method)">#unwatch</a></span>, <span class='object_link'><a href="Watch.html#watch-instance_method" title="MediaWiki::Watch#watch (method)">#watch</a></span>, <span class='object_link'><a href="Watch.html#watch_request-instance_method" title="MediaWiki::Watch#watch_request (method)">#watch_request</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Administration.html" title="MediaWiki::Administration (module)">Administration</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Administration.html#block-instance_method" title="MediaWiki::Administration#block (method)">#block</a></span>, <span class='object_link'><a href="Administration.html#unblock-instance_method" title="MediaWiki::Administration#unblock (method)">#unblock</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Edit.html" title="MediaWiki::Edit (module)">Edit</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Edit.html#create_page-instance_method" title="MediaWiki::Edit#create_page (method)">#create_page</a></span>, <span class='object_link'><a href="Edit.html#delete-instance_method" title="MediaWiki::Edit#delete (method)">#delete</a></span>, <span class='object_link'><a href="Edit.html#edit-instance_method" title="MediaWiki::Edit#edit (method)">#edit</a></span>, <span class='object_link'><a href="Edit.html#move-instance_method" title="MediaWiki::Edit#move (method)">#move</a></span>, <span class='object_link'><a href="Edit.html#upload-instance_method" title="MediaWiki::Edit#upload (method)">#upload</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/QueryPage.html" title="MediaWiki::Query::Lists::QueryPage (module)">Query::Lists::QueryPage</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/QueryPage.html#get_ancientpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_ancientpages_page (method)">#get_ancientpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_brokenredirects_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_brokenredirects_page (method)">#get_brokenredirects_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_doubleredirects_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_doubleredirects_page (method)">#get_doubleredirects_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_fewestrevisions_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_fewestrevisions_page (method)">#get_fewestrevisions_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_listduplicatedfiles_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_listduplicatedfiles_page (method)">#get_listduplicatedfiles_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_listredirects_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_listredirects_page (method)">#get_listredirects_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_lonelypages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_lonelypages_page (method)">#get_lonelypages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_longpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_longpages_page (method)">#get_longpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostcategories_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostcategories_page (method)">#get_mostcategories_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostimages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostimages_page (method)">#get_mostimages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostinterwikis_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostinterwikis_page (method)">#get_mostinterwikis_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostlinked_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostlinked_page (method)">#get_mostlinked_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostlinkedcategories_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostlinkedcategories_page (method)">#get_mostlinkedcategories_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostlinkedtemplates_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostlinkedtemplates_page (method)">#get_mostlinkedtemplates_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_mostrevisions_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_mostrevisions_page (method)">#get_mostrevisions_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_querypage-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_querypage (method)">#get_querypage</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_shortpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_shortpages_page (method)">#get_shortpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_uncategorizedcategories_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_uncategorizedcategories_page (method)">#get_uncategorizedcategories_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_uncategorizedpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_uncategorizedpages_page (method)">#get_uncategorizedpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_uncategorizedtemplates_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_uncategorizedtemplates_page (method)">#get_uncategorizedtemplates_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_unusedcategories_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_unusedcategories_page (method)">#get_unusedcategories_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_unusedtemplates_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_unusedtemplates_page (method)">#get_unusedtemplates_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_unwatchedpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_unwatchedpages_page (method)">#get_unwatchedpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_wantedcategories_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_wantedcategories_page (method)">#get_wantedcategories_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_wantedfiles_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_wantedfiles_page (method)">#get_wantedfiles_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_wantedpages_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_wantedpages_page (method)">#get_wantedpages_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_wantedtemplates_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_wantedtemplates_page (method)">#get_wantedtemplates_page</a></span>, <span class='object_link'><a href="Query/Lists/QueryPage.html#get_withoutinterwiki_page-instance_method" title="MediaWiki::Query::Lists::QueryPage#get_withoutinterwiki_page (method)">#get_withoutinterwiki_page</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Users.html" title="MediaWiki::Query::Lists::Users (module)">Query::Lists::Users</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Users.html#get_contrib_count-instance_method" title="MediaWiki::Query::Lists::Users#get_contrib_count (method)">#get_contrib_count</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_full_watchlist-instance_method" title="MediaWiki::Query::Lists::Users#get_full_watchlist (method)">#get_full_watchlist</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_registration_time-instance_method" title="MediaWiki::Query::Lists::Users#get_registration_time (method)">#get_registration_time</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_user_contributions-instance_method" title="MediaWiki::Query::Lists::Users#get_user_contributions (method)">#get_user_contributions</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_user_gender-instance_method" title="MediaWiki::Query::Lists::Users#get_user_gender (method)">#get_user_gender</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_usergroups-instance_method" title="MediaWiki::Query::Lists::Users#get_usergroups (method)">#get_usergroups</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_userlists-instance_method" title="MediaWiki::Query::Lists::Users#get_userlists (method)">#get_userlists</a></span>, <span class='object_link'><a href="Query/Lists/Users.html#get_userrights-instance_method" title="MediaWiki::Query::Lists::Users#get_userrights (method)">#get_userrights</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/RecentChanges.html" title="MediaWiki::Query::Lists::RecentChanges (module)">Query::Lists::RecentChanges</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/RecentChanges.html#get_recent_changes-instance_method" title="MediaWiki::Query::Lists::RecentChanges#get_recent_changes (method)">#get_recent_changes</a></span>, <span class='object_link'><a href="Query/Lists/RecentChanges.html#get_recent_deleted_revisions-instance_method" title="MediaWiki::Query::Lists::RecentChanges#get_recent_deleted_revisions (method)">#get_recent_deleted_revisions</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log.html" title="MediaWiki::Query::Lists::Log (module)">Query::Lists::Log</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log.html#get_block-instance_method" title="MediaWiki::Query::Lists::Log#get_block (method)">#get_block</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_general-instance_method" title="MediaWiki::Query::Lists::Log#get_general (method)">#get_general</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_importinterwiki-instance_method" title="MediaWiki::Query::Lists::Log#get_importinterwiki (method)">#get_importinterwiki</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">#get_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_merge-instance_method" title="MediaWiki::Query::Lists::Log#get_merge (method)">#get_merge</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_move-instance_method" title="MediaWiki::Query::Lists::Log#get_move (method)">#get_move</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_overall_log-instance_method" title="MediaWiki::Query::Lists::Log#get_overall_log (method)">#get_overall_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_patrol-instance_method" title="MediaWiki::Query::Lists::Log#get_patrol (method)">#get_patrol</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protect-instance_method" title="MediaWiki::Query::Lists::Log#get_protect (method)">#get_protect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protectmoveprot-instance_method" title="MediaWiki::Query::Lists::Log#get_protectmoveprot (method)">#get_protectmoveprot</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protectunprotect-instance_method" title="MediaWiki::Query::Lists::Log#get_protectunprotect (method)">#get_protectunprotect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_rightsautopromote-instance_method" title="MediaWiki::Query::Lists::Log#get_rightsautopromote (method)">#get_rightsautopromote</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_rightsrights-instance_method" title="MediaWiki::Query::Lists::Log#get_rightsrights (method)">#get_rightsrights</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_unblock-instance_method" title="MediaWiki::Query::Lists::Log#get_unblock (method)">#get_unblock</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_upload-instance_method" title="MediaWiki::Query::Lists::Log#get_upload (method)">#get_upload</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_user-instance_method" title="MediaWiki::Query::Lists::Log#get_user (method)">#get_user</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Upload.html" title="MediaWiki::Query::Lists::Log::Upload (module)">Query::Lists::Log::Upload</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Upload.html#get_upload_log-instance_method" title="MediaWiki::Query::Lists::Log::Upload#get_upload_log (method)">#get_upload_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Upload.html#get_upload_overwrite_log-instance_method" title="MediaWiki::Query::Lists::Log::Upload#get_upload_overwrite_log (method)">#get_upload_overwrite_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Rights.html" title="MediaWiki::Query::Lists::Log::Rights (module)">Query::Lists::Log::Rights</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Rights.html#get_autopromotion_log-instance_method" title="MediaWiki::Query::Lists::Log::Rights#get_autopromotion_log (method)">#get_autopromotion_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Rights.html#get_rights_log-instance_method" title="MediaWiki::Query::Lists::Log::Rights#get_rights_log (method)">#get_rights_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Protect.html" title="MediaWiki::Query::Lists::Log::Protect (module)">Query::Lists::Log::Protect</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Protect.html#get_modify_protection_log-instance_method" title="MediaWiki::Query::Lists::Log::Protect#get_modify_protection_log (method)">#get_modify_protection_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Protect.html#get_move_protected_log-instance_method" title="MediaWiki::Query::Lists::Log::Protect#get_move_protected_log (method)">#get_move_protected_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Protect.html#get_protect_log-instance_method" title="MediaWiki::Query::Lists::Log::Protect#get_protect_log (method)">#get_protect_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Protect.html#get_unprotect_log-instance_method" title="MediaWiki::Query::Lists::Log::Protect#get_unprotect_log (method)">#get_unprotect_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Patrol.html" title="MediaWiki::Query::Lists::Log::Patrol (module)">Query::Lists::Log::Patrol</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Patrol.html#get_patrol_log-instance_method" title="MediaWiki::Query::Lists::Log::Patrol#get_patrol_log (method)">#get_patrol_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/NewUsers.html" title="MediaWiki::Query::Lists::Log::NewUsers (module)">Query::Lists::Log::NewUsers</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/NewUsers.html#get_autocreate_users_log-instance_method" title="MediaWiki::Query::Lists::Log::NewUsers#get_autocreate_users_log (method)">#get_autocreate_users_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/NewUsers.html#get_user_create2_log-instance_method" title="MediaWiki::Query::Lists::Log::NewUsers#get_user_create2_log (method)">#get_user_create2_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/NewUsers.html#get_user_create_log-instance_method" title="MediaWiki::Query::Lists::Log::NewUsers#get_user_create_log (method)">#get_user_create_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Move.html" title="MediaWiki::Query::Lists::Log::Move (module)">Query::Lists::Log::Move</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Move.html#get_move_log-instance_method" title="MediaWiki::Query::Lists::Log::Move#get_move_log (method)">#get_move_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Move.html#get_move_redirect_log-instance_method" title="MediaWiki::Query::Lists::Log::Move#get_move_redirect_log (method)">#get_move_redirect_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Merge.html" title="MediaWiki::Query::Lists::Log::Merge (module)">Query::Lists::Log::Merge</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Merge.html#get_merge_log-instance_method" title="MediaWiki::Query::Lists::Log::Merge#get_merge_log (method)">#get_merge_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Import.html" title="MediaWiki::Query::Lists::Log::Import (module)">Query::Lists::Log::Import</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Import.html#get_interwiki_import_log-instance_method" title="MediaWiki::Query::Lists::Log::Import#get_interwiki_import_log (method)">#get_interwiki_import_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Import.html#get_upload_import_log-instance_method" title="MediaWiki::Query::Lists::Log::Import#get_upload_import_log (method)">#get_upload_import_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Delete.html" title="MediaWiki::Query::Lists::Log::Delete (module)">Query::Lists::Log::Delete</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Delete.html#get_delete_log-instance_method" title="MediaWiki::Query::Lists::Log::Delete#get_delete_log (method)">#get_delete_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Delete.html#get_deletion_restore_log-instance_method" title="MediaWiki::Query::Lists::Log::Delete#get_deletion_restore_log (method)">#get_deletion_restore_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log/Block.html" title="MediaWiki::Query::Lists::Log::Block (module)">Query::Lists::Log::Block</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log/Block.html#get_block_log-instance_method" title="MediaWiki::Query::Lists::Log::Block#get_block_log (method)">#get_block_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Block.html#get_reblock_log-instance_method" title="MediaWiki::Query::Lists::Log::Block#get_reblock_log (method)">#get_reblock_log</a></span>, <span class='object_link'><a href="Query/Lists/Log/Block.html#get_unblock_log-instance_method" title="MediaWiki::Query::Lists::Log::Block#get_unblock_log (method)">#get_unblock_log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Miscellaneous.html" title="MediaWiki::Query::Lists::Miscellaneous (module)">Query::Lists::Miscellaneous</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Miscellaneous.html#get_random_pages-instance_method" title="MediaWiki::Query::Lists::Miscellaneous#get_random_pages (method)">#get_random_pages</a></span>, <span class='object_link'><a href="Query/Lists/Miscellaneous.html#get_tags-instance_method" title="MediaWiki::Query::Lists::Miscellaneous#get_tags (method)">#get_tags</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Search.html" title="MediaWiki::Query::Lists::Search (module)">Query::Lists::Search</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Search.html#get_prefix_search-instance_method" title="MediaWiki::Query::Lists::Search#get_prefix_search (method)">#get_prefix_search</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_result_amount-instance_method" title="MediaWiki::Query::Lists::Search#get_search_result_amount (method)">#get_search_result_amount</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_results-instance_method" title="MediaWiki::Query::Lists::Search#get_search_results (method)">#get_search_results</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/All.html" title="MediaWiki::Query::Lists::All (module)">Query::Lists::All</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/All.html#get_all_blocks-instance_method" title="MediaWiki::Query::Lists::All#get_all_blocks (method)">#get_all_blocks</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_categories-instance_method" title="MediaWiki::Query::Lists::All#get_all_categories (method)">#get_all_categories</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_deleted_files-instance_method" title="MediaWiki::Query::Lists::All#get_all_deleted_files (method)">#get_all_deleted_files</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_images-instance_method" title="MediaWiki::Query::Lists::All#get_all_images (method)">#get_all_images</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_pages_in_namespace-instance_method" title="MediaWiki::Query::Lists::All#get_all_pages_in_namespace (method)">#get_all_pages_in_namespace</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_protected_titles-instance_method" title="MediaWiki::Query::Lists::All#get_all_protected_titles (method)">#get_all_protected_titles</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_transcluders-instance_method" title="MediaWiki::Query::Lists::All#get_all_transcluders (method)">#get_all_transcluders</a></span>, <span class='object_link'><a href="Query/Lists/All.html#get_all_users-instance_method" title="MediaWiki::Query::Lists::All#get_all_users (method)">#get_all_users</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Categories.html" title="MediaWiki::Query::Lists::Categories (module)">Query::Lists::Categories</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Categories.html#get_category_members-instance_method" title="MediaWiki::Query::Lists::Categories#get_category_members (method)">#get_category_members</a></span>, <span class='object_link'><a href="Query/Lists/Categories.html#get_files_in_category-instance_method" title="MediaWiki::Query::Lists::Categories#get_files_in_category (method)">#get_files_in_category</a></span>, <span class='object_link'><a href="Query/Lists/Categories.html#get_subcategories-instance_method" title="MediaWiki::Query::Lists::Categories#get_subcategories (method)">#get_subcategories</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Backlinks.html" title="MediaWiki::Query::Lists::Backlinks (module)">Query::Lists::Backlinks</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Backlinks.html#get_image_backlinks-instance_method" title="MediaWiki::Query::Lists::Backlinks#get_image_backlinks (method)">#get_image_backlinks</a></span>, <span class='object_link'><a href="Query/Lists/Backlinks.html#get_interwiki_backlinks-instance_method" title="MediaWiki::Query::Lists::Backlinks#get_interwiki_backlinks (method)">#get_interwiki_backlinks</a></span>, <span class='object_link'><a href="Query/Lists/Backlinks.html#get_language_backlinks-instance_method" title="MediaWiki::Query::Lists::Backlinks#get_language_backlinks (method)">#get_language_backlinks</a></span>, <span class='object_link'><a href="Query/Lists/Backlinks.html#get_url_backlinks-instance_method" title="MediaWiki::Query::Lists::Backlinks#get_url_backlinks (method)">#get_url_backlinks</a></span>, <span class='object_link'><a href="Query/Lists/Backlinks.html#what_links_here-instance_method" title="MediaWiki::Query::Lists::Backlinks#what_links_here (method)">#what_links_here</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Properties.html" title="MediaWiki::Query::Properties (module)">Query::Properties</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Properties.html#get_token-instance_method" title="MediaWiki::Query::Properties#get_token (method)">#get_token</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Properties/Files.html" title="MediaWiki::Query::Properties::Files (module)">Query::Properties::Files</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Properties/Files.html#get_all_duplicated_files-instance_method" title="MediaWiki::Query::Properties::Files#get_all_duplicated_files (method)">#get_all_duplicated_files</a></span>, <span class='object_link'><a href="Query/Properties/Files.html#get_duplicated_files_of-instance_method" title="MediaWiki::Query::Properties::Files#get_duplicated_files_of (method)">#get_duplicated_files_of</a></span>, <span class='object_link'><a href="Query/Properties/Files.html#get_image_bytes-instance_method" title="MediaWiki::Query::Properties::Files#get_image_bytes (method)">#get_image_bytes</a></span>, <span class='object_link'><a href="Query/Properties/Files.html#get_image_dimensions-instance_method" title="MediaWiki::Query::Properties::Files#get_image_dimensions (method)">#get_image_dimensions</a></span>, <span class='object_link'><a href="Query/Properties/Files.html#get_image_sizes-instance_method" title="MediaWiki::Query::Properties::Files#get_image_sizes (method)">#get_image_sizes</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Properties/Pages.html" title="MediaWiki::Query::Properties::Pages (module)">Query::Properties::Pages</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Properties/Pages.html#can_i_read%3F-instance_method" title="MediaWiki::Query::Properties::Pages#can_i_read? (method)">#can_i_read?</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#do_i_watch%3F-instance_method" title="MediaWiki::Query::Properties::Pages#do_i_watch? (method)">#do_i_watch?</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_all_links_in_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_all_links_in_page (method)">#get_all_links_in_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_basic_page_info-instance_method" title="MediaWiki::Query::Properties::Pages#get_basic_page_info (method)">#get_basic_page_info</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_categories_in_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_categories_in_page (method)">#get_categories_in_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_display_title-instance_method" title="MediaWiki::Query::Properties::Pages#get_display_title (method)">#get_display_title</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_external_links-instance_method" title="MediaWiki::Query::Properties::Pages#get_external_links (method)">#get_external_links</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_id-instance_method" title="MediaWiki::Query::Properties::Pages#get_id (method)">#get_id</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_images_in_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_images_in_page (method)">#get_images_in_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_interwiki_links_in_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_interwiki_links_in_page (method)">#get_interwiki_links_in_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_number_of_watchers-instance_method" title="MediaWiki::Query::Properties::Pages#get_number_of_watchers (method)">#get_number_of_watchers</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_other_langs_of_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_other_langs_of_page (method)">#get_other_langs_of_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_page_size-instance_method" title="MediaWiki::Query::Properties::Pages#get_page_size (method)">#get_page_size</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_protection_levels-instance_method" title="MediaWiki::Query::Properties::Pages#get_protection_levels (method)">#get_protection_levels</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_templates_in_page-instance_method" title="MediaWiki::Query::Properties::Pages#get_templates_in_page (method)">#get_templates_in_page</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#get_text-instance_method" title="MediaWiki::Query::Properties::Pages#get_text (method)">#get_text</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#page_info_contains_key-instance_method" title="MediaWiki::Query::Properties::Pages#page_info_contains_key (method)">#page_info_contains_key</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#page_info_get_val-instance_method" title="MediaWiki::Query::Properties::Pages#page_info_get_val (method)">#page_info_get_val</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#page_new%3F-instance_method" title="MediaWiki::Query::Properties::Pages#page_new? (method)">#page_new?</a></span>, <span class='object_link'><a href="Query/Properties/Pages.html#page_redirect%3F-instance_method" title="MediaWiki::Query::Properties::Pages#page_redirect? (method)">#page_redirect?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Properties/Contributors.html" title="MediaWiki::Query::Properties::Contributors (module)">Query::Properties::Contributors</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Properties/Contributors.html#get_anonymous_contributors_count-instance_method" title="MediaWiki::Query::Properties::Contributors#get_anonymous_contributors_count (method)">#get_anonymous_contributors_count</a></span>, <span class='object_link'><a href="Query/Properties/Contributors.html#get_contributors_response-instance_method" title="MediaWiki::Query::Properties::Contributors#get_contributors_response (method)">#get_contributors_response</a></span>, <span class='object_link'><a href="Query/Properties/Contributors.html#get_logged_in_contributors-instance_method" title="MediaWiki::Query::Properties::Contributors#get_logged_in_contributors (method)">#get_logged_in_contributors</a></span>, <span class='object_link'><a href="Query/Properties/Contributors.html#get_total_contributors-instance_method" title="MediaWiki::Query::Properties::Contributors#get_total_contributors (method)">#get_total_contributors</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Meta/UserInfo.html" title="MediaWiki::Query::Meta::UserInfo (module)">Query::Meta::UserInfo</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Meta/UserInfo.html#current_user_hasmsg%3F-instance_method" title="MediaWiki::Query::Meta::UserInfo#current_user_hasmsg? (method)">#current_user_hasmsg?</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_changeable_groups-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_changeable_groups (method)">#get_changeable_groups</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_current_user_meta-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_meta (method)">#get_current_user_meta</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_current_user_name-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_name (method)">#get_current_user_name</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_current_user_options-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_options (method)">#get_current_user_options</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_email_address-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_email_address (method)">#get_email_address</a></span>, <span class='object_link'><a href="Query/Meta/UserInfo.html#get_realname-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_realname (method)">#get_realname</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Meta/FileRepoInfo.html" title="MediaWiki::Query::Meta::FileRepoInfo (module)">Query::Meta::FileRepoInfo</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepo_favicons-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_favicons (method)">#get_filerepo_favicons</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepo_names-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_names (method)">#get_filerepo_names</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepo_rooturls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_rooturls (method)">#get_filerepo_rooturls</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepo_thumburls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_thumburls (method)">#get_filerepo_thumburls</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepo_urls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_urls (method)">#get_filerepo_urls</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_filerepoinfo-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepoinfo (method)">#get_filerepoinfo</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_local_filerepos-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_local_filerepos (method)">#get_local_filerepos</a></span>, <span class='object_link'><a href="Query/Meta/FileRepoInfo.html#get_nonlocal_filerepos-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_nonlocal_filerepos (method)">#get_nonlocal_filerepos</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Meta/SiteInfo.html" title="MediaWiki::Query::Meta::SiteInfo (module)">Query::Meta::SiteInfo</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Meta/SiteInfo.html#get_all_usergroups-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_all_usergroups (method)">#get_all_usergroups</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_allowed_file_extensions-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_allowed_file_extensions (method)">#get_allowed_file_extensions</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_extension_tags-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_extension_tags (method)">#get_extension_tags</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_extensions-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_extensions (method)">#get_extensions</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_function_hooks-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_function_hooks (method)">#get_function_hooks</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_general-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_general (method)">#get_general</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_languages-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_languages (method)">#get_languages</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_magic_words-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_magic_words (method)">#get_magic_words</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_namespace_aliases-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_namespace_aliases (method)">#get_namespace_aliases</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_namespaces-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_namespaces (method)">#get_namespaces</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_restriction_levels-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_restriction_levels (method)">#get_restriction_levels</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_restriction_types-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_restriction_types (method)">#get_restriction_types</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_restrictions_data-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_restrictions_data (method)">#get_restrictions_data</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_siteinfo-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_siteinfo (method)">#get_siteinfo</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_skins-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_skins (method)">#get_skins</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_special_page_aliases-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_special_page_aliases (method)">#get_special_page_aliases</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_statistics-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_statistics (method)">#get_statistics</a></span>, <span class='object_link'><a href="Query/Meta/SiteInfo.html#get_variables-instance_method" title="MediaWiki::Query::Meta::SiteInfo#get_variables (method)">#get_variables</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Auth.html" title="MediaWiki::Auth (module)">Auth</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Auth.html#create_account-instance_method" title="MediaWiki::Auth#create_account (method)">#create_account</a></span>, <span class='object_link'><a href="Auth.html#create_account_email-instance_method" title="MediaWiki::Auth#create_account_email (method)">#create_account_email</a></span>, <span class='object_link'><a href="Auth.html#login-instance_method" title="MediaWiki::Auth#login (method)">#login</a></span>, <span class='object_link'><a href="Auth.html#logout-instance_method" title="MediaWiki::Auth#logout (method)">#logout</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></tt>) <strong>initialize</strong>(url, opts = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new instance of MediaWiki::Butt.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
+your wiki configuration.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash&lt;Symbol, Any&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The options hash for configuring this instance of Butt.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>opts</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:custom_agent</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>A custom User-Agent to use. Optional.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:query_limit_default</span>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The query limit to use if no limit parameter is explicitly given to
+the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
+use that, otherwise, it will use this. Defaults to 500. It can be set to &#39;max&#39; to use MW&#39;s default max for
+each API.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:use_continuation</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Whether to use the continuation API on queries.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:assertion</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>If set to :user or :bot, will use the assert parameter in all requests.
+Setting this will open up the possibility for NotLoggedInErrors and NotBotErrors. It is important to keep in
+mind that methods that check if the user is logged in do not use the API, but check if the user has <em>ever</em>
+logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@url</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>api.php$</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_content'>/api.php</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@query_limit_default</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:query_limit_default</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>500</span>
+  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='const'>HTTPClient</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@url</span><span class='rparen'>)</span>
+  <span class='ivar'>@logged_in</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@custom_agent</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:custom_agent</span><span class='rbracket'>]</span>
+  <span class='ivar'>@use_continuation</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:use_continuation</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:assertion</span><span class='rbracket'>]</span>
+  <span class='ivar'>@assertion</span> <span class='op'>=</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>==</span> <span class='symbol'>:user</span> <span class='op'>||</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>==</span> <span class='symbol'>:bot</span> <span class='op'>?</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="assertion=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="assertion-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assertion</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute assertion</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_assertion'>assertion</span>
+  <span class='ivar'>@assertion</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="query_limit_default=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="query_limit_default-instance_method">
+  
+    - (<tt>Object</tt>) <strong>query_limit_default</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute query_limit_default</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_query_limit_default'>query_limit_default</span>
+  <span class='ivar'>@query_limit_default</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="use_continuation=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="use_continuation-instance_method">
+  
+    - (<tt>Object</tt>) <strong>use_continuation</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute use_continuation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_use_continuation'>use_continuation</span>
+  <span class='ivar'>@use_continuation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_limited-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>get_limited</strong>(integer, max_user = 500, max_bot = 5000)  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>integer</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The number to limit.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_user</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>500</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum limit for normal users.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_bot</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>5000</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum limit for bot users.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The capped number.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.8.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 167</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_limited'>get_limited</span><span class='lparen'>(</span><span class='id identifier rubyid_integer'>integer</span><span class='comma'>,</span> <span class='id identifier rubyid_max_user'>max_user</span> <span class='op'>=</span> <span class='int'>500</span><span class='comma'>,</span> <span class='id identifier rubyid_max_bot'>max_bot</span> <span class='op'>=</span> <span class='int'>5000</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_integer'>integer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_integer'>integer</span> <span class='kw'>if</span> <span class='id identifier rubyid_integer'>integer</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>return</span> <span class='int'>500</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_integer'>integer</span> <span class='kw'>if</span> <span class='id identifier rubyid_integer'>integer</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_max_user'>max_user</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_user_bot?'>user_bot?</span>
+    <span class='id identifier rubyid_integer'>integer</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_max_bot'>max_bot</span> <span class='op'>?</span> <span class='id identifier rubyid_max_bot'>max_bot</span> <span class='op'>:</span> <span class='id identifier rubyid_integer'>integer</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_max_user'>max_user</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logged_in?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>logged_in?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks whether this instance is logged in.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if logged in, false if not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_logged_in?'>logged_in?</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>true</span>
+  <span class='kw'>rescue</span> <span class='const'>MediaWiki</span><span class='op'>::</span><span class='const'>Butt</span><span class='op'>::</span><span class='const'>NotLoggedInError</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="post-instance_method">
+  
+    - (<tt>Hash</tt>, <tt>HTTPMessage</tt>) <strong>post</strong>(params, autoparse = true, header = nil, override_assertion = false) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a generic HTTP POST request and provides the response. This method generally should not be used by the
+user, unless there is not a helper method provided by Butt for a particular action.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A basic hash containing MediaWiki API parameters. Please see the MediaWiki API for more
+information.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autoparse</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to provide a parsed version of the response&#39;s JSON.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>header</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The header hash. Optional.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override_assertion</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to override the @assertion check. This is used in #login because
+that can never be done while already logged in.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Parsed JSON if autoparse is true.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>HTTPMessage</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Raw HTTP response if autoparse is not true.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.1.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_autoparse'>autoparse</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:format</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:assert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@assertion</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='kw'>if</span> <span class='ivar'>@assertion</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:assert</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_header'>header</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@logged_in</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'>/MediaWiki::Butt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NotLoggedIn/MediaWiki::Butt</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_header'>header</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@custom_agent</span> <span class='kw'>if</span> <span class='kw'>defined?</span> <span class='ivar'>@custom_agent</span>
+
+  <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_res'>res</span> <span class='kw'>unless</span> <span class='id identifier rubyid_autoparse'>autoparse</span>
+  <span class='id identifier rubyid_parsed'>parsed</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_res'>res</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>||</span> <span class='ivar'>@assertion</span>
+    <span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='id identifier rubyid_parsed'>parsed</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'>MediaWiki</span><span class='op'>::</span><span class='const'>Butt</span><span class='op'>::</span><span class='const'>NotLoggedInError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_parsed'>parsed</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertuserfailed</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'>MediaWiki</span><span class='op'>::</span><span class='const'>Butt</span><span class='op'>::</span><span class='const'>NotBotError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_parsed'>parsed</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertbotfailed</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_parsed'>parsed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query-instance_method">
+  
+    - (<tt>Any</tt>) <strong>query</strong>(params, base_return = []) {|base_return, query| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_return</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The return value to start with. Defaults to an empty array.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>base_return</tt>, <tt>query</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Provides the value provided to the base_return parameter, and the value in the
+&#39;query&#39; key in the API response. See the API documentation for more information on this. If the base_return
+value is modified in the block, its modifications will persist across each continuation loop.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The base_return value as modified by the yielded block.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_return'>base_return</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:action</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:continue</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_base_return'>base_return</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>break</span> <span class='kw'>unless</span> <span class='ivar'>@use_continuation</span>
+    <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>continue</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>continue</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_continue'>continue</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
+      <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_base_return'>base_return</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query_ary-instance_method">
+  
+    - (<tt>Object</tt>) <strong>query_ary</strong>(params, base_response_key, property_key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Helper method for query methods that return an array built from the query objects.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_response_key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>property_key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key inside the object (under the base_response_key) to collect.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_query_ary'>query_ary</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='comma'>,</span> <span class='id identifier rubyid_property_key'>property_key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
+    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='id identifier rubyid_property_key'>property_key</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="query_ary_irrelevant_keys-instance_method">
+  
+    - (<tt>Object</tt>) <strong>query_ary_irrelevant_keys</strong>(params, base_response_key, property_key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the
+  returning value. In most cases this key is a redundant page or revision ID that is also available in the object.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_response_key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>property_key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key inside the object (under the base_response_key) to collect.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_query_ary_irrelevant_keys'>query_ary_irrelevant_keys</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='comma'>,</span> <span class='id identifier rubyid_property_key'>property_key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
+    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='id identifier rubyid_property_key'>property_key</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="user_bot?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>user_bot?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets whether the currently logged in user is a bot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if logged in as a bot, false if not logged in or
+logged in as a non-bot</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.1.0 as is_current_user_bot</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.3.0 as is_user_bot?</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.4.1 as user_bot?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_user_bot?'>user_bot?</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bot</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>true</span>
+  <span class='kw'>rescue</span> <span class='const'>MediaWiki</span><span class='op'>::</span><span class='const'>Butt</span><span class='op'>::</span><span class='const'>NotBotError</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_namespace-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>validate_namespace</strong>(namespace)  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>namespace</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The namespace ID.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Either the given namespace, if valid, or the main namespace ID 0 if invalid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate_namespace'>validate_namespace</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span>
+  <span class='const'>MediaWiki</span><span class='op'>::</span><span class='const'>Constants</span><span class='op'>::</span><span class='const'>NAMESPACES</span><span class='period'>.</span><span class='id identifier rubyid_value?'>value?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>:</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Oct 19 09:55:14 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.3.0).
+</div>
+
+  </body>
+</html>

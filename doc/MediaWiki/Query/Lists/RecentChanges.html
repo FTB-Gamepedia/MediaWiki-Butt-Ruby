@@ -1,0 +1,631 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: MediaWiki::Query::Lists::RecentChanges
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!MediaWiki/Query/Lists/RecentChanges.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Query.html" title="MediaWiki::Query (module)">Query</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">Lists</a></span></span>
+     &raquo; 
+    <span class="title">RecentChanges</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: MediaWiki::Query::Lists::RecentChanges
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="Users.html" title="MediaWiki::Query::Lists::Users (module)">Users</a></span></dd>
+      
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">MediaWiki::Query::Lists</a></span></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/mediawiki/query/lists/recent_changes.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_recent_changes-instance_method" title="#get_recent_changes (instance method)">- (Array&lt;Hash&lt;Symbol, Any&gt;&gt;) <strong>get_recent_changes</strong>(user = nil, start = nil, stop = nil, limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets the RecentChanges log.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_recent_deleted_revisions-instance_method" title="#get_recent_deleted_revisions (instance method)">- (Array&lt;Hash&gt;) <strong>get_recent_deleted_revisions</strong>(user = nil, start = nil, stop = nil, limit = @query_limit_default) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets the recent deleted revisions.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Users.html" title="MediaWiki::Query::Lists::Users (module)">Users</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Users.html#get_contrib_count-instance_method" title="MediaWiki::Query::Lists::Users#get_contrib_count (method)">#get_contrib_count</a></span>, <span class='object_link'><a href="Users.html#get_full_watchlist-instance_method" title="MediaWiki::Query::Lists::Users#get_full_watchlist (method)">#get_full_watchlist</a></span>, <span class='object_link'><a href="Users.html#get_registration_time-instance_method" title="MediaWiki::Query::Lists::Users#get_registration_time (method)">#get_registration_time</a></span>, <span class='object_link'><a href="Users.html#get_user_contributions-instance_method" title="MediaWiki::Query::Lists::Users#get_user_contributions (method)">#get_user_contributions</a></span>, <span class='object_link'><a href="Users.html#get_user_gender-instance_method" title="MediaWiki::Query::Lists::Users#get_user_gender (method)">#get_user_gender</a></span>, <span class='object_link'><a href="Users.html#get_usergroups-instance_method" title="MediaWiki::Query::Lists::Users#get_usergroups (method)">#get_usergroups</a></span>, <span class='object_link'><a href="Users.html#get_userlists-instance_method" title="MediaWiki::Query::Lists::Users#get_userlists (method)">#get_userlists</a></span>, <span class='object_link'><a href="Users.html#get_userrights-instance_method" title="MediaWiki::Query::Lists::Users#get_userrights (method)">#get_userrights</a></span></p>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_recent_changes-instance_method">
+  
+    - (<tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt>) <strong>get_recent_changes</strong>(user = nil, start = nil, stop = nil, limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets the RecentChanges log.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stop</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>All of the changes, with the following keys: type, title, revid,
+old_revid, rcid, user, old_length, new_length, diff_length, timestamp, comment, parsed_comment, sha, new,
+minor, bot.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:RecentChanges" target="_parent" title="MediaWiki RecentChanges API Docs">MediaWiki RecentChanges API Docs</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/recent_changes.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_recent_changes'>get_recent_changes</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_start'>start</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_stop'>stop</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_prop'>prop</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user|comment|parsedcomment|timestamp|title|ids|sha1|sizes|redirect|flags|loginfo</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_rights'>rights</span> <span class='op'>=</span> <span class='id identifier rubyid_get_userrights'>get_userrights</span>
+  <span class='id identifier rubyid_patrol'>patrol</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_rights'>rights</span> <span class='op'>!=</span> <span class='kw'>false</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_rights'>rights</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrol</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_prop'>prop</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|patrolled</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_patrol'>patrol</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>list:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recentchanges</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>rcprop:</span> <span class='id identifier rubyid_prop'>prop</span><span class='comma'>,</span>
+    <span class='label'>rclimit:</span> <span class='id identifier rubyid_get_limited'>get_limited</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rcuser</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span> <span class='kw'>unless</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rcstart</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_start'>start</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span> <span class='kw'>unless</span> <span class='id identifier rubyid_start'>start</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rcend</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_stop'>stop</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span> <span class='kw'>unless</span> <span class='id identifier rubyid_stop'>stop</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recentchanges</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_change'>change</span><span class='op'>|</span>
+    <span class='id identifier rubyid_old_length'>old_length</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>oldlen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_new_length'>new_length</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>newlen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_diff_length'>diff_length</span> <span class='op'>=</span> <span class='id identifier rubyid_new_length'>new_length</span> <span class='op'>-</span> <span class='id identifier rubyid_old_length'>old_length</span>
+
+    <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='label'>type:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>title:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>revid:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>revid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>old_revid:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>old_revid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>rcid:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rcid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>user:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>old_length:</span> <span class='id identifier rubyid_old_length'>old_length</span><span class='comma'>,</span>
+      <span class='label'>new_length:</span> <span class='id identifier rubyid_new_length'>new_length</span><span class='comma'>,</span>
+      <span class='label'>diff_length:</span> <span class='id identifier rubyid_diff_length'>diff_length</span><span class='comma'>,</span>
+      <span class='label'>timestamp:</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span><span class='lparen'>(</span><span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>timestamp</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='label'>comment:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>comment</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>parsed_comment:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>parsedcomment</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>sha:</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sha1</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:new</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>new</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:minor</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>minor</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:bot</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bot</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:patrolled</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrolled</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_patrol'>patrol</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>log</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:log_type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logtype</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:log_action</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logaction</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:logid</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_change'>change</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_recent_deleted_revisions-instance_method">
+  
+    - (<tt>Array&lt;Hash&gt;</tt>) <strong>get_recent_deleted_revisions</strong>(user = nil, start = nil, stop = nil, limit = @query_limit_default) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets the recent deleted revisions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stop</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>All of the changes, with the following keys: timestamp, user, comment, title.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Deletedrevs" target="_parent" title="MediaWiki Deletedrevs API Docs">MediaWiki Deletedrevs API Docs</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/recent_changes.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_recent_deleted_revisions'>get_recent_deleted_revisions</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_start'>start</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_stop'>stop</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_prop'>prop</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>revid|parentid|user|comment|parsedcomment|minor|len|sh1|tags</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>list:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deletedrevs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>drprop:</span> <span class='id identifier rubyid_prop'>prop</span><span class='comma'>,</span>
+    <span class='label'>drlimit:</span> <span class='id identifier rubyid_get_limited'>get_limited</span><span class='lparen'>(</span><span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:drstart</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_start'>start</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span> <span class='kw'>unless</span> <span class='id identifier rubyid_start'>start</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:drend</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_stop'>stop</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span> <span class='kw'>unless</span> <span class='id identifier rubyid_stop'>stop</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deletedrevs</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rev'>rev</span><span class='op'>|</span>
+    <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='id identifier rubyid_rev'>rev</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>revisions</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='label'>timestamp:</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>timestamp</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='label'>user:</span> <span class='id identifier rubyid_r'>r</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>comment:</span> <span class='id identifier rubyid_r'>r</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>comment</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>title:</span> <span class='id identifier rubyid_rev'>rev</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Oct 19 09:55:14 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.3.0).
+</div>
+
+  </body>
+</html>
