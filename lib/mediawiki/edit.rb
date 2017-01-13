@@ -5,10 +5,10 @@ module MediaWiki
     # Performs a standard non-creation edit.
     # @param title [String] The page title.
     # @param text [String] The new content.
-    # @param minor [Boolean] Will mark the edit as minor if true.
-    # @param bot [Boolean] Will mark the edit as bot edit if true. Defaults to true, for your convenience, bot
-    #   developers.
-    # @param summary [String] The edit summary. Optional.
+    # @param opts [Hash<Symbol, Any>] The options hash for optional values in the request.
+    # @option opts [Boolean] :minor Will mark the edit as minor if true.
+    # @option opts [Boolean] :bot Will mark the edit as bot edit if true. Defaults to true.
+    # @option opts [String] :summary The edit summary. Optional.
     # @see https://www.mediawiki.org/wiki/API:Changing_wiki_content Changing wiki content on the MediaWiki API
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
@@ -16,21 +16,19 @@ module MediaWiki
     # @raise [EditError] if the edit failed somehow
     # @return [String] The new revision ID
     # @return [Boolean] False if there was no change in the edit.
-    def edit(title, text, minor = false, bot = true, summary = nil)
+    def edit(title, text, opts = { bot: true })
       params = {
         action: 'edit',
         title: title,
         text: text,
         nocreate: 1,
-        format: 'json'
+        format: 'json',
+        token: get_token('edit', title)
       }
 
-      token = get_token('edit', title)
-
-      params[:summary] = summary unless summary.nil?
-      params[:minor] = '1' if minor
-      params[:bot] = '1' if bot
-      params[:token] = token
+      params[:summary] ||= opts[:summary]
+      params[:minor] = '1' if opts[:minor]
+      params[:bot] = '1' if opts[:bot]
 
       response = post(params)
 
@@ -45,29 +43,27 @@ module MediaWiki
     # Creates a new page.
     # @param title [String] The new page's title.
     # @param text [String] The new page's content.
-    # @param summary [String] The edit summary.
-    # @param bot [Boolean] Will mark the edit as a bot edit if true. Defaults to true, for your convenience, bot
-    #   developers.
+    # @param opts [Hash<Symbol, Any>] The options hash for optional values in the request.
+    # @option opts [String] :summary The edit summary. Defaults to "New page".
+    # @option opts [Boolean] :bot Will mark the edit as a bot edit if true. Defaults to true.
     # @see https://www.mediawiki.org/wiki/API:Changing_wiki_content Changing wiki content on the MediaWiki API
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Edit MediaWiki Edit API Docs
     # @since 0.3.0
     # @raise [EditError] If there was some error when creating the page.
     # @return [String] The new page ID
-    def create_page(title, text, summary = 'New page', bot = true)
+    def create_page(title, text, opts = { summary: 'New page', bot: true })
       params = {
         action: 'edit',
         title: title,
-        summary: summary,
         text: text,
+        summary: opts[:summary],
         createonly: 1,
-        format: 'json'
+        format: 'json',
+        token: get_token('edit', title)
       }
 
-      token = get_token('edit', title)
-
-      params[:bot] = '1' if bot
-      params[:token] = token
+      params[:bot] = '1' if opts[:bot]
 
       response = post(params)
 
@@ -115,27 +111,27 @@ module MediaWiki
     # Performs a move on a page.
     # @param from [String] The page to be moved.
     # @param to [String] The destination of the move.
-    # @param reason [String] The reason for the move, which shows up in the log. Optional.
-    # @param talk [Boolean] Whether to move the associated talk page.
-    # @param redirect [Boolean] Whether to create a redirect.
+    # @param opts [Hash<Symbol, Any>] The options hash for optional values in the request.
+    # @option opts [String] :reason The reason for the move, which shows up in the log.
+    # @option opts [Boolean] :talk Whether to move the associated talk page. Defaults to true.
+    # @option opts [Boolean] :redirect Whether to create a redirect.
     # @see https://www.mediawiki.org/wiki/API:Changing_wiki_content Changing wiki content on the MediaWiki API
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Move MediaWiki Move API Docs
     # @since 0.5.0
     # @raise [EditError]
     # @return [Boolean] True if it was successful.
-    def move(from, to, reason = nil, talk = true, redirect = false)
+    def move(from, to, opts = { talk: true })
       params = {
         action: 'move',
         from: from,
-        to: to
+        to: to,
+        token: get_token('move', from)
       }
 
-      token = get_token('move', from)
-      params[:reason] = reason unless reason.nil?
-      params[:movetalk] = '1' if talk
-      params[:noredirect] = '1' if redirect
-      params[:token] = token
+      params[:reason] ||= opts[:reason]
+      params[:movetalk] = '1' if opts[:talk]
+      params[:noredirect] = '1' if opts[:redirect]
 
       response = post(params)
 
