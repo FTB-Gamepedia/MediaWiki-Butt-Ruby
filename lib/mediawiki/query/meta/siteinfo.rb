@@ -177,6 +177,24 @@ module MediaWiki
         def get_variables
           get_siteinfo('variables')['query']['variables']
         end
+
+        # Gets the protocol-relative server URL for the wiki.
+        # @return [String] The server URL for the wiki. For example: //en.wikipedia.org for Wikipedia.
+        def get_server
+          get_general['server']
+        end
+
+        # @return [String] The article path for the wiki. It includes "$1", which should be replaced with the actual
+        #   name of the article. Does not include the URL for the wiki. For example: /wiki/$1 for Wikpedia.
+        def get_base_article_path
+          get_general['articlepath']
+        end
+
+        # @param article_name [String] The name of the article.
+        # @return [String] The full article path for the provided article. This is protocol-relative.
+        def get_article_path(article_name)
+          get_server + get_base_article_path.sub('$1', article_name)
+        end
       end
     end
   end
