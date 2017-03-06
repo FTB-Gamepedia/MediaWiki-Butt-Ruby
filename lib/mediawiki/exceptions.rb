@@ -5,5 +5,6 @@ module MediaWiki
     class BlockError < StandardError; end
     class NotLoggedInError < StandardError; end
     class NotBotError < StandardError; end
+    class UploadInvalidFileExtError < StandardError; end
   end
 end

@@ -75,13 +75,14 @@ module MediaWiki
     # @param url [String] The URL to the file.
     # @param filename [String] The preferred filename. This can include File: at the beginning, but it will be
     #   removed through regex. Optional. If omitted, it will be everything after the last slash in the URL.
-    # @return [Boolean] True if the upload was successful, false if the file extension is not valid.
+    # @return [Boolean] Whether the upload was successful. It is likely that if it returns false, it also raised a
+    #   warning.
+    # @raise [UploadInvalidFileExtError] When the file extension provided is not valid for the wiki.
+    # @raise [EditError]
     # @see https://www.mediawiki.org/wiki/API:Changing_wiki_content Changing wiki content on the MediaWiki API
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Upload MediaWiki Upload API Docs
     # @since 0.3.0
-    # @return [Boolean] Whether the upload was successful. It is likely that if it returns false, it also raised a
-    #   warning.
     def upload(url, filename = nil)
       params = {
         action: 'upload',
@@ -93,7 +94,7 @@ module MediaWiki
 
       ext = filename.split('.')[-1]
       allowed_extensions = get_allowed_file_extensions
-      return false unless allowed_extensions.include?(ext)
+      raise MediaWiki::Butt::UploadInvalidFileExtError.new unless allowed_extensions.include?(ext)
 
       token = get_token('edit', filename)
       params[:filename] = filename
@@ -105,7 +106,8 @@ module MediaWiki
         warn warning
       end
 
-      response.dig('upload', 'result') == 'Success'
+      return true if response.dig('upload', 'result') == 'Success'
+      raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
 
     # Performs a move on a page.
