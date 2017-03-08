@@ -16,6 +16,7 @@ module MediaWiki
             return unless @logged_in
             response = get_current_user_meta(prop)
           else
+            username.strip!
             params = {
               action: 'query',
               list: 'users',
