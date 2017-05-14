@@ -11,7 +11,7 @@ module MediaWiki
         # @see https://www.mediawiki.org/wiki/API:Categorymembers MediaWiki Category Members API Docs
         # @since 0.1.0
         # @return [Array<String>] All category members until the limit
-        def get_category_members(category, limit = @query_limit_default, type = 'page')
+        def get_category_members(category, type = 'page', limit = @query_limit_default)
           params = {
             list: 'categorymembers',
             cmprop: 'title',
@@ -33,7 +33,7 @@ module MediaWiki
         # @since 0.9.0
         # @return [Array<String>] All subcategories.
         def get_subcategories(category, limit = @query_limit_default)
-          get_category_members(category, limit, 'subcat')
+          get_category_members(category, 'subcat', limit)
         end
 
         # Gets all of the files in a given category.
@@ -42,7 +42,7 @@ module MediaWiki
         # @since 0.9.0
         # @return [Array<String>] All files in the category.
         def get_files_in_category(category, limit = @query_limit_default)
-          get_category_members(category, limit, 'file')
+          get_category_members(category, 'file', limit)
         end
       end
     end
