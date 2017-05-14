@@ -116,7 +116,8 @@ module MediaWiki
     # @param opts [Hash<Symbol, Any>] The options hash for optional values in the request.
     # @option opts [String] :reason The reason for the move, which shows up in the log.
     # @option opts [Boolean] :talk Whether to move the associated talk page. Defaults to true.
-    # @option opts [Boolean] :redirect Whether to create a redirect.
+    # @option opts [Boolean] :suppress_redirect Set to a truthy value in order to prevent the API from making a redirect
+    #   page.
     # @see https://www.mediawiki.org/wiki/API:Changing_wiki_content Changing wiki content on the MediaWiki API
     #   documentation
     # @see https://www.mediawiki.org/wiki/API:Move MediaWiki Move API Docs
@@ -133,7 +134,7 @@ module MediaWiki
 
       params[:reason] ||= opts[:reason]
       params[:movetalk] = '1' if opts[:talk]
-      params[:noredirect] = '1' if opts[:redirect]
+      params[:noredirect] = '1' if opts[:suppress_redirect]
 
       response = post(params)
 
