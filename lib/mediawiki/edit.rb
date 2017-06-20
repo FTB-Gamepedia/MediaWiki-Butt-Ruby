@@ -16,7 +16,8 @@ module MediaWiki
     # @raise [EditError] if the edit failed somehow
     # @return [String] The new revision ID
     # @return [Boolean] False if there was no change in the edit.
-    def edit(title, text, opts = { bot: true })
+    def edit(title, text, opts = {})
+      opts[:bot] = opts.key?(:bot) ? opts[:bot] : true
       params = {
         action: 'edit',
         title: title,
@@ -52,7 +53,9 @@ module MediaWiki
     # @since 0.3.0
     # @raise [EditError] If there was some error when creating the page.
     # @return [String] The new page ID
-    def create_page(title, text, opts = { summary: 'New page', bot: true })
+    def create_page(title, text, opts = {})
+      opts[:bot] = opts.key?(:bot) ? opts[:bot] : true
+      opts[:summary] ||= 'New page'
       params = {
         action: 'edit',
         title: title,
@@ -124,7 +127,8 @@ module MediaWiki
     # @since 0.5.0
     # @raise [EditError]
     # @return [Boolean] True if it was successful.
-    def move(from, to, opts = { talk: true })
+    def move(from, to, opts = {})
+      opts[:talk] = opts.key?(:talk) ? opts[:talk] : true
       params = {
         action: 'move',
         from: from,
