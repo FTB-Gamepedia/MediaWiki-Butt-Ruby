@@ -1,4 +1,23 @@
 # Changelog
+## Version 2
+### Version 2.0.0
+**Breaking changes!**
+* Logical reversal of the redirect param for move (#58)
+* Switch around type and limit params in `get_category_members` (#57)
+* Remove post-install message
+* Strip leading and trailing whitespace from username in get_userlists, affecting the following methods (#55):
+  * `get_userrights`
+  * `get_contrib_count`
+  * `get_registration_time`
+  * `get_user_gender`
+* Change return values of `#upload` to be more useful (#54)
+  * `true`/`false` return value denote success/failure
+  * `UploadInvalidFileExtError` is raised when the file extension is not valid
+  * `EditError` is raised for any errors that occurred during the upload
+* New siteinfo methods `get_server`, `get_base_article_path`, and `get_article_path` (#20).
+* Modify the `edit`, `create_page`, and `move` methods to take options hashes instead of a bunch of unnamed arguments. (#53, #52)
+* Documentation is now stored in master branch
+
 ## Version 1
 ### Version 1.3.0
 **Security update!**
