@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Module: MediaWiki::Query::Lists::Categories
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "MediaWiki::Query::Lists::Categories";
   relpath = '../../../';
-  framesUrl = "../../../frames.html#!MediaWiki/Query/Lists/Categories.html";
 </script>
 
 
@@ -28,65 +27,66 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="../../../_index.html">Index (C)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Query.html" title="MediaWiki::Query (module)">Query</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">Lists</a></span></span>
      &raquo; 
     <span class="title">Categories</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../../../class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="../../../method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="../../../file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
-
-    <div id="content"><h1>Module: MediaWiki::Query::Lists::Categories
+      <div id="content"><h1>Module: MediaWiki::Query::Lists::Categories
   
   
   
 </h1>
+<div class="box_info">
+  
 
-<dl class="box">
   
   
-    
-  
-    
   
   
-    <dt class="r1">Included in:</dt>
-    <dd class="r1"><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">MediaWiki::Query::Lists</a></span></dd>
-    
   
+
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/mediawiki/query/lists/categories.rb</dd>
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="../Lists.html" title="MediaWiki::Query::Lists (module)">MediaWiki::Query::Lists</a></span></dd>
+  </dl>
   
-</dl>
-<div class="clear"></div>
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/mediawiki/query/lists/categories.rb</dd>
+  </dl>
+  
+</div>
 
 
 
@@ -98,7 +98,7 @@
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -106,7 +106,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_category_members-instance_method" title="#get_category_members (instance method)">- (Array&lt;String&gt;) <strong>get_category_members</strong>(category, limit = @query_limit_default, type = &#39;page&#39;) </a>
+      <a href="#get_category_members-instance_method" title="#get_category_members (instance method)">#<strong>get_category_members</strong>(category, type = &#39;page&#39;, limit = @query_limit_default)  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -129,7 +129,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_files_in_category-instance_method" title="#get_files_in_category (instance method)">- (Array&lt;String&gt;) <strong>get_files_in_category</strong>(category, limit = @query_limit_default) </a>
+      <a href="#get_files_in_category-instance_method" title="#get_files_in_category (instance method)">#<strong>get_files_in_category</strong>(category, limit = @query_limit_default)  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -152,7 +152,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_subcategories-instance_method" title="#get_subcategories (instance method)">- (Array&lt;String&gt;) <strong>get_subcategories</strong>(category, limit = @query_limit_default) </a>
+      <a href="#get_subcategories-instance_method" title="#get_subcategories (instance method)">#<strong>get_subcategories</strong>(category, limit = @query_limit_default)  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -184,7 +184,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="get_category_members-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>get_category_members</strong>(category, limit = @query_limit_default, type = &#39;page&#39;) 
+    #<strong>get_category_members</strong>(category, type = &#39;page&#39;, limit = @query_limit_default)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
   
 
   
@@ -216,7 +216,7 @@ the type parameter.</p>
       
         &mdash;
         <div class='inline'><p>The type of stuff to get. There are 3 valid values: page, file, and subcat. Separate
-these with a pipe character, e.g., &#39;page|file|subcat&#39;.</p>
+these with a pipe character, e.g., ‘page|file|subcat’.</p>
 </div>
       
     </li>
@@ -231,7 +231,7 @@ these with a pipe character, e.g., &#39;page|file|subcat&#39;.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
+        <div class='inline'><p>The category title. It can include “Category:”, or not, it doesn’t really matter
 because we will add it if it is missing.</p>
 </div>
       
@@ -319,7 +319,7 @@ be greater than 500 for users, 5000 for bots.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 14</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>page</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>page</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
     <span class='label'>list:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>categorymembers</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='label'>cmprop:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
@@ -339,7 +339,7 @@ be greater than 500 for users, 5000 for bots.</p>
       <div class="method_details ">
   <h3 class="signature " id="get_files_in_category-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>get_files_in_category</strong>(category, limit = @query_limit_default) 
+    #<strong>get_files_in_category</strong>(category, limit = @query_limit_default)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
   
 
   
@@ -366,7 +366,7 @@ be greater than 500 for users, 5000 for bots.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
+        <div class='inline'><p>The category title. It can include “Category:”, or not, it doesn’t really matter
 because we will add it if it is missing.</p>
 </div>
       
@@ -446,7 +446,7 @@ be greater than 500 for users, 5000 for bots.</p>
       <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_files_in_category'>get_files_in_category</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -456,7 +456,7 @@ be greater than 500 for users, 5000 for bots.</p>
       <div class="method_details ">
   <h3 class="signature " id="get_subcategories-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>get_subcategories</strong>(category, limit = @query_limit_default) 
+    #<strong>get_subcategories</strong>(category, limit = @query_limit_default)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
   
 
   
@@ -483,7 +483,7 @@ be greater than 500 for users, 5000 for bots.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
+        <div class='inline'><p>The category title. It can include “Category:”, or not, it doesn’t really matter
 because we will add it if it is missing.</p>
 </div>
       
@@ -563,7 +563,7 @@ be greater than 500 for users, 5000 for bots.</p>
       <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_subcategories'>get_subcategories</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>subcat</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>subcat</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -574,11 +574,12 @@ be greater than 500 for users, 5000 for bots.</p>
 
 </div>
 
-    <div id="footer">
-  Generated on Wed Oct 19 09:55:13 2016 by
+      <div id="footer">
+  Generated on Tue Jun 20 19:54:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.3.0).
+  0.9.9 (ruby-2.4.1).
 </div>
 
+    </div>
   </body>
 </html>
