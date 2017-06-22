@@ -842,8 +842,6 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
       <pre class="lines">
 
 
-285
-286
 287
 288
 289
@@ -854,10 +852,13 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
 294
 295
 296
-297</pre>
+297
+298
+299
+300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 285</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_all_links_in_page'>get_all_links_in_page</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -869,7 +870,8 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
   <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
     <span class='id identifier rubyid_pageid'>pageid</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='op'>|</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-1</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
     <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_pageid'>pageid</span>
-    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>links</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='op'>|</span> <span class='id identifier rubyid_l'>l</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_links'>links</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>links</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_links'>links</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='op'>|</span> <span class='id identifier rubyid_l'>l</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -938,19 +940,19 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
       <pre class="lines">
 
 
-305
-306
-307
 308
 309
 310
 311
 312
 313
-314</pre>
+314
+315
+316
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 308</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_basic_page_info'>get_basic_page_info</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_inprop'>inprop</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1571,7 +1573,6 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
       <pre class="lines">
 
 
-235
 236
 237
 238
@@ -1584,10 +1585,11 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
 245
 246
 247
-248</pre>
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 235</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_interwiki_links_in_page'>get_interwiki_links_in_page</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1753,7 +1755,6 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
       <pre class="lines">
 
 
-257
 258
 259
 260
@@ -1773,10 +1774,12 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
 274
 275
 276
-277</pre>
+277
+278
+279</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_other_langs_of_page'>get_other_langs_of_page</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1789,7 +1792,8 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
   <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
     <span class='id identifier rubyid_pageid'>pageid</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='op'>|</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-1</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
     <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_pageid'>pageid</span>
-    <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>langlinks</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='op'>|</span>
+    <span class='id identifier rubyid_langlinks'>langlinks</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>langlinks</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_langlinks'>langlinks</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='op'>|</span>
       <span class='id identifier rubyid_return_val'>return_val</span><span class='lbracket'>[</span><span class='id identifier rubyid_l'>l</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lang</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span>
         <span class='label'>url:</span> <span class='id identifier rubyid_l'>l</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='label'>langname:</span> <span class='id identifier rubyid_l'>l</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>langname</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -2022,7 +2026,8 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
 224
 225
 226
-227</pre>
+227
+228</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 215</span>
@@ -2037,7 +2042,8 @@ that unless the user is a bot. If the user is a bot, the limit cannot be greater
   <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
     <span class='id identifier rubyid_pageid'>pageid</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='op'>|</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-1</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
     <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_pageid'>pageid</span>
-    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>templates</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_template'>template</span><span class='op'>|</span> <span class='id identifier rubyid_template'>template</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_templates'>templates</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pages</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pageid'>pageid</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>templates</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_return_val'>return_val</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_templates'>templates</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_template'>template</span><span class='op'>|</span> <span class='id identifier rubyid_template'>template</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2284,15 +2290,15 @@ if the page does not exist.</p>
       <pre class="lines">
 
 
-323
-324
-325
 326
 327
-328</pre>
+328
+329
+330
+331</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 326</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_info_contains_key'>page_info_contains_key</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_inprop'>inprop</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_get_basic_page_info'>get_basic_page_info</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_inprop'>inprop</span><span class='rparen'>)</span>
@@ -2412,15 +2418,15 @@ if the page does not exist.</p>
       <pre class="lines">
 
 
-335
-336
-337
 338
 339
-340</pre>
+340
+341
+342
+343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/properties/pages.rb', line 338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_info_get_val'>page_info_get_val</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_inprop'>inprop</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_get_basic_page_info'>get_basic_page_info</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_inprop'>inprop</span><span class='rparen'>)</span>
@@ -2498,7 +2504,7 @@ if the page does not exist.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 20 19:54:26 2017 by
+  Generated on Wed Jun 21 22:06:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.4.1).
 </div>

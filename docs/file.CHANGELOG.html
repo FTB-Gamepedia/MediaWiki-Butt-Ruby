@@ -59,8 +59,13 @@
 
       <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
 <p>## Version 2
-### Version 2.0.0
-<strong>Breaking changes!</strong>
+### Version 2.0.1
+* Fix NoMethodError in <code>get_templates_in_page</code> when called for pages with no templates (#61)
+* Fix NoMethodError in <code>get_all_links_in_page</code> when called for pages with no links
+* Fix NoMethodError in <code>get_other_langs_of_page</code> when called for pages with only 1 language (#33)</p>
+
+<h3 id="version-200">Version 2.0.0</h3>
+<p><strong>Breaking changes!</strong>
 * Logical reversal of the redirect param for move (#58)
 * Switch around type and limit params in <code>get_category_members</code> (#57)
 * Remove post-install message
@@ -471,7 +476,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jun 20 19:54:22 2017 by
+  Generated on Wed Jun 21 22:06:02 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.4.1).
 </div>
