@@ -222,7 +222,8 @@ module MediaWiki
           query(params) do |return_val, query|
             pageid = query['pages'].keys.find { |id| id != '-1' }
             return unless pageid
-            return_val.concat(query['pages'][pageid]['templates'].collect { |template| template['title'] })
+            templates = query['pages'][pageid].fetch('templates', [])
+            return_val.concat(templates.collect { |template| template['title'] })
           end
         end
 
