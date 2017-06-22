@@ -266,7 +266,8 @@ module MediaWiki
           query(params) do |return_val, query|
             pageid = query['pages'].keys.find { |id| id != '-1' }
             return unless pageid
-            query['pages'][pageid]['langlinks'].each do |l|
+            langlinks = query['pages'][pageid].fetch('langlinks', [])
+            langlinks.each do |l|
               return_val[l['lang'].to_sym] = {
                 url: l['url'],
                 langname: l['langname'],
