@@ -1,5 +1,10 @@
 # Changelog
 ## Version 2
+### Version 2.0.1
+* Fix NoMethodError in `get_templates_in_page` when called for pages with no templates (#61)
+* Fix NoMethodError in `get_all_links_in_page` when called for pages with no links
+* Fix NoMethodError in `get_other_langs_of_page` when called for pages with only 1 language (#33)
+
 ### Version 2.0.0
 **Breaking changes!**
 * Logical reversal of the redirect param for move (#58)
