@@ -293,7 +293,8 @@ module MediaWiki
           query(params) do |return_val, query|
             pageid = query['pages'].keys.find { |id| id != '-1' }
             return unless pageid
-            return_val.concat(query['pages'][pageid]['links'].collect { |l| l['title'] })
+            links = query['pages'][pageid].fetch('links', [])
+            return_val.concat(links.collect { |l| l['title'] })
           end
         end
 
