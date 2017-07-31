@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    github-markup (1.4.0)
+    github-markup (1.6.1)
     httpclient (2.8.0)
     minitest (5.8.4)
     rake (11.1.2)
@@ -12,7 +12,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-markup (~> 1.4)
+  github-markup (~> 1.6)
   httpclient (~> 2.8)
   minitest (~> 5.8)
   rake (~> 11.1)
