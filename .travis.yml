@@ -5,7 +5,7 @@ before_install:
 before_script:
   - bundle install
 rvm:
-  - 2.3.0
+  - 2.4.1
 notifications:
   email: false
   irc:
