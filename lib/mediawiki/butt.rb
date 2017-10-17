@@ -34,21 +34,20 @@ module MediaWiki
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
     # @option opts [Fixnum] :query_limit_default The query limit to use if no limit parameter is explicitly given to
     #   the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
-    #   use that, otherwise, it will use this. Defaults to 500. It can be set to 'max' to use MW's default max for
-    #   each API.
-    # @option opts [Boolean] :use_continuation Whether to use the continuation API on queries.
+    #   use that, otherwise, it will use this. Defaults to 'max' to use MW's default max for each API.
+    # @option opts [Boolean] :use_continuation Whether to use the continuation API on queries. Defaults to true.
     # @option opts [Symbol] :assertion If set to :user or :bot, will use the assert parameter in all requests.
     #   Setting this will open up the possibility for NotLoggedInErrors and NotBotErrors. It is important to keep in
     #   mind that methods that check if the user is logged in do not use the API, but check if the user has *ever*
     #   logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
-      @query_limit_default = opts[:query_limit_default] || 500
+      @query_limit_default = opts[:query_limit_default] || 'max'
       @client = HTTPClient.new
       @uri = URI.parse(@url)
       @logged_in = false
       @custom_agent = opts[:custom_agent]
-      @use_continuation = opts[:use_continuation]
+      @use_continuation = opts[:use_continuation] || true
 
       assertion = opts[:assertion]
       @assertion = assertion == :user || assertion == :bot ? assertion : nil
