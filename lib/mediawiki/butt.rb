@@ -54,36 +54,34 @@ module MediaWiki
       @assertion = assertion == :user || assertion == :bot ? assertion : nil
     end
 
-    # Performs a generic HTTP POST request and provides the response. This method generally should not be used by the
+    # Performs an HTTP POST request and provides the response. This method generally should not be used by the
     # user, unless there is not a helper method provided by Butt for a particular action.
-    # @param params [Hash] A basic hash containing MediaWiki API parameters. Please see the MediaWiki API for more
-    #   information.
-    # @param autoparse [Boolean] Whether or not to provide a parsed version of the response's JSON.
-    # @param header [Hash] The header hash. Optional.
-    # @param override_assertion [Boolean] Whether to override the @assertion check. This is used in #login because
-    #   that can never be done while already logged in.
+    # @param params [Hash] A hash containing MediaWiki API parameters. Please see the MediaWiki API for more
+    #   information. The method automatically sets the format and assert values, unless they are specified in this
+    #   hash argument.
     # @since 0.1.0
-    # @return [Hash] Parsed JSON if autoparse is true.
-    # @return [HTTPMessage] Raw HTTP response if autoparse is not true.
-    def post(params, autoparse = true, header = nil, override_assertion = false)
-      params[:format] = 'json'
-      params[:assert] = @assertion.to_s if @assertion && !override_assertion && !params.key?(:assert)
-      header = {} if header.nil?
-
-      header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
-      header['User-Agent'] = @custom_agent if defined? @custom_agent
-
-      res = @client.post(@uri, params, header)
-
-      return res unless autoparse
-      parsed = JSON.parse(res.body)
-
-      if !override_assertion || @assertion
-        code = parsed.dig('error', 'code')
-        fail MediaWiki::Butt::NotLoggedInError.new(parsed['error']['info']) if code == 'assertuserfailed'
-        fail MediaWiki::Butt::NotBotError.new(parsed['error']['info']) if code == 'assertbotfailed'
+    # @return [Hash] Parsed JSON returned by the MediaWiki API
+    def post(params)
+      base_params = {
+        format: 'json'
+      }
+      base_params[:assert] = @assertion.to_s if @assertion
+      params = base_params.merge(params)
+      header = {}
+      if defined? @custom_agent
+        header['User-Agent'] = @custom_agent
+      else
+        header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
       end
-      parsed
+
+      response = JSON.parse(@client.post(@uri, params, header).body)
+
+      if @assertion
+        code = response.dig('error', 'code')
+        fail MediaWiki::Butt::NotLoggedInError.new(response['error']['info']) if code == 'assertuserfailed'
+        fail MediaWiki::Butt::NotBotError.new(response['error']['info']) if code == 'assertbotfailed'
+      end
+      response
     end
 
     # Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.

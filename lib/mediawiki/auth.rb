@@ -39,7 +39,7 @@ module MediaWiki
           action: 'logout'
         }
 
-        post(params, true, nil, true)
+        post(params)
         @logged_in = false
 
         true
