@@ -24,7 +24,7 @@ module MediaWiki
         text: text,
         nocreate: 1,
         format: 'json',
-        token: get_token('edit', title)
+        token: get_token
       }
 
       params[:summary] ||= opts[:summary]
@@ -63,7 +63,7 @@ module MediaWiki
         summary: opts[:summary],
         createonly: 1,
         format: 'json',
-        token: get_token('edit', title)
+        token: get_token
       }
 
       params[:bot] = '1' if opts[:bot]
@@ -90,7 +90,7 @@ module MediaWiki
       params = {
         action: 'upload',
         url: url,
-        format: 'json'
+        token: get_token
       }
 
       filename = filename.nil? ? url.split('/')[-1] : filename.sub(/^File:/, '')
@@ -99,9 +99,7 @@ module MediaWiki
       allowed_extensions = get_allowed_file_extensions
       raise MediaWiki::Butt::UploadInvalidFileExtError.new unless allowed_extensions.include?(ext)
 
-      token = get_token('edit', filename)
       params[:filename] = filename
-      params[:token] = token
 
       response = post(params)
 
@@ -133,7 +131,7 @@ module MediaWiki
         action: 'move',
         from: from,
         to: to,
-        token: get_token('move', from)
+        token: get_token
       }
 
       params[:reason] ||= opts[:reason]
@@ -158,12 +156,11 @@ module MediaWiki
     def delete(title, reason = nil)
       params = {
         action: 'delete',
-        title: title
+        title: title,
+        token: get_token
       }
 
-      token = get_token('delete', title)
       params[:reason] = reason unless reason.nil?
-      params[:token] = token
 
       response = post(params)
       return true if response['delete']

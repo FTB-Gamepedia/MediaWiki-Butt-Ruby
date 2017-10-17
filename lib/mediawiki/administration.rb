@@ -17,7 +17,7 @@ module MediaWiki
         expiry: expiry
       }
 
-      token = get_token('block')
+      token = get_token
       params[:reason] = reason if reason
       params[:nocreate] = '1' if nocreate
       params[:token] = token
@@ -43,7 +43,7 @@ module MediaWiki
         action: 'unblock',
         user: user
       }
-      token = get_token('unblock')
+      token = get_token
       params[:reason] = reason if reason
       params[:token] = token
 
