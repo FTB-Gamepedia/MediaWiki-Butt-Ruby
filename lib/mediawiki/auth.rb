@@ -10,6 +10,10 @@ module MediaWiki
     # @raise [AuthenticationError]
     # @return [Boolean] True if the login was successful.
     def login(username, password)
+      # Save the assertion value while trying to log in, because otherwise the assertion will prevent us from logging in
+      assertion_value = @assertion.clone
+      @assertion = nil
+
       params = {
         action: 'login',
         lgname: username,
@@ -18,6 +22,9 @@ module MediaWiki
       }
 
       response = post(params)
+
+      @assertion = assertion_value
+
       result = response['login']['result']
 
       if result == 'Success'
