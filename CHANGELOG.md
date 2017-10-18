@@ -1,4 +1,18 @@
 # Changelog
+## Version 3
+### Version 3.0.0
+**Breaking changes!**
+* Update token system for MediaWiki 1.27+ (#45, #46, #65, #67).
+  * `login` no longer takes a third `token` parameter.
+  * `create_account` no longer takes a fifth `token` parameter.
+  * `create_account_email` no longer takes a fifth `token` parameter.
+  * `MediaWiki::Query::Properties#get_token` has been replaced by `MediaWiki::Query::Meta#get_token`. This only takes one parameter, as opposed to the old method's two parameters, which is the type of token to receive. Valid types are verified in the `MediaWiki::Query::Meta::TOKEN_TYPES` array.
+* Remove unnecessary `autoparse`, `header`, and `override_assertion` parameters from `post` (#68).
+  * The returned value is now always a parsed hash, never an HTTPMessage directly.
+* Initialization parameter defaults are more likely what is to be used now (#62, #66).
+  * `:query_limit_default` is now defaulted to `'max'`.
+  * `:use_continuation` is now defaulted to `true`.
+
 ## Version 2
 ### Version 2.0.1
 * Fix NoMethodError in `get_templates_in_page` when called for pages with no templates (#61)
