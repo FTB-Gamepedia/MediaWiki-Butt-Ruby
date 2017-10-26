@@ -134,23 +134,19 @@ module MediaWiki
     # @since 0.3.0 as is_user_bot?
     # @since 0.4.1 as user_bot?
     def user_bot?
-      begin
-        post({ action: 'query', assert: 'bot' })
-        true
-      rescue MediaWiki::Butt::NotBotError
-        false
-      end
+      post({ action: 'query', assert: 'bot' })
+      true
+    rescue MediaWiki::Butt::NotBotError
+      false
     end
 
     # Checks whether this instance is logged in.
     # @return [Boolean] true if logged in, false if not.
     def logged_in?
-      begin
-        post({ action: 'query', assert: 'user' })
-        true
-      rescue MediaWiki::Butt::NotLoggedInError
-        false
-      end
+      post({ action: 'query', assert: 'user' })
+      true
+    rescue MediaWiki::Butt::NotLoggedInError
+      false
     end
 
     protected
