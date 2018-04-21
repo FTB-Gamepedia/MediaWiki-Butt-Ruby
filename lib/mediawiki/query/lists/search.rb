@@ -36,6 +36,24 @@ module MediaWiki
           query_ary(params, 'search', 'title')
         end
 
+        # Gets an array containing page titles that matched the search.
+        # @param search_value [String] The thing to search for.
+        # @param namespace [Fixnum] The namespace to search in. Defaults to 0 (the main namespace).
+        # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
+        # @since 3.0.1
+        # @return [Array<String>] The page titles that matched the search.
+        def get_search_text_results(search_value, namespace = 0)
+          params = {
+            list: 'search',
+            srsearch: search_value,
+            srwhat: 'text',
+            srlimit: '500',
+            srnamespace: validate_namespace(namespace)
+          }
+
+          query_ary(params, 'search', 'title')
+        end
+
         # Searches the wiki by a prefix.
         # @param prefix [String] The prefix.
         # @param limit [Fixnum] The maximum number of results to get, maximum of 100 for users and 200 for bots. This is
