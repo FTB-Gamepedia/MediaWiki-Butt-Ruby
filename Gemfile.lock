@@ -6,7 +6,7 @@ GEM
     minitest (5.8.4)
     rake (11.1.2)
     redcarpet (3.3.4)
-    yard (0.8.7.6)
+    yard (0.9.16)
 
 PLATFORMS
   ruby
@@ -17,10 +17,10 @@ DEPENDENCIES
   minitest (~> 5.8)
   rake (~> 11.1)
   redcarpet (~> 3.3)
-  yard (~> 0.8)
+  yard (>= 0.9.11)
 
 RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.6
+   1.16.1

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem('httpclient', '~> 2.8')
 
 group :development do
-  gem('yard', '~> 0.8')
+    gem('yard', '>= 0.9.11')
   gem('redcarpet', '~> 3.3')
   gem('github-markup', '~> 1.6')
 end
