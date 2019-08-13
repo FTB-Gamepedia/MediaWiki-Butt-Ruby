@@ -13,4 +13,4 @@ group :test do
   gem('rake', '~> 11.1')
 end
 
-ruby '~> 2.4'
+ruby '~> 2.6'
