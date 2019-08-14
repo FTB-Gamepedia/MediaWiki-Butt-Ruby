@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby.svg?branch=master)](https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby)
 
 
-A basic Ruby library for the MediaWiki API, utilizing HTTPClient by Hiroshi Nakamura.
+A Ruby library for the MediaWiki API.
 
 ## Why?
 Two of the main editors at the FTB Gamepedia site found that the lack of functional Ruby Gems for MediaWiki API interactions made it difficult to interact with the wiki through IRC bots ([ESAEBSAD](https://github.com/xbony2/Experimental-Self-Aware-Electronic-Based-Space-Analyzing-Droid) and [SatanicBot](https://github.com/FTB-Gamepedia/SatanicBot)) and scripts. Some core features were either missing entirely or severely out of date in the many other MediaWiki gems, such as basic queries needed for everyday-actions like getting page contents and page backlinks.

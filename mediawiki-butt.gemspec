@@ -68,5 +68,5 @@ Gem::Specification.new do |s|
     'LICENSE.md'
   ]
 
-  s.add_runtime_dependency('httpclient', '~> 2.8')
+  s.add_runtime_dependency('patron', '~> 0.13')
 end
