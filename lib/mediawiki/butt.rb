@@ -28,7 +28,8 @@ module MediaWiki
     attr_accessor :assertion
 
     # Creates a new instance of MediaWiki::Butt.
-    # @param url [String] The wiki URL. Omit /api.php. If you don't, it will remove it for you.
+    # @param url [String] The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
+    #   your wiki configuration.
     # @param opts [Hash<Symbol, Any>] The options hash for configuring this instance of Butt.
     # @option opts [String] :custom_agent A custom User-Agent to use. Optional.
     # @option opts [Fixnum] :query_limit_default The query limit to use if no limit parameter is explicitly given to
@@ -40,11 +41,10 @@ module MediaWiki
     #   mind that methods that check if the user is logged in do not use the API, but check if the user has *ever*
     #   logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.
     def initialize(url, opts = {})
-      @url = url =~ /api.php$/ ? url.delete_suffix('/api.php') : url
+      @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @query_limit_default = opts[:query_limit_default] || 'max'
       @custom_agent = opts[:custom_agent]
       @session = Patron::Session.new
-      @session.base_url = @url
       @session.timeout = 60
       @session.handle_cookies
       @session.headers['User-Agent'] = @custom_agent if @custom_agent
@@ -73,7 +73,7 @@ module MediaWiki
         @session.headers['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
       end
 
-      response = JSON.parse(@session.post('/api.php', params).body)
+      response = JSON.parse(@session.post(@url, params).body)
 
       if @assertion
         code = response.dig('error', 'code')
