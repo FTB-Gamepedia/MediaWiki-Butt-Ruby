@@ -5,7 +5,7 @@ require_relative 'edit'
 require_relative 'administration'
 require_relative 'watch'
 require_relative 'purge'
-require 'httpclient'
+require 'patron'
 require 'json'
 
 module MediaWiki
@@ -43,10 +43,12 @@ module MediaWiki
     def initialize(url, opts = {})
       @url = url =~ /api.php$/ ? url : "#{url}/api.php"
       @query_limit_default = opts[:query_limit_default] || 'max'
-      @client = HTTPClient.new
-      @uri = URI.parse(@url)
-      @logged_in = false
       @custom_agent = opts[:custom_agent]
+      @session = Patron::Session.new
+      @session.timeout = 60
+      @session.handle_cookies
+      @session.headers['User-Agent'] = @custom_agent if @custom_agent
+      @logged_in = false
       @use_continuation = opts[:use_continuation] || true
 
       assertion = opts[:assertion]
@@ -66,14 +68,12 @@ module MediaWiki
       }
       base_params[:assert] = @assertion.to_s if @assertion
       params = base_params.merge(params)
-      header = {}
-      if defined? @custom_agent
-        header['User-Agent'] = @custom_agent
-      else
-        header['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
+
+      unless @custom_agent
+        @session.headers['User-Agent'] = @logged_in ? "#{@name}/MediaWiki::Butt" : 'NotLoggedIn/MediaWiki::Butt'
       end
 
-      response = JSON.parse(@client.post(@uri, params, header).body)
+      response = JSON.parse(@session.post(@url, params).body)
 
       if @assertion
         code = response.dig('error', 'code')

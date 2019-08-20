@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem('httpclient', '~> 2.8')
+gem('patron', '~> 0.13')
 
 group :development do
   gem('yard', '~> 0.9')
