@@ -32,7 +32,7 @@ module MediaWiki
         def get_tags(limit = @query_limit_default)
           params = {
             list: 'tags',
-            limit: get_limited(limit)
+            tglimit: get_limited(limit)
           }
 
           query_ary(params, 'tags', 'name')
