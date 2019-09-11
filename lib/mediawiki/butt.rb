@@ -50,6 +50,13 @@ module MediaWiki
       @session.headers['User-Agent'] = @custom_agent if @custom_agent
       @logged_in = false
       @use_continuation = opts[:use_continuation] || true
+      # Token cache, populated in #get_token and depopulated in #post. Type => Token
+      @tokens = {}
+      # The most recent kind of token acquired. Used in #post, set/reset in #get_token.
+      @prev_token_type = ''
+      # Set to prevent token cache handling from producing an infinite call loop. Defaults to true, set to false when
+      # token recache is being handled.
+      @first_token_try = true
 
       assertion = opts[:assertion]
       @assertion = assertion == :user || assertion == :bot ? assertion : nil
@@ -74,6 +81,18 @@ module MediaWiki
       end
 
       response = JSON.parse(@session.post(@url, params).body)
+
+      # If our tokens have expired, clear them, re-set the relevant token argument, and re-call this #post method
+      if response.dig('error', 'code') == 'badtoken' && @first_token_try
+        @tokens.clear
+        token_param = params.keys.select { |i| i.to_s.end_with?('token') }[0]
+        params[token_param] = get_token(@prev_token_type)
+        # Prevent token retry attempt in next #post call
+        @first_token_try = false
+        return post(params)
+      end
+      # Reset token retry value if no badtoken error has occurred.
+      @first_token_try = true
 
       if @assertion
         code = response.dig('error', 'code')
