@@ -18,7 +18,7 @@ module MediaWiki
       #   will default to 'csrf'.
       # @return [String] A token for the provided type.
       def get_token(type = 'csrf')
-        type = TOKEN_TYPES.include?(type) ? type : 'csrf'
+        type = 'csrf' unless TOKEN_TYPES.include?(type)
 
         return @tokens[type] if @tokens.key?(type)
 
