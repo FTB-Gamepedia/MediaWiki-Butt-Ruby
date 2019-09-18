@@ -318,7 +318,6 @@ module MediaWiki
         def loghash_rightsautopromote(log)
           {
             id: log['logid'],
-            title: log['title'],
             user: log['user'],
             new_rights: log['params']['newgroups'],
             old_rights: log['params']['oldgroups'],
@@ -330,7 +329,6 @@ module MediaWiki
         def loghash_rightsrights(log)
           {
             id: log['logid'],
-            title: log['title'],
             to: log['title'],
             from: log['user'],
             new_rights: log['params']['newgroups'],
