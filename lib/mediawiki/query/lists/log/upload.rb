@@ -15,7 +15,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_upload(log)
+              ret << loghash_upload(log)
             end
 
             ret
@@ -32,7 +32,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_upload(log)
+              ret << loghash_upload(log)
             end
 
             ret

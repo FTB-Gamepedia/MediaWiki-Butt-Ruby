@@ -15,7 +15,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_protect(log)
+              ret << loghash_protect(log)
             end
 
             ret
@@ -32,7 +32,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_protectmoveprot(log)
+              ret << loghash_protectmoveprot(log)
             end
 
             ret
@@ -49,7 +49,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_protect(log)
+              ret << loghash_protect(log)
             end
 
             ret
@@ -65,7 +65,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_protectunprotect(log)
+              ret << loghash_protectunprotect(log)
             end
 
             ret

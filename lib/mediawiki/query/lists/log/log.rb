@@ -1,3 +1,4 @@
+require 'date'
 require_relative '../../../constants'
 require_relative 'block'
 require_relative 'delete'
@@ -54,64 +55,64 @@ module MediaWiki
             when 'block'
               case log['action']
               when 'block'
-                hash = get_blockblock(log)
+                hash = loghash_blockblock(log)
               when 'unblock'
-                hash = get_blockunblock(log)
+                hash = loghash_blockunblock(log)
               when 'reblock'
-                hash = get_blockreblock(log)
+                hash = loghash_blockreblock(log)
               end
             when 'delete'
               case log['action']
               when 'delete', 'restore'
-                hash = get_deletedelete(log)
+                hash = loghash_deletedelete(log)
               end
             when 'import'
               case log['action']
               when 'interwiki'
-                hash = get_importinterwiki(log)
+                hash = loghash_importinterwiki(log)
               when 'upload'
-                hash = get_importupload(log)
+                hash = loghash_importupload(log)
               end
             when 'merge'
               case log['action']
               when 'merge'
-                hash = get_mergemerge(log)
+                hash = loghash_mergemerge(log)
               end
             when 'move'
               case log['action']
               when 'move', 'move_redir'
-                hash = get_move(log)
+                hash = loghash_move(log)
               end
             when 'newusers'
               case log['action']
               when 'autocreate', 'create', 'create2'
-                hash = get_user(log)
+                hash = loghash_user(log)
               end
             when 'patrol'
               case log['action']
               when 'patrol'
-                hash = get_patrol(log)
+                hash = loghash_patrol(log)
               end
             when 'protect'
               case log['action']
               when 'modify', 'protect'
-                hash = get_protect(log)
+                hash = loghash_protect(log)
               when 'move_prot'
-                hash = get_protectmoveprot(log)
+                hash = loghash_protectmoveprot(log)
               when 'unprotect'
-                hash = get_protectunprotect(log)
+                hash = loghash_protectunprotect(log)
               end
             when 'rights'
               case log['action']
               when 'autopromote'
-                hash = get_rightsautopromote(log)
+                hash = loghash_rightsautopromote(log)
               when 'rights'
-                hash = get_rightsrights(log)
+                hash = loghash_rightsrights(log)
               end
             when 'upload'
               case log['action']
               when 'overwrite', 'upload'
-                hash = get_upload(log)
+                hash = loghash_upload(log)
               end
             end
 
@@ -150,7 +151,7 @@ module MediaWiki
           post(params)
         end
 
-        def get_block(log)
+        def loghash_block(log)
           {
             id: log['logid'],
             blocked: log['title'],
@@ -163,7 +164,7 @@ module MediaWiki
           }
         end
 
-        def get_unblock(log)
+        def loghash_unblock(log)
           {
             id: log['logid'],
             blocked: log['title'],
@@ -173,7 +174,7 @@ module MediaWiki
           }
         end
 
-        def get_importinterwiki(log)
+        def loghash_importinterwiki(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -185,7 +186,7 @@ module MediaWiki
           }
         end
 
-        def get_general(log)
+        def loghash_general(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -195,7 +196,7 @@ module MediaWiki
           }
         end
 
-        def get_merge(log)
+        def loghash_merge(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -207,7 +208,7 @@ module MediaWiki
           }
         end
 
-        def get_move(log)
+        def loghash_move(log)
           hash = {
             id: log['logid'],
             timestamp: DateTime.xmlschema(log['timestamp'])
@@ -230,7 +231,7 @@ module MediaWiki
           hash
         end
 
-        def get_user(log)
+        def loghash_user(log)
           {
             id: log['logid'],
             new_user: log['title'],
@@ -240,7 +241,7 @@ module MediaWiki
           }
         end
 
-        def get_patrol(log)
+        def loghash_patrol(log)
           hash = {
             id: log['logid'],
             title: log['title'],
@@ -256,7 +257,7 @@ module MediaWiki
           hash
         end
 
-        def get_protect(log)
+        def loghash_protect(log)
           hash = {
             id: log['logid'],
             title: log['title'],
@@ -283,7 +284,7 @@ module MediaWiki
           hash
         end
 
-        def get_protectmoveprot(log)
+        def loghash_protectmoveprot(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -294,7 +295,7 @@ module MediaWiki
           }
         end
 
-        def get_protectunprotect(log)
+        def loghash_protectunprotect(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -304,7 +305,7 @@ module MediaWiki
           }
         end
 
-        def get_rightsautopromote(log)
+        def loghash_rightsautopromote(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -316,7 +317,7 @@ module MediaWiki
           }
         end
 
-        def get_rightsrights(log)
+        def loghash_rightsrights(log)
           {
             id: log['logid'],
             title: log['title'],
@@ -329,7 +330,7 @@ module MediaWiki
           }
         end
 
-        def get_upload(log)
+        def loghash_upload(log)
           {
             id: log['logid'],
             title: log['title'],

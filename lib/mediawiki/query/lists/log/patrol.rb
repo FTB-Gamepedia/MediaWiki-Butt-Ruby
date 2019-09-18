@@ -14,7 +14,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_patrol(log)
+              ret << loghash_patrol(log)
             end
 
             ret

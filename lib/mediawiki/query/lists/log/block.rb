@@ -21,7 +21,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_block(log)
+              ret << loghash_block(log)
             end
 
             ret
@@ -38,7 +38,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_blockreblock(log)
+              ret << loghash_blockreblock(log)
             end
 
             ret
@@ -55,7 +55,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_blockunblock(log)
+              ret << loghash_blockunblock(log)
             end
 
             ret

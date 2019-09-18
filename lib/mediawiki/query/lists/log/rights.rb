@@ -16,7 +16,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_rightsautopromote(log)
+              ret << loghash_rightsautopromote(log)
             end
 
             ret
@@ -33,7 +33,7 @@ module MediaWiki
 
             ret = []
             resp['query']['logevents'].each do |log|
-              ret << get_rightsrights(log)
+              ret << loghash_rightsrights(log)
             end
 
             ret

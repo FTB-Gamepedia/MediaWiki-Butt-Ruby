@@ -14,7 +14,7 @@ module MediaWiki
 
             ret = []
             response['query']['logevents'].each do |log|
-              ret << get_mergemerge(log)
+              ret << loghash_mergemerge(log)
             end
 
             ret
