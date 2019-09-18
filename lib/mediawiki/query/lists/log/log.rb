@@ -227,11 +227,11 @@ module MediaWiki
 
           if log.key?('actionhidden')
             hash[:hidden] = true
-            hash[:title] = nil
+            hash[:old_title] = nil
             hash[:comment] = nil
             hash[:suppressedredirect] = log.key('suppressed')
           else
-            hash[:title] = log['title']
+            hash[:old_title] = log['title']
             hash[:new_title] = log['params']['target_title']
             hash[:user] = log['user']
             hash[:comment] = log['comment']
