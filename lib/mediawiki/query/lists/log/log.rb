@@ -54,17 +54,15 @@ module MediaWiki
             case log['type']
             when 'block'
               case log['action']
-              when 'block'
-                hash = loghash_blockblock(log)
+              when 'block', 'reblock'
+                hash = loghash_block(log)
               when 'unblock'
-                hash = loghash_blockunblock(log)
-              when 'reblock'
-                hash = loghash_blockreblock(log)
+                hash = loghash_unblock(log)
               end
             when 'delete'
               case log['action']
               when 'delete', 'restore'
-                hash = loghash_deletedelete(log)
+                hash = loghash_general(log)
               end
             when 'import'
               case log['action']
@@ -76,7 +74,7 @@ module MediaWiki
             when 'merge'
               case log['action']
               when 'merge'
-                hash = loghash_mergemerge(log)
+                hash = loghash_merge(log)
               end
             when 'move'
               case log['action']
@@ -185,6 +183,17 @@ module MediaWiki
             timestamp: DateTime.xmlschema(log['timestamp']),
             count: log['params']['count'],
             interwiki_title: log['params']['interwiki_title']
+          }
+        end
+
+        def loghash_importupload(log)
+          {
+            id: log['logid'],
+            title: log['title'],
+            user: log['user'],
+            comment: log['comment'],
+            timestamp: DateTime.xmlschema(log['timestamp']),
+            count: log['params']['count']
           }
         end
 
