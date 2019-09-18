@@ -152,16 +152,18 @@ module MediaWiki
         end
 
         def loghash_block(log)
-          {
+          hash = {
             id: log['logid'],
             blocked: log['title'],
-            flags: log['block']['flags'],
-            duration: log['block']['duration'],
-            expiry: DateTime.xmlschema(log['block']['expiry']),
+            flags: log['params']['flags'],
+            duration: log['params']['duration'],
             blocker: log['user'],
             comment: log['comment'],
             timestamp: DateTime.xmlschema(log['timestamp'])
           }
+          hash[:expiry] = DateTime.xmlschema(log['params']['expiry']) if log['params'].key?('expiry')
+
+          hash
         end
 
         def loghash_unblock(log)
@@ -221,11 +223,11 @@ module MediaWiki
             hash[:suppressedredirect] = log.key('suppressed')
           else
             hash[:title] = log['title']
-            hash[:new_title] = log['move']['new_title']
+            hash[:new_title] = log['params']['target_title']
             hash[:user] = log['user']
             hash[:comment] = log['comment']
 
-            hash[:suppressedredirect] = log['move'].key?('suppressedredirect')
+            hash[:suppressedredirect] = log['params'].key?('suppressedredirect')
           end
 
           hash
@@ -242,19 +244,15 @@ module MediaWiki
         end
 
         def loghash_patrol(log)
-          hash = {
+          {
             id: log['logid'],
             title: log['title'],
             user: log['user'],
             comment: log['comment'],
-            current_revision: log['patrol']['cur'],
-            previous_revision: log['patrol']['prev'],
+            current_revision: log['params']['curid'],
+            previous_revision: log['params']['previd'],
             timestamp: DateTime.xmlschema(log['timestamp'])
           }
-          auto = log['patrol']['auto']
-          hash[:automatic] = auto == 1
-
-          hash
         end
 
         def loghash_protect(log)
@@ -269,16 +267,19 @@ module MediaWiki
 
           hash[:details] = []
 
-          log['params']['detail'].each do |detail|
-            details_hash = {
-              type: detail['type'],
-              level: detail['level']
-            }
-            expire = detail['expiry']
-            if expire != 'infinite'
-              details_hash[:expiry] = DateTime.xmlschema(expire)
+          # It appears that older protection logs did not have a details key.
+          if log['params'].key?('details')
+            log['params']['details'].each do |detail|
+              details_hash = {
+                type: detail['type'],
+                level: detail['level']
+              }
+              expire = detail['expiry']
+              if expire != 'infinite'
+                details_hash[:expiry] = DateTime.xmlschema(expire)
+              end
+              hash[:details] << details_hash
             end
-            hash[:details] << details_hash
           end
 
           hash
@@ -310,8 +311,8 @@ module MediaWiki
             id: log['logid'],
             title: log['title'],
             user: log['user'],
-            new_rights: log['rights']['new'].split(', '),
-            old_rights: log['rights']['old'].split(', '),
+            new_rights: log['params']['newgroups'],
+            old_rights: log['params']['oldgroups'],
             comment: log['comment'],
             timestamp: DateTime.xmlschema(log['timestamp'])
           }
@@ -323,8 +324,8 @@ module MediaWiki
             title: log['title'],
             to: log['title'],
             from: log['user'],
-            new_rights: log['rights']['new'].split(', '),
-            old_rights: log['rights']['old'].split(', '),
+            new_rights: log['params']['newgroups'],
+            old_rights: log['params']['oldgroups'],
             comment: log['comment'],
             timestamp: DateTime.xmlschema(log['timestamp'])
           }
