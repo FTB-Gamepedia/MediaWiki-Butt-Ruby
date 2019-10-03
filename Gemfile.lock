@@ -1,11 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    github-markup (1.6.1)
-    minitest (5.8.4)
+    github-markup (1.7.0)
+    minitest (5.12.2)
     patron (0.13.3)
-    rake (11.1.2)
-    redcarpet (3.3.4)
+    rake (11.3.0)
+    redcarpet (3.5.0)
     yard (0.9.20)
 
 PLATFORMS
@@ -20,7 +20,7 @@ DEPENDENCIES
   yard (~> 0.9)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.5p114
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
