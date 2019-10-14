@@ -4,8 +4,8 @@ gem('patron', '~> 0.13')
 
 group :development do
   gem('yard', '~> 0.9')
-  gem('redcarpet', '~> 3.3')
-  gem('github-markup', '~> 1.6')
+  gem('redcarpet', '~> 3.5')
+  gem('github-markup', '~> 3.0')
 end
 
 group :test do

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    github-markup (1.7.0)
+    github-markup (3.0.4)
     minitest (5.12.2)
     patron (0.13.3)
     rake (13.0.0)
@@ -12,11 +12,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-markup (~> 1.6)
+  github-markup (~> 3.0)
   minitest (~> 5.12)
   patron (~> 0.13)
   rake (~> 13)
-  redcarpet (~> 3.3)
+  redcarpet (~> 3.5)
   yard (~> 0.9)
 
 RUBY VERSION
