@@ -9,8 +9,8 @@ group :development do
 end
 
 group :test do
-  gem('minitest', '~> 5.8')
-  gem('rake', '~> 11.1')
+  gem('minitest', '~> 5.12')
+  gem('rake', '~> 13')
 end
 
 ruby '~> 2.6'

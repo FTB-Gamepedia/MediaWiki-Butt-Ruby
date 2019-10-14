@@ -4,7 +4,7 @@ GEM
     github-markup (1.7.0)
     minitest (5.12.2)
     patron (0.13.3)
-    rake (11.3.0)
+    rake (13.0.0)
     redcarpet (3.5.0)
     yard (0.9.20)
 
@@ -13,9 +13,9 @@ PLATFORMS
 
 DEPENDENCIES
   github-markup (~> 1.6)
-  minitest (~> 5.8)
+  minitest (~> 5.12)
   patron (~> 0.13)
-  rake (~> 11.1)
+  rake (~> 13)
   redcarpet (~> 3.3)
   yard (~> 0.9)
 
