@@ -6,5 +6,6 @@ module MediaWiki
     class NotLoggedInError < StandardError; end
     class NotBotError < StandardError; end
     class UploadInvalidFileExtError < StandardError; end
+    class PatrolError < StandardError; end
   end
 end
