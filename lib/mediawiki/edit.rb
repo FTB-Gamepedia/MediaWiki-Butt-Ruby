@@ -166,5 +166,33 @@ module MediaWiki
       return true if response['delete']
       raise MediaWiki::Butt::EditError.new(response.dig('error', 'code') || 'Unknown error code')
     end
+
+    # Patrol an edit by its recentchanges or revision ID.
+    # @param opts [Hash<Symbol, String>] Options param.
+    # @option :rcid [String, Integer] Recentchanges ID to patrol.
+    # @option :revid [String, Integer] Revision ID to patrol.
+    # @option :tags [String, Array<String>] Change tags to apply to the entry in the patrol log, either as a string of
+    #   tags separated by | or as an array of tag strings.
+    # @see https://www.mediawiki.org/wiki/API:Patrol Patrol API documentation
+    # @raise [PatrolError]
+    # @return [String] The title of the page that was patrolled, if it was patrolled.
+    def patrol(opts = {})
+      params = {
+        action: 'patrol',
+        token: get_token('patrol')
+      }
+
+      params[:rcid] = opts[:rcid] if opts[:rcid]
+      params[:revid] = opts[:revid] if opts[:revid]
+      params[:tags] = opts[:tags] if opts[:tags]
+
+      if opts[:tags]
+        params[:tags] = opts[:tags].is_a?(Array) ? opts[:tags].join('|') : opts[:tags]
+      end
+
+      response = post(params)
+      return response['patrol']['title'] if response['patrol']
+      raise MediaWiki::Butt::PatrolError.new(response.dig('error', 'code') || 'Unknown error code')
+    end
   end
 end
