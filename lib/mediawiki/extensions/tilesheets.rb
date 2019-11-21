@@ -1,8 +1,11 @@
 require 'data_types/pair'
+require_relative 'extension_module'
 
 module MediaWiki
-  module Extension
+  module Extensions
     module Tilesheets
+      include MediaWiki::Extensions::ExtensionModule
+
       # Creates a new blank tilesheet.
       # @param mod [String] The mod abbreviation.
       # @param sizes [Array<Integer>] All of the sizes for this tilesheet.

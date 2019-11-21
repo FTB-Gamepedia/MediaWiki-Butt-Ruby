@@ -1,6 +1,9 @@
+require_relative '../extension_module'
 module MediaWiki
-  module Extension
+  module Extensions
     module Translate
+      include MediaWiki::Extensions::ExtensionModule
+
       # Gets the results from a language search.
       # It searches for every language in every language.
       # @param search [String] The search string.
@@ -14,6 +17,10 @@ module MediaWiki
         }
 
         response = post(params)['languagesearch']
+      end
+
+      def test
+        'ass'
       end
     end
   end

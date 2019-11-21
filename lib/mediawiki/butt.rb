@@ -5,7 +5,7 @@ require_relative 'edit'
 require_relative 'administration'
 require_relative 'watch'
 require_relative 'purge'
-require_relative 'extensions/extension'
+require_relative 'extensions/extension_module'
 require 'patron'
 require 'json'
 
@@ -23,7 +23,6 @@ module MediaWiki
     include MediaWiki::Administration
     include MediaWiki::Watch
     include MediaWiki::Purge
-    include MediaWiki::Extension
 
     attr_accessor :query_limit_default
     attr_accessor :use_continuation
@@ -168,6 +167,18 @@ module MediaWiki
       true
     rescue MediaWiki::Butt::NotLoggedInError
       false
+    end
+
+    # Extends MediaWiki::Butt with the provided ExtensionModule
+    # @param ext_module [MediaWiki::Extensions::ExtensionModule] The module to enable; must include ExtensionModule
+    # @raise [ArgumentError] If the provided argument does not include ExtensionModule
+    def enable_extension(ext_module)
+      if ext_module.include?(MediaWiki::Extensions::ExtensionModule)
+        extend(ext_module)
+        true
+      else
+        fail ArgumentError.new('enable_extension only takes ExtensionModules')
+      end
     end
 
     protected

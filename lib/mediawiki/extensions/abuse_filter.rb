@@ -1,7 +1,11 @@
+require_relative 'extension_module'
+
 module MediaWiki
-  module Extension
+  module Extensions
     # @see https://www.mediawiki.org/wiki/Extension:AbuseFilter AbuseFilter docs
     module AbuseFilter
+      include MediaWiki::Extensions::ExtensionModule
+
       # Gets the abuse log with the matching criteria.
       # @param user [String] The username to filter by.
       # @param title [String] The page title to filter.
