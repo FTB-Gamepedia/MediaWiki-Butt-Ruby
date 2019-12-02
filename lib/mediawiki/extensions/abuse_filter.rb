@@ -20,7 +20,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'abuselog',
-          afllimit: MediaWiki::Query.get_limited(limit),
+          afllimit: get_limited(limit),
           aflprop: 'ids|user|title|action|result|timestamp|details'
         }
         params[:afluser] = user unless user.nil?
@@ -31,28 +31,31 @@ module MediaWiki
         ret = {}
         timeformat = '%Y-%m-%dT%TZ'
         response['query']['abuselog'].each do |log|
-          mobile = log['details']['user_mobile'] == '' ? false : true
-          minor = log['details']['minor_edit'] == '' ? false : true
           ret[log['id']] = {
             filter: log['filter_id'],
             user: {
               name: log['user'],
-              editcount: log['details']['editcount'],
-              age: log['details']['age'],
-              mobile: mobile
+              mobile: false
             },
             namespace: log['ns'],
             page: log['title'],
             action: {
               type: log['action'],
-              summary: log['details']['summary'],
-              added: log['details']['added_lines'],
-              removed: log['details']['removed_lines'],
-              minor: minor
+              minor: false
             },
             result: log['result'],
             timestamp: DateTime.strptime(log['timestamp'], timeformat)
           }
+          # If there are no details, log['details'] will be an empty array, so digging in it will cause a TypeError
+          if log['details'].is_a? Hash
+            ret[log['id']][:user][:mobile] = log['details'].key?('user_mobile')
+            ret[log['id']][:user][:editcount] = log['details']['user_editcount']
+            ret[log['id']][:user][:age] = log['details']['user_age']
+            ret[log['id']][:action][:minor] = log['details'].key?('minor_edit')
+            ret[log['id']][:action][:summary] = log['details']['summary']
+            ret[log['id']][:action][:added] = log['details']['added_lines']
+            ret[log['id']][:action][:removed] = log['details']['removed_lines']
+          end
         end
 
         ret
@@ -67,7 +70,7 @@ module MediaWiki
         params = {
           action: 'query',
           list: 'abusefilters',
-          abflimit: MediaWiki::Query.get_limited(limit),
+          abflimit: get_limited(limit),
           abfprop: 'id|description|pattern|actions|hits|comments|lasteditor|lastedittime|status|private'
         }
         params[:abfstartid] = start unless start.nil?
