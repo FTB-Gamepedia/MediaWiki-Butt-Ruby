@@ -4,11 +4,11 @@ module MediaWiki
       module Search
         # Gets the amount of results for the search value.
         # @param search_value [String] The thing to search for.
-        # @param namespace [Fixnum] The namespace to search in. Defaults to 0 (the main namespace).
+        # @param namespace [Integer] The namespace to search in. Defaults to 0 (the main namespace).
         # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
         # @since 0.4.0
         # @return [Fixnum] The number of pages that matched the search.
-        def get_search_result_amount(search_value, namespace = 0)
+        def get_search_result_amount(search_value, namespace = MediaWiki::Constants::NAMESPACES['MAIN'])
           params = {
             action: 'query',
             list: 'search',
@@ -22,11 +22,11 @@ module MediaWiki
 
         # Gets an array containing page titles that matched the search.
         # @param search_value [String] The thing to search for.
-        # @param namespace [Fixnum] The namespace to search in. Defaults to 0 (the main namespace).
+        # @param namespace [Integer] The namespace to search in. Defaults to 0 (the main namespace).
         # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
         # @since 0.4.0
         # @return [Array<String>] The page titles that matched the search.
-        def get_search_results(search_value, namespace = 0)
+        def get_search_results(search_value, namespace = MediaWiki::Constants::NAMESPACES['MAIN'])
           params = {
             list: 'search',
             srsearch: search_value,
@@ -38,16 +38,15 @@ module MediaWiki
 
         # Gets an array containing page titles that matched the search.
         # @param search_value [String] The thing to search for.
-        # @param namespace [Fixnum] The namespace to search in. Defaults to 0 (the main namespace).
+        # @param namespace [Integer] The namespace to search in. Defaults to 0 (the main namespace).
         # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
-        # @since 3.0.1
         # @return [Array<String>] The page titles that matched the search.
-        def get_search_text_results(search_value, namespace = 0)
+        def get_search_text_results(search_value, namespace = MediaWiki::Constants::NAMESPACES['MAIN'], limit = @query_limit_default)
           params = {
             list: 'search',
             srsearch: search_value,
             srwhat: 'text',
-            srlimit: '500',
+            srlimit: get_limited(limit),
             srnamespace: validate_namespace(namespace)
           }
 
@@ -56,7 +55,7 @@ module MediaWiki
 
         # Searches the wiki by a prefix.
         # @param prefix [String] The prefix.
-        # @param limit [Fixnum] The maximum number of results to get, maximum of 100 for users and 200 for bots. This is
+        # @param limit [Integer] The maximum number of results to get, maximum of 100 for users and 200 for bots. This is
         # one of the methods that does *not* use the query_limit_default attribute.
         # @see https://www.mediawiki.org/wiki/API:Prefixsearch MediaWiki Prefixsearch API Docs
         # @since 0.10.0
