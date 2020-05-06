@@ -1,5 +1,8 @@
 # Changelog
 ## Version 4
+### Version 4.0.1
+* Yank 4.0.0, fix gem build.
+
 ### Version 4.0.0
 **Breaking changes!**
 * Add support for searching text (NCC-Gnisha) (#69, #77).
