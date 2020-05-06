@@ -2,7 +2,7 @@ module MediaWiki
   module Purge
     # Purges the provided pages, without updating link tables. This will warn for every invalid purge with the reason
     # it is invalid, as provided by the MediaWiki API.
-    # @param *titles [Array<String>] A list of the pages to purge.
+    # @param titles [Array<String>] A list of the pages to purge.
     # @return [Hash<String, Boolean>] The key is the page title, and the value is whether it was a successful purge.
     # @see https://www.mediawiki.org/wiki/API:Purge MediaWiki API Docs
     # @note This creates a warning for every invalid purge with the reason it is invalid, as provided by the MediaWiki

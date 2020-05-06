@@ -3,11 +3,10 @@ module MediaWiki
     module Lists
       module Search
         # Gets the amount of results for the search value.
-        # @param search_value [String] The thing to search for.
-        # @param namespace [Integer] The namespace to search in. Defaults to 0 (the main namespace).
-        # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
+        # @param (see #get_search_results)
+        # @see (see #get_search_results)
         # @since 0.4.0
-        # @return [Fixnum] The number of pages that matched the search.
+        # @return [Integer] The number of pages that matched the search.
         def get_search_result_amount(search_value, namespace = MediaWiki::Constants::NAMESPACES['MAIN'])
           params = {
             action: 'query',
@@ -36,11 +35,11 @@ module MediaWiki
           query_ary(params, 'search', 'title')
         end
 
-        # Gets an array containing page titles that matched the search.
-        # @param search_value [String] The thing to search for.
-        # @param namespace [Integer] The namespace to search in. Defaults to 0 (the main namespace).
-        # @see https://www.mediawiki.org/wiki/API:Search MediaWiki Search API Docs
-        # @return [Array<String>] The page titles that matched the search.
+        # Searches page contents, returns an array containing page titles whose content matched the search.
+        # @param (see #get_search_results)
+        # @see (see #get_search_results)
+        # @since 4.0.0
+        # @return (see #get_search_results)
         def get_search_text_results(search_value, namespace = MediaWiki::Constants::NAMESPACES['MAIN'], limit = @query_limit_default)
           params = {
             list: 'search',

@@ -129,7 +129,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_search_result_amount-instance_method" title="#get_search_result_amount (instance method)">#<strong>get_search_result_amount</strong>(search_value, namespace = MediaWiki::Constants::NAMESPACES[&#39;MAIN&#39;])  &#x21d2; Fixnum </a>
+      <a href="#get_search_result_amount-instance_method" title="#get_search_result_amount (instance method)">#<strong>get_search_result_amount</strong>(search_value, namespace = MediaWiki::Constants::NAMESPACES[&#39;MAIN&#39;])  &#x21d2; Integer </a>
     
 
     
@@ -189,7 +189,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets an array containing page titles that matched the search.</p>
+    <span class="summary_desc"><div class='inline'><p>Searches page contents, returns an array containing page titles whose content matched the search.</p>
 </div></span>
   
 </li>
@@ -305,6 +305,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <pre class="lines">
 
 
+62
 63
 64
 65
@@ -312,11 +313,10 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
 67
 68
 69
-70
-71</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_prefix_search'>get_prefix_search</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='int'>100</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -335,7 +335,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <div class="method_details ">
   <h3 class="signature " id="get_search_result_amount-instance_method">
   
-    #<strong>get_search_result_amount</strong>(search_value, namespace = MediaWiki::Constants::NAMESPACES[&#39;MAIN&#39;])  &#x21d2; <tt>Fixnum</tt> 
+    #<strong>get_search_result_amount</strong>(search_value, namespace = MediaWiki::Constants::NAMESPACES[&#39;MAIN&#39;])  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -392,7 +392,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
     <li>
       
       
-        <span class='type'>(<tt>Fixnum</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -432,6 +432,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <pre class="lines">
 
 
+10
 11
 12
 13
@@ -441,11 +442,10 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
 17
 18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_search_result_amount'>get_search_result_amount</span><span class='lparen'>(</span><span class='id identifier rubyid_search_value'>search_value</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">NAMESPACES</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAIN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -563,6 +563,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <pre class="lines">
 
 
+28
 29
 30
 31
@@ -570,11 +571,10 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
 33
 34
 35
-36
-37</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_search_results'>get_search_results</span><span class='lparen'>(</span><span class='id identifier rubyid_search_value'>search_value</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">NAMESPACES</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAIN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -601,7 +601,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets an array containing page titles that matched the search.</p>
+    <p>Searches page contents, returns an array containing page titles whose content matched the search.</p>
 
 
   </div>
@@ -668,6 +668,21 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <li><a href="https://www.mediawiki.org/wiki/API:Search" target="_parent" title="MediaWiki Search API Docs">MediaWiki Search API Docs</a></li>
     
   </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -675,6 +690,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
       <pre class="lines">
 
 
+43
 44
 45
 46
@@ -684,11 +700,10 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
 50
 51
 52
-53
-54</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/search.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_search_text_results'>get_search_text_results</span><span class='lparen'>(</span><span class='id identifier rubyid_search_value'>search_value</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">NAMESPACES</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAIN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -711,7 +726,7 @@ one of the methods that does <em>not</em> use the query_limit_default attribute.
 </div>
 
       <div id="footer">
-  Generated on Wed May  6 12:21:34 2020 by
+  Generated on Wed May  6 12:39:37 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.23 (ruby-2.6.5).
 </div>

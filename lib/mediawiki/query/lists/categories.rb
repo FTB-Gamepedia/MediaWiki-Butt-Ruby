@@ -25,11 +25,9 @@ module MediaWiki
         end
 
         # Gets the subcategories of a given category.
-        # @param category [String] The category title. It can include "Category:", or not, it doesn't really matter
-        #   because we will add it if it is missing.
-        # @param limit [Fixnum] The maximum number of members to get. Defaults to query_limit_default attribute. Cannot
-        #   be greater than 500 for users, 5000 for bots.
-        # @see {#get_category_members}
+        # @param category [String] The category title. Can include "Category:" prefix or not, it works either way.
+        # @param limit [Integer] The maximum number of members to get. Cannot be greater than 500 for users, 5000 for bots.
+        # @see #get_category_members
         # @since 0.9.0
         # @return [Array<String>] All subcategories.
         def get_subcategories(category, limit = @query_limit_default)
@@ -38,7 +36,7 @@ module MediaWiki
 
         # Gets all of the files in a given category.
         # @param (see #get_subcategories)
-        # @see {#get_category_members}
+        # @see #get_category_members
         # @since 0.9.0
         # @return [Array<String>] All files in the category.
         def get_files_in_category(category, limit = @query_limit_default)

@@ -231,8 +231,7 @@ these with a pipe character, e.g., &#39;page|file|subcat&#39;.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
-because we will add it if it is missing.</p>
+        <div class='inline'><p>The category title. Can include &quot;Category:&quot; prefix or not, it works either way.</p>
 </div>
       
     </li>
@@ -242,15 +241,14 @@ because we will add it if it is missing.</p>
         <span class='name'>limit</span>
       
       
-        <span class='type'>(<tt>Fixnum</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>The maximum number of members to get. Defaults to query_limit_default attribute. Cannot
-be greater than 500 for users, 5000 for bots.</p>
+        <div class='inline'><p>The maximum number of members to get. Cannot be greater than 500 for users, 5000 for bots.</p>
 </div>
       
     </li>
@@ -366,8 +364,7 @@ be greater than 500 for users, 5000 for bots.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
-because we will add it if it is missing.</p>
+        <div class='inline'><p>The category title. Can include &quot;Category:&quot; prefix or not, it works either way.</p>
 </div>
       
     </li>
@@ -377,15 +374,14 @@ because we will add it if it is missing.</p>
         <span class='name'>limit</span>
       
       
-        <span class='type'>(<tt>Fixnum</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>The maximum number of members to get. Defaults to query_limit_default attribute. Cannot
-be greater than 500 for users, 5000 for bots.</p>
+        <div class='inline'><p>The maximum number of members to get. Cannot be greater than 500 for users, 5000 for bots.</p>
 </div>
       
     </li>
@@ -413,7 +409,7 @@ be greater than 500 for users, 5000 for bots.</p>
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li>MediaWiki::Query::Lists::Categories.{{#get_category_members}</li>
+      <li><span class='object_link'><a href="#get_category_members-instance_method" title="MediaWiki::Query::Lists::Categories#get_category_members (method)">#get_category_members</a></span></li>
     
   </ul>
 <p class="tag_title">Since:</p>
@@ -438,12 +434,12 @@ be greater than 500 for users, 5000 for bots.</p>
       <pre class="lines">
 
 
-44
-45
-46</pre>
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_files_in_category'>get_files_in_category</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>file</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
@@ -483,8 +479,7 @@ be greater than 500 for users, 5000 for bots.</p>
       
       
         &mdash;
-        <div class='inline'><p>The category title. It can include &quot;Category:&quot;, or not, it doesn&#39;t really matter
-because we will add it if it is missing.</p>
+        <div class='inline'><p>The category title. Can include &quot;Category:&quot; prefix or not, it works either way.</p>
 </div>
       
     </li>
@@ -494,15 +489,14 @@ because we will add it if it is missing.</p>
         <span class='name'>limit</span>
       
       
-        <span class='type'>(<tt>Fixnum</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>The maximum number of members to get. Defaults to query_limit_default attribute. Cannot
-be greater than 500 for users, 5000 for bots.</p>
+        <div class='inline'><p>The maximum number of members to get. Cannot be greater than 500 for users, 5000 for bots.</p>
 </div>
       
     </li>
@@ -530,7 +524,7 @@ be greater than 500 for users, 5000 for bots.</p>
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li>MediaWiki::Query::Lists::Categories.{{#get_category_members}</li>
+      <li><span class='object_link'><a href="#get_category_members-instance_method" title="MediaWiki::Query::Lists::Categories#get_category_members (method)">#get_category_members</a></span></li>
     
   </ul>
 <p class="tag_title">Since:</p>
@@ -555,12 +549,12 @@ be greater than 500 for users, 5000 for bots.</p>
       <pre class="lines">
 
 
-35
-36
-37</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/lists/categories.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_subcategories'>get_subcategories</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='ivar'>@query_limit_default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_category_members'>get_category_members</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>subcat</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
@@ -575,7 +569,7 @@ be greater than 500 for users, 5000 for bots.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May  6 12:21:36 2020 by
+  Generated on Wed May  6 12:39:39 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.23 (ruby-2.6.5).
 </div>
