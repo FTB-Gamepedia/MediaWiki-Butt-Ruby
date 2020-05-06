@@ -9,7 +9,7 @@ group :development do
 end
 
 group :test do
-  gem('minitest', '~> 5.13')
+  gem('minitest', '~> 5.14')
   gem('rake', '~> 13')
 end
 
