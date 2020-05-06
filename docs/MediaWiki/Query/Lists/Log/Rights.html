@@ -6,15 +6,15 @@
 <title>
   Module: MediaWiki::Query::Lists::Log::Rights
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "MediaWiki::Query::Lists::Log::Rights";
   relpath = '../../../../';
 </script>
@@ -99,7 +99,6 @@
 
 
 
-
   </div>
 </div>
 <div class="tags">
@@ -123,7 +122,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_autopromotion_log-instance_method" title="#get_autopromotion_log (instance method)">#<strong>get_autopromotion_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; Object </a>
+      <a href="#get_autopromotion_log-instance_method" title="#get_autopromotion_log (instance method)">#<strong>get_autopromotion_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; Array&lt;Hash&lt;Symbol, Any&gt;&gt; </a>
     
 
     
@@ -137,7 +136,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Gets rights/autopromote logs.</p>
 </div></span>
   
 </li>
@@ -146,7 +145,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_rights_log-instance_method" title="#get_rights_log (instance method)">#<strong>get_rights_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; Object </a>
+      <a href="#get_rights_log-instance_method" title="#get_rights_log (instance method)">#<strong>get_rights_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; Array&lt;Hash&lt;Symbol, Any&gt;&gt; </a>
     
 
     
@@ -160,7 +159,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Gets rights/rights logs.</p>
 </div></span>
   
 </li>
@@ -178,13 +177,154 @@
       <div class="method_details first">
   <h3 class="signature first" id="get_autopromotion_log-instance_method">
   
-    #<strong>get_autopromotion_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_autopromotion_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; <tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets rights/autopromote logs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>title</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stop</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The events, containing the following keys: id, title, user,
+new_rights, old_rights, comment, timestamp.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></li>
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Logevents" target="_parent" title="MediaWiki Logevents API Docs">MediaWiki Logevents API Docs</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -211,7 +351,7 @@
 
   <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_resp'>resp</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logevents</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_log'>log</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_get_rightsautopromote'>get_rightsautopromote</span><span class='lparen'>(</span><span class='id identifier rubyid_log'>log</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_loghash_rightsautopromote'>loghash_rightsautopromote</span><span class='lparen'>(</span><span class='id identifier rubyid_log'>log</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_ret'>ret</span>
@@ -224,13 +364,154 @@
       <div class="method_details ">
   <h3 class="signature " id="get_rights_log-instance_method">
   
-    #<strong>get_rights_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_rights_log</strong>(user = nil, title = nil, start = nil, stop = nil, limit = @query_limit_default)  &#x21d2; <tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets rights/rights logs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>title</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stop</span>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@query_limit_default</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Hash&lt;Symbol, Any&gt;&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The events, containing the following keys: id, title, to, from,
+new_rights, old_rights, comment, timestamp.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">MediaWiki::Query::Lists::Log#get_log</a></span></li>
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Logevents" target="_parent" title="MediaWiki Logevents API Docs">MediaWiki Logevents API Docs</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>0.10.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -255,7 +536,7 @@
 
   <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_resp'>resp</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logevents</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_log'>log</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_get_rightsrights'>get_rightsrights</span><span class='lparen'>(</span><span class='id identifier rubyid_log'>log</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_loghash_rightsrights'>loghash_rightsrights</span><span class='lparen'>(</span><span class='id identifier rubyid_log'>log</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_ret'>ret</span>
@@ -270,9 +551,9 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:06 2017 by
+  Generated on Wed May  6 12:21:37 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>

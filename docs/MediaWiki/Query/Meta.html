@@ -6,15 +6,15 @@
 <title>
   Module: MediaWiki::Query::Meta
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "MediaWiki::Query::Meta";
   relpath = '../../';
 </script>
@@ -106,6 +106,31 @@
   
 </p>
 
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="TOKEN_TYPES-constant" class="">TOKEN_TYPES =
+          <div class="docstring">
+  <div class="discussion">
+    <p>All valid types of tokens. Taken from API:Tokens on MediaWiki.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='qwords_beg'>%w(</span><span class='tstring_content'>csrf</span><span class='words_sep'> </span><span class='tstring_content'>watch</span><span class='words_sep'> </span><span class='tstring_content'>patrol</span><span class='words_sep'> </span><span class='tstring_content'>rollback</span><span class='words_sep'> </span><span class='tstring_content'>userrights</span><span class='words_sep'> </span><span class='tstring_content'>login</span><span class='words_sep'> </span><span class='tstring_content'>createaccount</span><span class='tstring_end'>)</span></span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -114,12 +139,47 @@
 
 
   
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_token-instance_method" title="#get_token (instance method)">#<strong>get_token</strong>(type = &#39;csrf&#39;)  &#x21d2; String </a>
+    
+
+    
+  </span>
   
   
   
   
   
-  <h2>Method Summary</h2>
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Obtains a token for the current user (or lack thereof) for specific actions.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Meta/FileRepoInfo.html" title="MediaWiki::Query::Meta::FileRepoInfo (module)">FileRepoInfo</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepo_favicons-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_favicons (method)">#get_filerepo_favicons</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepo_names-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_names (method)">#get_filerepo_names</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepo_rooturls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_rooturls (method)">#get_filerepo_rooturls</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepo_thumburls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_thumburls (method)">#get_filerepo_thumburls</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepo_urls-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepo_urls (method)">#get_filerepo_urls</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_filerepoinfo-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_filerepoinfo (method)">#get_filerepoinfo</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_local_filerepos-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_local_filerepos (method)">#get_local_filerepos</a></span>, <span class='object_link'><a href="Meta/FileRepoInfo.html#get_nonlocal_filerepos-instance_method" title="MediaWiki::Query::Meta::FileRepoInfo#get_nonlocal_filerepos (method)">#get_nonlocal_filerepos</a></span></p>
@@ -136,12 +196,126 @@
   <p class="inherited"><span class='object_link'><a href="Meta/UserInfo.html#current_user_hasmsg%3F-instance_method" title="MediaWiki::Query::Meta::UserInfo#current_user_hasmsg? (method)">#current_user_hasmsg?</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_changeable_groups-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_changeable_groups (method)">#get_changeable_groups</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_current_user_meta-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_meta (method)">#get_current_user_meta</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_current_user_name-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_name (method)">#get_current_user_name</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_current_user_options-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_current_user_options (method)">#get_current_user_options</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_email_address-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_email_address (method)">#get_email_address</a></span>, <span class='object_link'><a href="Meta/UserInfo.html#get_realname-instance_method" title="MediaWiki::Query::Meta::UserInfo#get_realname (method)">#get_realname</a></span></p>
 
 
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_token-instance_method">
+  
+    #<strong>get_token</strong>(type = &#39;csrf&#39;)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Obtains a token for the current user (or lack thereof) for specific actions. This uses the functionality
+introduced in MediaWiki 1.27</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;csrf&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The type of token to get. See #TOKEN_TYPES to see the valid types. If it is invalid, it
+will default to &#39;csrf&#39;.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A token for the provided type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/query/meta/meta.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>csrf</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>csrf</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="#TOKEN_TYPES-constant" title="MediaWiki::Query::Meta::TOKEN_TYPES (constant)">TOKEN_TYPES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='ivar'>@tokens</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@tokens</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>meta:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tokens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>type:</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_resp'>resp</span> <span class='op'>=</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tokens'>tokens</span> <span class='op'>=</span> <span class='id identifier rubyid_resp'>resp</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tokens</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_tokens'>tokens</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>token</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@tokens</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span>
+  <span class='id identifier rubyid_token'>token</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:04 2017 by
+  Generated on Wed May  6 12:21:33 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>

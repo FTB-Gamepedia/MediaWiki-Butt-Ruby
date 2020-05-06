@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "README";
   relpath = '';
 </script>
@@ -57,59 +57,65 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1 id="mediawikibutt">MediaWiki::Butt</h1>
-<p><a href="https://badge.fury.io/rb/mediawiki-butt"><img src="https://badge.fury.io/rb/mediawiki-butt.svg" alt="Gem Version" /></a>
-<a href="https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby"><img src="https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby.svg?branch=master" alt="Build Status" /></a></p>
+      <div id="content"><div id='filecontents'><h1>MediaWiki::Butt</h1>
 
-<p>A basic Ruby library for the MediaWiki API, utilizing HTTPClient by Hiroshi Nakamura.</p>
+<p><a href="https://badge.fury.io/rb/mediawiki-butt"><img src="https://badge.fury.io/rb/mediawiki-butt.svg" alt="Gem Version"></a>
+<a href="https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby"><img src="https://travis-ci.org/FTB-Gamepedia/MediaWiki-Butt-Ruby.svg?branch=master" alt="Build Status"></a></p>
 
-<h2 id="why">Why?</h2>
+<p>A Ruby library for the MediaWiki API.</p>
+
+<h2>Why?</h2>
+
 <p>Two of the main editors at the FTB Gamepedia site found that the lack of functional Ruby Gems for MediaWiki API interactions made it difficult to interact with the wiki through IRC bots (<a href="https://github.com/xbony2/Experimental-Self-Aware-Electronic-Based-Space-Analyzing-Droid">ESAEBSAD</a> and <a href="https://github.com/FTB-Gamepedia/SatanicBot">SatanicBot</a>) and scripts. Some core features were either missing entirely or severely out of date in the many other MediaWiki gems, such as basic queries needed for everyday-actions like getting page contents and page backlinks.</p>
 
 <p>MediaWiki::Butt actually began as two local libraries that @xbony2 and @elifoster, the two developers of this gem, worked on separately in their own IRC bot repositories, called <code>wikiutils</code>. This was an extremely basic API interface for pretty much only queries, with no authentication. Eventually, however, using two or three separate libraries for various API actions grew tiresome, and thus, Butt was born!</p>
 
-<h2 id="basic-feature-overview">Basic feature overview</h2>
+<h2>Basic feature overview</h2>
+
 <p>Pretty much every API action in core MediaWiki is possible through a helper instance method. However, for things that are not supported, there is the <code>post</code> method, which submits a <code>POST</code> request (which works fine for things that require a <code>GET</code> request in the API), that takes a hash parameter to pass to the API. Through this helper method, any API can be accessed!</p>
 
-<h2 id="limitations">Limitations</h2>
+<h2>Limitations</h2>
+
 <p>There is currently no extension support. Some APIs are also not supported because the majority of the testing occurs on Gamepedia, which often uses software that is not always up to date.</p>
 
-<h2 id="installation">Installation</h2>
-<p>### RubyGems
-<code>shell
-$ gem install mediawiki-butt
-</code></p>
+<h2>Installation</h2>
 
-<h3 id="bundler">Bundler</h3>
-<p>Add this line to application’s Gemfile:</p>
+<h3>RubyGems</h3>
 
-<p><code>ruby
-gem('mediawiki-butt')
-</code></p>
+<pre class="code shell"><code class="shell">$ gem install mediawiki-butt
+</code></pre>
+
+<h3>Bundler</h3>
+
+<p>Add this line to application&#39;s Gemfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mediawiki-butt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+</code></pre>
 
 <p>And then execute:</p>
 
-<p><code>shell
-$ bundle
-</code></p>
+<pre class="code shell"><code class="shell">$ bundle
+</code></pre>
 
-<h2 id="documentation">Documentation</h2>
+<h2>Documentation</h2>
+
 <p>Documentation can be found <a href="http://ftb-gamepedia.github.io/MediaWiki-Butt-Ruby">here</a>.</p>
 
-<h2 id="quick-start">Quick start</h2>
-<p>To get the text of the main page:
-<code>ruby
-require 'mediawiki/butt'
-wiki = MediaWiki::Butt.new('https://en.wikipedia.org/w/api.php')
-wiki.login(username, password)
-main_page_text = wiki.get_text('Main Page')
-</code></p>
+<h2>Quick start</h2>
+
+<p>To get the text of the main page:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mediawiki/butt</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_wiki'>wiki</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MediaWiki/Butt.html" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="MediaWiki/Butt.html#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://en.wikipedia.org/w/api.php</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_wiki'>wiki</span><span class='period'>.</span><span class='id identifier rubyid_login'>login</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_main_page_text'>main_page_text</span> <span class='op'>=</span> <span class='id identifier rubyid_wiki'>wiki</span><span class='period'>.</span><span class='id identifier rubyid_get_text'>get_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Main Page</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+</code></pre>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:02 2017 by
+  Generated on Wed May  6 12:21:31 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>

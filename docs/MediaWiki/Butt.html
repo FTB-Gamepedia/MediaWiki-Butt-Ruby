@@ -6,15 +6,15 @@
 <title>
   Class: MediaWiki::Butt
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "MediaWiki::Butt";
   relpath = '../';
 </script>
@@ -112,7 +112,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Butt/AuthenticationError.html" title="MediaWiki::Butt::AuthenticationError (class)">AuthenticationError</a></span>, <span class='object_link'><a href="Butt/BlockError.html" title="MediaWiki::Butt::BlockError (class)">BlockError</a></span>, <span class='object_link'><a href="Butt/EditError.html" title="MediaWiki::Butt::EditError (class)">EditError</a></span>, <span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span>, <span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span>, <span class='object_link'><a href="Butt/UploadInvalidFileExtError.html" title="MediaWiki::Butt::UploadInvalidFileExtError (class)">UploadInvalidFileExtError</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Butt/AuthenticationError.html" title="MediaWiki::Butt::AuthenticationError (class)">AuthenticationError</a></span>, <span class='object_link'><a href="Butt/BlockError.html" title="MediaWiki::Butt::BlockError (class)">BlockError</a></span>, <span class='object_link'><a href="Butt/EditError.html" title="MediaWiki::Butt::EditError (class)">EditError</a></span>, <span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span>, <span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span>, <span class='object_link'><a href="Butt/PatrolError.html" title="MediaWiki::Butt::PatrolError (class)">PatrolError</a></span>, <span class='object_link'><a href="Butt/UploadInvalidFileExtError.html" title="MediaWiki::Butt::UploadInvalidFileExtError (class)">UploadInvalidFileExtError</a></span>
     
   
 </p>
@@ -124,6 +124,12 @@
   <h3 class="inherited">Constants included
      from <span class='object_link'><a href="Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Constants.html#MISSING_PAGEID_PROC-constant" title="MediaWiki::Constants::MISSING_PAGEID_PROC (constant)">Constants::MISSING_PAGEID_PROC</a></span>, <span class='object_link'><a href="Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">Constants::NAMESPACES</a></span></p>
+
+  
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="Query/Meta.html" title="MediaWiki::Query::Meta (module)">Query::Meta</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Meta.html#TOKEN_TYPES-constant" title="MediaWiki::Query::Meta::TOKEN_TYPES (constant)">Query::Meta::TOKEN_TYPES</a></span></p>
 
 
   <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
@@ -294,7 +300,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#post-instance_method" title="#post (instance method)">#<strong>post</strong>(params, autoparse = true, header = nil, override_assertion = false)  &#x21d2; Hash, HTTPMessage </a>
+      <a href="#post-instance_method" title="#post (instance method)">#<strong>post</strong>(params)  &#x21d2; Hash </a>
     
 
     
@@ -308,7 +314,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Performs a generic HTTP POST request and provides the response.</p>
+    <span class="summary_desc"><div class='inline'><p>Performs an HTTP POST request and provides the response.</p>
 </div></span>
   
 </li>
@@ -475,7 +481,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Edit.html" title="MediaWiki::Edit (module)">Edit</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Edit.html#create_page-instance_method" title="MediaWiki::Edit#create_page (method)">#create_page</a></span>, <span class='object_link'><a href="Edit.html#delete-instance_method" title="MediaWiki::Edit#delete (method)">#delete</a></span>, <span class='object_link'><a href="Edit.html#edit-instance_method" title="MediaWiki::Edit#edit (method)">#edit</a></span>, <span class='object_link'><a href="Edit.html#move-instance_method" title="MediaWiki::Edit#move (method)">#move</a></span>, <span class='object_link'><a href="Edit.html#upload-instance_method" title="MediaWiki::Edit#upload (method)">#upload</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Edit.html#create_page-instance_method" title="MediaWiki::Edit#create_page (method)">#create_page</a></span>, <span class='object_link'><a href="Edit.html#delete-instance_method" title="MediaWiki::Edit#delete (method)">#delete</a></span>, <span class='object_link'><a href="Edit.html#edit-instance_method" title="MediaWiki::Edit#edit (method)">#edit</a></span>, <span class='object_link'><a href="Edit.html#move-instance_method" title="MediaWiki::Edit#move (method)">#move</a></span>, <span class='object_link'><a href="Edit.html#patrol-instance_method" title="MediaWiki::Edit#patrol (method)">#patrol</a></span>, <span class='object_link'><a href="Edit.html#upload-instance_method" title="MediaWiki::Edit#upload (method)">#upload</a></span></p>
 
   
   
@@ -531,7 +537,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Log.html" title="MediaWiki::Query::Lists::Log (module)">Query::Lists::Log</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log.html#get_block-instance_method" title="MediaWiki::Query::Lists::Log#get_block (method)">#get_block</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_general-instance_method" title="MediaWiki::Query::Lists::Log#get_general (method)">#get_general</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_importinterwiki-instance_method" title="MediaWiki::Query::Lists::Log#get_importinterwiki (method)">#get_importinterwiki</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">#get_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_merge-instance_method" title="MediaWiki::Query::Lists::Log#get_merge (method)">#get_merge</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_move-instance_method" title="MediaWiki::Query::Lists::Log#get_move (method)">#get_move</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_overall_log-instance_method" title="MediaWiki::Query::Lists::Log#get_overall_log (method)">#get_overall_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_patrol-instance_method" title="MediaWiki::Query::Lists::Log#get_patrol (method)">#get_patrol</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protect-instance_method" title="MediaWiki::Query::Lists::Log#get_protect (method)">#get_protect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protectmoveprot-instance_method" title="MediaWiki::Query::Lists::Log#get_protectmoveprot (method)">#get_protectmoveprot</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_protectunprotect-instance_method" title="MediaWiki::Query::Lists::Log#get_protectunprotect (method)">#get_protectunprotect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_rightsautopromote-instance_method" title="MediaWiki::Query::Lists::Log#get_rightsautopromote (method)">#get_rightsautopromote</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_rightsrights-instance_method" title="MediaWiki::Query::Lists::Log#get_rightsrights (method)">#get_rightsrights</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_unblock-instance_method" title="MediaWiki::Query::Lists::Log#get_unblock (method)">#get_unblock</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_upload-instance_method" title="MediaWiki::Query::Lists::Log#get_upload (method)">#get_upload</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_user-instance_method" title="MediaWiki::Query::Lists::Log#get_user (method)">#get_user</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Log.html#get_log-instance_method" title="MediaWiki::Query::Lists::Log#get_log (method)">#get_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#get_overall_log-instance_method" title="MediaWiki::Query::Lists::Log#get_overall_log (method)">#get_overall_log</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_block-instance_method" title="MediaWiki::Query::Lists::Log#loghash_block (method)">#loghash_block</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_general-instance_method" title="MediaWiki::Query::Lists::Log#loghash_general (method)">#loghash_general</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_importinterwiki-instance_method" title="MediaWiki::Query::Lists::Log#loghash_importinterwiki (method)">#loghash_importinterwiki</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_importupload-instance_method" title="MediaWiki::Query::Lists::Log#loghash_importupload (method)">#loghash_importupload</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_merge-instance_method" title="MediaWiki::Query::Lists::Log#loghash_merge (method)">#loghash_merge</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_move-instance_method" title="MediaWiki::Query::Lists::Log#loghash_move (method)">#loghash_move</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_patrol-instance_method" title="MediaWiki::Query::Lists::Log#loghash_patrol (method)">#loghash_patrol</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_protect-instance_method" title="MediaWiki::Query::Lists::Log#loghash_protect (method)">#loghash_protect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_protectmoveprot-instance_method" title="MediaWiki::Query::Lists::Log#loghash_protectmoveprot (method)">#loghash_protectmoveprot</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_protectunprotect-instance_method" title="MediaWiki::Query::Lists::Log#loghash_protectunprotect (method)">#loghash_protectunprotect</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_rightsautopromote-instance_method" title="MediaWiki::Query::Lists::Log#loghash_rightsautopromote (method)">#loghash_rightsautopromote</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_rightsrights-instance_method" title="MediaWiki::Query::Lists::Log#loghash_rightsrights (method)">#loghash_rightsrights</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_unblock-instance_method" title="MediaWiki::Query::Lists::Log#loghash_unblock (method)">#loghash_unblock</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_upload-instance_method" title="MediaWiki::Query::Lists::Log#loghash_upload (method)">#loghash_upload</a></span>, <span class='object_link'><a href="Query/Lists/Log.html#loghash_user-instance_method" title="MediaWiki::Query::Lists::Log#loghash_user (method)">#loghash_user</a></span></p>
 
   
   
@@ -663,7 +669,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Lists/Search.html" title="MediaWiki::Query::Lists::Search (module)">Query::Lists::Search</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Query/Lists/Search.html#get_prefix_search-instance_method" title="MediaWiki::Query::Lists::Search#get_prefix_search (method)">#get_prefix_search</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_result_amount-instance_method" title="MediaWiki::Query::Lists::Search#get_search_result_amount (method)">#get_search_result_amount</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_results-instance_method" title="MediaWiki::Query::Lists::Search#get_search_results (method)">#get_search_results</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Query/Lists/Search.html#get_prefix_search-instance_method" title="MediaWiki::Query::Lists::Search#get_prefix_search (method)">#get_prefix_search</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_result_amount-instance_method" title="MediaWiki::Query::Lists::Search#get_search_result_amount (method)">#get_search_result_amount</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_results-instance_method" title="MediaWiki::Query::Lists::Search#get_search_results (method)">#get_search_results</a></span>, <span class='object_link'><a href="Query/Lists/Search.html#get_search_text_results-instance_method" title="MediaWiki::Query::Lists::Search#get_search_text_results (method)">#get_search_text_results</a></span></p>
 
   
   
@@ -704,11 +710,6 @@
   
   
   
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Properties.html" title="MediaWiki::Query::Properties (module)">Query::Properties</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Query/Properties.html#get_token-instance_method" title="MediaWiki::Query::Properties#get_token (method)">#get_token</a></span></p>
-
   
   
   
@@ -787,6 +788,11 @@
   
   
   
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Query/Meta.html" title="MediaWiki::Query::Meta (module)">Query::Meta</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Query/Meta.html#get_token-instance_method" title="MediaWiki::Query::Meta#get_token (method)">#get_token</a></span></p>
+
   
   
   
@@ -884,8 +890,7 @@ your wiki configuration.</p>
           
             &mdash; <div class='inline'><p>The query limit to use if no limit parameter is explicitly given to
 the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
-use that, otherwise, it will use this. Defaults to 500. It can be set to ‘max’ to use MW’s default max for
-each API.</p>
+use that, otherwise, it will use this. Defaults to &#39;max&#39; to use MW&#39;s default max for each API.</p>
 </div>
           
         </li>
@@ -897,7 +902,7 @@ each API.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>Whether to use the continuation API on queries.</p>
+            &mdash; <div class='inline'><p>Whether to use the continuation API on queries. Defaults to true.</p>
 </div>
           
         </li>
@@ -927,6 +932,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       <pre class="lines">
 
 
+43
 44
 45
 46
@@ -938,19 +944,36 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
 52
 53
 54
-55</pre>
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@url</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>api.php$</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_content'>/api.php</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@query_limit_default</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:query_limit_default</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>500</span>
-  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='const'>HTTPClient</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@url</span><span class='rparen'>)</span>
-  <span class='ivar'>@logged_in</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@query_limit_default</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:query_limit_default</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max</span><span class='tstring_end'>&#39;</span></span>
   <span class='ivar'>@custom_agent</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:custom_agent</span><span class='rbracket'>]</span>
-  <span class='ivar'>@use_continuation</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:use_continuation</span><span class='rbracket'>]</span>
+  <span class='ivar'>@session</span> <span class='op'>=</span> <span class='const'>Patron</span><span class='op'>::</span><span class='const'>Session</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>60</span>
+  <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_handle_cookies'>handle_cookies</span>
+  <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@custom_agent</span> <span class='kw'>if</span> <span class='ivar'>@custom_agent</span>
+  <span class='ivar'>@logged_in</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@use_continuation</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:use_continuation</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='kw'>true</span>
+  <span class='comment'># Token cache, populated in #get_token and depopulated in #post. Type =&gt; Token
+</span>  <span class='ivar'>@tokens</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='comment'># The most recent kind of token acquired. Used in #post, set/reset in #get_token.
+</span>  <span class='ivar'>@prev_token_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='comment'># Set to prevent token cache handling from producing an infinite call loop. Defaults to true, set to false when
+</span>  <span class='comment'># token recache is being handled.
+</span>  <span class='ivar'>@first_token_try</span> <span class='op'>=</span> <span class='kw'>true</span>
 
   <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:assertion</span><span class='rbracket'>]</span>
   <span class='ivar'>@assertion</span> <span class='op'>=</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>==</span> <span class='symbol'>:user</span> <span class='op'>||</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>==</span> <span class='symbol'>:bot</span> <span class='op'>?</span> <span class='id identifier rubyid_assertion'>assertion</span> <span class='op'>:</span> <span class='kw'>nil</span>
@@ -978,7 +1001,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute assertion</p>
+    <p>Returns the value of attribute assertion.</p>
 
 
   </div>
@@ -1020,7 +1043,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute query_limit_default</p>
+    <p>Returns the value of attribute query_limit_default.</p>
 
 
   </div>
@@ -1062,7 +1085,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute use_continuation</p>
+    <p>Returns the value of attribute use_continuation.</p>
 
 
   </div>
@@ -1208,22 +1231,22 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       <pre class="lines">
 
 
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179</pre>
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_limited'>get_limited</span><span class='lparen'>(</span><span class='id identifier rubyid_integer'>integer</span><span class='comma'>,</span> <span class='id identifier rubyid_max_user'>max_user</span> <span class='op'>=</span> <span class='int'>500</span><span class='comma'>,</span> <span class='id identifier rubyid_max_bot'>max_bot</span> <span class='op'>=</span> <span class='int'>5000</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_integer'>integer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -1285,25 +1308,21 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       <pre class="lines">
 
 
-150
-151
-152
-153
-154
-155
-156
-157</pre>
+164
+165
+166
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logged_in?'>logged_in?</span>
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
-    <span class='kw'>true</span>
-  <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span></span>
-    <span class='kw'>false</span>
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span></span>
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1313,7 +1332,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       <div class="method_details ">
   <h3 class="signature " id="post-instance_method">
   
-    #<strong>post</strong>(params, autoparse = true, header = nil, override_assertion = false)  &#x21d2; <tt>Hash</tt>, <tt>HTTPMessage</tt> 
+    #<strong>post</strong>(params)  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -1321,7 +1340,7 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Performs a generic HTTP POST request and provides the response. This method generally should not be used by the
+    <p>Performs an HTTP POST request and provides the response. This method generally should not be used by the
 user, unless there is not a helper method provided by Butt for a particular action.</p>
 
 
@@ -1341,60 +1360,9 @@ user, unless there is not a helper method provided by Butt for a particular acti
       
       
         &mdash;
-        <div class='inline'><p>A basic hash containing MediaWiki API parameters. Please see the MediaWiki API for more
-information.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>autoparse</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>true</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>Whether or not to provide a parsed version of the response’s JSON.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>header</span>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>The header hash. Optional.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>override_assertion</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>false</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>Whether to override the @assertion check. This is used in #login because
-that can never be done while already logged in.</p>
+        <div class='inline'><p>A hash containing MediaWiki API parameters. Please see the MediaWiki API for more
+information. The method automatically sets the format and assert values, unless they are specified in this
+hash argument.</p>
 </div>
       
     </li>
@@ -1412,20 +1380,7 @@ that can never be done while already logged in.</p>
       
       
         &mdash;
-        <div class='inline'><p>Parsed JSON if autoparse is true.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>HTTPMessage</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Raw HTTP response if autoparse is not true.</p>
+        <div class='inline'><p>Parsed JSON returned by the MediaWiki API</p>
 </div>
       
     </li>
@@ -1453,10 +1408,6 @@ that can never be done while already logged in.</p>
       <pre class="lines">
 
 
-68
-69
-70
-71
 72
 73
 74
@@ -1472,30 +1423,58 @@ that can never be done while already logged in.</p>
 84
 85
 86
-87</pre>
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 72</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_autoparse'>autoparse</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:format</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:assert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@assertion</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='kw'>if</span> <span class='ivar'>@assertion</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:assert</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_base_params'>base_params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_base_params'>base_params</span><span class='lbracket'>[</span><span class='symbol'>:assert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@assertion</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='kw'>if</span> <span class='ivar'>@assertion</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_base_params'>base_params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_header'>header</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@logged_in</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'>/MediaWiki::Butt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NotLoggedIn/MediaWiki::Butt</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_header'>header</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@custom_agent</span> <span class='kw'>if</span> <span class='kw'>defined?</span> <span class='ivar'>@custom_agent</span>
-
-  <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='rparen'>)</span>
-
-  <span class='kw'>return</span> <span class='id identifier rubyid_res'>res</span> <span class='kw'>unless</span> <span class='id identifier rubyid_autoparse'>autoparse</span>
-  <span class='id identifier rubyid_parsed'>parsed</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_res'>res</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
-
-  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_override_assertion'>override_assertion</span> <span class='op'>||</span> <span class='ivar'>@assertion</span>
-    <span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='id identifier rubyid_parsed'>parsed</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_parsed'>parsed</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertuserfailed</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_parsed'>parsed</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertbotfailed</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>unless</span> <span class='ivar'>@custom_agent</span>
+    <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>User-Agent</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@logged_in</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'>/MediaWiki::Butt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NotLoggedIn/MediaWiki::Butt</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_parsed'>parsed</span>
+
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='ivar'>@url</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
+
+  <span class='comment'># If our tokens have expired, clear them, re-set the relevant token argument, and re-call this #post method
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>badtoken</span><span class='tstring_end'>&#39;</span></span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@first_token_try</span>
+    <span class='ivar'>@tokens</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+    <span class='id identifier rubyid_token_param'>token_param</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>token</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_token_param'>token_param</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='ivar'>@prev_token_type</span><span class='rparen'>)</span>
+    <span class='comment'># Prevent token retry attempt in next #post call
+</span>    <span class='ivar'>@first_token_try</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Reset token retry value if no badtoken error has occurred.
+</span>  <span class='ivar'>@first_token_try</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@assertion</span>
+    <span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotLoggedInError.html" title="MediaWiki::Butt::NotLoggedInError (class)">NotLoggedInError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertuserfailed</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_fail'>fail</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>assertbotfailed</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_response'>response</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1568,7 +1547,7 @@ that can never be done while already logged in.</p>
       
         &mdash;
         <div class='inline'><p>Provides the value provided to the base_return parameter, and the value in the
-‘query’ key in the API response. See the API documentation for more information on this. If the base_return
+&#39;query&#39; key in the API response. See the API documentation for more information on this. If the base_return
 value is modified in the block, its modifications will persist across each continuation loop.</p>
 </div>
       
@@ -1599,26 +1578,26 @@ value is modified in the block, its modifications will persist across each conti
       <pre class="lines">
 
 
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112</pre>
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_return'>base_return</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:action</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span>
@@ -1687,7 +1666,7 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the “query” object to collect.</p>
+        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
 </div>
       
     </li>
@@ -1716,14 +1695,14 @@ value is modified in the block, its modifications will persist across each conti
       <pre class="lines">
 
 
-127
-128
-129
-130
-131</pre>
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query_ary'>query_ary</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='comma'>,</span> <span class='id identifier rubyid_property_key'>property_key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
@@ -1781,7 +1760,7 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the “query” object to collect.</p>
+        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
 </div>
       
     </li>
@@ -1810,14 +1789,14 @@ value is modified in the block, its modifications will persist across each conti
       <pre class="lines">
 
 
-117
-118
-119
-120
-121</pre>
+133
+134
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query_ary_irrelevant_keys'>query_ary_irrelevant_keys</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_base_response_key'>base_response_key</span><span class='comma'>,</span> <span class='id identifier rubyid_property_key'>property_key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_query'>query</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_return_val'>return_val</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='op'>|</span>
@@ -1909,25 +1888,21 @@ logged in as a non-bot</p>
       <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144
-145
-146</pre>
+155
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_bot?'>user_bot?</span>
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bot</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
-    <span class='kw'>true</span>
-  <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span></span>
-    <span class='kw'>false</span>
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>query</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>assert:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bot</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/NotBotError.html" title="MediaWiki::Butt::NotBotError (class)">NotBotError</a></span></span>
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1995,12 +1970,12 @@ logged in as a non-bot</p>
       <pre class="lines">
 
 
-184
-185
-186</pre>
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/butt.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_namespace'>validate_namespace</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Constants.html" title="MediaWiki::Constants (module)">Constants</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Constants.html#NAMESPACES-constant" title="MediaWiki::Constants::NAMESPACES (constant)">NAMESPACES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_value?'>value?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>:</span> <span class='int'>0</span>
@@ -2015,9 +1990,9 @@ logged in as a non-bot</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:08 2017 by
+  Generated on Wed May  6 12:21:40 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>

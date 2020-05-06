@@ -6,15 +6,15 @@
 <title>
   Module: MediaWiki::Edit
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "MediaWiki::Edit";
   relpath = '../';
 </script>
@@ -198,6 +198,29 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#patrol-instance_method" title="#patrol (instance method)">#<strong>patrol</strong>(opts = {})  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Patrol an edit by its recentchanges or revision ID.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#upload-instance_method" title="#upload (instance method)">#<strong>upload</strong>(url, filename = nil)  &#x21d2; Boolean </a>
     
 
@@ -257,7 +280,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The new page’s title.</p>
+        <div class='inline'><p>The new page&#39;s title.</p>
 </div>
       
     </li>
@@ -272,7 +295,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The new page’s content.</p>
+        <div class='inline'><p>The new page&#39;s content.</p>
 </div>
       
     </li>
@@ -313,7 +336,7 @@
             
           </span>
           
-            &mdash; <div class='inline'><p>The edit summary. Defaults to “New page”.</p>
+            &mdash; <div class='inline'><p>The edit summary. Defaults to &quot;New page&quot;.</p>
 </div>
           
         </li>
@@ -432,7 +455,7 @@
     <span class='label'>summary:</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:summary</span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='label'>createonly:</span> <span class='int'>1</span><span class='comma'>,</span>
     <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span>
   <span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:bot</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:bot</span><span class='rbracket'>]</span>
@@ -562,6 +585,8 @@
       <pre class="lines">
 
 
+156
+157
 158
 159
 160
@@ -572,23 +597,19 @@
 165
 166
 167
-168
-169
-170
-171</pre>
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
     <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>delete</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='label'>title:</span> <span class='id identifier rubyid_title'>title</span>
+    <span class='label'>title:</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span>
   <span class='rbrace'>}</span>
 
-  <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>delete</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:reason</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_reason'>reason</span> <span class='kw'>unless</span> <span class='id identifier rubyid_reason'>reason</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:token</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span>
 
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>delete</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -831,7 +852,7 @@
     <span class='label'>text:</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span>
     <span class='label'>nocreate:</span> <span class='int'>1</span><span class='comma'>,</span>
     <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span>
   <span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:summary</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:summary</span><span class='rbracket'>]</span>
@@ -1032,6 +1053,8 @@ page.</p>
       <pre class="lines">
 
 
+128
+129
 130
 131
 132
@@ -1047,12 +1070,10 @@ page.</p>
 142
 143
 144
-145
-146
-147</pre>
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_move'>move</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:talk</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:talk</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:talk</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>true</span>
@@ -1060,7 +1081,7 @@ page.</p>
     <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>move</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='label'>from:</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span>
     <span class='label'>to:</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span>
-    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>move</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='rparen'>)</span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span>
   <span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:reason</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:reason</span><span class='rbracket'>]</span>
@@ -1071,6 +1092,183 @@ page.</p>
 
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>move</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt.html" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/EditError.html" title="MediaWiki::Butt::EditError (class)">EditError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Butt.html#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unknown error code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="patrol-instance_method">
+  
+    #<strong>patrol</strong>(opts = {})  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Patrol an edit by its recentchanges or revision ID.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash&lt;Symbol, String&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options param.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>:rcid</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>:revid</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>:tags</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The title of the page that was patrolled, if it was patrolled.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>PatrolError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Patrol" target="_parent" title="Patrol API documentation">Patrol API documentation</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_patrol'>patrol</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrol</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrol</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rcid</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:rcid</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:rcid</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:revid</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:revid</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:revid</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:tags</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrol</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>title</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patrol</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt.html" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/PatrolError.html" title="MediaWiki::Butt::PatrolError (class)">PatrolError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Butt.html#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unknown error code</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1230,9 +1428,7 @@ warning.</p>
 109
 110
 111
-112
-113
-114</pre>
+112</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mediawiki/edit.rb', line 89</span>
@@ -1241,7 +1437,7 @@ warning.</p>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
     <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>upload</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='label'>url:</span> <span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
-    <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
+    <span class='label'>token:</span> <span class='id identifier rubyid_get_token'>get_token</span>
   <span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='id identifier rubyid_filename'>filename</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_filename'>filename</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^File:</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1250,9 +1446,7 @@ warning.</p>
   <span class='id identifier rubyid_allowed_extensions'>allowed_extensions</span> <span class='op'>=</span> <span class='id identifier rubyid_get_allowed_file_extensions'>get_allowed_file_extensions</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../MediaWiki.html" title="MediaWiki (module)">MediaWiki</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt.html" title="MediaWiki::Butt (class)">Butt</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Butt/UploadInvalidFileExtError.html" title="MediaWiki::Butt::UploadInvalidFileExtError (class)">UploadInvalidFileExtError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Butt.html#initialize-instance_method" title="MediaWiki::Butt#initialize (method)">new</a></span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_allowed_extensions'>allowed_extensions</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_ext'>ext</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:filename</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_filename'>filename</span>
-  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:token</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span>
 
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 
@@ -1273,9 +1467,9 @@ warning.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:03 2017 by
+  Generated on Wed May  6 12:21:31 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>

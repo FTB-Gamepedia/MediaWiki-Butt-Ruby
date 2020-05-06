@@ -6,15 +6,15 @@
 <title>
   Module: MediaWiki::Purge
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.23
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "MediaWiki::Purge";
   relpath = '../';
 </script>
@@ -129,7 +129,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#purge_link_update-instance_method" title="#purge_link_update (instance method)">#<strong>purge_link_update</strong>(*titles)  &#x21d2; Object </a>
+      <a href="#purge_link_update-instance_method" title="#purge_link_update (instance method)">#<strong>purge_link_update</strong>(*titles)  &#x21d2; Hash&lt;String, Boolean&gt; </a>
     
 
     
@@ -143,7 +143,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Purges the provided pages and updates their link tables.</p>
 </div></span>
   
 </li>
@@ -152,7 +152,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#purge_recursive_link_update-instance_method" title="#purge_recursive_link_update (instance method)">#<strong>purge_recursive_link_update</strong>(*titles)  &#x21d2; Object </a>
+      <a href="#purge_recursive_link_update-instance_method" title="#purge_recursive_link_update (instance method)">#<strong>purge_recursive_link_update</strong>(*titles)  &#x21d2; Hash&lt;String, Boolean&gt; </a>
     
 
     
@@ -166,7 +166,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Purges the provided pages and recursively updates the link tables.</p>
 </div></span>
   
 </li>
@@ -175,7 +175,7 @@
         <li class="private ">
   <span class="summary_signature">
     
-      <a href="#purge_request-instance_method" title="#purge_request (instance method)">#<strong>purge_request</strong>(params, *titles)  &#x21d2; Object </a>
+      <a href="#purge_request-instance_method" title="#purge_request (instance method)">#<strong>purge_request</strong>(params, *titles)  &#x21d2; Hash&lt;String, Boolean&gt; </a>
     
 
     
@@ -189,7 +189,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Sends a purge API request, and handles the return value and warnings.</p>
 </div></span>
   
 </li>
@@ -299,13 +299,74 @@ it is invalid, as provided by the MediaWiki API.</p>
       <div class="method_details ">
   <h3 class="signature " id="purge_link_update-instance_method">
   
-    #<strong>purge_link_update</strong>(*titles)  &#x21d2; <tt>Object</tt> 
+    #<strong>purge_link_update</strong>(*titles)  &#x21d2; <tt>Hash&lt;String, Boolean&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This creates a warning for every invalid purge with the reason it is invalid, as provided by the MediaWiki
+API, as well as the title of the invalid page.</p>
+</div>
+  </div>
+
+<p>Purges the provided pages and updates their link tables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>*titles</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of the pages to purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;String, Boolean&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key is the page title, and the value is whether it was a successful purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Purge" target="_parent" title="MediaWiki API Docs">MediaWiki API Docs</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -329,13 +390,74 @@ it is invalid, as provided by the MediaWiki API.</p>
       <div class="method_details ">
   <h3 class="signature " id="purge_recursive_link_update-instance_method">
   
-    #<strong>purge_recursive_link_update</strong>(*titles)  &#x21d2; <tt>Object</tt> 
+    #<strong>purge_recursive_link_update</strong>(*titles)  &#x21d2; <tt>Hash&lt;String, Boolean&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This creates a warning for every invalid purge with the reason it is invalid, as provided by the MediaWiki
+API, as well as the title of the invalid page.</p>
+</div>
+  </div>
+
+<p>Purges the provided pages and recursively updates the link tables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>*titles</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of the pages to purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;String, Boolean&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key is the page title, and the value is whether it was a successful purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Purge" target="_parent" title="MediaWiki API Docs">MediaWiki API Docs</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -359,13 +481,89 @@ it is invalid, as provided by the MediaWiki API.</p>
       <div class="method_details ">
   <h3 class="signature " id="purge_request-instance_method">
   
-    #<strong>purge_request</strong>(params, *titles)  &#x21d2; <tt>Object</tt>  <span class="extras">(private)</span>
+    #<strong>purge_request</strong>(params, *titles)  &#x21d2; <tt>Hash&lt;String, Boolean&gt;</tt>  <span class="extras">(private)</span>
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This creates a warning for every invalid purge with the reason it is invalid, as provided by the MediaWiki
+API, as well as the title of the invalid page.</p>
+</div>
+  </div>
+
+<p>Sends a purge API request, and handles the return value and warnings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash&lt;Object, Object&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The parameter hash to begin with. Cannot include the titles or action keys.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>*titles</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of the pages to purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;String, Boolean&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key is the page title, and the value is whether it was a successful purge.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://www.mediawiki.org/wiki/API:Purge" target="_parent" title="MediaWiki API Docs">MediaWiki API Docs</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -407,9 +605,9 @@ it is invalid, as provided by the MediaWiki API.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jun 21 22:06:03 2017 by
+  Generated on Wed May  6 12:21:32 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.1).
+  0.9.23 (ruby-2.6.5).
 </div>
 
     </div>
