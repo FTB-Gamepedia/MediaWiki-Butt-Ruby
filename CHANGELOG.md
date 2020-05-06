@@ -1,4 +1,46 @@
 # Changelog
+## Version 4
+### Version 4.0.0
+**Breaking changes!**
+* Add support for searching text (NCC-Gnisha) (#69, #77).
+* Replace HTTPClient with Patron (#71).
+* Fix limiting on `get_tags`.
+* Implement token caching (#75).
+* Change log hash formatting methods from `get_[type]` to `loghash_[type]` to fix `NoMethodError`s in log queries (#35).
+  * Fixes overlapping methods, such as `get_general` from siteinfo and `get_general` from log.
+  * Is more accurate as a descriptor, because no new data is being "gotten" from these methods, they only format data.
+  * Affected methods:
+    * `get_block` -> `loghash_block`
+    * `get_unblock` -> `loghash_unblock`
+    * `get_importinterwiki` -> `loghash_importinterwiki`
+    * `get_general` -> `loghash_general`
+    * `get_merge` -> `loghash_merge`
+    * `get_move` -> `loghash_move`
+    * `get_user` -> `loghash_user`
+    * `get_patrol` -> `loghash_patrol`
+    * `get_protect` -> `loghash_protect`
+    * `get_protectmoveprot` -> `loghash_protectmoveprot`
+    * `get_unprotect` -> `loghash_unprotect`
+    * `get_rightsautopromote` -> `loghash_rightsautopromote`
+    * `get_rightsrights` -> `loghash_rightsrights`
+    * `get_upload` -> `loghash_upload`
+* Fix broken log hash keys causing `NoMethodError`s (#35):
+  * `loghash_block`: `flags`, `duration`, and `expiry`
+  * `loghash_move`: `new_title`, and `suppressredirect`
+  * `loghash_patrol`: `current_revision`, and `previous_revision`; remove `automatic`
+  * `loghash_protect`: `details` (`type`, `expiry`, `level`) is not present in older protection logs; getting protection logs will no longer error on older entries without `details`
+  * `loghash_rightsautopromote`: `new_rights`, `old_rights`
+  * `loghash_rightsrights`: `new_rights`, `old_rights`
+* Fix missing log hash methods causing `NoMethodError`s (#35):
+  * `get_reblock_log`
+  * `get_unblock_log`
+  * `get_overall_log`
+  * `get_merge_log`
+* Returned log hash in move logs no longer has `title` key, it is now called `old_title`.
+* Rights log hashes no longer have `title` key because they were not useful.
+* Update minitest
+* Implement patrol API support. Patrol edits with the `patrol` method, which if errors will raise a `PatrolError` (#76).
+
 ## Version 3
 ### Version 3.0.0
 **Breaking changes!**
