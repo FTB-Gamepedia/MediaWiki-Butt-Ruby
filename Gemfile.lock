@@ -5,7 +5,7 @@ GEM
     minitest (5.14.2)
     patron (0.13.3)
     rake (13.0.1)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     yard (0.9.25)
 
 PLATFORMS
