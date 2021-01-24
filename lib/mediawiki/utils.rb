@@ -1,6 +1,13 @@
 module MediaWiki
-  # Util class similar to MediaWiki's non-API util methods. This is not required automatically by
-  # requiring 'mediawiki-butt' or 'mediawiki/butt'; you must require it explicitly.
+  # Util class similar to MediaWiki's non-API JavaScript util methods.
+  #
+  # To use this class it must be explicitly required. Including `mediawiki/butt` does not automatically include this class.
+  #
+  # Its methods are class methods, not instance methods. They are not executed on your {MediaWiki::Butt} instance.
+  #
+  # @example
+  #   require 'mediawiki/utils'
+  #   encoded_url = MediaWiki::Utils.encode_url(url)
   class Utils
     # Encodes the URL like mw.util.rawurlencode JS.
     # @param str [String] The string to replace (typically a page title).
