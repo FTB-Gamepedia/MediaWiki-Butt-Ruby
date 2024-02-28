@@ -6,7 +6,7 @@ GEM
     patron (0.13.3)
     rake (13.0.3)
     redcarpet (3.5.1)
-    yard (0.9.26)
+    yard (0.9.35)
 
 PLATFORMS
   ruby
