@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -57,553 +57,631 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
-
-<h2 id="version-4">Version 4</h2>
-
-<h3 id="version-4-0-1">Version 4.0.1</h3>
-
-<ul>
-<li>Yank 4.0.0, fix gem build.</li>
-</ul>
-
-<h3 id="version-4-0-0">Version 4.0.0</h3>
-
-<p><strong>Breaking changes!</strong></p>
-
-<ul>
-<li>Add support for searching text (NCC-Gnisha) (#69, #77).</li>
-<li>Replace HTTPClient with Patron (#71).</li>
-<li>Fix limiting on <code>get_tags</code>.</li>
-<li>Implement token caching (#75).</li>
-<li>Change log hash formatting methods from <code>get_[type]</code> to <code>loghash_[type]</code> to fix <code>NoMethodError</code>s in log queries (#35).
-
-<ul>
-<li>Fixes overlapping methods, such as <code>get_general</code> from siteinfo and <code>get_general</code> from log.</li>
-<li>Is more accurate as a descriptor, because no new data is being &quot;gotten&quot; from these methods, they only format data.</li>
-<li>Affected methods:</li>
-<li><code>get_block</code> -&gt; <code>loghash_block</code></li>
-<li><code>get_unblock</code> -&gt; <code>loghash_unblock</code></li>
-<li><code>get_importinterwiki</code> -&gt; <code>loghash_importinterwiki</code></li>
-<li><code>get_general</code> -&gt; <code>loghash_general</code></li>
-<li><code>get_merge</code> -&gt; <code>loghash_merge</code></li>
-<li><code>get_move</code> -&gt; <code>loghash_move</code></li>
-<li><code>get_user</code> -&gt; <code>loghash_user</code></li>
-<li><code>get_patrol</code> -&gt; <code>loghash_patrol</code></li>
-<li><code>get_protect</code> -&gt; <code>loghash_protect</code></li>
-<li><code>get_protectmoveprot</code> -&gt; <code>loghash_protectmoveprot</code></li>
-<li><code>get_unprotect</code> -&gt; <code>loghash_unprotect</code></li>
-<li><code>get_rightsautopromote</code> -&gt; <code>loghash_rightsautopromote</code></li>
-<li><code>get_rightsrights</code> -&gt; <code>loghash_rightsrights</code></li>
-<li><code>get_upload</code> -&gt; <code>loghash_upload</code></li>
-</ul></li>
-<li>Fix broken log hash keys causing <code>NoMethodError</code>s (#35):
-
-<ul>
-<li><code>loghash_block</code>: <code>flags</code>, <code>duration</code>, and <code>expiry</code></li>
-<li><code>loghash_move</code>: <code>new_title</code>, and <code>suppressredirect</code></li>
-<li><code>loghash_patrol</code>: <code>current_revision</code>, and <code>previous_revision</code>; remove <code>automatic</code></li>
-<li><code>loghash_protect</code>: <code>details</code> (<code>type</code>, <code>expiry</code>, <code>level</code>) is not present in older protection logs; getting protection logs will no longer error on older entries without <code>details</code></li>
-<li><code>loghash_rightsautopromote</code>: <code>new_rights</code>, <code>old_rights</code></li>
-<li><code>loghash_rightsrights</code>: <code>new_rights</code>, <code>old_rights</code></li>
-</ul></li>
-<li>Fix missing log hash methods causing <code>NoMethodError</code>s (#35):
-
-<ul>
-<li><code>get_reblock_log</code></li>
-<li><code>get_unblock_log</code></li>
-<li><code>get_overall_log</code></li>
-<li><code>get_merge_log</code></li>
-</ul></li>
-<li>Returned log hash in move logs no longer has <code>title</code> key, it is now called <code>old_title</code>.</li>
-<li>Rights log hashes no longer have <code>title</code> key because they were not useful.</li>
-<li>Update minitest</li>
-<li>Implement patrol API support. Patrol edits with the <code>patrol</code> method, which if errors will raise a <code>PatrolError</code> (#76).</li>
-</ul>
-
-<h2 id="version-3">Version 3</h2>
-
-<h3 id="version-3-0-0">Version 3.0.0</h3>
-
-<p><strong>Breaking changes!</strong></p>
-
-<ul>
-<li>Update token system for MediaWiki 1.27+ (#45, #46, #65, #67).
-
-<ul>
-<li><code>login</code> no longer takes a third <code>token</code> parameter.</li>
-<li><code>create_account</code> no longer takes a fifth <code>token</code> parameter.</li>
-<li><code>create_account_email</code> no longer takes a fifth <code>token</code> parameter.</li>
-<li><code>MediaWiki::Query::Properties#get_token</code> has been replaced by <code>MediaWiki::Query::Meta#get_token</code>. This only takes one parameter, as opposed to the old method&#39;s two parameters, which is the type of token to receive. Valid types are verified in the <code>MediaWiki::Query::Meta::TOKEN_TYPES</code> array.</li>
-</ul></li>
-<li>Remove unnecessary <code>autoparse</code>, <code>header</code>, and <code>override_assertion</code> parameters from <code>post</code> (#68).
-
-<ul>
-<li>The returned value is now always a parsed hash, never an HTTPMessage directly.</li>
-</ul></li>
-<li>Initialization parameter defaults are more likely what is to be used now (#62, #66).
-
-<ul>
-<li><code>:query_limit_default</code> is now defaulted to <code>&#39;max&#39;</code>.</li>
-<li><code>:use_continuation</code> is now defaulted to <code>true</code>.</li>
-</ul></li>
-</ul>
-
-<h2 id="version-2">Version 2</h2>
-
-<h3 id="version-2-0-1">Version 2.0.1</h3>
-
-<ul>
-<li>Fix NoMethodError in <code>get_templates_in_page</code> when called for pages with no templates (#61)</li>
-<li>Fix NoMethodError in <code>get_all_links_in_page</code> when called for pages with no links</li>
-<li>Fix NoMethodError in <code>get_other_langs_of_page</code> when called for pages with only 1 language (#33)</li>
-</ul>
-
-<h3 id="version-2-0-0">Version 2.0.0</h3>
-
-<p><strong>Breaking changes!</strong></p>
-
-<ul>
-<li>Logical reversal of the redirect param for move (#58)</li>
-<li>Switch around type and limit params in <code>get_category_members</code> (#57)</li>
-<li>Remove post-install message</li>
-<li>Strip leading and trailing whitespace from username in get_userlists, affecting the following methods (#55):
-
-<ul>
-<li><code>get_userrights</code></li>
-<li><code>get_contrib_count</code></li>
-<li><code>get_registration_time</code></li>
-<li><code>get_user_gender</code></li>
-</ul></li>
-<li>Change return values of <code>#upload</code> to be more useful (#54)
-
-<ul>
-<li><code>true</code>/<code>false</code> return value denote success/failure</li>
-<li><code>UploadInvalidFileExtError</code> is raised when the file extension is not valid</li>
-<li><code>EditError</code> is raised for any errors that occurred during the upload</li>
-</ul></li>
-<li>New siteinfo methods <code>get_server</code>, <code>get_base_article_path</code>, and <code>get_article_path</code> (#20).</li>
-<li>Modify the <code>edit</code>, <code>create_page</code>, and <code>move</code> methods to take options hashes instead of a bunch of unnamed arguments. (#53, #52)</li>
-<li>Documentation is now stored in master branch</li>
-</ul>
-
-<h2 id="version-1">Version 1</h2>
-
-<h3 id="version-1-3-0">Version 1.3.0</h3>
-
-<p><strong>Security update!</strong></p>
-
-<ul>
-<li>Add support for the Assert API (PR #51).
-
-<ul>
-<li>New <code>:assertion</code> option in initialize opts. It takes either <code>:user</code> or <code>:bot</code>.</li>
-<li>New <code>override_assertion</code> parameter in <code>post</code> to prevent assertion errors being thrown.</li>
-<li><strong>Note</strong>: Assertions will only happen if <code>post</code>&#39;s <code>autoparse</code> parameter is true.</li>
-<li>New NotLoggedInError and NotBotError for the according assertions.</li>
-<li><code>Butt#user_bot?</code> no longer has a parameter. It now queries with an assertion rather than checking the user&#39;s groups.</li>
-<li>New method <code>Butt#logged_in?</code> to check if the current instance is logged in.</li>
-</ul></li>
-</ul>
-
-<h3 id="version-1-2-0">Version 1.2.0</h3>
-
-<ul>
-<li>Add support for the Purge API (#48)</li>
-</ul>
-
-<h3 id="version-1-1-1">Version 1.1.1</h3>
-
-<ul>
-<li>Fix query methods throwing NoMethodErrors.</li>
-</ul>
-
-<h3 id="version-1-1-0">Version 1.1.0</h3>
-
-<ul>
-<li>Support for the continuation API (Issue #9 and PR #47)</li>
-</ul>
-
-<h3 id="version-1-0-0">Version 1.0.0</h3>
-
-<ul>
-<li>Important: MediaWiki::Butt now depends on Ruby 2.3. If you aren&#39;t using that yet, use it. It&#39;s worth it.</li>
-<li>MediaWiki::Butt.new now takes two parameters, <code>url</code>, and an options hash. See the documentation for initialize for more details.</li>
-<li>Improvements to the way we handle query limits (#28, #31, and #37):
-
-<ul>
-<li><code>get_recent_revisions</code>, <code>get_prefix_search</code>, and <code>get_full_watchlist</code> now properly set their limits.</li>
-<li>Most query lists that took a limit parameter now use the attribute <code>:query_limit_default</code> instead of each having a set default of 500.</li>
-<li>New <code>:query_limit_default</code> attribute accessor. This means you can change your default limits whenever you want!</li>
-<li>Support using &#39;max&#39; as the limit.</li>
-</ul></li>
-<li>Major cleanup of documentation. The YARD server at ftb-gamepedia.github.io/MediaWiki-Butt-Ruby is now the recommended place for documentation.</li>
-<li>Improve testing slightly.</li>
-<li>Remove the TIME_FORMAT constant and instead use DateTime&#39;s methods properly.</li>
-<li>Fix FileRepoInfo methods returning hashes with nil values instead of arrays of hashes (#34).</li>
-<li>Add support for the MediaWiki Watching/Unwatching APIs (#38)</li>
-<li>Remove the unused <code>:tokens</code> instance variable. This should silence some errors when logging in/out.</li>
-<li>Improve authentication methods by making them recursive. <code>login</code> and <code>create_account(_email)</code> now take an optional third parameter, token.</li>
-<li>Fix error in <code>get_categories_in_page</code> (APerson241)</li>
-<li>Error handling improvements (APerson241 and elifoster) (#32):
-
-<ul>
-<li>New EditError that is thrown when there is an error when editing. It contains the error code.</li>
-<li><code>edit</code> returns false when there is no change (error: nochange), rather than throwing an error.</li>
-<li>New BlockError that is thrown when there is an error when blocking/unblocking.</li>
-<li>Removed AuthenticationError subclasses, as well as <code>check_login</code> and <code>check_create</code>. All authentication errors now return a generic AuthenticationError with the provided error message from MediaWiki.</li>
-</ul></li>
-</ul>
-
-<h2 id="version-0">Version 0</h2>
-
-<h3 id="version-0-11-1">Version 0.11.1</h3>
-
-<ul>
-<li>Relicense under the MIT license.</li>
-<li>Bump HTTPClient dependency.</li>
-<li>Resolve get_registration_time TypeError (#26)</li>
-</ul>
-
-<h3 id="version-0-11-0">Version 0.11.0</h3>
-
-<ul>
-<li>Fix get_mostcategories_page typo (Mostca*<em>c</em>*tegories) (#24).</li>
-<li>Significant rewrite of the README, arguably the most important part of this version.</li>
-<li>New Utils module for replicating some of MediaWiki&#39;s utilities. Right now this only includes the <code>#encode_url</code> method, a Ruby version of the JavaScript method <code>mw.util.rawurlencode</code> (#21).</li>
-<li>Recent Changes responses are no longer printed on every request (#19).</li>
-</ul>
-
-<h3 id="version-0-10-2">Version 0.10.2</h3>
-
-<ul>
-<li>Update to Ruby 2.3 and HTTPClient 2.7</li>
-<li>All values in Constants, including the keys and values in the NAMESPACES constant, are now frozen objects.</li>
-</ul>
-
-<h3 id="version-0-10-1">Version 0.10.1</h3>
-
-<ul>
-<li>Add the accidentally forgotten protect.rb file to the list of files for the gemspec.</li>
-</ul>
-
-<h3 id="version-0-10-0">Version 0.10.0</h3>
-
-<ul>
-<li>Remove all incorrectly splatted method arguments, so account creation reasons and edit summaries work now (#12).</li>
-<li>Support a bunch of more Lists (#17). All of the old methods still exist in various submodules. The new methods are:
-
-<ul>
-<li>Log:</li>
-<li>get_interwiki_backlinks</li>
-<li>get_language_backlinks</li>
-<li>get_image_backlinks</li>
-<li>get_url_backlinks</li>
-<li>get_block_log</li>
-<li>get_reblock_log</li>
-<li>get_unblock_log</li>
-<li>get_delete_log</li>
-<li>get_deletion_restore_log</li>
-<li>get_interwiki_import_log</li>
-<li>get_upload_import_log</li>
-<li>get_overall_log</li>
-<li>get_merge_log</li>
-<li>get_move_log</li>
-<li>get_move_redirect_log</li>
-<li>get_autocreate_users_log</li>
-<li>get_user_create2_log</li>
-<li>get_user_create2_log</li>
-<li>get_patrol_log</li>
-<li>get_modify_protection_log</li>
-<li>get_move_protected_log</li>
-<li>get_protect_log</li>
-<li>get_unprotect_log</li>
-<li>get_autopromotion_log</li>
-<li>get_rights_log</li>
-<li>get_upload_overwrite_log</li>
-<li>get_upload_log</li>
-<li>The logs not explicitly supported (they are still supported in get_overall_log) are:
-
-<ul>
-<li>upload/revert</li>
-<li>rights/erevoke</li>
-<li>delete/event</li>
-<li>delete/revision</li>
-</ul></li>
-<li>Miscellaneous:</li>
-<li>get_tags</li>
-<li>QueryPage:</li>
-<li>get_mostrevisions_page</li>
-<li>get_mostlinked_page</li>
-<li>get_mostlinkedtemplates_page</li>
-<li>get_mostlinkedcategories_page</li>
-<li>get_mostinterwikis_page</li>
-<li>get_mostimages_page</li>
-<li>get_mostlinkedcategories_page</li>
-<li>get_listduplicatedfiles_page</li>
-<li>get_listredirects_page</li>
-<li>get_wantedtemplates_page</li>
-<li>get_wantedpages_page</li>
-<li>get_wantedfiles_page</li>
-<li>get_wantedcategories_page</li>
-<li>get_unwatchedpages_page</li>
-<li>get_unusedtemplates_page</li>
-<li>get_unusedcategories_page</li>
-<li>get_uncategorizedtemplates_page</li>
-<li>get_uncategorizedpages_page</li>
-<li>get_uncategorizedcategories_page</li>
-<li>get_shortpages_page</li>
-<li>get_withoutinterwiki_page</li>
-<li>get_fewestrevisions_page</li>
-<li>get_lonelypages_page</li>
-<li>get_ancientpages_page</li>
-<li>get_longpages_page</li>
-<li>get_doubleredirects_page</li>
-<li>get_brokenredirects_page</li>
-<li>get_querypage</li>
-<li>RecentChanges:</li>
-<li>get_recent_changes</li>
-<li>get_recent_deleted_revisions</li>
-<li>Search</li>
-<li>get_prefix_search</li>
-</ul></li>
-<li>New constant MediaWiki::Constants::TIME_FORMAT for the standard MediaWiki timestamp format.</li>
-<li>Improve performance slightly by using Array#&lt;&lt; instead of Array#push.</li>
-</ul>
-
-<h3 id="version-0-9-0">Version 0.9.0</h3>
-
-<ul>
-<li>get_category_members has a new parameter, type, which can be used to get more data in a single result.</li>
-<li>get_category_members no longer gets files and subcategories by default. Use the above to get more data at once.</li>
-<li>New get_subcategories and get_files_in_category for specifically getting files or subcategories.</li>
-</ul>
-
-<h3 id="version-0-8-2">Version 0.8.2</h3>
-
-<ul>
-<li>Fix outdated usage of @namespaces variable, causing a NoMethodError on get_random_pages calls.</li>
-<li>Greatly improved documentation.</li>
-</ul>
-
-<h3 id="version-0-8-1">Version 0.8.1</h3>
-
-<ul>
-<li>Fix get_limited&#39;s NoMethodError on user_bot?</li>
-<li>Fix user_bot? always returning false.</li>
-</ul>
-
-<h3 id="version-0-8-0">Version 0.8.0</h3>
-
-<ul>
-<li>A ton of property query methods (#7). View their docs for info:
-
-<ul>
-<li>get_all_links_in_page</li>
-<li>get_other_langs_of_page</li>
-<li>get_interwiki_links_in_page</li>
-<li>get_templates_in_page</li>
-<li>get_images_in_page</li>
-<li>get_page_size</li>
-<li>get_protection_levels</li>
-<li>get_display_title</li>
-<li>get_number_of_watchers</li>
-<li>page_new?</li>
-<li>page_redirect?</li>
-<li>can_i_read?</li>
-<li>do_i_watch?</li>
-<li>get_external_links</li>
-<li>get_duplicated_files_of</li>
-<li>get_image_bytes</li>
-<li>get_image_dimensions</li>
-<li>get_image_sizes</li>
-</ul></li>
-<li>A ton of list query methods (#8). View their docs for info:
-
-<ul>
-<li>get_all_pages_in_namespace</li>
-<li>get_all_users</li>
-<li>get_all_blocks</li>
-<li>get_all_transcluders</li>
-<li>get_all_deleted_files</li>
-<li>get_all_protected_titles</li>
-<li>get_user_contributions</li>
-<li>get_full_watchlist</li>
-<li>get_all_duplicated_files</li>
-</ul></li>
-<li>Fix a NoMethodError on what_links_here caused by not actually setting the list in that query (#14).</li>
-<li>User-Agents are optionally customizable in the MediaWiki::Butt initialization. If this is not used, the old defaults will still be used (&#39;NotLoggedIn/MediaWiki-Butt&#39; and &#39;Username/MediaWiki-Butt&#39;) (#13).</li>
-<li>Fix @returns in docs.</li>
-<li>Got rid of false things in docs.</li>
-<li>Remove dependency on string-utility. That should be something the user does on their end.</li>
-<li>get_contrib_count no longer has a second parameter, because of the above change.</li>
-<li>Fix open-ended dependency for HTTPClient.</li>
-<li>New get_logged_in_contributors method for getting all logged in user&#39;s usernames that have contributed to a page.</li>
-<li>New get_total_contributors method for getting the total number of contributors to a page.</li>
-<li>Refactor Properties to be more like Meta.</li>
-<li>New get_limited protected method that limits the &#39;limit&#39; parameter for queries. It&#39;s essentially just reducing duplicated code.</li>
-<li>Remove all global variables. MediaWiki::Constants::Namespaces&#39; $namespaces is now MediaWiki::Constants with the hash being defined as NAMESPACES (#10).</li>
-</ul>
-
-<h3 id="version-0-7-0">Version 0.7.0</h3>
-
-<ul>
-<li>upload&#39;s filename argument is no longer splat, because arrays.</li>
-<li>Fix incorrect regex $ when ^ should be used in upload.</li>
-<li>New get_all_categories method.</li>
-<li>New get_all_images method.</li>
-<li>Fix broken user_bot? calls.</li>
-<li>user_bot? returns false when not logged in and username is not set.</li>
-<li>Refactor Query module to have its own folder, and subfolder for meta. This shouldn&#39;t change anything on the user&#39;s end.</li>
-<li>A couple methods no longer stupidly print stuff.</li>
-<li>New get_categories_in_page method.</li>
-</ul>
-
-<h3 id="version-0-6-0">Version 0.6.0</h3>
-
-<ul>
-<li>Slightly expanded Gem description.</li>
-<li>Finished all Meta modules and their methods, except for the allmessages meta query. <a href="https://github.com/ftb-gamepedia/mediawiki-butt-ruby/issues/6">#6</a>
-
-<ul>
-<li>New get_variables method.</li>
-<li>New get_function_hooks method.</li>
-<li>New get_extension_tags method.</li>
-<li>New get_skins method.</li>
-<li>New get_restriction_levels method.</li>
-<li>New get_restriction_types method.</li>
-<li>New get_restrictions_data method for the above methods.</li>
-<li>New get_allowed_file_extensions method, and refactored #upload to only allow files with those extensions.</li>
-<li>New get_all_usergroups method.</li>
-<li>New get_magic_words method.</li>
-<li>New get_special_page_aliases method.</li>
-<li>New get_namespace_aliases method.</li>
-<li>New get_namespaces method.</li>
-<li>New get_filerepo_favicons method.</li>
-<li>New get_filerepo_thumburls method.</li>
-<li>New get_nonlocal_filerepos method.</li>
-<li>New get_local_filerepos method.</li>
-<li>New get_filerepo_urls method.</li>
-<li>New get_filerepo_rooturls method.</li>
-<li>Refactor get_filerepo_names to use new get_filerepoinfo method.</li>
-<li>New get_filerepoinfo method, in a similar style to get_userlists.</li>
-<li>New get_current_user_options for getting a hash containing all of the currently logged in user&#39;s preferences.</li>
-<li>New get_email_address method for getting the currently logged in user&#39;s email address.</li>
-<li>New get_realname method for getting the currently logged in user&#39;s real name.</li>
-<li>New get_changeable_groups method for getting the currently logged in user&#39;s groups that they can change (add/remove people from)</li>
-<li>New current_user_hasmsg? method for checking if the user has any unread messages.</li>
-<li>check_login no longer returns false, ever, because any code after a fail is unreachable.</li>
-<li>prop parameter in get_current_user_meta is now optional, for get_current_user_name.</li>
-<li>New get_current_user_name method, for getting the currently logged in user&#39;s username.</li>
-<li>New get_siteinfo method, in a similar style to get_userlists.</li>
-<li>New get_statistics method, for getting a hash of the wiki&#39;s statistics.</li>
-<li>New get_general method, for getting hash of the &#39;general&#39; wiki information.</li>
-<li>New get_extensions method, for getting an array of all extension names installed.</li>
-<li>New get_languages method, for getting a hash of all the languages, formatted as code =&gt; name.</li>
-</ul></li>
-<li>User-Agent header is now set for each post. It defaults to <code>NotLoggedIn/MediaWiki::Butt</code>, or <code>#{name}/MediaWiki::Butt</code> if logged in. This might cause some slight performance issues (<a href="https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5">#5</a>)</li>
-</ul>
-
-<h3 id="version-0-5-0">Version 0.5.0</h3>
-
-<ul>
-<li>New Administration module for administrative methods.</li>
-<li>New block and unblock methods, for (un)blocking users.</li>
-<li>Refactor token stuff. It still doesn&#39;t work exactly how I&#39;d like yet, but it&#39;s better than it was before. Ideally I&#39;d like to have it get the login-specific tokens on login and set them to some well-named instance variables. Then clear those on logout.</li>
-<li>Single-line each <code>do end</code> loops have been converted into <code>{...}</code> style loops.</li>
-<li>New delete method for deleting pages.</li>
-<li>New move method for moving pages.</li>
-</ul>
-
-<h3 id="version-0-4-1">Version 0.4.1</h3>
-
-<ul>
-<li>params[:format] is now automatically set to &#39;json&#39;, so it no longer needs to be defined in each method.</li>
-<li>Fixed a lot of styling issues thanks to Rubocop.</li>
-<li>check_login and check_create now use case/when statements instead of elsifs.</li>
-<li>check_create no longer returns anything.</li>
-<li>Update minimum Ruby version to 2.1, for refinements.</li>
-<li>Fix $namespaces hash syntax.</li>
-<li>Generally improved if statement syntax.</li>
-<li>Generally shortened a lot of code by using better syntax.</li>
-</ul>
-
-<h3 id="version-0-4-0">Version 0.4.0</h3>
-
-<ul>
-<li>New get_userrights method for getting an array of all user rights that user has.</li>
-<li>New get_user_gender method for getting the gender of the provided user.</li>
-<li>New get_current_user_meta for getting userlists about the currently logged in user. Essentially the equivalent of get_userlists for logged in users.</li>
-<li>Fix all userlist methods to work without supplying a username.</li>
-<li>New get_registration_time method to get when the user registered.</li>
-<li>Update to work with latest version of string-utility.</li>
-<li>Namespaces are now in a hash instead of a bunch of variables.</li>
-<li>Namespace parameters are now actually limited to the valid namespaces constant. It will default to the main namespace (0) if the integer provided is not in the namespaces hash.</li>
-<li>get_random_pages no longer wrongly sets the rnlimit to the namespaces argument rather than the namespace argument.</li>
-</ul>
-
-<h3 id="version-0-3-1">Version 0.3.1</h3>
-
-<ul>
-<li>Fix edit and create_page NoMethodErrors.</li>
-<li>Remove dependency for JSON as the version we use is included in the Ruby standard library.</li>
-</ul>
-
-<h3 id="version-0-3-0">Version 0.3.0</h3>
-
-<ul>
-<li>New upload method to upload by URL.</li>
-<li>New create_page method.</li>
-<li>New get_userlists method.</li>
-<li>New get_usergroups method.</li>
-<li>New get_contrib_count method.</li>
-<li>Refactor get_usergroups and is_current_user_bot? to use new get_userinfo method.</li>
-<li>Minor refactors to make optional arguments more Ruby-like with splat arguments.</li>
-<li><code>#edit</code> no longer prints the edit token, because that&#39;s stupid.</li>
-<li><code>#edit</code> no longer sets the summary if it is nil.</li>
-</ul>
-
-<h3 id="version-0-2-1">Version 0.2.1</h3>
-
-<ul>
-<li>Fix gemspec. You should actually have the new stuff now.</li>
-</ul>
-
-<h3 id="version-0-2-0">Version 0.2.0</h3>
-
-<ul>
-<li>New get_id method to get the pageid from the title.</li>
-<li>New get_random_pages method to get an array of random articles.</li>
-<li>New Namespace module full of constants.</li>
-<li>is_current_user_bot is now called as is_current_user_bot?.</li>
-<li>New get_edit_token method for obtaining an edit token based on the page title.</li>
-<li>New edit method and module for editing pages.</li>
-<li>Fix logout parsing error</li>
-</ul>
-
-<h3 id="version-0-1-1">Version 0.1.1</h3>
-
-<ul>
-<li>Got rid of pointless array in is_current_user_bot</li>
-<li>Potentially fixed docs</li>
-<li>Raise errors on unsuccessful account creation</li>
-<li><code>#login</code> properly returns true if the login is successful on the first try</li>
-<li><code>#logout</code> returns true/false if it logs the user out. Basically returns true if @logged_in is true, and false if not, because the logout action has no errors.</li>
-<li>Account creation stuff actually returns true/false on success/fail. It also handles errors now.</li>
-<li>Better Category title regex in get_category_members</li>
-</ul>
-
-<h3 id="version-0-1-0">Version 0.1.0</h3>
-
-<ul>
-<li>Initial version.</li>
-</ul>
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Changelog">Changelog</h1>
+
+<h2 id="label-Version+4">Version 4</h2>
+
+<h3 id="label-Version+4.0.1">Version 4.0.1</h3>
+<ul><li>
+<p>Yank 4.0.0, fix gem build.</p>
+</li></ul>
+
+<h3 id="label-Version+4.0.0">Version 4.0.0</h3>
+
+<p><strong>Breaking changes!</strong> * Add support for searching text (NCC-Gnisha) (#69, #77). * Replace HTTPClient with Patron (#71). * Fix limiting on <code>get_tags</code>. * Implement token caching (#75). * Change log hash formatting methods from <code>get_[type]</code> to <code>loghash_[type]</code> to fix <code>NoMethodError</code>s in log queries (#35). * Fixes overlapping methods, such as <code>get_general</code> from siteinfo and <code>get_general</code> from log. * Is more accurate as a descriptor, because no new data is being “gotten” from these methods, they only format data. * Affected methods: * <code>get_block</code> -&gt; <code>loghash_block</code> * <code>get_unblock</code> -&gt; <code>loghash_unblock</code> * <code>get_importinterwiki</code> -&gt; <code>loghash_importinterwiki</code> * <code>get_general</code> -&gt; <code>loghash_general</code> * <code>get_merge</code> -&gt; <code>loghash_merge</code> * <code>get_move</code> -&gt; <code>loghash_move</code> * <code>get_user</code> -&gt; <code>loghash_user</code> * <code>get_patrol</code> -&gt; <code>loghash_patrol</code> * <code>get_protect</code> -&gt; <code>loghash_protect</code> * <code>get_protectmoveprot</code> -&gt; <code>loghash_protectmoveprot</code> * <code>get_unprotect</code> -&gt; <code>loghash_unprotect</code> * <code>get_rightsautopromote</code> -&gt; <code>loghash_rightsautopromote</code> * <code>get_rightsrights</code> -&gt; <code>loghash_rightsrights</code> * <code>get_upload</code> -&gt; <code>loghash_upload</code> * Fix broken log hash keys causing <code>NoMethodError</code>s (#35): * <code>loghash_block</code>: <code>flags</code>, <code>duration</code>, and <code>expiry</code> * <code>loghash_move</code>: <code>new_title</code>, and <code>suppressredirect</code> * <code>loghash_patrol</code>: <code>current_revision</code>, and <code>previous_revision</code>; remove <code>automatic</code> * <code>loghash_protect</code>: <code>details</code> (<code>type</code>, <code>expiry</code>, <code>level</code>) is not present in older protection logs; getting protection logs will no longer error on older entries without <code>details</code> * <code>loghash_rightsautopromote</code>: <code>new_rights</code>, <code>old_rights</code> * <code>loghash_rightsrights</code>: <code>new_rights</code>, <code>old_rights</code> * Fix missing log hash methods causing <code>NoMethodError</code>s (#35): * <code>get_reblock_log</code> * <code>get_unblock_log</code> * <code>get_overall_log</code> * <code>get_merge_log</code> * Returned log hash in move logs no longer has <code>title</code> key, it is now called <code>old_title</code>. * Rights log hashes no longer have <code>title</code> key because they were not useful. * Update minitest * Implement patrol API support. Patrol edits with the <code>patrol</code> method, which if errors will raise a <code>PatrolError</code> (#76).</p>
+
+<h2 id="label-Version+3">Version 3</h2>
+
+<h3 id="label-Version+3.0.0">Version 3.0.0</h3>
+
+<p><strong>Breaking changes!</strong> * Update token system for MediaWiki 1.27+ (#45, #46, #65, #67). * <code>login</code> no longer takes a third <code>token</code> parameter. * <code>create_account</code> no longer takes a fifth <code>token</code> parameter. * <code>create_account_email</code> no longer takes a fifth <code>token</code> parameter. * <code>MediaWiki::Query::Properties#get_token</code> has been replaced by <code>MediaWiki::Query::Meta#get_token</code>. This only takes one parameter, as opposed to the old method’s two parameters, which is the type of token to receive. Valid types are verified in the <code>MediaWiki::Query::Meta::TOKEN_TYPES</code> array. * Remove unnecessary <code>autoparse</code>, <code>header</code>, and <code>override_assertion</code> parameters from <code>post</code> (#68). * The returned value is now always a parsed hash, never an HTTPMessage directly. * Initialization parameter defaults are more likely what is to be used now (#62, #66). * <code>:query_limit_default</code> is now defaulted to <code>&#39;max&#39;</code>. * <code>:use_continuation</code> is now defaulted to <code>true</code>.</p>
+
+<h2 id="label-Version+2">Version 2</h2>
+
+<h3 id="label-Version+2.0.1">Version 2.0.1</h3>
+<ul><li>
+<p>Fix NoMethodError in <code>get_templates_in_page</code> when called for pages with no templates (#61)</p>
+</li><li>
+<p>Fix NoMethodError in <code>get_all_links_in_page</code> when called for pages with no links</p>
+</li><li>
+<p>Fix NoMethodError in <code>get_other_langs_of_page</code> when called for pages with only 1 language (#33)</p>
+</li></ul>
+
+<h3 id="label-Version+2.0.0">Version 2.0.0</h3>
+
+<p><strong>Breaking changes!</strong> * Logical reversal of the redirect param for move (#58) * Switch around type and limit params in <code>get_category_members</code> (#57) * Remove post-install message * Strip leading and trailing whitespace from username in get_userlists, affecting the following methods (#55): * <code>get_userrights</code> * <code>get_contrib_count</code> * <code>get_registration_time</code> * <code>get_user_gender</code> * Change return values of <code>#upload</code> to be more useful (#54) * <code>true</code>/<code>false</code> return value denote success/failure * <code>UploadInvalidFileExtError</code> is raised when the file extension is not valid * <code>EditError</code> is raised for any errors that occurred during the upload * New siteinfo methods <code>get_server</code>, <code>get_base_article_path</code>, and <code>get_article_path</code> (#20). * Modify the <code>edit</code>, <code>create_page</code>, and <code>move</code> methods to take options hashes instead of a bunch of unnamed arguments. (#53, #52) * Documentation is now stored in master branch</p>
+
+<h2 id="label-Version+1">Version 1</h2>
+
+<h3 id="label-Version+1.3.0">Version 1.3.0</h3>
+
+<p><strong>Security update!</strong> * Add support for the Assert API (PR #51). * New <code>:assertion</code> option in initialize opts. It takes either <code>:user</code> or <code>:bot</code>. * New <code>override_assertion</code> parameter in <code>post</code> to prevent assertion errors being thrown. * <strong>Note</strong>: Assertions will only happen if <code>post</code>‘s <code>autoparse</code> parameter is true. * New NotLoggedInError and NotBotError for the according assertions. * <code>Butt#user_bot?</code> no longer has a parameter. It now queries with an assertion rather than checking the user’s groups. * New method <code>Butt#logged_in?</code> to check if the current instance is logged in.</p>
+
+<h3 id="label-Version+1.2.0">Version 1.2.0</h3>
+<ul><li>
+<p>Add support for the Purge API (#48)</p>
+</li></ul>
+
+<h3 id="label-Version+1.1.1">Version 1.1.1</h3>
+<ul><li>
+<p>Fix query methods throwing NoMethodErrors.</p>
+</li></ul>
+
+<h3 id="label-Version+1.1.0">Version 1.1.0</h3>
+<ul><li>
+<p>Support for the continuation API (Issue #9 and PR #47)</p>
+</li></ul>
+
+<h3 id="label-Version+1.0.0">Version 1.0.0</h3>
+<ul><li>
+<p>Important: MediaWiki::Butt now depends on Ruby 2.3. If you aren’t using that yet, use it. It’s worth it.</p>
+</li><li>
+<p>MediaWiki::Butt.new now takes two parameters, <code>url</code>, and an options hash. See the documentation for initialize for more details.</p>
+</li><li>
+<p>Improvements to the way we handle query limits (#28, #31, and #37):</p>
+</li><li>
+<p><code>get_recent_revisions</code>, <code>get_prefix_search</code>, and <code>get_full_watchlist</code> now properly set their limits.</p>
+</li><li>
+<p>Most query lists that took a limit parameter now use the attribute <code>:query_limit_default</code> instead of each having a set default of 500.</p>
+</li><li>
+<p>New <code>:query_limit_default</code> attribute accessor. This means you can change your default limits whenever you want!</p>
+</li><li>
+<p>Support using ‘max’ as the limit.</p>
+</li><li>
+<p>Major cleanup of documentation. The YARD server at ftb-gamepedia.github.io/MediaWiki-Butt-Ruby is now the recommended place for documentation.</p>
+</li><li>
+<p>Improve testing slightly.</p>
+</li><li>
+<p>Remove the TIME_FORMAT constant and instead use DateTime’s methods properly.</p>
+</li><li>
+<p>Fix FileRepoInfo methods returning hashes with nil values instead of arrays of hashes (#34).</p>
+</li><li>
+<p>Add support for the MediaWiki Watching/Unwatching APIs (#38)</p>
+</li><li>
+<p>Remove the unused <code>:tokens</code> instance variable. This should silence some errors when logging in/out.</p>
+</li><li>
+<p>Improve authentication methods by making them recursive. <code>login</code> and <code>create_account(_email)</code> now take an optional third parameter, token.</p>
+</li><li>
+<p>Fix error in <code>get_categories_in_page</code> (APerson241)</p>
+</li><li>
+<p>Error handling improvements (APerson241 and elifoster) (#32):</p>
+</li><li>
+<p>New EditError that is thrown when there is an error when editing. It contains the error code.</p>
+</li><li>
+<p><code>edit</code> returns false when there is no change (error: nochange), rather than throwing an error.</p>
+</li><li>
+<p>New BlockError that is thrown when there is an error when blocking/unblocking.</p>
+</li><li>
+<p>Removed AuthenticationError subclasses, as well as <code>check_login</code> and <code>check_create</code>. All authentication errors now return a generic AuthenticationError with the provided error message from MediaWiki.</p>
+</li></ul>
+
+<h2 id="label-Version+0">Version 0</h2>
+
+<h3 id="label-Version+0.11.1">Version 0.11.1</h3>
+<ul><li>
+<p>Relicense under the MIT license.</p>
+</li><li>
+<p>Bump HTTPClient dependency.</p>
+</li><li>
+<p>Resolve get_registration_time TypeError (#26)</p>
+</li></ul>
+
+<h3 id="label-Version+0.11.0">Version 0.11.0</h3>
+<ul><li>
+<p>Fix get_mostcategories_page typo (Mostca*c*tegories) (#24).</p>
+</li><li>
+<p>Significant rewrite of the README, arguably the most important part of this version.</p>
+</li><li>
+<p>New Utils module for replicating some of MediaWiki’s utilities. Right now this only includes the <code>#encode_url</code> method, a Ruby version of the JavaScript method <code>mw.util.rawurlencode</code> (#21).</p>
+</li><li>
+<p>Recent Changes responses are no longer printed on every request (#19).</p>
+</li></ul>
+
+<h3 id="label-Version+0.10.2">Version 0.10.2</h3>
+<ul><li>
+<p>Update to Ruby 2.3 and HTTPClient 2.7</p>
+</li><li>
+<p>All values in Constants, including the keys and values in the NAMESPACES constant, are now frozen objects.</p>
+</li></ul>
+
+<h3 id="label-Version+0.10.1">Version 0.10.1</h3>
+<ul><li>
+<p>Add the accidentally forgotten protect.rb file to the list of files for the gemspec.</p>
+</li></ul>
+
+<h3 id="label-Version+0.10.0">Version 0.10.0</h3>
+<ul><li>
+<p>Remove all incorrectly splatted method arguments, so account creation reasons and edit summaries work now (#12).</p>
+</li><li>
+<p>Support a bunch of more Lists (#17). All of the old methods still exist in various submodules. The new methods are:</p>
+</li><li>
+<p>Log:</p>
+<ul><li>
+<p>get_interwiki_backlinks</p>
+</li><li>
+<p>get_language_backlinks</p>
+</li><li>
+<p>get_image_backlinks</p>
+</li><li>
+<p>get_url_backlinks</p>
+</li><li>
+<p>get_block_log</p>
+</li><li>
+<p>get_reblock_log</p>
+</li><li>
+<p>get_unblock_log</p>
+</li><li>
+<p>get_delete_log</p>
+</li><li>
+<p>get_deletion_restore_log</p>
+</li><li>
+<p>get_interwiki_import_log</p>
+</li><li>
+<p>get_upload_import_log</p>
+</li><li>
+<p>get_overall_log</p>
+</li><li>
+<p>get_merge_log</p>
+</li><li>
+<p>get_move_log</p>
+</li><li>
+<p>get_move_redirect_log</p>
+</li><li>
+<p>get_autocreate_users_log</p>
+</li><li>
+<p>get_user_create2_log</p>
+</li><li>
+<p>get_user_create2_log</p>
+</li><li>
+<p>get_patrol_log</p>
+</li><li>
+<p>get_modify_protection_log</p>
+</li><li>
+<p>get_move_protected_log</p>
+</li><li>
+<p>get_protect_log</p>
+</li><li>
+<p>get_unprotect_log</p>
+</li><li>
+<p>get_autopromotion_log</p>
+</li><li>
+<p>get_rights_log</p>
+</li><li>
+<p>get_upload_overwrite_log</p>
+</li><li>
+<p>get_upload_log</p>
+</li><li>
+<p>The logs not explicitly supported (they are still supported in get_overall_log) are:</p>
+</li><li>
+<p>upload/revert</p>
+</li><li>
+<p>rights/erevoke</p>
+</li><li>
+<p>delete/event</p>
+</li><li>
+<p>delete/revision</p>
+</li></ul>
+</li><li>
+<p>Miscellaneous:</p>
+<ul><li>
+<p>get_tags</p>
+</li></ul>
+</li><li>
+<p>QueryPage:</p>
+<ul><li>
+<p>get_mostrevisions_page</p>
+</li><li>
+<p>get_mostlinked_page</p>
+</li><li>
+<p>get_mostlinkedtemplates_page</p>
+</li><li>
+<p>get_mostlinkedcategories_page</p>
+</li><li>
+<p>get_mostinterwikis_page</p>
+</li><li>
+<p>get_mostimages_page</p>
+</li><li>
+<p>get_mostlinkedcategories_page</p>
+</li><li>
+<p>get_listduplicatedfiles_page</p>
+</li><li>
+<p>get_listredirects_page</p>
+</li><li>
+<p>get_wantedtemplates_page</p>
+</li><li>
+<p>get_wantedpages_page</p>
+</li><li>
+<p>get_wantedfiles_page</p>
+</li><li>
+<p>get_wantedcategories_page</p>
+</li><li>
+<p>get_unwatchedpages_page</p>
+</li><li>
+<p>get_unusedtemplates_page</p>
+</li><li>
+<p>get_unusedcategories_page</p>
+</li><li>
+<p>get_uncategorizedtemplates_page</p>
+</li><li>
+<p>get_uncategorizedpages_page</p>
+</li><li>
+<p>get_uncategorizedcategories_page</p>
+</li><li>
+<p>get_shortpages_page</p>
+</li><li>
+<p>get_withoutinterwiki_page</p>
+</li><li>
+<p>get_fewestrevisions_page</p>
+</li><li>
+<p>get_lonelypages_page</p>
+</li><li>
+<p>get_ancientpages_page</p>
+</li><li>
+<p>get_longpages_page</p>
+</li><li>
+<p>get_doubleredirects_page</p>
+</li><li>
+<p>get_brokenredirects_page</p>
+</li><li>
+<p>get_querypage</p>
+</li></ul>
+</li><li>
+<p>RecentChanges:</p>
+<ul><li>
+<p>get_recent_changes</p>
+</li><li>
+<p>get_recent_deleted_revisions</p>
+</li></ul>
+</li><li>
+<p>Search</p>
+<ul><li>
+<p>get_prefix_search</p>
+</li></ul>
+</li><li>
+<p>New constant MediaWiki::Constants::TIME_FORMAT for the standard MediaWiki timestamp format.</p>
+</li><li>
+<p>Improve performance slightly by using Array#&lt;&lt; instead of Array#push.</p>
+</li></ul>
+
+<h3 id="label-Version+0.9.0">Version 0.9.0</h3>
+<ul><li>
+<p>get_category_members has a new parameter, type, which can be used to get more data in a single result.</p>
+</li><li>
+<p>get_category_members no longer gets files and subcategories by default. Use the above to get more data at once.</p>
+</li><li>
+<p>New get_subcategories and get_files_in_category for specifically getting files or subcategories.</p>
+</li></ul>
+
+<h3 id="label-Version+0.8.2">Version 0.8.2</h3>
+<ul><li>
+<p>Fix outdated usage of @namespaces variable, causing a NoMethodError on get_random_pages calls.</p>
+</li><li>
+<p>Greatly improved documentation.</p>
+</li></ul>
+
+<h3 id="label-Version+0.8.1">Version 0.8.1</h3>
+<ul><li>
+<p>Fix get_limited’s NoMethodError on user_bot?</p>
+</li><li>
+<p>Fix user_bot? always returning false.</p>
+</li></ul>
+
+<h3 id="label-Version+0.8.0">Version 0.8.0</h3>
+<ul><li>
+<p>A ton of property query methods (#7). View their docs for info:</p>
+</li><li>
+<p>get_all_links_in_page</p>
+</li><li>
+<p>get_other_langs_of_page</p>
+</li><li>
+<p>get_interwiki_links_in_page</p>
+</li><li>
+<p>get_templates_in_page</p>
+</li><li>
+<p>get_images_in_page</p>
+</li><li>
+<p>get_page_size</p>
+</li><li>
+<p>get_protection_levels</p>
+</li><li>
+<p>get_display_title</p>
+</li><li>
+<p>get_number_of_watchers</p>
+</li><li>
+<p>page_new?</p>
+</li><li>
+<p>page_redirect?</p>
+</li><li>
+<p>can_i_read?</p>
+</li><li>
+<p>do_i_watch?</p>
+</li><li>
+<p>get_external_links</p>
+</li><li>
+<p>get_duplicated_files_of</p>
+</li><li>
+<p>get_image_bytes</p>
+</li><li>
+<p>get_image_dimensions</p>
+</li><li>
+<p>get_image_sizes</p>
+</li><li>
+<p>A ton of list query methods (#8). View their docs for info:</p>
+</li><li>
+<p>get_all_pages_in_namespace</p>
+</li><li>
+<p>get_all_users</p>
+</li><li>
+<p>get_all_blocks</p>
+</li><li>
+<p>get_all_transcluders</p>
+</li><li>
+<p>get_all_deleted_files</p>
+</li><li>
+<p>get_all_protected_titles</p>
+</li><li>
+<p>get_user_contributions</p>
+</li><li>
+<p>get_full_watchlist</p>
+</li><li>
+<p>get_all_duplicated_files</p>
+</li><li>
+<p>Fix a NoMethodError on what_links_here caused by not actually setting the list in that query (#14).</p>
+</li><li>
+<p>User-Agents are optionally customizable in the MediaWiki::Butt initialization. If this is not used, the old defaults will still be used (‘NotLoggedIn/MediaWiki-Butt’ and ‘Username/MediaWiki-Butt’) (#13).</p>
+</li><li>
+<p>Fix @returns in docs.</p>
+</li><li>
+<p>Got rid of false things in docs.</p>
+</li><li>
+<p>Remove dependency on string-utility. That should be something the user does on their end.</p>
+</li><li>
+<p>get_contrib_count no longer has a second parameter, because of the above change.</p>
+</li><li>
+<p>Fix open-ended dependency for HTTPClient.</p>
+</li><li>
+<p>New get_logged_in_contributors method for getting all logged in user’s usernames that have contributed to a page.</p>
+</li><li>
+<p>New get_total_contributors method for getting the total number of contributors to a page.</p>
+</li><li>
+<p>Refactor Properties to be more like Meta.</p>
+</li><li>
+<p>New get_limited protected method that limits the ‘limit’ parameter for queries. It’s essentially just reducing duplicated code.</p>
+</li><li>
+<p>Remove all global variables. MediaWiki::Constants::Namespaces’ $namespaces is now MediaWiki::Constants with the hash being defined as NAMESPACES (#10).</p>
+</li></ul>
+
+<h3 id="label-Version+0.7.0">Version 0.7.0</h3>
+<ul><li>
+<p>upload’s filename argument is no longer splat, because arrays.</p>
+</li><li>
+<p>Fix incorrect regex $ when ^ should be used in upload.</p>
+</li><li>
+<p>New get_all_categories method.</p>
+</li><li>
+<p>New get_all_images method.</p>
+</li><li>
+<p>Fix broken user_bot? calls.</p>
+</li><li>
+<p>user_bot? returns false when not logged in and username is not set.</p>
+</li><li>
+<p>Refactor Query module to have its own folder, and subfolder for meta. This shouldn’t change anything on the user’s end.</p>
+</li><li>
+<p>A couple methods no longer stupidly print stuff.</p>
+</li><li>
+<p>New get_categories_in_page method.</p>
+</li></ul>
+
+<h3 id="label-Version+0.6.0">Version 0.6.0</h3>
+<ul><li>
+<p>Slightly expanded Gem description.</p>
+</li><li>
+<p>Finished all Meta modules and their methods, except for the allmessages meta query. <a href="https://github.com/ftb-gamepedia/mediawiki-butt-ruby/issues/6">#6</a></p>
+</li><li>
+<p>New get_variables method.</p>
+</li><li>
+<p>New get_function_hooks method.</p>
+</li><li>
+<p>New get_extension_tags method.</p>
+</li><li>
+<p>New get_skins method.</p>
+</li><li>
+<p>New get_restriction_levels method.</p>
+</li><li>
+<p>New get_restriction_types method.</p>
+</li><li>
+<p>New get_restrictions_data method for the above methods.</p>
+</li><li>
+<p>New get_allowed_file_extensions method, and refactored #upload to only allow files with those extensions.</p>
+</li><li>
+<p>New get_all_usergroups method.</p>
+</li><li>
+<p>New get_magic_words method.</p>
+</li><li>
+<p>New get_special_page_aliases method.</p>
+</li><li>
+<p>New get_namespace_aliases method.</p>
+</li><li>
+<p>New get_namespaces method.</p>
+</li><li>
+<p>New get_filerepo_favicons method.</p>
+</li><li>
+<p>New get_filerepo_thumburls method.</p>
+</li><li>
+<p>New get_nonlocal_filerepos method.</p>
+</li><li>
+<p>New get_local_filerepos method.</p>
+</li><li>
+<p>New get_filerepo_urls method.</p>
+</li><li>
+<p>New get_filerepo_rooturls method.</p>
+</li><li>
+<p>Refactor get_filerepo_names to use new get_filerepoinfo method.</p>
+</li><li>
+<p>New get_filerepoinfo method, in a similar style to get_userlists.</p>
+</li><li>
+<p>New get_current_user_options for getting a hash containing all of the currently logged in user’s preferences.</p>
+</li><li>
+<p>New get_email_address method for getting the currently logged in user’s email address.</p>
+</li><li>
+<p>New get_realname method for getting the currently logged in user’s real name.</p>
+</li><li>
+<p>New get_changeable_groups method for getting the currently logged in user’s groups that they can change (add/remove people from)</p>
+</li><li>
+<p>New current_user_hasmsg? method for checking if the user has any unread messages.</p>
+</li><li>
+<p>check_login no longer returns false, ever, because any code after a fail is unreachable.</p>
+</li><li>
+<p>prop parameter in get_current_user_meta is now optional, for get_current_user_name.</p>
+</li><li>
+<p>New get_current_user_name method, for getting the currently logged in user’s username.</p>
+</li><li>
+<p>New get_siteinfo method, in a similar style to get_userlists.</p>
+</li><li>
+<p>New get_statistics method, for getting a hash of the wiki’s statistics.</p>
+</li><li>
+<p>New get_general method, for getting hash of the ‘general’ wiki information.</p>
+</li><li>
+<p>New get_extensions method, for getting an array of all extension names installed.</p>
+</li><li>
+<p>New get_languages method, for getting a hash of all the languages, formatted as code =&gt; name.</p>
+</li><li>
+<p>User-Agent header is now set for each post. It defaults to <code>NotLoggedIn/MediaWiki::Butt</code>, or <code>#{name}/MediaWiki::Butt</code> if logged in. This might cause some slight performance issues (<a href="https://github.com/FTB-Gamepedia/MediaWiki-Butt-Ruby/issues/5">#5</a>)</p>
+</li></ul>
+
+<h3 id="label-Version+0.5.0">Version 0.5.0</h3>
+<ul><li>
+<p>New Administration module for administrative methods.</p>
+</li><li>
+<p>New block and unblock methods, for (un)blocking users.</p>
+</li><li>
+<p>Refactor token stuff. It still doesn’t work exactly how I’d like yet, but it’s better than it was before. Ideally I’d like to have it get the login-specific tokens on login and set them to some well-named instance variables. Then clear those on logout.</p>
+</li><li>
+<p>Single-line each <code>do end</code> loops have been converted into <code>{...}</code> style loops.</p>
+</li><li>
+<p>New delete method for deleting pages.</p>
+</li><li>
+<p>New move method for moving pages.</p>
+</li></ul>
+
+<h3 id="label-Version+0.4.1">Version 0.4.1</h3>
+<ul><li>
+<p><a href=":format">params</a> is now automatically set to ‘json’, so it no longer needs to be defined in each method.</p>
+</li><li>
+<p>Fixed a lot of styling issues thanks to Rubocop.</p>
+</li><li>
+<p>check_login and check_create now use case/when statements instead of elsifs.</p>
+</li><li>
+<p>check_create no longer returns anything.</p>
+</li><li>
+<p>Update minimum Ruby version to 2.1, for refinements.</p>
+</li><li>
+<p>Fix $namespaces hash syntax.</p>
+</li><li>
+<p>Generally improved if statement syntax.</p>
+</li><li>
+<p>Generally shortened a lot of code by using better syntax.</p>
+</li></ul>
+
+<h3 id="label-Version+0.4.0">Version 0.4.0</h3>
+<ul><li>
+<p>New get_userrights method for getting an array of all user rights that user has.</p>
+</li><li>
+<p>New get_user_gender method for getting the gender of the provided user.</p>
+</li><li>
+<p>New get_current_user_meta for getting userlists about the currently logged in user. Essentially the equivalent of get_userlists for logged in users.</p>
+</li><li>
+<p>Fix all userlist methods to work without supplying a username.</p>
+</li><li>
+<p>New get_registration_time method to get when the user registered.</p>
+</li><li>
+<p>Update to work with latest version of string-utility.</p>
+</li><li>
+<p>Namespaces are now in a hash instead of a bunch of variables.</p>
+</li><li>
+<p>Namespace parameters are now actually limited to the valid namespaces constant. It will default to the main namespace (0) if the integer provided is not in the namespaces hash.</p>
+</li><li>
+<p>get_random_pages no longer wrongly sets the rnlimit to the namespaces argument rather than the namespace argument.</p>
+</li></ul>
+
+<h3 id="label-Version+0.3.1">Version 0.3.1</h3>
+<ul><li>
+<p>Fix edit and create_page NoMethodErrors.</p>
+</li><li>
+<p>Remove dependency for JSON as the version we use is included in the Ruby standard library.</p>
+</li></ul>
+
+<h3 id="label-Version+0.3.0">Version 0.3.0</h3>
+<ul><li>
+<p>New upload method to upload by URL.</p>
+</li><li>
+<p>New create_page method.</p>
+</li><li>
+<p>New get_userlists method.</p>
+</li><li>
+<p>New get_usergroups method.</p>
+</li><li>
+<p>New get_contrib_count method.</p>
+</li><li>
+<p>Refactor get_usergroups and is_current_user_bot? to use new get_userinfo method.</p>
+</li><li>
+<p>Minor refactors to make optional arguments more Ruby-like with splat arguments.</p>
+</li><li>
+<p><code>#edit</code> no longer prints the edit token, because that’s stupid.</p>
+</li><li>
+<p><code>#edit</code> no longer sets the summary if it is nil.</p>
+</li></ul>
+
+<h3 id="label-Version+0.2.1">Version 0.2.1</h3>
+<ul><li>
+<p>Fix gemspec. You should actually have the new stuff now.</p>
+</li></ul>
+
+<h3 id="label-Version+0.2.0">Version 0.2.0</h3>
+<ul><li>
+<p>New get_id method to get the pageid from the title.</p>
+</li><li>
+<p>New get_random_pages method to get an array of random articles.</p>
+</li><li>
+<p>New Namespace module full of constants.</p>
+</li><li>
+<p>is_current_user_bot is now called as is_current_user_bot?.</p>
+</li><li>
+<p>New get_edit_token method for obtaining an edit token based on the page title.</p>
+</li><li>
+<p>New edit method and module for editing pages.</p>
+</li><li>
+<p>Fix logout parsing error</p>
+</li></ul>
+
+<h3 id="label-Version+0.1.1">Version 0.1.1</h3>
+<ul><li>
+<p>Got rid of pointless array in is_current_user_bot</p>
+</li><li>
+<p>Potentially fixed docs</p>
+</li><li>
+<p>Raise errors on unsuccessful account creation</p>
+</li><li>
+<p><code>#login</code> properly returns true if the login is successful on the first try</p>
+</li><li>
+<p><code>#logout</code> returns true/false if it logs the user out. Basically returns true if @logged_in is true, and false if not, because the logout action has no errors.</p>
+</li><li>
+<p>Account creation stuff actually returns true/false on success/fail. It also handles errors now.</p>
+</li><li>
+<p>Better Category title regex in get_category_members</p>
+</li></ul>
+
+<h3 id="label-Version+0.1.0">Version 0.1.0</h3>
+<ul><li>
+<p>Initial version.</p>
+</li></ul>
 </div></div>
 
       <div id="footer">
-  Generated on Wed May  6 16:26:04 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.25 (ruby-2.6.5).
+  Generated on Sat Mar  2 09:45:23 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.3.0).
 </div>
 
     </div>

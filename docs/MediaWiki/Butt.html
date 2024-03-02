@@ -6,7 +6,7 @@
 <title>
   Class: MediaWiki::Butt
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -155,7 +155,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute assertion.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute assertion.</p>
 </div></span>
   
 </li>
@@ -181,7 +182,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute query_limit_default.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute query_limit_default.</p>
 </div></span>
   
 </li>
@@ -207,7 +209,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute use_continuation.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute use_continuation.</p>
 </div></span>
   
 </li>
@@ -243,7 +246,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
 </div></span>
   
 </li>
@@ -268,7 +272,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Creates a new instance of MediaWiki::Butt.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new instance of MediaWiki::Butt.</p>
 </div></span>
   
 </li>
@@ -291,7 +296,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks whether this instance is logged in.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks whether this instance is logged in.</p>
 </div></span>
   
 </li>
@@ -314,7 +320,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Performs an HTTP POST request and provides the response.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Performs an HTTP POST request and provides the response.</p>
 </div></span>
   
 </li>
@@ -337,7 +344,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
 </div></span>
   
 </li>
@@ -360,7 +368,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Helper method for query methods that return an array built from the query objects.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Helper method for query methods that return an array built from the query objects.</p>
 </div></span>
   
 </li>
@@ -383,7 +392,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the   returning value.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the returning value.</p>
 </div></span>
   
 </li>
@@ -406,7 +416,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets whether the currently logged in user is a bot.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets whether the currently logged in user is a bot.</p>
 </div></span>
   
 </li>
@@ -429,7 +440,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
 </div></span>
   
 </li>
@@ -817,7 +829,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Creates a new instance of MediaWiki::Butt.</p>
+    
+<p>Creates a new instance of MediaWiki::Butt.</p>
 
 
   </div>
@@ -836,8 +849,8 @@
       
       
         &mdash;
-        <div class='inline'><p>The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about
-your wiki configuration.</p>
+        <div class='inline'>
+<p>The FULL wiki URL. api.php can be omitted, but it will make harsh assumptions about your wiki configuration.</p>
 </div>
       
     </li>
@@ -854,7 +867,8 @@ your wiki configuration.</p>
       
       
         &mdash;
-        <div class='inline'><p>The options hash for configuring this instance of Butt.</p>
+        <div class='inline'>
+<p>The options hash for configuring this instance of Butt.</p>
 </div>
       
     </li>
@@ -876,7 +890,8 @@ your wiki configuration.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>A custom User-Agent to use. Optional.</p>
+            &mdash; <div class='inline'>
+<p>A custom User-Agent to use. Optional.</p>
 </div>
           
         </li>
@@ -888,9 +903,8 @@ your wiki configuration.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>The query limit to use if no limit parameter is explicitly given to
-the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will
-use that, otherwise, it will use this. Defaults to &#39;max&#39; to use MW&#39;s default max for each API.</p>
+            &mdash; <div class='inline'>
+<p>The query limit to use if no limit parameter is explicitly given to the various query methods. In other words, if you pass a limit parameter to the valid query methods, it will use that, otherwise, it will use this. Defaults to ‘max’ to use MW’s default max for each API.</p>
 </div>
           
         </li>
@@ -902,7 +916,8 @@ use that, otherwise, it will use this. Defaults to &#39;max&#39; to use MW&#39;s
             
           </span>
           
-            &mdash; <div class='inline'><p>Whether to use the continuation API on queries. Defaults to true.</p>
+            &mdash; <div class='inline'>
+<p>Whether to use the continuation API on queries. Defaults to true.</p>
 </div>
           
         </li>
@@ -914,10 +929,8 @@ use that, otherwise, it will use this. Defaults to &#39;max&#39; to use MW&#39;s
             
           </span>
           
-            &mdash; <div class='inline'><p>If set to :user or :bot, will use the assert parameter in all requests.
-Setting this will open up the possibility for NotLoggedInErrors and NotBotErrors. It is important to keep in
-mind that methods that check if the user is logged in do not use the API, but check if the user has <em>ever</em>
-logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.</p>
+            &mdash; <div class='inline'>
+<p>If set to :user or :bot, will use the assert parameter in all requests. Setting this will open up the possibility for NotLoggedInErrors and NotBotErrors. It is important to keep in mind that methods that check if the user is logged in do not use the API, but check if the user has <em>ever</em> logged in as this Butt instance. In other words, it is a safety check for performance and not a valid API check.</p>
 </div>
           
         </li>
@@ -1001,7 +1014,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute assertion.</p>
+    
+<p>Returns the value of attribute assertion.</p>
 
 
   </div>
@@ -1043,7 +1057,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute query_limit_default.</p>
+    
+<p>Returns the value of attribute query_limit_default.</p>
 
 
   </div>
@@ -1085,7 +1100,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute use_continuation.</p>
+    
+<p>Returns the value of attribute use_continuation.</p>
 
 
   </div>
@@ -1132,7 +1148,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
+    
+<p>Gets the limited version of the integer, to ensure nobody provides an int that is too large.</p>
 
 
   </div>
@@ -1151,7 +1168,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         &mdash;
-        <div class='inline'><p>The number to limit.</p>
+        <div class='inline'>
+<p>The number to limit.</p>
 </div>
       
     </li>
@@ -1168,7 +1186,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         &mdash;
-        <div class='inline'><p>The maximum limit for normal users.</p>
+        <div class='inline'>
+<p>The maximum limit for normal users.</p>
 </div>
       
     </li>
@@ -1185,7 +1204,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         &mdash;
-        <div class='inline'><p>The maximum limit for bot users.</p>
+        <div class='inline'>
+<p>The maximum limit for bot users.</p>
 </div>
       
     </li>
@@ -1203,7 +1223,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         &mdash;
-        <div class='inline'><p>The capped number.</p>
+        <div class='inline'>
+<p>The capped number.</p>
 </div>
       
     </li>
@@ -1218,7 +1239,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         
-        <div class='inline'><p>0.8.0</p>
+        <div class='inline'>
+<p>0.8.0</p>
 </div>
       
     </li>
@@ -1277,7 +1299,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks whether this instance is logged in.</p>
+    
+<p>Checks whether this instance is logged in.</p>
 
 
   </div>
@@ -1295,7 +1318,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
       
       
         &mdash;
-        <div class='inline'><p>true if logged in, false if not.</p>
+        <div class='inline'>
+<p>true if logged in, false if not.</p>
 </div>
       
     </li>
@@ -1340,8 +1364,8 @@ logged in as this Butt instance. In other words, it is a safety check for perfor
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Performs an HTTP POST request and provides the response. This method generally should not be used by the
-user, unless there is not a helper method provided by Butt for a particular action.</p>
+    
+<p>Performs an HTTP POST request and provides the response. This method generally should not be used by the user, unless there is not a helper method provided by Butt for a particular action.</p>
 
 
   </div>
@@ -1360,9 +1384,8 @@ user, unless there is not a helper method provided by Butt for a particular acti
       
       
         &mdash;
-        <div class='inline'><p>A hash containing MediaWiki API parameters. Please see the MediaWiki API for more
-information. The method automatically sets the format and assert values, unless they are specified in this
-hash argument.</p>
+        <div class='inline'>
+<p>A hash containing MediaWiki API parameters. Please see the MediaWiki API for more information. The method automatically sets the format and assert values, unless they are specified in this hash argument.</p>
 </div>
       
     </li>
@@ -1380,7 +1403,8 @@ hash argument.</p>
       
       
         &mdash;
-        <div class='inline'><p>Parsed JSON returned by the MediaWiki API</p>
+        <div class='inline'>
+<p>Parsed JSON returned by the MediaWiki API</p>
 </div>
       
     </li>
@@ -1395,7 +1419,8 @@ hash argument.</p>
       
       
         
-        <div class='inline'><p>0.1.0</p>
+        <div class='inline'>
+<p>0.1.0</p>
 </div>
       
     </li>
@@ -1492,7 +1517,8 @@ hash argument.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
+    
+<p>Performs a Mediawiki API query and provides the response, dealing with continuation as necessary.</p>
 
 
   </div>
@@ -1511,7 +1537,8 @@ hash argument.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+        <div class='inline'>
+<p>A hash containing MediaWiki API parameters.</p>
 </div>
       
     </li>
@@ -1528,7 +1555,8 @@ hash argument.</p>
       
       
         &mdash;
-        <div class='inline'><p>The return value to start with. Defaults to an empty array.</p>
+        <div class='inline'>
+<p>The return value to start with. Defaults to an empty array.</p>
 </div>
       
     </li>
@@ -1546,9 +1574,8 @@ hash argument.</p>
       
       
         &mdash;
-        <div class='inline'><p>Provides the value provided to the base_return parameter, and the value in the
-&#39;query&#39; key in the API response. See the API documentation for more information on this. If the base_return
-value is modified in the block, its modifications will persist across each continuation loop.</p>
+        <div class='inline'>
+<p>Provides the value provided to the base_return parameter, and the value in the ‘query’ key in the API response. See the API documentation for more information on this. If the base_return value is modified in the block, its modifications will persist across each continuation loop.</p>
 </div>
       
     </li>
@@ -1565,7 +1592,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The base_return value as modified by the yielded block.</p>
+        <div class='inline'>
+<p>The base_return value as modified by the yielded block.</p>
 </div>
       
     </li>
@@ -1632,7 +1660,8 @@ value is modified in the block, its modifications will persist across each conti
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Helper method for query methods that return an array built from the query objects.</p>
+    
+<p>Helper method for query methods that return an array built from the query objects.</p>
 
 
   </div>
@@ -1651,7 +1680,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+        <div class='inline'>
+<p>A hash containing MediaWiki API parameters.</p>
 </div>
       
     </li>
@@ -1666,7 +1696,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
+        <div class='inline'>
+<p>The key inside the “query” object to collect.</p>
 </div>
       
     </li>
@@ -1681,7 +1712,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the object (under the base_response_key) to collect.</p>
+        <div class='inline'>
+<p>The key inside the object (under the base_response_key) to collect.</p>
 </div>
       
     </li>
@@ -1725,8 +1757,8 @@ value is modified in the block, its modifications will persist across each conti
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the
-  returning value. In most cases this key is a redundant page or revision ID that is also available in the object.</p>
+    
+<p>Helper method for query methods that return a two-dimensional hashes in which the keys are not relevant to the returning value. In most cases this key is a redundant page or revision ID that is also available in the object.</p>
 
 
   </div>
@@ -1745,7 +1777,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>A hash containing MediaWiki API parameters.</p>
+        <div class='inline'>
+<p>A hash containing MediaWiki API parameters.</p>
 </div>
       
     </li>
@@ -1760,7 +1793,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the &quot;query&quot; object to collect.</p>
+        <div class='inline'>
+<p>The key inside the “query” object to collect.</p>
 </div>
       
     </li>
@@ -1775,7 +1809,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>The key inside the object (under the base_response_key) to collect.</p>
+        <div class='inline'>
+<p>The key inside the object (under the base_response_key) to collect.</p>
 </div>
       
     </li>
@@ -1819,7 +1854,8 @@ value is modified in the block, its modifications will persist across each conti
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets whether the currently logged in user is a bot.</p>
+    
+<p>Gets whether the currently logged in user is a bot.</p>
 
 
   </div>
@@ -1837,8 +1873,8 @@ value is modified in the block, its modifications will persist across each conti
       
       
         &mdash;
-        <div class='inline'><p>true if logged in as a bot, false if not logged in or
-logged in as a non-bot</p>
+        <div class='inline'>
+<p>true if logged in as a bot, false if not logged in or logged in as a non-bot</p>
 </div>
       
     </li>
@@ -1853,7 +1889,8 @@ logged in as a non-bot</p>
       
       
         
-        <div class='inline'><p>0.1.0 as is_current_user_bot</p>
+        <div class='inline'>
+<p>0.1.0 as is_current_user_bot</p>
 </div>
       
     </li>
@@ -1864,7 +1901,8 @@ logged in as a non-bot</p>
       
       
         
-        <div class='inline'><p>0.3.0 as is_user_bot?</p>
+        <div class='inline'>
+<p>0.3.0 as is_user_bot?</p>
 </div>
       
     </li>
@@ -1875,7 +1913,8 @@ logged in as a non-bot</p>
       
       
         
-        <div class='inline'><p>0.4.1 as user_bot?</p>
+        <div class='inline'>
+<p>0.4.1 as user_bot?</p>
 </div>
       
     </li>
@@ -1920,7 +1959,8 @@ logged in as a non-bot</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
+    
+<p>Safely validates the given namespace ID, and returns 0 for the main namespace if invalid.</p>
 
 
   </div>
@@ -1939,7 +1979,8 @@ logged in as a non-bot</p>
       
       
         &mdash;
-        <div class='inline'><p>The namespace ID.</p>
+        <div class='inline'>
+<p>The namespace ID.</p>
 </div>
       
     </li>
@@ -1957,7 +1998,8 @@ logged in as a non-bot</p>
       
       
         &mdash;
-        <div class='inline'><p>Either the given namespace, if valid, or the main namespace ID 0 if invalid.</p>
+        <div class='inline'>
+<p>Either the given namespace, if valid, or the main namespace ID 0 if invalid.</p>
 </div>
       
     </li>
@@ -1990,9 +2032,9 @@ logged in as a non-bot</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May  6 16:26:12 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.25 (ruby-2.6.5).
+  Generated on Sat Mar  2 09:45:31 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.3.0).
 </div>
 
     </div>
